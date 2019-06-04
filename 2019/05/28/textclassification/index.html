@@ -16,7 +16,7 @@
 <meta property="og:description" content="本文是春季课程“自然语言处理与应用”文本分类作业的简单记录，关于文本分类方面上，知乎上很多很好的文章：知乎“看山杯”夺冠记，用深度学习（CNN RNN Attention）解决大规模文本分类问题，对写这个作业帮助也很大。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-05-28T04:53:04.307Z">
+<meta property="og:updated_time" content="2019-06-04T16:04:24.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文本分类小作业">
 <meta name="twitter:description" content="本文是春季课程“自然语言处理与应用”文本分类作业的简单记录，关于文本分类方面上，知乎上很多很好的文章：知乎“看山杯”夺冠记，用深度学习（CNN RNN Attention）解决大规模文本分类问题，对写这个作业帮助也很大。">
@@ -146,7 +146,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1247 个字)
+                    9 分钟 读完 (大约 1365 个字)
                 </span>
                 
                 
@@ -184,7 +184,7 @@
 <ul>
 <li><h4 id="2-分类器"><a href="#2-分类器" class="headerlink" title="2.分类器"></a>2.分类器</h4>embedding后面的网络结构不是这次作业的重点，我使用了北邮学长在“知乎看山杯”取得第一名自创的结构<code>CNNText_inception</code>，这是关于那次比赛的纪录文章：<a href="https://zhuanlan.zhihu.com/p/28923961" target="_blank" rel="noopener">知乎“看山杯” 夺冠记</a></li>
 </ul>
-<h2 id="四-总结"><a href="#四-总结" class="headerlink" title="四. 总结"></a>四. 总结</h2><p>没有调参，没有使用什么技巧，准确率很差，50个epoch在测试集上准确率最高只有71%，就这么把作业交了吧。</p>
+<h2 id="四-总结"><a href="#四-总结" class="headerlink" title="四. 总结"></a>四. 总结</h2><p><del>没有调参，没有使用什么技巧，准确率很差，50个epoch在测试集上准确率最高只有71%，就这么把作业交了吧。</del><br>之前因为一块GPU内存限制，把网络里面的某些维度调整小了，后面通过两个GPU并行增加了一些维度，到了83%。如果在数据预处理再做一些调整，增加文章的长度，应该会再提高一点，之前直接人为规定每篇文章长度为5000，有点arbitrary。<br>83%的模型参数链接:<a href="https://pan.baidu.com/s/19KJUbMclbPMx_iogG-et1Q" target="_blank" rel="noopener">https://pan.baidu.com/s/19KJUbMclbPMx_iogG-et1Q</a>  密码:rfdc</p>
 <div align="center"><br>    <img src="/2019/05/28/textclassification/result.png"><br></div>
 
         </div>
