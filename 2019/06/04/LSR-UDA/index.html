@@ -2,19 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: 文本分类 - 帝羲 的博客</title>
+<title>Learning Smooth Representation for Unsupervised Domain Adaptation - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/tags/文本分类/index.html">
+    <meta name="description" content="文章提出了一个local smooth discrepancy，局部平滑差异。实验证明这是领域适应上一个有效的 评价体系">
+<meta name="keywords" content="迁移学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning Smooth Representation for Unsupervised Domain Adaptation">
+<meta property="og:url" content="http://yoursite.com/2019/06/04/LSR-UDA/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="文章提出了一个local smooth discrepancy，局部平滑差异。实验证明这是领域适应上一个有效的 评价体系">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2019-06-04T15:45:30.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="Learning Smooth Representation for Unsupervised Domain Adaptation">
+<meta name="twitter:description" content="文章提出了一个local smooth discrepancy，局部平滑差异。实验证明这是领域适应上一个有效的 评价体系">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -95,7 +100,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="Learning Smooth Representation for Unsupervised Domain Adaptation" height="28">
             
             </a>
         </div>
@@ -126,33 +131,22 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">文本分类</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-28T02:27:04.000Z">2019-05-28</time>
+                <time class="level-item has-text-grey" datetime="2019-06-04T15:41:12.000Z">2019-06-04</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1247 个字)
+                    4 分钟 读完 (大约 588 个字)
                 </span>
                 
                 
@@ -161,21 +155,49 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/05/28/textclassification/">文本分类小作业</a>
+                Learning Smooth Representation for Unsupervised Domain Adaptation
             
         </h1>
         <div class="content">
-            <p>本文是春季课程“自然语言处理与应用”文本分类作业的简单记录，关于文本分类方面上，知乎上很多很好的文章：<a href="https://zhuanlan.zhihu.com/p/28923961" target="_blank" rel="noopener">知乎“看山杯”夺冠记</a>，<a href="https://zhuanlan.zhihu.com/p/25928551" target="_blank" rel="noopener">用深度学习（CNN RNN Attention）解决大规模文本分类问题</a>，对写这个作业帮助也很大。<br></p>
+            <p>文章提出了一个local smooth discrepancy，局部平滑差异。实验证明这是领域适应上一个有效的 评价体系<br><a id="more"></a></p>
+<p>文中提到MCD，MCD是一个很好的方法，也很好理解。作者对MCD提到了一点不足：</p>
+<blockquote>
+<p>However, the reason why a decision boundary robust in the source domain becomes invalid in the target domain is not well explained</p>
+</blockquote>
+<p>就是为什么这个decision boundary在target不好，没有解释，本文从一个角度来解释这个问题，</p>
+<h2 id="local-smooth-discrepancy"><a href="#local-smooth-discrepancy" class="headerlink" title="local smooth discrepancy"></a>local smooth discrepancy</h2><p>a local smooth discrepancy</p>
+<p>文章从分类器的boundary说起，过拟合问题就是，out-of-distribution样本没有被这个分类boundary正确划分。在UDA（非监督域适应）中，dataset shift加剧这个问题。</p>
+<div align="center"><br>    <img src="/2019/06/04/LSR-UDA/LSR.png"><br></div>
+
+<p>直觉上说，把靠近判断域目标域样本投射到离判别域更远的地方会好点。<br>离decision boundary近的样本会less smooth。<br>smoothness在这里的意思：</p>
+<blockquote>
+<p>a sample and the samples around it should belong to the same category</p>
+</blockquote>
+<p>$LSD(x, \theta)=D(C(G(x)+r), C(G(x))), \text { where }|r| \leq \epsilon$</p>
+<p>r是噪声<br>sensitive target指的是容易被misclassificated的样本</p>
+<ul>
+<li><p>各向同性<br>$$L S D(x, \theta)=D\left(C\left(G(x)+r_{r a n}\right), C(G(x))\right), \text { where } r_{r a n}=\frac{m}{|m|_{2}}, m \sim N(0,1)$$<br>高斯分布的扰动</p>
+</li>
+<li><p>各向异性<br>类似于fgsm的对抗扰动<br>$r_{a d v} \approx \epsilon \frac{m}{|m|_{2}}, \text { where } m=\nabla_{\mathbf{g}} D(C(\mathbf{g}), \text { onehot }(C(\mathbf{g}))), \mathbf{g}=G(x)$</p>
+</li>
+</ul>
+<p>$L S D(x, \theta)=D\left(C\left(G(x)+r_{a d v}\right), C(G(x))\right)$</p>
+<h3 id="Optimization-for-Local-Smooth-Discrepancy"><a href="#Optimization-for-Local-Smooth-Discrepancy" class="headerlink" title="Optimization for Local Smooth Discrepancy"></a>Optimization for Local Smooth Discrepancy</h3><p>1.<br>$\min _{G, C} \mathcal{L}\left(X_{s}, Y_{s}\right), \text { where } \mathcal{L}\left(X_{s}, Y_{s}\right)=\mathbb{E}_{x_{s}, y_{s} \sim P_{s}}\left[\sum_{k=1}^{K} \mathbb{1}\left[k=y_{s}\right] \log C\left(G\left(x_{s}\right)\right)\right]  (6)$</p>
+<p>2.<br>$$\mathbf{g}_{\mathrm{t}}^{\prime}=\mathbf{g}_{\mathrm{t}}+r (7)$$</p>
+<p>3.<br>$\min _{G} L S D\left(X_{t}, \theta_{G}\right), \text { where } L S D\left(X_{t}, \theta_{G}\right)=\mathbb{E}_{x_{t} \sim P_{t}} D\left(C\left(\mathbf{g}_{t}^{\prime}\right), C\left(\mathbf{g}_{t}\right)\right) (8)$<br>其中，$\theta_{G}$是G里面的参数，$D(\cdot, \cdot)$是交叉熵,公式(6)(7)(8)按照图1的流程重复。</p>
+<h3 id="Generalization-Error-Bound"><a href="#Generalization-Error-Bound" class="headerlink" title="Generalization Error Bound"></a>Generalization Error Bound</h3><p>解释这个式子为什么work well。优化LSD，就能优化$d_{\mathcal{H} \Delta \mathcal{H}}(S, T) \approx \mathbb{E}_{x \in T, x^{\prime} \in T^{\prime}} \mathbb{1}\left[h(x) \neq h\left(x^{\prime}\right)\right]$</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/28/textclassification/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/迁移学习/">迁移学习</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -183,9 +205,40 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/28/textclassification/">
+                <span class="level-item">文本分类小作业</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -565,7 +618,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="Learning Smooth Representation for Unsupervised Domain Adaptation" height="28">
                 
                 </a>
                 <p class="is-size-7">
