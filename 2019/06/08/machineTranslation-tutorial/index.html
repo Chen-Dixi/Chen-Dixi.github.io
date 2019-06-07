@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="没什么技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
+    <meta name="description" content="没任何技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
 <meta name="keywords" content="RNN,Attention,机器翻译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PyTorch官方Seq-to-Seq Network Attention 机器翻译指导">
 <meta property="og:url" content="http://yoursite.com/2019/06/08/machineTranslation-tutorial/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="没什么技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
+<meta property="og:description" content="没任何技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-07T18:02:10.554Z">
+<meta property="og:updated_time" content="2019-06-07T18:04:10.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch官方Seq-to-Seq Network Attention 机器翻译指导">
-<meta name="twitter:description" content="没什么技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
+<meta name="twitter:description" content="没任何技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -146,7 +146,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 636 个字)
+                    4 分钟 读完 (大约 646 个字)
                 </span>
                 
                 
@@ -159,7 +159,7 @@
             
         </h1>
         <div class="content">
-            <p>没什么技术含量，按照官方tutorial写的代码。地址：<a href="https://github.com/Chen-Dixi/MachineTranslation" target="_blank" rel="noopener">github</a><br>文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题<br><a id="more"></a><br>一个词一个词的进RNN<br>RNN的维度我自己不好搞清楚，在代码里添加了一些维度相关的注释，在main.py文件中<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EncoderRNN</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, input_size, hidden_size, device)</span>:</span></span><br><span class="line">        super(EncoderRNN, self).__init__()</span><br><span class="line">        self.hidden_size = hidden_size</span><br><span class="line">        self.device = device</span><br><span class="line">        self.embedding = nn.Embedding(input_size, hidden_size)</span><br><span class="line">        self.gru = nn.GRU(hidden_size, hidden_size)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, input, hidden)</span>:</span></span><br><span class="line">        embedded = self.embedding(input).view(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>)</span><br><span class="line">        output = embedded</span><br><span class="line">        output, hidden = self.gru(output, hidden)</span><br><span class="line">        <span class="hljs-keyword">return</span> output, hidden</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initHidden</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">return</span> torch.zeros(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, self.hidden_size, device=self.device)</span><br></pre></td></tr></table></figure></p>
+            <p>没任何技术含量，按照官方<a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html" target="_blank" rel="noopener">tutorial</a>写的代码。地址：<a href="https://github.com/Chen-Dixi/MachineTranslation" target="_blank" rel="noopener">github</a><br>文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题<br><a id="more"></a><br>一个词一个词的进RNN<br>RNN的维度我自己不好搞清楚，在代码里添加了一些维度相关的注释，在main.py文件中<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EncoderRNN</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, input_size, hidden_size, device)</span>:</span></span><br><span class="line">        super(EncoderRNN, self).__init__()</span><br><span class="line">        self.hidden_size = hidden_size</span><br><span class="line">        self.device = device</span><br><span class="line">        self.embedding = nn.Embedding(input_size, hidden_size)</span><br><span class="line">        self.gru = nn.GRU(hidden_size, hidden_size)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, input, hidden)</span>:</span></span><br><span class="line">        embedded = self.embedding(input).view(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>)</span><br><span class="line">        output = embedded</span><br><span class="line">        output, hidden = self.gru(output, hidden)</span><br><span class="line">        <span class="hljs-keyword">return</span> output, hidden</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initHidden</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">return</span> torch.zeros(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, self.hidden_size, device=self.device)</span><br></pre></td></tr></table></figure></p>
 <h2 id="nn-GRU"><a href="#nn-GRU" class="headerlink" title="nn.GRU"></a>nn.GRU</h2><h4 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters:"></a>Parameters:</h4><blockquote>
 <ul>
 <li>input_size – The number of expected features in the input x</li>
