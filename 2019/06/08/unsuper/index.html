@@ -16,7 +16,7 @@
 <meta property="og:description" content="AI精准模仿你的声音">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-09T04:17:24.849Z">
+<meta property="og:updated_time" content="2019-06-09T06:48:02.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Almost Unsupervised Text to Speech and Automatic Speech Recognition">
 <meta name="twitter:description" content="AI精准模仿你的声音">
@@ -146,7 +146,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    17 分钟 读完 (大约 2510 个字)
+                    17 分钟 读完 (大约 2521 个字)
                 </span>
                 
                 
@@ -168,7 +168,7 @@
 <li>双向序列建模，减缓错错相传的问题。</li>
 <li>设计一个基于Transformer的统一模型架构，能输入和输出语音和文本，并且能将上述模块整合在一起，实现TTS和ASR的功能。 </li>
 </ul>
-<p><strong>数据集：LJSpeech</strong><br><strong>性能评价：MOS for TTS，PER(Phoneme Error Rate，音素错误率) for ASR</strong></p>
+<p><strong>数据集：LJSpeech</strong><br><strong>性能评价：MOS(Mean Opinion Score，平均主观意见分) for TTS，PER(Phoneme Error Rate，音素错误率) for ASR</strong></p>
 <h3 id="Intro："><a href="#Intro：" class="headerlink" title="Intro："></a>Intro：</h3><p>之前关于无监督的自动语音识别(ASR)的研究工作(Chen et al., 2018a; Liu et al., 2018)没有从TTS借助addtional infomation。其次，无监督ASR一般(typically)借助一些算法，把语音波形拆分成小段，一段一个字或着“音素”。然后从这些片段，把语音和文本对齐。所以，给非监督语音ASR设计的算法不能简单地直接用到TTS(文本到语音)上去。</p>
 <h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><ul>
 <li><p>序列到序列的学习<br>一个序列对$(x, y) \in(\mathcal{X}, \mathcal{Y})$，$\mathcal{X},\mathcal{Y}$分别是源域和目标域的数据。$x=\left(x_{1}, x_{2}, \dots, x_{m}\right)and ,y=\left(y_{1}, y_{2}, \dots, y_{n}\right)$<br>用log似然函数当作目标函数<br>$$<br>\mathcal{L}(\theta ;(\mathcal{X}, \mathcal{Y}))=\Sigma_{(x, y) \in(\mathcal{X}, \mathcal{Y})} \log P(y | x ; \theta) (1)<br>$$</p>
