@@ -7,18 +7,19 @@
 
 
 
-    <meta name="description" content="领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，$P_{s}(y|\mathbf{x}) = P_{t}(y|\mathbf{x})$同一个任务，比如语义分割，在虚拟世界（GTA5，source domain）中训练出的模型不能泛化到现实场景(target domain)中">
+    <meta name="description" content="CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation,CVPR2019(Oral)">
+<meta name="keywords" content="迁移学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AMC S2E15 Slide：CLAN">
 <meta property="og:url" content="http://yoursite.com/2019/06/22/clan/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，$P_{s}(y|\mathbf{x}) = P_{t}(y|\mathbf{x})$同一个任务，比如语义分割，在虚拟世界（GTA5，source domain）中训练出的模型不能泛化到现实场景(target domain)中">
+<meta property="og:description" content="CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation,CVPR2019(Oral)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-22T14:03:03.967Z">
+<meta property="og:updated_time" content="2019-06-22T14:46:32.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AMC S2E15 Slide：CLAN">
-<meta name="twitter:description" content="领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，$P_{s}(y|\mathbf{x}) = P_{t}(y|\mathbf{x})$同一个任务，比如语义分割，在虚拟世界（GTA5，source domain）中训练出的模型不能泛化到现实场景(target domain)中">
+<meta name="twitter:description" content="CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation,CVPR2019(Oral)">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -137,11 +138,15 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-06-22T06:42:52.000Z">2019-06-22</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 1002 个字)
+                    7 分钟 读完 (大约 1013 个字)
                 </span>
                 
                 
@@ -154,7 +159,8 @@
             
         </h1>
         <div class="content">
-            <h3 id="领域适配Domain-Adaption：领域间边缘概率分布不同即-P-s-mathbf-x-neq-P-t-mathbf-x-，-P-s-y-mathbf-x-P-t-y-mathbf-x"><a href="#领域适配Domain-Adaption：领域间边缘概率分布不同即-P-s-mathbf-x-neq-P-t-mathbf-x-，-P-s-y-mathbf-x-P-t-y-mathbf-x" class="headerlink" title="领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，$P_{s}(y|\mathbf{x}) = P_{t}(y|\mathbf{x})$"></a>领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，$P_{s}(y|\mathbf{x}) = P_{t}(y|\mathbf{x})$</h3><p>同一个任务，比如语义分割，在虚拟世界（GTA5，source domain）中训练出的模型不能泛化到现实场景(target domain)中<br><a id="more"></a></p>
+            <h2 id="CLAN-Category-level-Adversaries-for-Semantics-Consistent-Domain-Adaptation-CVPR2019-Oral"><a href="#CLAN-Category-level-Adversaries-for-Semantics-Consistent-Domain-Adaptation-CVPR2019-Oral" class="headerlink" title="CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation,CVPR2019(Oral)"></a>CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation,CVPR2019(Oral)</h2><a id="more"></a>
+<h3 id="领域适配Domain-Adaption：领域间边缘概率分布不同即-P-s-mathbf-x-neq-P-t-mathbf-x-，-P-s-y-mathbf-x-P-t-y-mathbf-x"><a href="#领域适配Domain-Adaption：领域间边缘概率分布不同即-P-s-mathbf-x-neq-P-t-mathbf-x-，-P-s-y-mathbf-x-P-t-y-mathbf-x" class="headerlink" title="领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，$P_{s}(y|\mathbf{x}) = P_{t}(y|\mathbf{x})$"></a>领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，$P_{s}(y|\mathbf{x}) = P_{t}(y|\mathbf{x})$</h3><p>同一个任务，比如语义分割，在虚拟世界（GTA5，source domain）中训练出的模型不能泛化到现实场景(target domain)中</p>
 <div align="center"><br>    <img src="/2019/06/22/clan/GTA5-Cityscape.png"><br></div>
 
 <p>原因是，两个Domain的数据分布不同，$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，输入图像的边缘分布不同。 任务可以理解为 模型能够根据输入，给出 条件分布$P(y| \mathbf{x})$ 最大的结果$y$，但是模型不能泛化到 输入边缘分布不同的数据上。</p>
@@ -188,6 +194,15 @@
 <li>已经对齐的一些类别 ,C1,C2输出的cosine距离会接近于1，因此$1-\cos \left(p_{i, j}^{(1)}, p_{i, j}^{(2)}\right)$会更小，在这些类别上的迁移程度也会更小。</li>
 </ul>
 
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/迁移学习/">迁移学习</a>
+                </div>
+            </div>
         </div>
         
         
@@ -362,7 +377,7 @@
                 <span class="level-item">领域自适应</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li>
             </ul>
@@ -517,7 +532,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/迁移学习/">
                         <span class="tag">迁移学习</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -681,7 +696,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/迁移学习/">
                         <span class="tag">迁移学习</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
