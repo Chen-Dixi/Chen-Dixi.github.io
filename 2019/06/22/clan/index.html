@@ -16,7 +16,7 @@
 <meta property="og:description" content="CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation,CVPR2019(Oral)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-22T14:46:32.101Z">
+<meta property="og:updated_time" content="2019-06-24T19:41:20.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AMC S2E15 Slide：CLAN">
 <meta name="twitter:description" content="CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation,CVPR2019(Oral)">
@@ -146,7 +146,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 1013 个字)
+                    10 分钟 读完 (大约 1470 个字)
                 </span>
                 
                 
@@ -160,36 +160,47 @@
         </h1>
         <div class="content">
             <h2 id="CLAN-Category-level-Adversaries-for-Semantics-Consistent-Domain-Adaptation-CVPR2019-Oral"><a href="#CLAN-Category-level-Adversaries-for-Semantics-Consistent-Domain-Adaptation-CVPR2019-Oral" class="headerlink" title="CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation,CVPR2019(Oral)"></a>CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation,CVPR2019(Oral)</h2><a id="more"></a>
-<h3 id="领域适配Domain-Adaption：领域间边缘概率分布不同即-P-s-mathbf-x-neq-P-t-mathbf-x-，-P-s-y-mathbf-x-P-t-y-mathbf-x"><a href="#领域适配Domain-Adaption：领域间边缘概率分布不同即-P-s-mathbf-x-neq-P-t-mathbf-x-，-P-s-y-mathbf-x-P-t-y-mathbf-x" class="headerlink" title="领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，$P_{s}(y|\mathbf{x}) = P_{t}(y|\mathbf{x})$"></a>领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，$P_{s}(y|\mathbf{x}) = P_{t}(y|\mathbf{x})$</h3><p>同一个任务，比如语义分割，在虚拟世界（GTA5，source domain）中训练出的模型不能泛化到现实场景(target domain)中</p>
+<h3 id="领域适配Domain-Adaption：领域间边缘概率分布不同即-P-s-mathbf-x-neq-P-t-mathbf-x"><a href="#领域适配Domain-Adaption：领域间边缘概率分布不同即-P-s-mathbf-x-neq-P-t-mathbf-x" class="headerlink" title="领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$"></a>领域适配Domain Adaption：领域间边缘概率分布不同即$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$</h3><p>同一个任务，比如语义分割，在虚拟世界（GTA5，source domain）中训练出的模型不能泛化到现实场景(target domain)中</p>
 <div align="center"><br>    <img src="/2019/06/22/clan/GTA5-Cityscape.png"><br></div>
 
-<p>原因是，两个Domain的数据分布不同，$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，输入图像的边缘分布不同。 任务可以理解为 模型能够根据输入，给出 条件分布$P(y| \mathbf{x})$ 最大的结果$y$，但是模型不能泛化到 输入边缘分布不同的数据上。</p>
+<p>原因是，两个Domain的数据分布不同，$P_{s}(\mathbf{x}) \neq P_{t}(\mathbf{x})$，输入图像的边缘分布不同，意思就是不同domain上的数据有明显差异。 传统深度学习，模型学到的分类器包含了一个条件分布$P(y| \mathbf{x})$，根据输入能够给出一个概率最大的输出$y$，但是模型不能泛化到 输入边缘分布不同的数据上。</p>
+<p>$$<br>P(\mathbf{y} | \mathbf{x}) = \frac{P(\mathbf{y},\mathbf{x})}{P(\mathbf{x})}<br>$$<br>如果$P(\mathbf{x})$改变了，那模型学到的条件分布就不能泛化到目标域上</p>
 <h3 id="训练出一个卷积网络G提取特征，使得这个特征在两个数据domain上的分布相同"><a href="#训练出一个卷积网络G提取特征，使得这个特征在两个数据domain上的分布相同" class="headerlink" title="训练出一个卷积网络G提取特征，使得这个特征在两个数据domain上的分布相同"></a>训练出一个卷积网络G提取特征，使得这个特征在两个数据domain上的分布相同</h3><p>$$<br>P_{s}\left(G(x)\right)=P_{t}\left(G(x)\right)<br>$$</p>
 <h3 id="GAN的对抗思想用来做-Unsupervised-Domain-Adaption-2015"><a href="#GAN的对抗思想用来做-Unsupervised-Domain-Adaption-2015" class="headerlink" title="GAN的对抗思想用来做 Unsupervised Domain Adaption(2015)"></a>GAN的对抗思想用来做 Unsupervised Domain Adaption(2015)</h3><div align="center"><br>    <img src="/2019/06/22/clan/dann.png"><br></div>
 
 <p>$$<br>\begin{aligned} \mathcal{L}_{a d v}(G, D)=&amp;-E\left[\log \left(D\left(G\left(X_{S}\right)\right)\right)\right] \\ &amp;-E\left[\log \left(1-D\left(G\left(X_{T}\right)\right)\right)\right] \end{aligned}<br>$$<br>用一个判别器D，训练判别特征$G(X)$来自source domain还是target domain；训练特征提取卷网络G生成的特征不能让判别器训练出来。判别器就不容易判断出来时，可以认为，训练出的G使得$P_{s}\left(G(x)\right)=P_{t}\left(G(x)\right)$。</p>
-<h3 id="特征分布对齐"><a href="#特征分布对齐" class="headerlink" title="特征分布对齐"></a>特征分布对齐</h3><p>但是作者认为 GAN 是针对 Global alignment， 却没有考量到各个类别(Category-level)的情况去做调整， 举例来说，有一些类别原本已经很相近了， 但 Discriminator 为了整体考量要去贴近那些不相近的类别， 却让某些原本已经相近的类别走远了， 看下图的上半部， 可以发现原本 + 的类别已经相似了， 但因为整体的考量往左上移动， 这时候却造成 + 的类别相差得比原本还多</p>
+<h3 id="特征分布对齐"><a href="#特征分布对齐" class="headerlink" title="特征分布对齐"></a>特征分布对齐</h3><p>但是作者认为 GAN 是针对 Global alignment，却没有考量到各个类别(Category-level)的情况去做调整， 举例来说，有一些类别原本已经很相近了， 但 Discriminator 为了整体考量要去贴近那些不相近的类别， 却让某些原本已经相近的类别走远了， 看下图的上半部， 可以发现原本 + 的类别已经相似了， 但因为整体的考量往左上移动， 这时候却造成 + 的类别相差得比原本还多</p>
 <div align="center"><br>    <img src="/2019/06/22/clan/self-adaptive_adversarial_loss.png"><br></div>
 
-
-
-<h3 id="co-training"><a href="#co-training" class="headerlink" title="co-training"></a>co-training</h3><ul>
-<li>属于一种多视角学习，从两个条件独立的角度解读数据，但是两个不同视角都各自有足够的信息做出正确结果，即两个分类器产生相同的输出。在非监督domain adaption中，co-training用来产生伪标签给unlabeled samples，由此直接度量和优化loss</li>
+<p>！！！传统的GAN损失函数是一个全局性的对齐，本文的想法就是改造loss，提出一个自适应对抗损失函数</p>
+<h3 id="使用co-training的来改造自适应损失函数"><a href="#使用co-training的来改造自适应损失函数" class="headerlink" title="使用co-training的来改造自适应损失函数"></a>使用co-training的来改造自适应损失函数</h3><ul>
+<li><p>属于一种多视角学习，从两个互斥的视角解读数据，就是训练两个分类器从不同角度学习，让他们的参数权重趋于互斥，这样能关注到真正那些对任务重要的信息，这个语义分割任务下就是捕获到语义特征。在非监督domain adaption中，co-training用来产生伪标签给unlabeled samples，由此直接度量和优化loss</p>
+</li>
+<li><p>本文用co-training来实现Category-level的特征分布对齐，用co-training的方式来得知各个类别是否对齐了（align）。已经对齐的类别给一个更高权重的对抗损失，而对齐距离很近的类别权重就给低一点，让分布在这个类别上少移动一点。</p>
+</li>
+<li><p>接下来是怎么衡量对齐程度，当两个分类器对一个目标域样本的分类器结果不一样时，可以理解为这个样本类别的特征是没有对齐的，导致分类器的结果不同，此时就给一个高权重</p>
+</li>
 </ul>
-<p>本文用co-training来实现Category-level的特征分布对齐</p>
-<div align="center"><br>    <img src="/2019/06/22/clan/clan.png"><br></div>
+<h4 id="所以本文的重点其实就是利用co-training来对adversarial-loss进行一个自适应加权改造"><a href="#所以本文的重点其实就是利用co-training来对adversarial-loss进行一个自适应加权改造" class="headerlink" title="!!所以本文的重点其实就是利用co-training来对adversarial loss进行一个自适应加权改造"></a>!!所以本文的重点其实就是利用co-training来对adversarial loss进行一个自适应加权改造</h4><div align="center"><br>    <img src="/2019/06/22/clan/clan.png"><br></div>
 
 
+<h3 id="互斥分类器的构造"><a href="#互斥分类器的构造" class="headerlink" title="互斥分类器的构造"></a>互斥分类器的构造</h3><ul>
+<li>使用cos距离，通过直接一个cos距离作为损失函数，就能加大两个分类器的权重差异，构造一个两个互斥的分类器。所以定义下面的权重差异loss(weight discrepancy loss)：<div align="center"><br>  <img src="/2019/06/22/clan/discrepancy.png"><br></div>
 
+</li>
+</ul>
+<p>$$<br>\mathcal{L}_{w e i g h t}(G)=\frac{\overrightarrow{w_{1}} \cdot \overrightarrow{w_{2}}}{||\overrightarrow{w_{1}}||\space||\overrightarrow{w_{2}}||}<br>$$</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p><u> segment loss 训练带标签源域数据负责分割任务学习，对抗loss负责对齐源域和目标域</u></p>
 <ul>
-<li>两个分类器从不同角度学习，让他们学习不同的参数，这样能关注到域无关特征。通过minimize他们之间cosine距离，加大两个分类器的权重差异，所以定义下面的权重差异loss(weight discrepancy loss)：<br><div align="center"><br>  <img src="/2019/06/22/clan/discrepancy.png"><br></div><br>$$<br>\mathcal{L}_{w e i g h t}(G)=\frac{\overrightarrow{w_{1}} \cdot \overrightarrow{w_{2}}}{||\overrightarrow{w_{1}}||\space||\overrightarrow{w_{2}}||}<br>$$</li>
+<li>只要能够在源域数据能够训练出性能很好的模型，那么这个模型也能泛化到目标域数据上了。所以通过segment loss，训练出能够正确分割source domain数据的两个互斥分类器</li>
 </ul>
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><ul>
-<li>两个分类器应该可以正确分割source domain数据，通过下面segment loss进行达到这个目的，双分类器目的是提供一个可信度更高的估计<br>$$<br>\mathcal{L}_{s e g}(G)=\sum_{i=1}^{H \times W} \sum_{c=1}^{C}-y_{i c} \log p_{i c}<br>$$</li>
-<li>让两个分类器在目标域数据上也能产生正确的分割，通过下面的对抗loss：<br>$$<br>\begin{array}{l}{\mathcal{L}_{a d v}(G, D)=-E\left[\log \left(D\left(G\left(X_{S}\right)\right)\right)\right]-} \\ {E\left[\left(\lambda_{l o c a l} \mathcal{M}\left(p^{(1)}, p^{(2)}\right)+\epsilon\right) \log \left(1-D\left(G\left(X_{T}\right)\right)\right)\right]}\end{array}<br>$$</li>
+<p>$$<br>\mathcal{L}_{s e g}(G)=\sum_{i=1}^{H \times W} \sum_{c=1}^{C}-y_{i c} \log p_{i c}<br>$$</p>
+<ul>
+<li>让两个分类器在目标域数据上也能完成正确的分割任务，通过下面的对抗loss：<br>$$<br>\begin{array}{l}{\mathcal{L}_{a d v}(G, D)=-E\left[\log \left(D\left(G\left(X_{S}\right)\right)\right)\right]-} \\ {E\left[\left(\lambda_{l o c a l} \mathcal{M}\left(p^{(1)}, p^{(2)}\right)+\epsilon\right) \log \left(1-D\left(G\left(X_{T}\right)\right)\right)\right]}\end{array}<br>$$</li>
 </ul>
 <p>其中$\left[\lambda_{l o c a l} \mathcal{M}\left(p^{(1)}, p^{(2)}\right)+\epsilon\right]$是加在目标域对抗部分的适应性权重。</p>
 <p>$p^{(1)},p^{(2)}$是两个分类器做的输出，$\mathcal{M}\left(p^{(1)}, p^{(2)}\right)=\left(1-\cos \left(p_{i, j}^{(1)}, p_{i, j}^{(2)}\right)\right)$是cos距离。</p>
+<p>注意今天的介绍中有两个cos距离，一个是用分类器权重计算的cosine距离，另一个是用分类器的输出计算的权重距离，后者用来衡量目标域样本所对应类别的对齐程度。</p>
 <ul>
 <li>已经对齐的一些类别 ,C1,C2输出的cosine距离会接近于1，因此$1-\cos \left(p_{i, j}^{(1)}, p_{i, j}^{(2)}\right)$会更小，在这些类别上的迁移程度也会更小。</li>
 </ul>
@@ -235,6 +246,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/23/domainAdaptionLiteratureReview/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">domainAdaptionLiteratureReview</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -291,7 +309,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        8
+                        9
                     </p>
                 </div>
             </div>
