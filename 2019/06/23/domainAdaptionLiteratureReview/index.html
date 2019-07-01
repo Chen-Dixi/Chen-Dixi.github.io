@@ -16,7 +16,7 @@
 <meta property="og:description" content="一 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-07-01T14:16:33.396Z">
+<meta property="og:updated_time" content="2019-07-01T14:44:18.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组会介绍：领域自适应">
 <meta name="twitter:description" content="一 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1426 个字)
+                    9 分钟 读完 (大约 1414 个字)
                 </span>
                 
                 
@@ -216,7 +216,9 @@
 <p>域适应其中一个思想方法是，在一个联合子空间上把源域和目标域的差距Gap减小。这样在源域上训练出的分类器也能很好地迁移到目标域。这篇文章提供了严密的框架来解释为什么可以在联合公共空间缩小<code>源域</code>和<code>目标域</code>的差距。更确切地，研究迁移过程中产生的损失，提供了理论来解释和概括现有主要凭经验的深度域适应工作。能够让我们解释，为什么缩小<code>源域</code>和<code>目标域</code>的差距能直接最小化迁移学习的损失<code>loss</code>。</p>
 <h3 id="五-方法概览"><a href="#五-方法概览" class="headerlink" title="五 方法概览"></a>五 方法概览</h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/methodOverview.png"><br></div>
 
-<h4 id="5-1-概率分布适配法"><a href="#5-1-概率分布适配法" class="headerlink" title="5.1 概率分布适配法"></a>5.1 概率分布适配法</h4><ul>
+<h4 id="5-1-概率分布适配法"><a href="#5-1-概率分布适配法" class="headerlink" title="5.1 概率分布适配法"></a>5.1 概率分布适配法</h4><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/distributionAdaptation.png"><br></div>
+
+<ul>
 <li>边缘分布适配<ul>
 <li>迁移成分分析Transfer Component Analysis<ul>
 <li>优化目标：<br>$\begin{array}{cl}{\min _{\varphi}} &amp; {\operatorname{Dist}\left(\varphi\left(\mathbf{X}_{S}\right), \varphi\left(\mathbf{X}_{T}\right)\right)+\lambda \Omega(\varphi)} \\ {\text { s.t. }} &amp; {\text { constraints on } \varphi\left(\mathbf{X}_{S}\right) \text { and } \varphi\left(\mathbf{X}_{T}\right)}\end{array}$</li>
@@ -259,9 +261,8 @@
 </ul>
 <div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/JDAextension.png"><br></div>
 
-<pre><code>- 平衡分布适配（Balanced Distribution Adaption,BDA）
-</code></pre><p> <strong>概率分布适配法总结</strong></p>
-<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/distributionAdaptation.png"><br></div>
+<p> <strong>概率分布适配法总结</strong></p>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/distributionSummary.png"><br></div>
 
 <h4 id="5-2-特征选择法"><a href="#5-2-特征选择法" class="headerlink" title="5.2 特征选择法"></a>5.2 特征选择法</h4><p>从源域和目标域中选择提取共享的特征，建立统一模型</p>
 <ul>
