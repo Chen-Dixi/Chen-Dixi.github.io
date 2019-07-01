@@ -16,7 +16,7 @@
 <meta property="og:description" content="一 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-07-01T14:13:40.824Z">
+<meta property="og:updated_time" content="2019-07-01T14:16:33.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组会介绍：领域自适应">
 <meta name="twitter:description" content="一 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1428 个字)
+                    10 分钟 读完 (大约 1426 个字)
                 </span>
                 
                 
@@ -174,7 +174,7 @@
 <li>Domain Adaptation ;同构迁移学习,迁移学习中和计算机视觉交叉的方法<br><strong>有标签的源域和无标签的目标域共享相同的特征和类别，但是特征分布不同</strong></li>
 </ul>
 <p>$$<br>\mathcal{D}_{S}\neq\mathcal{D}_{T} : P_{S}(X) \neq P_{T}(X)<br>$$</p>
-<h5 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h5><ul>
+<ul>
 <li>按照源域和目标域，包含的标签集合关系划分</li>
 </ul>
 <div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/label_set_fomula.png"><br></div>
@@ -216,7 +216,7 @@
 <p>域适应其中一个思想方法是，在一个联合子空间上把源域和目标域的差距Gap减小。这样在源域上训练出的分类器也能很好地迁移到目标域。这篇文章提供了严密的框架来解释为什么可以在联合公共空间缩小<code>源域</code>和<code>目标域</code>的差距。更确切地，研究迁移过程中产生的损失，提供了理论来解释和概括现有主要凭经验的深度域适应工作。能够让我们解释，为什么缩小<code>源域</code>和<code>目标域</code>的差距能直接最小化迁移学习的损失<code>loss</code>。</p>
 <h3 id="五-方法概览"><a href="#五-方法概览" class="headerlink" title="五 方法概览"></a>五 方法概览</h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/methodOverview.png"><br></div>
 
-<h4 id="4-1-概率分布适配法"><a href="#4-1-概率分布适配法" class="headerlink" title="4.1 概率分布适配法"></a>4.1 概率分布适配法</h4><ul>
+<h4 id="5-1-概率分布适配法"><a href="#5-1-概率分布适配法" class="headerlink" title="5.1 概率分布适配法"></a>5.1 概率分布适配法</h4><ul>
 <li>边缘分布适配<ul>
 <li>迁移成分分析Transfer Component Analysis<ul>
 <li>优化目标：<br>$\begin{array}{cl}{\min _{\varphi}} &amp; {\operatorname{Dist}\left(\varphi\left(\mathbf{X}_{S}\right), \varphi\left(\mathbf{X}_{T}\right)\right)+\lambda \Omega(\varphi)} \\ {\text { s.t. }} &amp; {\text { constraints on } \varphi\left(\mathbf{X}_{S}\right) \text { and } \varphi\left(\mathbf{X}_{T}\right)}\end{array}$</li>
@@ -263,7 +263,7 @@
 </code></pre><p> <strong>概率分布适配法总结</strong></p>
 <div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/distributionAdaptation.png"><br></div>
 
-<h4 id="4-2-特征选择法"><a href="#4-2-特征选择法" class="headerlink" title="4.2 特征选择法"></a>4.2 特征选择法</h4><p>从源域和目标域中选择提取共享的特征，建立统一模型</p>
+<h4 id="5-2-特征选择法"><a href="#5-2-特征选择法" class="headerlink" title="5.2 特征选择法"></a>5.2 特征选择法</h4><p>从源域和目标域中选择提取共享的特征，建立统一模型</p>
 <ul>
 <li>Structural Correspondence Learning (SCL) [Blitzer, ECML-06]<br>假设源域和目标域有一些特征可以找出来对齐，把这些feature叫做pivot feature.</li>
 </ul>
@@ -274,10 +274,12 @@
 <li>通常和分布适配进行结合，选择特征通常利用稀疏矩阵。</li>
 <li>没有单独非常出色的工作，除了上面的一个。</li>
 </ul>
-<h4 id="4-3-子空间学习法"><a href="#4-3-子空间学习法" class="headerlink" title="4.3 子空间学习法"></a>4.3 子空间学习法</h4><h5 id="将源域和目标域变换到相同的子空间，然后建立统一的模型"><a href="#将源域和目标域变换到相同的子空间，然后建立统一的模型" class="headerlink" title="将源域和目标域变换到相同的子空间，然后建立统一的模型"></a>将源域和目标域变换到相同的子空间，然后建立统一的模型</h5><ul>
-<li>统计特征变换 (Statistical Feature Transformation) <pre><code>将源域和目标域的一些统计特征进行变换对齐
-</code></pre><div align="center"><br>  <img src="/2019/06/23/domainAdaptionLiteratureReview/subspace1.png"><br></div><br><div align="center"><br>  <img src="/2019/06/23/domainAdaptionLiteratureReview/subspace2.png"><br></div>
+<h4 id="5-3-子空间学习法"><a href="#5-3-子空间学习法" class="headerlink" title="5.3 子空间学习法"></a>5.3 子空间学习法</h4><ul>
+<li>将源域和目标域变换到相同的子空间，然后建立统一的模型<ul>
+<li>统计特征变换 (Statistical Feature Transformation)<br> 将源域和目标域的一些统计特征进行变换对齐<div align="center"><br><img src="/2019/06/23/domainAdaptionLiteratureReview/subspace1.png"><br></div><br><div align="center"><br><img src="/2019/06/23/domainAdaptionLiteratureReview/subspace2.png"><br></div>
 
+</li>
+</ul>
 </li>
 </ul>
 
@@ -494,11 +496,7 @@
         <a class="is-flex" href="#三-领域自适应问题形式化">
         <span class="has-mr-6">3</span>
         <span>三 领域自适应问题形式化</span>
-        </a><ul class="menu-list"><ul class="menu-list"><li>
-        <a class="is-flex" href="#分类">
-        <span class="has-mr-6">3.1.1</span>
-        <span>分类</span>
-        </a></li></ul></ul></li><li>
+        </a></li><li>
         <a class="is-flex" href="#四-领域自适应理论">
         <span class="has-mr-6">4</span>
         <span>四 领域自适应理论</span>
@@ -507,22 +505,18 @@
         <span class="has-mr-6">5</span>
         <span>五 方法概览</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#4-1-概率分布适配法">
+        <a class="is-flex" href="#5-1-概率分布适配法">
         <span class="has-mr-6">5.1</span>
-        <span>4.1 概率分布适配法</span>
+        <span>5.1 概率分布适配法</span>
         </a></li><li>
-        <a class="is-flex" href="#4-2-特征选择法">
+        <a class="is-flex" href="#5-2-特征选择法">
         <span class="has-mr-6">5.2</span>
-        <span>4.2 特征选择法</span>
+        <span>5.2 特征选择法</span>
         </a></li><li>
-        <a class="is-flex" href="#4-3-子空间学习法">
+        <a class="is-flex" href="#5-3-子空间学习法">
         <span class="has-mr-6">5.3</span>
-        <span>4.3 子空间学习法</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#将源域和目标域变换到相同的子空间，然后建立统一的模型">
-        <span class="has-mr-6">5.3.1</span>
-        <span>将源域和目标域变换到相同的子空间，然后建立统一的模型</span>
-        </a></li></ul></li></ul></li></ul>
+        <span>5.3 子空间学习法</span>
+        </a></li></ul></li></ul>
         </div>
     </div>
 </div>
@@ -716,11 +710,7 @@
         <a class="is-flex" href="#三-领域自适应问题形式化">
         <span class="has-mr-6">3</span>
         <span>三 领域自适应问题形式化</span>
-        </a><ul class="menu-list"><ul class="menu-list"><li>
-        <a class="is-flex" href="#分类">
-        <span class="has-mr-6">3.1.1</span>
-        <span>分类</span>
-        </a></li></ul></ul></li><li>
+        </a></li><li>
         <a class="is-flex" href="#四-领域自适应理论">
         <span class="has-mr-6">4</span>
         <span>四 领域自适应理论</span>
@@ -729,22 +719,18 @@
         <span class="has-mr-6">5</span>
         <span>五 方法概览</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#4-1-概率分布适配法">
+        <a class="is-flex" href="#5-1-概率分布适配法">
         <span class="has-mr-6">5.1</span>
-        <span>4.1 概率分布适配法</span>
+        <span>5.1 概率分布适配法</span>
         </a></li><li>
-        <a class="is-flex" href="#4-2-特征选择法">
+        <a class="is-flex" href="#5-2-特征选择法">
         <span class="has-mr-6">5.2</span>
-        <span>4.2 特征选择法</span>
+        <span>5.2 特征选择法</span>
         </a></li><li>
-        <a class="is-flex" href="#4-3-子空间学习法">
+        <a class="is-flex" href="#5-3-子空间学习法">
         <span class="has-mr-6">5.3</span>
-        <span>4.3 子空间学习法</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#将源域和目标域变换到相同的子空间，然后建立统一的模型">
-        <span class="has-mr-6">5.3.1</span>
-        <span>将源域和目标域变换到相同的子空间，然后建立统一的模型</span>
-        </a></li></ul></li></ul></li></ul>
+        <span>5.3 子空间学习法</span>
+        </a></li></ul></li></ul>
         </div>
     </div>
 </div>
