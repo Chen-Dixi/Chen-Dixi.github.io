@@ -2,20 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>domainAdaptionLiteratureReview - 帝羲 的博客</title>
+<title>组会介绍：领域自适应 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="domainAdaptionLiteratureReview">
+    <meta name="description" content="1 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
+<meta name="keywords" content="迁移学习,组会资料">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组会介绍：领域自适应">
 <meta property="og:url" content="http://yoursite.com/2019/06/23/domainAdaptionLiteratureReview/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="1 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-23T10:14:35.238Z">
+<meta property="og:updated_time" content="2019-07-01T12:34:37.546Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="domainAdaptionLiteratureReview">
+<meta name="twitter:title" content="组会介绍：领域自适应">
+<meta name="twitter:description" content="1 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -96,7 +100,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="domainAdaptionLiteratureReview" height="28">
+                <img src="/images/logo.svg" alt="组会介绍：领域自适应" height="28">
             
             </a>
         </div>
@@ -134,11 +138,15 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-06-23T03:11:38.000Z">2019-06-23</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 0 个字)
+                    9 分钟 读完 (大约 1423 个字)
                 </span>
                 
                 
@@ -147,11 +155,137 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                domainAdaptionLiteratureReview
+                组会介绍：领域自适应
             
         </h1>
         <div class="content">
-            
+            <h3 id="1-Domain-Adaptation"><a href="#1-Domain-Adaptation" class="headerlink" title="1 Domain Adaptation"></a>1 Domain Adaptation</h3><ul>
+<li>计算机视觉中的一个重要问题</li>
+<li><a href="http://openaccess.thecvf.com/CVPR2019.py" target="_blank" rel="noopener">CVPR2019</a>的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇<a id="more"></a>
+</li>
+</ul>
+<h3 id="研究价值"><a href="#研究价值" class="headerlink" title="研究价值"></a>研究价值</h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/application.png"><br></div>
+
+<h3 id="2-领域自适应问题形式化"><a href="#2-领域自适应问题形式化" class="headerlink" title="2 领域自适应问题形式化"></a>2 领域自适应问题形式化</h3><ul>
+<li>Domain Adaptation ;同构迁移学习,迁移学习中和计算机视觉交叉的方法<br><strong>有标签的源域和无标签的目标域共享相同的特征和类别，但是特征分布不同</strong></li>
+</ul>
+<p>$$<br>\mathcal{D}_{S}\neq\mathcal{D}_{T} : P_{S}(X) \neq P_{T}(X)<br>$$</p>
+<h5 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h5><ul>
+<li>按照源域和目标域，包含的标签集合关系划分</li>
+</ul>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/label_set_fomula.png"><br></div>
+
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/label_set.png"><br></div>
+
+<ul>
+<li>按源域数量划分</li>
+</ul>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/domainAmount.png"><br></div>
+
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/multi-source.png"><br></div>
+
+<ul>
+<li>按目标域有无标签</li>
+</ul>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/DAType.png"><br></div>
+
+<h3 id="3-领域自适应理论"><a href="#3-领域自适应理论" class="headerlink" title="3 领域自适应理论"></a>3 领域自适应理论</h3><ul>
+<li><a href="https://papers.nips.cc/paper/2983-analysis-of-representations-for-domain-adaptation" target="_blank" rel="noopener">Analysis of Representations for Domain Adaptation, Ben-David, 2006</a><br>提出了$\mathcal{H} \Delta \mathcal{H} \text { -divergence }$作为传统分布差异的替代衡量式子，克服了从有限样本估计差异的困难。</li>
+</ul>
+<ul>
+<li><a href="https://link.springer.com/content/pdf/10.1007%2Fs10994-009-5152-4.pdf" target="_blank" rel="noopener">A theory of learning from different domains, Ben-David, ML2010</a><br>提出理论，限制了目标域上的错误期望的范围， in terms of its source error and the source-target divergence</li>
+</ul>
+<p>$$<br>\begin{array}{c}{R_{T}(h) \leq R_{S}(h)+\frac{1}{2} d_{\mathcal{H} \Delta \mathcal{H}}(S, T)+\lambda} \\ {\text { where } d_{\mathcal{H} \Delta \mathcal{H}}(S, T)=2 \sup _{h, h^{\prime} \in \mathcal{H}}\left|\mathbb{E}_{x \sim S} \mathbb{1}\left[h(x) \neq h^{\prime}(x)\right]-\mathbb{E}_{x \sim T} \mathbb{1}\left[h(x) \neq h^{\prime}(x)\right]\right|} \\ {\lambda=\min \left(R_{S}(h)+R_{T}(h)\right)}\end{array}<br>$$</p>
+<ul>
+<li><a href="https://arxiv.org/abs/1904.05801v1" target="_blank" rel="noopener">Bridging Theory and Algorithm for Domain Adaptation,Yuchen Zhang,ICML2019</a><blockquote>
+<p>Our theory can be seamlessly transformed into an adversarial learning algorithm for domain adaptation, successfully bridging the gap between theory and algorithm.</p>
+</blockquote>
+</li>
+</ul>
+<p>展示了一个领域自适应的理论和算法角度的分析，在理论和算法之间的GAP上建了一座桥。从<code>Rademacher 复杂度</code>上推导一个新的泛化界限</p>
+<ul>
+<li><a href="https://arxiv.org/abs/1811.06199v3" target="_blank" rel="noopener">On Deep Domain Adaptation: Some Theoretical<br>Understandings,Trung Le,arXiv2019</a><blockquote>
+<p>Abstract：<br>The underlying idea of deep domain adaptation is to bridge the gap between source and target domains in a joint space so that a supervised classifier trained on labeled source data can be nicely transferred to the target domain. This idea is certainly intuitive and powerful, however, limited theoretical understandings have been developed to support its underpinning principle. In this paper, we have provided a rigorous framework to explain why it is possible to close the gap of the target and source domains in the joint space. More specifically, we first study the loss incurred when performing transfer learning from the source to the target domain. This provides a theory that explains and generalizes existing work in deep domain adaptation which was mainly empirical. This enables us to further explain why closing the gap in the joint space can directly minimize the loss incurred for transfer learning between the two domains. To our knowledge, this offers the first theoretical result that characterizes a direct bound on the joint space and the gain of transfer learning via deep domain adaptation</p>
+</blockquote>
+</li>
+</ul>
+<p>域适应其中一个思想方法是，在一个联合子空间上把源域和目标域的差距Gap减小。这样在源域上训练出的分类器也能很好地迁移到目标域。这篇文章提供了严密的框架来解释为什么可以在联合公共空间缩小<code>源域</code>和<code>目标域</code>的差距。更确切地，研究迁移过程中产生的损失，提供了理论来解释和概括现有主要凭经验的深度域适应工作。能够让我们解释，为什么缩小<code>源域</code>和<code>目标域</code>的差距能直接最小化迁移学习的损失<code>loss</code>。</p>
+<h3 id="4-方法概览"><a href="#4-方法概览" class="headerlink" title="4 方法概览"></a>4 方法概览</h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/methodOverview.png"><br></div>
+
+<h4 id="4-1-概率分布适配法"><a href="#4-1-概率分布适配法" class="headerlink" title="4.1 概率分布适配法"></a>4.1 概率分布适配法</h4><ul>
+<li>边缘分布适配<ul>
+<li>迁移成分分析Transfer Component Analysis<ul>
+<li>优化目标：<br>$\begin{array}{cl}{\min _{\varphi}} &amp; {\operatorname{Dist}\left(\varphi\left(\mathbf{X}_{S}\right), \varphi\left(\mathbf{X}_{T}\right)\right)+\lambda \Omega(\varphi)} \\ {\text { s.t. }} &amp; {\text { constraints on } \varphi\left(\mathbf{X}_{S}\right) \text { and } \varphi\left(\mathbf{X}_{T}\right)}\end{array}$</li>
+<li>最大均值差异（Maximum Mean Discrepancy, MMD）<br>$\operatorname{Dist}\left(P\left(X_{S}\right), P\left(X_{T}\right)\right)=\left|\frac{1}{n_{S}} \sum_{i=1}^{n_{S}} \Phi\left(x_{S_{i}}\right)-\frac{1}{n_{T}} \sum_{j=1}^{n_{T}} \Phi\left(x_{T_{j}}\right)\right|_{\mathcal{H}}$</li>
+</ul>
+</li>
+<li>迁移成分分析的扩展</li>
+</ul>
+</li>
+</ul>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/TCAextension.png"><br></div>
+
+<ul>
+<li><p>条件分布适配</p>
+<ul>
+<li><p>Domain Adaptation of Conditional Probability Models via Feature Subsetting</p>
+<ul>
+<li>条件随机场+分布适配</li>
+<li>优化目标：<br>$<br>\begin{array}{c}{\operatorname{argmax}_{\mathbf{w}, s} \sum_{(\mathbf{x}, \mathbf{y}) \in D} \sum_{k \in S} w_{k} f_{k}(\mathbf{x}, \mathbf{y})-\log z_{\mathbf{w}}(\mathbf{x})} \\ {\text { such that } \operatorname{dist}\left(\mathcal{D}, \mathcal{D}^{\prime} | S, D, D^{\prime}\right) \leq \epsilon}\end{array}<br>$</li>
+</ul>
+</li>
+<li><p>Conditional Transferrable Components (CTC)</p>
+<ul>
+<li>定义条件转移成分，对其进行建模</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>联合分布适配</p>
+<ul>
+<li>联合分布适配JDA，（Joint Distribution Adaptation）<ul>
+<li>直接用TCA，但是加入条件分配</li>
+<li>优化目标：<br>$<br>\begin{aligned} D\left(\mathcal{D}_{s}, \mathcal{D}_{t}\right) \approx &amp; D\left(P\left(\mathbf{x}_{s}\right), P\left(\mathbf{x}_{t}\right)\right) \\ &amp;+D\left(P\left(y_{s} | \mathbf{x}_{s}\right), P\left(y_{t} | \mathbf{x}_{t}\right)\right) \end{aligned}<br>$</li>
+<li><strong>联合分布适配 结果普遍优于 单独适配边缘分布或条件分布</strong></li>
+</ul>
+</li>
+<li>JDA的一些扩展</li>
+</ul>
+</li>
+</ul>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/JDAextension.png"><br></div>
+
+<pre><code>- 平衡分布适配（Balanced Distribution Adaption,BDA）
+</code></pre><p> <strong>概率分布适配法总结</strong></p>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/distributionAdaptation.png"><br></div>
+
+<h4 id="4-2-特征选择法"><a href="#4-2-特征选择法" class="headerlink" title="4.2 特征选择法"></a>4.2 特征选择法</h4><p>从源域和目标域中选择提取共享的特征，建立统一模型</p>
+<ul>
+<li>Structural Correspondence Learning (SCL) [Blitzer, ECML-06]<br>假设源域和目标域有一些特征可以找出来对齐，把这些feature叫做pivot feature.</li>
+</ul>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/SCL.png"><br></div>
+
+<p>上下两个日报，经常出现的词频率不同，他们之间有没有什么可以对齐的关系</p>
+<ul>
+<li>通常和分布适配进行结合，选择特征通常利用稀疏矩阵。</li>
+<li>没有单独非常出色的工作，除了上面的一个。</li>
+</ul>
+<h4 id="4-3-子空间学习法"><a href="#4-3-子空间学习法" class="headerlink" title="4.3 子空间学习法"></a>4.3 子空间学习法</h4><h5 id="将源域和目标域变换到相同的子空间，然后建立统一的模型"><a href="#将源域和目标域变换到相同的子空间，然后建立统一的模型" class="headerlink" title="将源域和目标域变换到相同的子空间，然后建立统一的模型"></a>将源域和目标域变换到相同的子空间，然后建立统一的模型</h5><ul>
+<li>统计特征变换 (Statistical Feature Transformation) <pre><code>将源域和目标域的一些统计特征进行变换对齐
+</code></pre><div align="center"><br>  <img src="/2019/06/23/domainAdaptionLiteratureReview/subspace1.png"><br></div><br><div align="center"><br>  <img src="/2019/06/23/domainAdaptionLiteratureReview/subspace2.png"><br></div>
+
+</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/组会资料/">组会资料</a>, <a class="has-link-grey -link" href="/tags/迁移学习/">迁移学习</a>
+                </div>
+            </div>
         </div>
         
         
@@ -260,7 +394,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        11
+                        12
                     </p>
                 </div>
             </div>
@@ -326,7 +460,7 @@
                 <span class="level-item">领域自适应</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a></li>
             </ul>
@@ -472,6 +606,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/组会资料/">
+                        <span class="tag">组会资料</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/语音合成/">
                         <span class="tag">语音合成</span>
                         <span class="tag is-grey">1</span>
@@ -481,7 +622,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/迁移学习/">
                         <span class="tag">迁移学习</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -636,6 +777,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/组会资料/">
+                        <span class="tag">组会资料</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/语音合成/">
                         <span class="tag">语音合成</span>
                         <span class="tag is-grey">1</span>
@@ -645,7 +793,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/迁移学习/">
                         <span class="tag">迁移学习</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -666,7 +814,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="domainAdaptionLiteratureReview" height="28">
+                    <img src="/images/logo.svg" alt="组会介绍：领域自适应" height="28">
                 
                 </a>
                 <p class="is-size-7">
