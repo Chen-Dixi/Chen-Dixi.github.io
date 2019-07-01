@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="1 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
+    <meta name="description" content="一 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
 <meta name="keywords" content="迁移学习,组会资料">
 <meta property="og:type" content="article">
 <meta property="og:title" content="组会介绍：领域自适应">
 <meta property="og:url" content="http://yoursite.com/2019/06/23/domainAdaptionLiteratureReview/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="1 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
+<meta property="og:description" content="一 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-07-01T12:34:37.546Z">
+<meta property="og:updated_time" content="2019-07-01T12:52:27.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组会介绍：领域自适应">
-<meta name="twitter:description" content="1 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
+<meta name="twitter:description" content="一 Domain Adaptation 计算机视觉中的一个重要问题 CVPR2019的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -146,7 +146,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1423 个字)
+                    10 分钟 读完 (大约 1428 个字)
                 </span>
                 
                 
@@ -159,14 +159,14 @@
             
         </h1>
         <div class="content">
-            <h3 id="1-Domain-Adaptation"><a href="#1-Domain-Adaptation" class="headerlink" title="1 Domain Adaptation"></a>1 Domain Adaptation</h3><ul>
+            <h3 id="一-Domain-Adaptation"><a href="#一-Domain-Adaptation" class="headerlink" title="一 Domain Adaptation"></a>一 Domain Adaptation</h3><ul>
 <li>计算机视觉中的一个重要问题</li>
 <li><a href="http://openaccess.thecvf.com/CVPR2019.py" target="_blank" rel="noopener">CVPR2019</a>的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇<a id="more"></a>
 </li>
 </ul>
-<h3 id="研究价值"><a href="#研究价值" class="headerlink" title="研究价值"></a>研究价值</h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/application.png"><br></div>
+<h3 id="二-研究价值"><a href="#二-研究价值" class="headerlink" title="二 研究价值"></a>二 研究价值</h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/application.png"><br></div>
 
-<h3 id="2-领域自适应问题形式化"><a href="#2-领域自适应问题形式化" class="headerlink" title="2 领域自适应问题形式化"></a>2 领域自适应问题形式化</h3><ul>
+<h3 id="三-领域自适应问题形式化"><a href="#三-领域自适应问题形式化" class="headerlink" title="三 领域自适应问题形式化"></a>三 领域自适应问题形式化</h3><ul>
 <li>Domain Adaptation ;同构迁移学习,迁移学习中和计算机视觉交叉的方法<br><strong>有标签的源域和无标签的目标域共享相同的特征和类别，但是特征分布不同</strong></li>
 </ul>
 <p>$$<br>\mathcal{D}_{S}\neq\mathcal{D}_{T} : P_{S}(X) \neq P_{T}(X)<br>$$</p>
@@ -189,7 +189,7 @@
 </ul>
 <div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/DAType.png"><br></div>
 
-<h3 id="3-领域自适应理论"><a href="#3-领域自适应理论" class="headerlink" title="3 领域自适应理论"></a>3 领域自适应理论</h3><ul>
+<h3 id="四-领域自适应理论"><a href="#四-领域自适应理论" class="headerlink" title="四 领域自适应理论"></a>四 领域自适应理论</h3><ul>
 <li><a href="https://papers.nips.cc/paper/2983-analysis-of-representations-for-domain-adaptation" target="_blank" rel="noopener">Analysis of Representations for Domain Adaptation, Ben-David, 2006</a><br>提出了$\mathcal{H} \Delta \mathcal{H} \text { -divergence }$作为传统分布差异的替代衡量式子，克服了从有限样本估计差异的困难。</li>
 </ul>
 <ul>
@@ -210,7 +210,7 @@
 </li>
 </ul>
 <p>域适应其中一个思想方法是，在一个联合子空间上把源域和目标域的差距Gap减小。这样在源域上训练出的分类器也能很好地迁移到目标域。这篇文章提供了严密的框架来解释为什么可以在联合公共空间缩小<code>源域</code>和<code>目标域</code>的差距。更确切地，研究迁移过程中产生的损失，提供了理论来解释和概括现有主要凭经验的深度域适应工作。能够让我们解释，为什么缩小<code>源域</code>和<code>目标域</code>的差距能直接最小化迁移学习的损失<code>loss</code>。</p>
-<h3 id="4-方法概览"><a href="#4-方法概览" class="headerlink" title="4 方法概览"></a>4 方法概览</h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/methodOverview.png"><br></div>
+<h3 id="五-方法概览"><a href="#五-方法概览" class="headerlink" title="五 方法概览"></a>五 方法概览</h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/methodOverview.png"><br></div>
 
 <h4 id="4-1-概率分布适配法"><a href="#4-1-概率分布适配法" class="headerlink" title="4.1 概率分布适配法"></a>4.1 概率分布适配法</h4><ul>
 <li>边缘分布适配<ul>
