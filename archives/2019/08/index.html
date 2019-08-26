@@ -2,24 +2,19 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Almost Unsupervised Text to Speech and Automatic Speech Recognition - 帝羲 的博客</title>
+<title>归档: 2019/8 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="AI精准模仿你的声音">
-<meta name="keywords" content="语音合成,Text-to-Speech,Automatic-Speech-Recognition">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Almost Unsupervised Text to Speech and Automatic Speech Recognition">
-<meta property="og:url" content="http://yoursite.com/2019/06/08/unsuper/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="帝羲 的博客">
+<meta property="og:url" content="http://yoursite.com/archives/2019/08/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="AI精准模仿你的声音">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-09T06:48:02.678Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Almost Unsupervised Text to Speech and Automatic Speech Recognition">
-<meta name="twitter:description" content="AI精准模仿你的声音">
+<meta name="twitter:title" content="帝羲 的博客">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -100,7 +95,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Almost Unsupervised Text to Speech and Automatic Speech Recognition" height="28">
+                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
             
             </a>
         </div>
@@ -130,146 +125,35 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-08T15:17:48.000Z">2019-06-08</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/语音合成/">语音合成</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    17 分钟 读完 (大约 2521 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                Almost Unsupervised Text to Speech and Automatic Speech Recognition
-            
-        </h1>
-        <div class="content">
-            <div align="center"><br>    <img src="/2019/06/08/unsuper/banner.png"><br></div>
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 
-<p>AI精准模仿你的声音<br><a id="more"></a><br>这个方法由下面几个步骤组成</p>
-<ul>
-<li>去噪自编码器，重建语音和文本序列，同时增强语音和文本两个域的语言建模能力</li>
-<li>对偶变换，分别训练模型将文本转为语音和将语音转为文本：TTS模型将文本X转换为语音Y，ASR模型利用转换得到语音到文本数据进行训练；ASR模型将语音Y转换为文本X，然后TTS模型利用文本到语音数据训练。</li>
-<li>双向序列建模，减缓错错相传的问题。</li>
-<li>设计一个基于Transformer的统一模型架构，能输入和输出语音和文本，并且能将上述模块整合在一起，实现TTS和ASR的功能。 </li>
-</ul>
-<p><strong>数据集：LJSpeech</strong><br><strong>性能评价：MOS(Mean Opinion Score，平均主观意见分) for TTS，PER(Phoneme Error Rate，音素错误率) for ASR</strong></p>
-<h3 id="Intro："><a href="#Intro：" class="headerlink" title="Intro："></a>Intro：</h3><p>之前关于无监督的自动语音识别(ASR)的研究工作(Chen et al., 2018a; Liu et al., 2018)没有从TTS借助addtional infomation。其次，无监督ASR一般(typically)借助一些算法，把语音波形拆分成小段，一段一个字或着“音素”。然后从这些片段，把语音和文本对齐。所以，给非监督语音ASR设计的算法不能简单地直接用到TTS(文本到语音)上去。</p>
-<h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><ul>
-<li><p>序列到序列的学习<br>一个序列对$(x, y) \in(\mathcal{X}, \mathcal{Y})$，$\mathcal{X},\mathcal{Y}$分别是源域和目标域的数据。$x=\left(x_{1}, x_{2}, \dots, x_{m}\right)and ,y=\left(y_{1}, y_{2}, \dots, y_{n}\right)$<br>用log似然函数当作目标函数<br>$$<br>\mathcal{L}(\theta ;(\mathcal{X}, \mathcal{Y}))=\Sigma_{(x, y) \in(\mathcal{X}, \mathcal{Y})} \log P(y | x ; \theta) (1)<br>$$</p>
-</li>
-<li><p>Attention机制</p>
-<blockquote>
-<p>The attention mechanism (Bahdanau et al., 2015) is further introduced between the encoder and decoder in order to determine which source representation to focus on when predicting the current element</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><h4 id="去噪自动编码器"><a href="#去噪自动编码器" class="headerlink" title="去噪自动编码器"></a>去噪自动编码器</h4><p>学会怎么理解语音和文本(encode)，怎么建模生成语音文本序列(decode)，是实现文本语音相互转换的第一步。<br>利用自监督学习的概念，让模型分别建立对语言以及语音的理解建模能力。具体来说，我们基于不成对的语音和文本数据，利用去噪自动编码器（Denoising Auto-Encoder, DAE）在编码器-解码器框架中重建人为加有噪声的语音和文本。 – 去噪自动编码器是自监督学习典型的方法，广泛用在无监督学习上。</p>
-<div align="center"><br>    <img src="/2019/06/08/unsuper/dae.png"><br></div>
-
-<p>-DAE的损失函数：<br>$$<br>\begin{aligned} \mathcal{L}^{d a e}=&amp; \mathcal{L}_{\mathcal{S}}\left(x | C(x) ; \theta_{\text {enc}}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{S}}\right) \\ &amp;+\mathcal{L}_{\mathcal{T}}\left(y | C(y) ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{T}}\right) \end{aligned} (2)<br>$$<br>$\mathcal{L}_{\mathcal{S}},\mathcal{L}_{\mathcal{T}}$分别是<br>$$<br>\begin{array}{c}{\mathcal{L}_{\mathcal{S}}\left(y | x ; \theta_{\text {enc}}, \theta_{\text {dec}}\right)=\operatorname{MSE}\left(y, f\left(x ; \theta_{\text {enc}}, \theta_{\text {dec}}\right)\right)}(3) \\ {\mathcal{L}_{\mathcal{T}}\left(y | x ; \theta_{\text {enc}}, \theta_{\text {dec}}\right)=-\Sigma_{x} \log P\left(y | x ; \theta_{\text {enc}}, \theta_{\text {dec}}\right) )(4)}\end{array}<br>$$</p>
-<ul>
-<li>语音的DAE用的是均方误差</li>
-<li>文本就是log条件似然<h4 id="对偶转换-dual-transformation"><a href="#对偶转换-dual-transformation" class="headerlink" title="对偶转换 dual transformation"></a>对偶转换 dual transformation</h4>使用对偶转换（Dual Transformation, DT），来分别训练模型将文本转为语音和将语音转为文本的能力：（a）TTS模型将文本X转换为语音Y，然后ASR模型利用转换得到语音-文本数据（Y，X）进行训练; （b）ASR模型将语音Y转换为文本X，然后TTS模型利用文本-语音数据（X，Y）进行训练。对偶转换在TTS和ASR之间不断迭代，逐步提高两个任务的准确性.<br>损失函数：</li>
-</ul>
-<div align="center"><br>    <img src="/2019/06/08/unsuper/dt.png"><br></div>
-
-<p>$$<br>\mathcal{L}^{d t}=\mathcal{L}_{\mathcal{S}}\left(x | \hat{y} ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{S}\right)+\mathcal{L}_{\mathcal{T}}\left(y | \hat{x} ; \theta_{e n c}^{S}, \theta_{d e c}^{\mathcal{T}}\right) \space \space(5)<br>$$<br>其中：$\hat{y} =\arg \max P\left(y | x ; \theta_{e n c}^{S}, \theta_{d e c}^{\mathcal{T}}\right)$, $\hat{x} = f\left(y ; \theta_{\text {enc}}^{\mathcal{T}}, \theta_{\text {dec}}^{\mathcal{S}}\right)$</p>
-<h4 id="双向序列建模（Bidirectional-Sequence-Modeling-BSM）"><a href="#双向序列建模（Bidirectional-Sequence-Modeling-BSM）" class="headerlink" title="双向序列建模（Bidirectional Sequence Modeling, BSM）"></a>双向序列建模（Bidirectional Sequence Modeling, BSM）</h4><blockquote>
-<p>, we observe in the experiments that during dual transformation, the right part of the generated speech sequence is usually of lower quality than the left part</p>
-</blockquote>
-<p>语音文本序列很长，error propagation(Bengio et al., 2015; Shen et al., 2016; Wu et al., 2018)带来的影响会很大。生成的序列右边部分通常比左边更糟糕，比如生成一段文本：“今天的天气很 $%#@$^@……”，开始阶段质量比较好，越到后面质量越差，所以文章采用了双向生成的方法来缓解错误传播问题。</p>
-<p>让模型分别按顺序和按反序来接收序列和生成序列，可以理解为一种数据增强（data argument）的方法。基于双向序列建模改变之前的损失公式：</p>
-<p>$$<br>\begin{array}{c}{\begin{aligned} \mathcal{L}^{\overrightarrow{d a e}}=&amp; \mathcal{L}_{\mathcal{S}}\left(\overrightarrow{x} | C(\overrightarrow{x}) ; \theta_{e n c}^{\mathcal{S}} \theta_{d e c}^{\mathcal{S}}\right) \\ &amp;+\mathcal{L}_{\mathcal{T}}\left(\overrightarrow{y} | C(\overrightarrow{y}) ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{T}}\right) \end{aligned}} \\<br>{\begin{aligned} \mathcal{L}^{\overleftarrow{d a e}}=&amp; \mathcal{L}_{\mathcal{S}}\left(\overleftarrow{x} | C(\overleftarrow{x}) ; \theta_{e n c}^{\mathcal{S}} \theta_{d e c}^{\mathcal{S}}\right) \\ &amp;+\mathcal{L}_{\mathcal{T}}\left(\overleftarrow{y} | C(\overleftarrow{y}) ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{T}}\right) \end{aligned}}\end{array} \space\space(6)<br>$$<br>$$<br>\begin{array}{c}{<br>\begin{aligned}<br>\mathcal{L}^{\overrightarrow{d t}}=&amp;\mathcal{L}_{\mathcal{S}}\left(\overrightarrow{x} | \hat{\overrightarrow{y}} ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{S}}\right) \\<br>&amp;+\mathcal{L}_{\mathcal{S}}\left(\overrightarrow{x} | R(\hat{\overleftarrow{y}} ) ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{S}}\right) \\<br>&amp;+\mathcal{L}_{\mathcal{T}}\left(\overrightarrow{y} | \hat{\overrightarrow{x}}  ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}}\right)\\<br>&amp;+\mathcal{L}_{\mathcal{T}}\left(\overrightarrow{y} | R(\hat{\overleftarrow{x}} ) ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}}\right),<br>\end{aligned}<br>} \\<br>{<br>\begin{aligned}<br>\mathcal{L}^{\overleftarrow{d t}}=&amp;\mathcal{L}_{\mathcal{S}}\left(\overleftarrow{x} | \hat{\overleftarrow{y}} ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{S}}\right) \\<br>&amp;+\mathcal{L}_{\mathcal{S}}\left(\overleftarrow{x} | R(\hat{\overrightarrow{y}} ) ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{S}}\right) \\<br>&amp;+\mathcal{L}_{\mathcal{T}}\left(\overleftarrow{y} | \hat{\overleftarrow{x}}  ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}}\right)\\<br>&amp;+\mathcal{L}_{\mathcal{T}}\left(\overleftarrow{y} | R(\hat{\overrightarrow{x}} ) ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}}\right),<br>\end{aligned}<br>}\end{array} \space \space(7)<br>$$</p>
-<h4 id="基于Transformer的统一模型架构"><a href="#基于Transformer的统一模型架构" class="headerlink" title="基于Transformer的统一模型架构"></a>基于Transformer的统一模型架构</h4><p>少量的成对数据也放进来：<br>$$<br>\begin{array}{c}{\begin{aligned} \mathcal{L}^{\overrightarrow{s u p}}=&amp; \mathcal{L}_{\mathcal{S}}\left(\overrightarrow{x} | \overrightarrow{y} ; \theta_{e n c}^{\mathcal{T}} \theta_{d e c}^{\mathcal{S}},(x,y)\in(\mathcal{S},\mathcal{T}) \right) \\ &amp;+\mathcal{L}_{\mathcal{T}}\left(\overrightarrow{y} |\overrightarrow{x}  ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}},(x,y)\in(\mathcal{S},\mathcal{T})\right) \end{aligned}} \\<br>{\begin{aligned} \mathcal{L}^{\overleftarrow{s u p}}=&amp; \mathcal{L}_{\mathcal{S}}\left(\overleftarrow{x} | \overleftarrow{y} ; \theta_{e n c}^{\mathcal{T}} \theta_{d e c}^{\mathcal{S}},(x,y)\in(\mathcal{S},\mathcal{T}) \right) \\ &amp;+\mathcal{L}_{\mathcal{T}}\left(\overleftarrow{y} |\overleftarrow{x}  ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}},(x,y)\in(\mathcal{S},\mathcal{T})\right) \end{aligned}}\end{array} \space\space(8)<br>$$<br>$(x, y)$ 代表少量的成对匹配的语音文本数据.<br>于是该方法总的loss如下：<br>$$<br>\mathcal{L}=\mathcal{L}^{\overrightarrow{d a e}}+\mathcal{L}^{\overleftarrow{d a e}}+\mathcal{L}^{\overrightarrow{d t}}+\mathcal{L}^{\overleftarrow{d t}}+\mathcal{L}^{\overrightarrow{s u p}}+\mathcal{L}^{\overleftarrow{sup}}, \space\space(9)<br>$$</p>
-<div align="center"><br>    <img src="/2019/06/08/unsuper/figure1.png"><br></div>
-
-<p>图（a）描述了DAE和DT的转换流程，图（b）展示了我们采用的Transformer模型结构，图（c）显示了语音和文本的输入输出处理模块。</p>
-<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><blockquote>
-<p>为了验证这一方法的有效性，我们在英语上模拟低资源的场景，选用LJSpeech数据集进行实验，LJSpeech包含13100个英语音频片段和相应的文本，音频的总长度约为24小时。我们将数据集分成3组：300个样本作为验证集，300个样本作为测试集，剩下的12500个样本用来训练。在这12500个样本中，我们随机选择200个配对的语音和文本数据，剩下的数据当作不配对的语音文本数据。<br>我们邀请了30个专业评估员对生成的声音进行可懂度（Intelligibility Rate）以及MOS（Mean Opinion Score，平均主观意见分）评测。MOS指标用来衡量声音接近人声的自然度，在极低资源场景下，我们一般用可懂度来评估是否能产生可理解的声音。<br>经过实验，我们提出的方法可以产生可理解的语音，其单词级的可懂度高达99.84％，而如果仅对200个配对数据进行训练，则几乎无法产生可以被听懂的语音，这显示出我们方法在极低资源场景下的实用性。$^{[1]}$</p>
-</blockquote>
-<ul>
-<li><p>与其他系统在TTS和ASR任务上进行对比，并用MOS（平均主观意见分）衡量合成音与真实人声的相似度。用PER（音素错误率）衡量自动语音识别的表现。<br><div align="center"><br>  <img src="/2019/06/08/unsuper/table1.png"><br></div><br>这种方法的TTS任务上的MOS分达到了2.68，在ASR任务上的PER达到了11.7%，得分已经远高于200个配对样本的基线模型数据了。</p>
-</li>
-<li><p>分别将不同的添加到系统中，结果显示，当分别加入去噪自编码器（DAE）、对偶变换（DT）和双向序列建模（BSM）模块时，评分均有增高</p>
-<div align="center"><br>  <img src="/2019/06/08/unsuper/table2.png"><br></div>
-
-</li>
-</ul>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p>[1] <a href="https://mp.weixin.qq.com/s/8fMHr0sReeA8pPZ4WAdkFw" target="_blank" rel="noopener">ICML 2019 | 微软提出极低资源下语音合成与识别新方法，小语种也不怕没数据了！, 微软研究院AI头条</a><br>[2] <a href="https://speechresearch.github.io/unsuper/" target="_blank" rel="noopener">Almost Unsupervised Text to Speech and Automatic Speech Recognition,Yi Ren, et. al.,ICML2019</a><br>[3] <a href="https://zhuanlan.zhihu.com/p/67919690" target="_blank" rel="noopener">《浙大学霸本科生顶会研究！只需20分钟音频，AI就能逼真模仿你声音》,量子位</a></p>
-
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Automatic-Speech-Recognition/">Automatic-Speech-Recognition</a>, <a class="has-link-grey -link" href="/tags/Text-to-Speech/">Text-to-Speech</a>, <a class="has-link-grey -link" href="/tags/语音合成/">语音合成</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-<div class="card">
+<div class="card widget">
     <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
+        <h3 class="tag is-link">
+        八月 2019
+        </h3>
+        <div class="timeline">
+        
+            <article class="media">
                 
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
-</a>
-
-                
+                <div class="media-content">
+                    <div class="content">
+                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-08-26T10:39:52.000Z">2019-08-26</time>
+                        <a href="/2019/08/26/DeepEmbeddedValidation/" class="has-link-black-ter is-size-6">Deep Embedded Validation 非监督领域自适应的模型选择方法</a>
+                        <div class="level article-meta is-mobile">
+                            <div class="level-left">
+                                
+                                <div class="level-item is-size-7 is-uppercase">
+                                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        
         </div>
-    </div>
-</div>
-
-
-
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/22/clan/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">AMC S2E15 Slide：CLAN</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/08/machineTranslation-tutorial/">
-                <span class="level-item">PyTorch官方Seq-to-Seq Network Attention 机器翻译指导</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
     </div>
 </div>
 
@@ -785,7 +669,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Almost Unsupervised Text to Speech and Automatic Speech Recognition" height="28">
+                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
                 
                 </a>
                 <p class="is-size-7">
