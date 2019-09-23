@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>开放集领域自适应调研 - 帝羲 的博客</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="Open Set Domain Adaptation 论文列表:ChenJinBIT/OSDA">
+<meta name="keywords" content="迁移学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开放集领域自适应调研">
+<meta property="og:url" content="http://yoursite.com/2019/09/23/opensetReview/index.html">
+<meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="Open Set Domain Adaptation 论文列表:ChenJinBIT/OSDA">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2019-09-23T15:03:12.047Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开放集领域自适应调研">
+<meta name="twitter:description" content="Open Set Domain Adaptation 论文列表:ChenJinBIT/OSDA">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    <!-- Edit here -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="开放集领域自适应调研" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">关于我</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-23T15:03:12.000Z">2019-09-23</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 分钟 读完 (大约 2080 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                开放集领域自适应调研
+            
+        </h1>
+        <div class="content">
+            <p>Open Set Domain Adaptation 论文列表:<a href="https://github.com/ChenJinBIT/OSDA" target="_blank" rel="noopener">ChenJinBIT/OSDA</a><br><a id="more"></a></p>
+<h1 id="论文题目：Open-Set-Domain-Adaptation"><a href="#论文题目：Open-Set-Domain-Adaptation" class="headerlink" title="论文题目：Open Set Domain Adaptation"></a>论文题目：Open Set Domain Adaptation</h1><p>会议期刊：ICCV2017</p>
+<h2 id="理论方法"><a href="#理论方法" class="headerlink" title="理论方法"></a>理论方法</h2><ol>
+<li>用线性规划问题，给每个目标域赋上标签（类别c或者unknown）<br>$$<br>\begin{array}{lll}{\underset{x_{c t}, o_{t}}{\operatorname{minimise}}} &amp; {\sum_{t}\left(\sum_{c} d_{c t} x_{c t}+\lambda o_{t}\right)} \\ {\text { subject to }} &amp; {\sum_{c} x_{c t}+o_{t}=1} &amp; {\forall t} \\ {} &amp; {\sum_{t} x_{c t} \geq 1} &amp; {\forall c} \\ {} &amp; {x_{c t}, o_{t} \in{0,1}} &amp; {\forall c, t}\end{array}<br>$$</li>
+</ol>
+<p>$x_{c t}$ 来标识，target domain中的第$t$ 个样本是否被标记为类别 $c$。同时，因为是个open set，所以，引入一个$o_{t}$ 来标识第 $t$ 个样本是否为未知类别(outlier;unknown)</p>
+<p>$d_{c t}=\left|S_{c}-T_{t}\right|_{2}^{2}$是一个距离，表示source中属于类别$c$的所有sample的均值与target中第 $t$ 个sample的差异。</p>
+<ol start="2">
+<li>接着1的步骤训练一个source到target的线性映射$W \in \mathbb{R}^{D \times D}$</li>
+</ol>
+<p>$$<br>f(W)=\frac{1}{2} \sum_{t} \sum_{c} x_{c t}\left|W S_{c}-T_{t}\right|_{2}^{2}<br>$$</p>
+<p>重写成矩阵形式$f(W)=\frac{1}{2}\left|W P_{S}-P_{T}\right|_{F}^{2}$</p>
+<p>$$\frac{\partial f(W)}{\partial W}=W\left(P_{S} P_{S}^{T}\right)-P_{T} P_{S}^{T}$$</p>
+<ol start="3">
+<li>用映射后的源域重新优化公式1，重复1到2步骤，即每迭代一次，源域样本就“靠近”或“近似”目标域一点。收敛之后在source数据 和 带标签目标域数据（如果有）上训练线性SVM</li>
+</ol>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>数据集Office31 ，82.9%</p>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/ATI-office.png"><br></div>
+
+<p>作者首先对比了现有的一些深度方法，比如DAN、RTN、BP，然后发现提出的方法不仅在open set，在close set上也很好。然后，提取深度特征后，又对比了TCA、GFK、SA、CORAL这几个方法，仍然是作者的方法好。 文章做了大量的实验，解释了很多open set下进行domain adaptation的规律</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>但是迭代式的方法，一会儿学assignment ，之后又学mapping，如此反复也很costly.准确率不知道能不能保证。迭代收敛后再用SVM</p>
+<h1 id="论文题目：Open-Set-Domain-Adaptation-by-Backpropagation"><a href="#论文题目：Open-Set-Domain-Adaptation-by-Backpropagation" class="headerlink" title="论文题目：Open Set Domain Adaptation by Backpropagation"></a>论文题目：Open Set Domain Adaptation by Backpropagation</h1><p>会议期刊：ECCV2018</p>
+<h2 id="理论方法-1"><a href="#理论方法-1" class="headerlink" title="理论方法"></a>理论方法</h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/openBP.png"><br></div><br>源域数据还是用来正常地训练Generator和分类器Classifier<br><br>对抗方法只用目标域数据，在unknown那一个分类上做交叉熵为t的对抗。generator让$p(y=K+1| Xt)$的概率远离t，classifier让$p(y = K+1 | Xt)$的概率靠近t。Xt的K+1概率在如果是t，则优化G时有可能会向两个方向滑落。能保证known样本往p=0方向走的道理是，该样本的前K个probability之和相对更高<br><br>$$<br>L_{a d v}\left(\boldsymbol{x}_{t}\right)=-t \log \left(p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)-(1-t) \log \left(1-p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)<br>$$<br><br>分类器目标就是尽可能将其目标域输入氛围未知类的概率接近t，特征提取器的目标将这个概率远离t<br><br>$$<br>\begin{array}{l}{\min _{C} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)+L_{a d v}\left(\boldsymbol{x}_{t}\right)} \\ {\min _{G} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)-L_{a d v}\left(\boldsymbol{x}_{t}\right)}\end{array}<br>$$<br><br><div align="center"><br>    <img src="/2019/09/23/opensetReview/.png"><br></div>
+
+<h2 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h2><ol>
+<li>Office数据集</li>
+</ol>
+<p>不是在所有的指标上都高于之前的方法，A-W的适应上，OS，OS*比其他低，但是’ALL’比其他高，这说明现有的方法都倾向于把unknown识别为known上的某一个类别。<br>整体上效果都不是特别优秀，只有W-D之间达到了90+的accuracy</p>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/openBP-office10.png"><br></div>
+
+<p>在源域增加10个unknown类别后</p>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/openBP-office20.png"><br></div>
+
+<ol start="2">
+<li>DIGITS，SVHN,MNIST,USPS<br>USPS和MNIST之间的adaption效果好，SVHN和MNIST之间效果较差，因为SVHN和MNIST效果差异大。 </li>
+</ol>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/openBP-digits.png"><br></div>
+
+<p>在Open Set Recog(无domain shift)设定下，SVHN的unkown识别很差，fail in classifying unknown samples。因为generator已经不错了，是classifier没训练好，加上OSVM就好了</p>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/openBP-digits-opensetRecog.png"><br></div>
+
+<h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><p>当domain discrepancy太大的时候，或者，源域和目标域之间openess差别太大的时候(openess:proportion of unknown classes in the target domain)，会出现问题</p>
+<h1 id="论文题目：Learning-Factorized-Representations-for-Open-set-Domain-Adaptation"><a href="#论文题目：Learning-Factorized-Representations-for-Open-set-Domain-Adaptation" class="headerlink" title="论文题目：Learning Factorized Representations for Open-set Domain Adaptation"></a>论文题目：Learning Factorized Representations for Open-set Domain Adaptation</h1><p>会议期刊：ICLR2019</p>
+<h2 id="理论方法-2"><a href="#理论方法-2" class="headerlink" title="理论方法"></a>理论方法</h2><p>在子空间建模源域和目标域数据，<br>“tried to find a sub- space based on samples from known classes through learning a factorized representations.”—(KASE论文)</p>
+<p>基于假设，known class的source和target样本可以由共享的子空间生成，而目标target域中的unknown可以由一个private特有的子空间生成。目标域上的每个样本既用shared子空间，又用private子空间去处理，由此作为识别unknown样本的关键</p>
+<p>列出下面的式子，用数学方法逐个解出要求的变量，推倒过程详见论文</p>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/FRODA-equation.png"><br></div>
+
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/FRODA-algo.png"><br></div>
+
+<h2 id="实验-2"><a href="#实验-2" class="headerlink" title="实验"></a>实验</h2><ol>
+<li>BCIS: 40个物体分类，来自4个数据集，Bing Ca-ltech256，ImageNet，Sun。简称BCIS  。按照ATI论文中的方法，把这个数据集前10个当作known class。11, 12, · · · , 25 and 26, 27, · · · , 40作为unknown（省略以下其他细节）</li>
+</ol>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/FRODA-BCIS.png"><br></div>
+
+<ol start="2">
+<li>Office31: 还是按照ATI的方法，构造open set<br>D-froda:84.9(Froda + SVM) </li>
+</ol>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/FRODA-office.png"><br></div>
+
+<h2 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h2><p>可以和更有效的分类器结合，比如说SVM，直接将SVM放到FRODA公式中运算</p>
+<p>实验还验证了不依赖imagenet的预训练信息是否有效，选出4个不在ImageNet中的类别当作unknow类别，做对比实验后验证可以”applies to truly never-seen-before classes”</p>
+<h1 id="论文题目：Universal-Domain-Adaptation"><a href="#论文题目：Universal-Domain-Adaptation" class="headerlink" title="论文题目：Universal-Domain-Adaptation"></a>论文题目：Universal-Domain-Adaptation</h1><p>会议期刊：CVPR2019</p>
+<h2 id="理论方法-3"><a href="#理论方法-3" class="headerlink" title="理论方法"></a>理论方法</h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/universalDA.png"><br></div>
+
+<p>核心思想是利用可迁移性判据来找到两个领域中公共类别的数据，在这些数据中进行适配。<br>可迁移性判据由领域相似度与预测不确定度两部分共同构成：</p>
+<p>$$<br>\begin{aligned} w^{s} &amp;=\frac{H(\hat{\mathbf{y}})}{\log \left|C_{s}\right|}-\hat{d}^{\prime} \\ w^{t} &amp;=\hat{d}^{\prime}-\frac{H(\hat{\mathbf{y}})}{\log \left|C_{s}\right|} \end{aligned}<br>$$</p>
+<h2 id="实验效果"><a href="#实验效果" class="headerlink" title="实验效果"></a>实验效果</h2><table>
+<thead>
+<tr>
+<th>Office-Home</th>
+<th>Office31</th>
+<th>ImageNet-Caltech</th>
+<th>VisDA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>77.02</td>
+<td>89.24</td>
+<td>75.28;70.17</td>
+<td>63.80</td>
+</tr>
+</tbody>
+</table>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/universalDA-experiment.png"><br></div>
+
+<h2 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h2><p>缺点和问题：和KASE同样用到了熵这个方法来设计权值，这个权值并不是很合理，无标注目标域里面有很多unknone的样本和源域known类别相似，构造的权值可能并没有很好地达到目的</p>
+<h1 id="论文题目：Known-class-Aware-Self-ensemble-for-Open-Set-Domain-Adaptation-KASE"><a href="#论文题目：Known-class-Aware-Self-ensemble-for-Open-Set-Domain-Adaptation-KASE" class="headerlink" title="论文题目：Known-class Aware Self-ensemble for Open Set Domain Adaptation (KASE)"></a>论文题目：Known-class Aware Self-ensemble for Open Set Domain Adaptation (KASE)</h1><p>会议期刊：暂时Arxiv</p>
+<h2 id="理论方法-4"><a href="#理论方法-4" class="headerlink" title="理论方法"></a>理论方法</h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/KASE.png"><br></div>
+
+<p>KAR+KAA 模块 ，用KAR和KAA改进self-ensemble模型</p>
+<ol>
+<li>self-ensembling<br>学生网络 1. 源域标签数据上分类 2. 对无标签目标域数据的预测置信度和老师网络保持一致<br>高置信度的目标域样本预测代表了stuNet和tecNet之间的正向关系</li>
+</ol>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/KASE-self-ensembling.png"><br></div>
+
+<ol start="2">
+<li><p>KAR模块，最小化known class的交叉熵，最大化unknown class的交叉熵。（intuition：一个好的映射，在两个领域的known类别上有很好的表现，在unknown类别上应该有不好的表现）</p>
+</li>
+<li><p>KAD模块： self-ensembling里面的均方误差项，基于熵越高，这个样本属于unknown的可能性越大的假设，熵越高，那目标域样本对应的 $w_{i}$ 越小。把self-ensembing均方误差改为加权版本</p>
+</li>
+</ol>
+<p>$$<br>w_{i}=\exp \left(-\frac{1}{C} \sum_{k=1}^{C} f_{k}\left(\mathbf{x}_{i}^{t}\right) \log f_{k}\left(\mathbf{x}_{i}^{t}\right)\right)<br>$$</p>
+<p>$$<br>\mathcal{L}_{U}=\sum_{i=1}^{n_{t}} w_{i}\left(f\left(\mathbf{x}_{i}^{t}\right)-g\left(\mathbf{x}_{i}^{t}\right)\right)^{2}<br>$$</p>
+<h2 id="实验-3"><a href="#实验-3" class="headerlink" title="实验"></a>实验</h2><p>数据集：Digits，Syn2Real(VisDA2018-openset)，Office-31 </p>
+<ol>
+<li>visDA2018-open数据集上有12个known（源域和目标域都有的）类别，openBP在这上面表现不好可能是因为目标域上极度不均衡的数据。相比于SE模型，这个KASE方法在引入KAR模块后，平均准确率从65.3%提升到67.9%，加入KAA后提升到70.2%。在visDA2018比赛上，测试集上的mAcc达到68%~69%的平均准确率</li>
+</ol>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/KASE-Syn2Real.png"><br></div>
+
+<ol start="2">
+<li>Office31<br>Office31按照以前论文的protocol改成openset的domain adaptation。在A，D，W三个domain上面，AVG ACC有86.9。AVG上说是最好</li>
+</ol>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/KASE-Office.png"><br></div>
+
+<ol start="3">
+<li>DIGITS：<br>包括SVHN，MNIST，USPS。S-M 66.8;  U-M94.4 ;  M-U 93.1 ;  AVG 84.8</li>
+</ol>
+<div align="center"><br>    <img src="/2019/09/23/opensetReview/KASE-Digits.png"><br></div>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/迁移学习/">迁移学习</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/26/DeepEmbeddedValidation/">
+                <span class="level-item">Deep Embedded Validation 非监督领域自适应的模型选择方法</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="陈帝羲">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        陈帝羲
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        M.S. Candidate @ BUPT
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Beijing, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        11
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        3
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        14
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://weibo.com/u/2626263585" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/Chen-Dixi">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Weibo" href="https://weibo.com/u/2626263585">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Linkedin" href="https://www.linkedin.com/in/帝羲-陈-8517b5108/">
+                
+                <i class="fab fa-linkedin"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Zhihu" href="https://www.zhihu.com/people/chen-di-xi/activities">
+                
+                <i class="fab fa-zhihu"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/自然语言处理/">
+            <span class="level-start">
+                <span class="level-item">自然语言处理</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/语音合成/">
+            <span class="level-start">
+                <span class="level-item">语音合成</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/领域自适应/">
+            <span class="level-start">
+                <span class="level-item">领域自适应</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#论文题目：Open-Set-Domain-Adaptation">
+        <span class="has-mr-6">1</span>
+        <span>论文题目：Open Set Domain Adaptation</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#理论方法">
+        <span class="has-mr-6">1.1</span>
+        <span>理论方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#实验">
+        <span class="has-mr-6">1.2</span>
+        <span>实验</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析">
+        <span class="has-mr-6">1.3</span>
+        <span>分析</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#论文题目：Open-Set-Domain-Adaptation-by-Backpropagation">
+        <span class="has-mr-6">2</span>
+        <span>论文题目：Open Set Domain Adaptation by Backpropagation</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#理论方法-1">
+        <span class="has-mr-6">2.1</span>
+        <span>理论方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#实验-1">
+        <span class="has-mr-6">2.2</span>
+        <span>实验</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析-1">
+        <span class="has-mr-6">2.3</span>
+        <span>分析</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#论文题目：Learning-Factorized-Representations-for-Open-set-Domain-Adaptation">
+        <span class="has-mr-6">3</span>
+        <span>论文题目：Learning Factorized Representations for Open-set Domain Adaptation</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#理论方法-2">
+        <span class="has-mr-6">3.1</span>
+        <span>理论方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#实验-2">
+        <span class="has-mr-6">3.2</span>
+        <span>实验</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析-2">
+        <span class="has-mr-6">3.3</span>
+        <span>分析</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#论文题目：Universal-Domain-Adaptation">
+        <span class="has-mr-6">4</span>
+        <span>论文题目：Universal-Domain-Adaptation</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#理论方法-3">
+        <span class="has-mr-6">4.1</span>
+        <span>理论方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#实验效果">
+        <span class="has-mr-6">4.2</span>
+        <span>实验效果</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析-3">
+        <span class="has-mr-6">4.3</span>
+        <span>分析</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#论文题目：Known-class-Aware-Self-ensemble-for-Open-Set-Domain-Adaptation-KASE">
+        <span class="has-mr-6">5</span>
+        <span>论文题目：Known-class Aware Self-ensemble for Open Set Domain Adaptation (KASE)</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#理论方法-4">
+        <span class="has-mr-6">5.1</span>
+        <span>理论方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#实验-3">
+        <span class="has-mr-6">5.2</span>
+        <span>实验</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+        
+            
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">我的独立App 配色笔记</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">itunes.apple.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">扬涛的博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">orzyt.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">夏木青</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">joselynzhao.top</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">DeamoV&#39;s Blog</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">vdeamov.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Attention/">
+                        <span class="tag">Attention</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
+                        <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Feature-Embedding/">
+                        <span class="tag">Feature Embedding</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Model-Selection/">
+                        <span class="tag">Model Selection</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Text-to-Speech/">
+                        <span class="tag">Text-to-Speech</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/多源域域适应/">
+                        <span class="tag">多源域域适应</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/实验代码/">
+                        <span class="tag">实验代码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文本分类/">
+                        <span class="tag">文本分类</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器翻译/">
+                        <span class="tag">机器翻译</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/组会资料/">
+                        <span class="tag">组会资料</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/语音合成/">
+                        <span class="tag">语音合成</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/迁移学习/">
+                        <span class="tag">迁移学习</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#论文题目：Open-Set-Domain-Adaptation">
+        <span class="has-mr-6">1</span>
+        <span>论文题目：Open Set Domain Adaptation</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#理论方法">
+        <span class="has-mr-6">1.1</span>
+        <span>理论方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#实验">
+        <span class="has-mr-6">1.2</span>
+        <span>实验</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析">
+        <span class="has-mr-6">1.3</span>
+        <span>分析</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#论文题目：Open-Set-Domain-Adaptation-by-Backpropagation">
+        <span class="has-mr-6">2</span>
+        <span>论文题目：Open Set Domain Adaptation by Backpropagation</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#理论方法-1">
+        <span class="has-mr-6">2.1</span>
+        <span>理论方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#实验-1">
+        <span class="has-mr-6">2.2</span>
+        <span>实验</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析-1">
+        <span class="has-mr-6">2.3</span>
+        <span>分析</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#论文题目：Learning-Factorized-Representations-for-Open-set-Domain-Adaptation">
+        <span class="has-mr-6">3</span>
+        <span>论文题目：Learning Factorized Representations for Open-set Domain Adaptation</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#理论方法-2">
+        <span class="has-mr-6">3.1</span>
+        <span>理论方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#实验-2">
+        <span class="has-mr-6">3.2</span>
+        <span>实验</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析-2">
+        <span class="has-mr-6">3.3</span>
+        <span>分析</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#论文题目：Universal-Domain-Adaptation">
+        <span class="has-mr-6">4</span>
+        <span>论文题目：Universal-Domain-Adaptation</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#理论方法-3">
+        <span class="has-mr-6">4.1</span>
+        <span>理论方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#实验效果">
+        <span class="has-mr-6">4.2</span>
+        <span>实验效果</span>
+        </a></li><li>
+        <a class="is-flex" href="#分析-3">
+        <span class="has-mr-6">4.3</span>
+        <span>分析</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#论文题目：Known-class-Aware-Self-ensemble-for-Open-Set-Domain-Adaptation-KASE">
+        <span class="has-mr-6">5</span>
+        <span>论文题目：Known-class Aware Self-ensemble for Open Set Domain Adaptation (KASE)</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#理论方法-4">
+        <span class="has-mr-6">5.1</span>
+        <span>理论方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#实验-3">
+        <span class="has-mr-6">5.2</span>
+        <span>实验</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">我的独立App 配色笔记</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">itunes.apple.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">扬涛的博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">orzyt.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">夏木青</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">joselynzhao.top</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">DeamoV&#39;s Blog</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">vdeamov.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Attention/">
+                        <span class="tag">Attention</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
+                        <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Feature-Embedding/">
+                        <span class="tag">Feature Embedding</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Model-Selection/">
+                        <span class="tag">Model Selection</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Text-to-Speech/">
+                        <span class="tag">Text-to-Speech</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/多源域域适应/">
+                        <span class="tag">多源域域适应</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/实验代码/">
+                        <span class="tag">实验代码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文本分类/">
+                        <span class="tag">文本分类</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器翻译/">
+                        <span class="tag">机器翻译</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/组会资料/">
+                        <span class="tag">组会资料</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/语音合成/">
+                        <span class="tag">语音合成</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/迁移学习/">
+                        <span class="tag">迁移学习</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="开放集领域自适应调研" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Dixi Chen&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+    <!-- Edit here -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+</body>
+</html>
