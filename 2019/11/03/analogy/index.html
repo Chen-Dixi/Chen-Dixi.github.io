@@ -2,24 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>文本分类小作业 - 帝羲 的博客</title>
+<title>类推方法 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="本文是春季课程“自然语言处理与应用”文本分类作业的简单记录，关于文本分类方面上，知乎上很多很好的文章：知乎“看山杯”夺冠记，用深度学习（CNN RNN Attention）解决大规模文本分类问题，对写这个作业帮助也很大。">
-<meta name="keywords" content="文本分类,深度学习">
+    <meta name="description" content="论文题目：Learning to learn image classifiers with visual analogy 会议期刊：CVPR2019">
+<meta name="keywords" content="迁移学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文本分类小作业">
-<meta property="og:url" content="http://yoursite.com/2019/05/28/textclassification/index.html">
+<meta property="og:title" content="类推方法">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/analogy/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="本文是春季课程“自然语言处理与应用”文本分类作业的简单记录，关于文本分类方面上，知乎上很多很好的文章：知乎“看山杯”夺冠记，用深度学习（CNN RNN Attention）解决大规模文本分类问题，对写这个作业帮助也很大。">
+<meta property="og:description" content="论文题目：Learning to learn image classifiers with visual analogy 会议期刊：CVPR2019">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-04T16:04:24.561Z">
+<meta property="og:updated_time" content="2019-11-03T06:03:59.291Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文本分类小作业">
-<meta name="twitter:description" content="本文是春季课程“自然语言处理与应用”文本分类作业的简单记录，关于文本分类方面上，知乎上很多很好的文章：知乎“看山杯”夺冠记，用深度学习（CNN RNN Attention）解决大规模文本分类问题，对写这个作业帮助也很大。">
+<meta name="twitter:title" content="类推方法">
+<meta name="twitter:description" content="论文题目：Learning to learn image classifiers with visual analogy 会议期刊：CVPR2019">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -100,7 +100,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="文本分类小作业" height="28">
+                <img src="/images/logo.svg" alt="类推方法" height="28">
             
             </a>
         </div>
@@ -121,6 +121,10 @@
             <div class="navbar-end">
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
             </div>
         </div>
@@ -136,17 +140,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-28T02:27:04.000Z">2019-05-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2019-11-03T06:03:59.000Z">2019-11-03</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1365 个字)
+                    8 分钟 读完 (大约 1250 个字)
                 </span>
                 
                 
@@ -155,37 +155,63 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                文本分类小作业
+                类推方法
             
         </h1>
         <div class="content">
-            <p>本文是春季课程“自然语言处理与应用”文本分类作业的简单记录，关于文本分类方面上，知乎上很多很好的文章：<a href="https://zhuanlan.zhihu.com/p/28923961" target="_blank" rel="noopener">知乎“看山杯”夺冠记</a>，<a href="https://zhuanlan.zhihu.com/p/25928551" target="_blank" rel="noopener">用深度学习（CNN RNN Attention）解决大规模文本分类问题</a>，对写这个作业帮助也很大。<br><a id="more"></a></p>
-<blockquote>
-<p>作业源码 github地址:<a href="https://github.com/Chen-Dixi/TextClassification" target="_blank" rel="noopener"><u>TextClassification</u></a></p>
-</blockquote>
-<h2 id="一-数据集"><a href="#一-数据集" class="headerlink" title="一. 数据集"></a>一. 数据集</h2><p>作业使用20_newsgroups数据集，可以在<a href="http://www.cs.cmu.edu/afs/cs/project/theo-11/www/naive-bayes.html" target="_blank" rel="noopener">这个网址</a>中下载，解压后全部是英文文本，这就需要自己先对文本进行预处理。</p>
-<h2 id="二-数据预处理"><a href="#二-数据预处理" class="headerlink" title="二. 数据预处理"></a>二. 数据预处理</h2><ul>
-<li><h4 id="1-训练集和测试集划分"><a href="#1-训练集和测试集划分" class="headerlink" title="1.训练集和测试集划分"></a>1.训练集和测试集划分</h4><p>按照PPT中的“一般实验设置”，我简单的把数据集按照4:1的比例划分为训练集和测试集</p>
-</li>
-<li><h4 id="2-文本内容“过滤”"><a href="#2-文本内容“过滤”" class="headerlink" title="2.文本内容“过滤”"></a>2.文本内容“过滤”</h4><p>20_newsgroups的内容是新闻文本，包含很多<code>header</code>、<code>footer</code>和<code>quotes</code>内容<br><div align="center"><br>  <img src="/2019/05/28/textclassification/newsgrouptext.png"><br></div><br>自己写字符串过滤比较麻烦，幸运的是我在<code>sciki-learn</code>的python包<code>sklearn.datasets.fetch_20newsgroups</code>里面找到对<code>20newsgroups</code>进行文本过滤的代码，拷贝过来直接使用。</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">strip_newsgroup_header</span><span class="hljs-params">(text)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Given text in "news" format, strip the headers, by removing everything</span></span><br><span class="line"><span class="hljs-string">    before the first blank line.</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    Parameters</span></span><br><span class="line"><span class="hljs-string">    ----------</span></span><br><span class="line"><span class="hljs-string">    text : string</span></span><br><span class="line"><span class="hljs-string">        The text from which to remove the signature block.</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    _before, _blankline, after = text.partition(<span class="hljs-string">'\n\n'</span>)</span><br><span class="line">    <span class="hljs-keyword">return</span> after</span><br><span class="line"></span><br><span class="line">_QUOTE_RE = re.compile(<span class="hljs-string">r'(writes in|writes:|wrote:|says:|said:'</span></span><br><span class="line">                       <span class="hljs-string">r'|^In article|^Quoted from|^\||^&gt;)'</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">strip_newsgroup_quoting</span><span class="hljs-params">(text)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Given text in "news" format, strip lines beginning with the quote</span></span><br><span class="line"><span class="hljs-string">    characters &gt; or |, plus lines that often introduce a quoted section</span></span><br><span class="line"><span class="hljs-string">    (for example, because they contain the string 'writes:'.)</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    Parameters</span></span><br><span class="line"><span class="hljs-string">    ----------</span></span><br><span class="line"><span class="hljs-string">    text : string</span></span><br><span class="line"><span class="hljs-string">        The text from which to remove the signature block.</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    good_lines = [line <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> text.split(<span class="hljs-string">'\n'</span>)</span><br><span class="line">                  <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> _QUOTE_RE.search(line)]</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'\n'</span>.join(good_lines)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">strip_newsgroup_footer</span><span class="hljs-params">(text)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Given text in "news" format, attempt to remove a signature block.</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    As a rough heuristic, we assume that signatures are set apart by either</span></span><br><span class="line"><span class="hljs-string">    a blank line or a line made of hyphens, and that it is the last such line</span></span><br><span class="line"><span class="hljs-string">    in the file (disregarding blank lines at the end).</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    Parameters</span></span><br><span class="line"><span class="hljs-string">    ----------</span></span><br><span class="line"><span class="hljs-string">    text : string</span></span><br><span class="line"><span class="hljs-string">        The text from which to remove the signature block.</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    lines = text.strip().split(<span class="hljs-string">'\n'</span>)</span><br><span class="line">    <span class="hljs-keyword">for</span> line_num <span class="hljs-keyword">in</span> range(len(lines) - <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>):</span><br><span class="line">        line = lines[line_num]</span><br><span class="line">        <span class="hljs-keyword">if</span> line.strip().strip(<span class="hljs-string">'-'</span>) == <span class="hljs-string">''</span>:</span><br><span class="line">            <span class="hljs-keyword">break</span></span><br><span class="line">    <span class="hljs-keyword">if</span> line_num &gt; <span class="hljs-number">0</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">'\n'</span>.join(lines[:line_num])</span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> text</span><br></pre></td></tr></table></figure>
-</li>
-<li><h4 id="3-每篇文本转换为长度相等一维整数向量"><a href="#3-每篇文本转换为长度相等一维整数向量" class="headerlink" title="3.每篇文本转换为长度相等一维整数向量"></a>3.每篇文本转换为长度相等一维整数向量</h4><p>我的文本分类器用的是卷积神经网络CNN，所以除了把文本中的每个英文单词转换为整数数字外，还需要将每篇文章通过<code>pad_sequence</code>转换为一样的长度。上述两个繁琐的操作也可以方便地通过<code>keras</code>提供的<code>keras.preprocessing.text.Tokenizer</code>和<code>keras.preprocessing.sequence.pad_sequences</code>直接完成。</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">word2index</span><span class="hljs-params">(texts,vocab_size=<span class="hljs-number">299567</span>,pad=True)</span>:</span></span><br><span class="line">    <span class="hljs-comment">#vocab_size is embedding_dim</span></span><br><span class="line">    </span><br><span class="line">    <span class="hljs-comment"># word转为index</span></span><br><span class="line">    tokenizer = Tokenizer(num_words=vocab_size,oov_token=<span class="hljs-string">'something'</span>)</span><br><span class="line">    tokenizer.fit_on_texts(texts)</span><br><span class="line">    sequences = tokenizer.texts_to_sequences(texts)</span><br><span class="line">    <span class="hljs-comment"># pad</span></span><br><span class="line">    data = pad_sequences(sequences ,maxlen=<span class="hljs-number">5000</span>,padding=<span class="hljs-string">'post'</span>, truncating=<span class="hljs-string">'post'</span>)</span><br><span class="line">    <span class="hljs-comment">#return</span></span><br><span class="line">    <span class="hljs-keyword">return</span> data</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>通过上面3个步骤，将得到的文本和标签数据转为<code>numpy</code>数据，保存在<code>.npz</code>文件中方便训练时加载数据集。同时获取文本数据和监督信号(标签label)的代码借鉴了pytorch中的<code>DatasetFolder</code><br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np.savez_compressed(<span class="hljs-string">'data/20_newsgroups_npz/train.npz'</span>,texts=train_inputs,labels=train_labels)</span><br><span class="line">np.savez_compressed(<span class="hljs-string">'data/20_newsgroups_npz/test.npz'</span>,texts=test_inputs,labels=test_labels)</span><br></pre></td></tr></table></figure></p>
-<h2 id="三-训练网络"><a href="#三-训练网络" class="headerlink" title="三. 训练网络"></a>三. 训练网络</h2><ul>
-<li><h4 id="1-词嵌入Embedding"><a href="#1-词嵌入Embedding" class="headerlink" title="1.词嵌入Embedding"></a>1.词嵌入Embedding</h4><code>PyTorch</code>中，词嵌入的结构用<code>nn.Embedding</code>，里面的权重是一个二维矩阵，每一行代表一个单词的词向量。输入必须是<code>LongTensor</code>类型。其他文章说，在数据量充足的情况下，其实不一定需要预训练的词向量，于是我就开始尝试’train from scratch’。问题是训练开始的时候非常令人揪心，仿佛要训练到时间的尽头😅，所以就先停了。</li>
-</ul>
-<div align="center"><br>    <img src="/2019/05/28/textclassification/withoupretrainedembedding.png"><br></div>
+            <p>论文题目：<a href="http://pengcui.thumedialab.com/papers/VANER.pdf" target="_blank" rel="noopener">Learning to learn image classifiers with visual analogy</a></p>
+<p>会议期刊：CVPR2019<br><a id="more"></a></p>
+<p>介绍的两个方法，大致framework都是，维护一个结构反应不同class之间的某种关系()</p>
+<h1 id="VAGER：Visual-Ananolgy-Graph-Embedded-Regression-model"><a href="#VAGER：Visual-Ananolgy-Graph-Embedded-Regression-model" class="headerlink" title="VAGER：Visual Ananolgy Graph Embedded Regression model"></a>VAGER：Visual Ananolgy Graph Embedded Regression model</h1><p>一个人学习认识狗会需要非常多的training data，但这个人当学习认识狼的时候，学习的速度就会加速。所以人学习会有一个common sense，就是说人学习的知识越多，再学习新的，相关的知识或者概念速度就会越快。</p>
+<p>本文作者从这点出发重新定义了visual learning的问题。我们知道人学习新的概念之前会有一些base classes已经掌握，那么人会基于basic data和已经学习到的模型，进而泛化完成学习新概念的任务。</p>
+<p>学习概念跟很多领域相关，本文作者想摒弃前人总结的各种复杂的学习机制，探索一种更加符合学习人直觉的学习方法</p>
+<div align="center"><br>    <img src="/2019/11/03/analogy/fig1.png"><br></div>
 
-<p>我在github中找到一个<a href="https://github.com/eyaler/word2vec-slim" target="_blank" rel="noopener">缩小版的word2vec GoogleNews词向量</a>，里面有299567个英文单词的300维词向量。使用预训练词向量意味着我们需要重新预处理数据集。词向量中每一行都代表不同单词，<code>word2vec</code>中除了包含[299567x300]的权重外，还有一个英文单词到数字的<code>vocabulary哈希</code>。因此数据预处理的第3.步骤也应该按照这个<code>vocabulary哈希</code>将单词转为对应的数字，此时数据预处理代码有一些小更改，可以在我的程序中看到处理细节。</p>
+<p>传统图片分类的深度学习：大量图片，每种类别有大量样本，用AlexNet训练：<br>然后用卷积网络(eg. AlexNet)的后面的某一层层特征作为图片的高维特征。用这些特征$\mathbf{x}_{i j}^{B} \in \mathscr{X}$ 计算出一个对称相似度矩阵$\mathbf{A}_{i j}$，大小为$nxn$，相似度用余弦相似度计算。</p>
+<p>$$<br>\mathbf{A}_{i j}=\frac{\overline{\mathbf{x}_{i}^{B}} \cdot \overline{\mathbf{x}_{j}^{B}}}{|\overline{\mathbf{x}_{i}^{B}}|_{2} \cdot|\overline{\mathbf{x}_{j}^{B}}|_{2}}<br>$$</p>
+<p>文章一个重要的东西是一个 <strong>线性映射</strong>$\mathbf{T} \in \mathbb{R}^{q \times p}$，从embedding嵌入空间$\mathbf{V} \in \mathbb{R}^{n\times q}$到分类器参数空间$\mathbf{W} \in \mathbb{R}^{n \times p}$的线性映射。$\mathbf{V}$和$\mathbf{T}$都是我们要求的矩阵，$W$是每个类一个的二元分类器参数。用下面的公式梯度下降</p>
+<p>$$<br>\mathscr{L}(\mathbf{V}, \mathbf{T})=|\mathbf{V} \mathbf{T}-\mathbf{W}|_{F}^{2}+\beta\left|\mathbf{A}-\mathbf{V} \mathbf{V}^{\top}\right|_{F}^{2}<br>$$</p>
+<p>$$<br>\begin{array}{l}{\frac{\partial \mathscr{L}(\mathbf{V}, \mathbf{T})}{\partial \mathbf{V}}=2(\mathbf{V} \mathbf{T}-\mathbf{W}) \mathbf{T}^{\top}+\beta\left(-4 \mathbf{A} \mathbf{V}+4 \mathbf{V} \mathbf{V}^{\top} \mathbf{V}\right)} \\ {\frac{\partial \mathscr{L}(\mathbf{V}, \mathbf{T})}{\partial \mathbf{T}}=2 \mathbf{V}^{\top}(\mathbf{V} \mathbf{T}-\mathbf{W})}\end{array}<br>$$</p>
+<p>接下来进来一个新的类，比如一堆狼的图片，然后把这些图片给进CNN，用相同的办法算一个和之前类别之间的相似度向量$\mathbf{a}_{n e w} \in \mathbb{R}^{n}$。用下面的方式求这个新类的向量</p>
+<p>$$<br>\mathscr{L}\left(\mathbf{v}_{n e w}\right)=\left|\left[\begin{array}{cc}{\mathbf{A}} &amp; {\mathbf{a}_{n e w}^{\top}} \\ {\mathbf{a}_{n e w}} &amp; {1}\end{array}\right]-\left[\begin{array}{c}{\mathbf{V}} \\ {\mathbf{v}_{n e w}}\end{array}\right]\left[\begin{array}{cc}{\mathbf{V}^{\top}} &amp; {\mathbf{v}_{n e w}^{\top}}\end{array}\right]\right|_{F}^{2}<br>$$</p>
+<p>然后就是解决下面的式子</p>
+<p>$$<br>\min \mathscr{L}\left(\mathbf{v}_{n e w}\right)=2\left|\mathbf{a}_{n e w}-\mathbf{v}_{n e w} \mathbf{V}^{\top}\right|_{2}^{2}+\left(\mathbf{v}_{n e w} \mathbf{v}_{n e w}^{\top}-1\right)<br>$$</p>
+<p>不用梯度下降，直接计算$\mathbf{v}_{n e w}=\mathbf{a}_{n e w}\left(\mathbf{V}^{\top}\right)^{+}$</p>
+<p>然后这个新类的二分类器参数就是$\mathbf{w}_{n e w}^{N}=\mathbf{v}_{n e w} \mathbf{T}$</p>
+<div align="center"><br>    <img src="/2019/11/03/analogy/fig2.png"><br></div>
+
 <ul>
-<li><h4 id="2-分类器"><a href="#2-分类器" class="headerlink" title="2.分类器"></a>2.分类器</h4>embedding后面的网络结构不是这次作业的重点，我使用了北邮学长在“知乎看山杯”取得第一名自创的结构<code>CNNText_inception</code>，这是关于那次比赛的纪录文章：<a href="https://zhuanlan.zhihu.com/p/28923961" target="_blank" rel="noopener">知乎“看山杯” 夺冠记</a></li>
+<li>类推 体现在，嵌入空间$\mathbf{V} \in \mathbb{R}^{n\times q}$保留视觉类比结构($\beta\left|\mathbf{A}-\mathbf{V} \mathbf{V}^{\top}\right|_{F}^{2}$做的约束)，线性映射$\mathbf{T} \in \mathbb{R}^{q \times p}$收集起到类推分类器作用</li>
 </ul>
-<h2 id="四-总结"><a href="#四-总结" class="headerlink" title="四. 总结"></a>四. 总结</h2><p><del>没有调参，没有使用什么技巧，准确率很差，50个epoch在测试集上准确率最高只有71%，就这么把作业交了吧。</del><br>之前因为一块GPU内存限制，把网络里面的某些维度调整小了，后面通过两个GPU并行增加了一些维度，到了83%。如果在数据预处理再做一些调整，增加文章的长度，应该会再提高一点，之前直接人为规定每篇文章长度为5000，有点arbitrary。<br>83%的模型参数链接:<a href="https://pan.baidu.com/s/19KJUbMclbPMx_iogG-et1Q" target="_blank" rel="noopener">https://pan.baidu.com/s/19KJUbMclbPMx_iogG-et1Q</a>  密码:rfdc</p>
-<div align="center"><br>    <img src="/2019/05/28/textclassification/result.png"><br></div>
+<h1 id="Unsupervised-Open-Domain-Recognition-by-Semantic-Discrepancy-Minimization"><a href="#Unsupervised-Open-Domain-Recognition-by-Semantic-Discrepancy-Minimization" class="headerlink" title="Unsupervised Open Domain Recognition by Semantic Discrepancy Minimization"></a>Unsupervised Open Domain Recognition by Semantic Discrepancy Minimization</h1><p>模型网络：UODR  Github开源:<a href="https://github.com/junbaoZHUO/UODTN" target="_blank" rel="noopener">junbaoZHUO / UODTN</a></p>
+<div align="center"><br>    <img src="/2019/11/03/analogy/open-transfer.png"><br></div>
+
+<p>目标是对目标域的所有实例进行分类，有点像zero-shot learning。但是generalized ZSL假设数据来自同一个域，没有domain discrepancy</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><ul>
+<li>GCN产生unknown的语义embedding，分类器网络用这些embedding初始化</li>
+<li>进一步缩小semantic-guided matching discrepancy</li>
+<li>用平衡约束和GCN结合缩小化semantic discrepancy</li>
+<li>backbone和GCN一起，为了保留词向量和知识图谱的语义结构</li>
+</ul>
+<div align="center"><br>    <img src="/2019/11/03/analogy/UODR.png"><br></div>
+
+<p>构造unknown类的分类器参数，通过GCN保留语义结构（类别之间的关系），然后生成更新known和unknown 分类器的权重weight，核心是这些权重间接具有了语义结构(文中使用了WordNet编码一个邻居矩阵)</p>
+<div align="center"><br>    <img src="/2019/11/03/analogy/propogate-relation1.png"><br></div>
+
+<div align="center"><br>    <img src="/2019/11/03/analogy/propogate-relation2.png"><br></div>
+
+
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>无监督Open Domain Recognition很难，因为有很大的语义差异：</p>
+<ol>
+<li>从分布和内容content角度，两个域都有很大不同差异，很大discrepancy</li>
+<li>unknown到known类别的 语义偏移，semantic shift（这列semantic shift具体什么鬼？）</li>
+</ol>
+<p><strong>UODTN</strong><br>通过减少SGMD，在backbone和GCN上同时共同学习知识</p>
+<ul>
+<li>图卷积网络 保持了语义结构，用来传播分类规律classification rule。</li>
+<li>backbone减小loss，降低分类错误。</li>
+</ul>
 
         </div>
         
@@ -193,7 +219,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/文本分类/">文本分类</a>, <a class="has-link-grey -link" href="/tags/深度学习/">深度学习</a>
+                    <a class="has-link-grey -link" href="/tags/迁移学习/">迁移学习</a>
                 </div>
             </div>
         </div>
@@ -229,17 +255,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/04/LSR-UDA/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Learning Smooth Representation for Unsupervised Domain Adaptation</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/20/DeepCockTailCode/">
-                <span class="level-item">多源自适应-深度鸡尾酒网络代码</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/23/opensetReview/">
+                <span class="level-item">开放集领域自适应调研</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -395,6 +414,33 @@
         <div class="column-right-shadow is-hidden-widescreen ">
         
             
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#VAGER：Visual-Ananolgy-Graph-Embedded-Regression-model">
+        <span class="has-mr-6">1</span>
+        <span>VAGER：Visual Ananolgy Graph Embedded Regression model</span>
+        </a></li><li>
+        <a class="is-flex" href="#Unsupervised-Open-Domain-Recognition-by-Semantic-Discrepancy-Minimization">
+        <span class="has-mr-6">2</span>
+        <span>Unsupervised Open Domain Recognition by Semantic Discrepancy Minimization</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Method">
+        <span class="has-mr-6">2.1</span>
+        <span>Method</span>
+        </a></li><li>
+        <a class="is-flex" href="#Conclusion">
+        <span class="has-mr-6">2.2</span>
+        <span>Conclusion</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
         
             
 
@@ -580,6 +626,33 @@
 <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#VAGER：Visual-Ananolgy-Graph-Embedded-Regression-model">
+        <span class="has-mr-6">1</span>
+        <span>VAGER：Visual Ananolgy Graph Embedded Regression model</span>
+        </a></li><li>
+        <a class="is-flex" href="#Unsupervised-Open-Domain-Recognition-by-Semantic-Discrepancy-Minimization">
+        <span class="has-mr-6">2</span>
+        <span>Unsupervised Open Domain Recognition by Semantic Discrepancy Minimization</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Method">
+        <span class="has-mr-6">2.1</span>
+        <span>Method</span>
+        </a></li><li>
+        <a class="is-flex" href="#Conclusion">
+        <span class="has-mr-6">2.2</span>
+        <span>Conclusion</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -765,7 +838,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="文本分类小作业" height="28">
+                    <img src="/images/logo.svg" alt="类推方法" height="28">
                 
                 </a>
                 <p class="is-size-7">
