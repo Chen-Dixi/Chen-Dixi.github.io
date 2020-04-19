@@ -2,19 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: 多源域域适应 - 帝羲 的博客</title>
+<title>Leetcode 动态规划 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/tags/多源域域适应/index.html">
+    <meta name="description" content="213 打家劫舍2题目描述：房屋都围成一圈，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。 解题思路：在打家劫舍1的基础上，说给出的房子是环形排列首尾相接的。区别就是第一栋房子和最后一栋房子不能同时偷。只需要计算两种情况：">
+<meta name="keywords" content="leetcode,刷题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 动态规划">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/leetcode-dp/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="213 打家劫舍2题目描述：房屋都围成一圈，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。 解题思路：在打家劫舍1的基础上，说给出的房子是环形排列首尾相接的。区别就是第一栋房子和最后一栋房子不能同时偷。只需要计算两种情况：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-04-19T06:57:35.561Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="Leetcode 动态规划">
+<meta name="twitter:description" content="213 打家劫舍2题目描述：房屋都围成一圈，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。 解题思路：在打家劫舍1的基础上，说给出的房子是环形排列首尾相接的。区别就是第一栋房子和最后一栋房子不能同时偷。只需要计算两种情况：">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -95,7 +100,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="Leetcode 动态规划" height="28">
             
             </a>
         </div>
@@ -126,121 +131,94 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-19T06:49:57.000Z">2020-04-19</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/算法练习/">算法练习</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 316 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Leetcode 动态规划
+            
+        </h1>
+        <div class="content">
+            <h1 id="213-打家劫舍2"><a href="#213-打家劫舍2" class="headerlink" title="213 打家劫舍2"></a>213 打家劫舍2</h1><p>题目描述：房屋都围成一圈，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
+<p>解题思路：在<a href="https://leetcode-cn.com/problems/house-robber/" target="_blank" rel="noopener">打家劫舍1</a>的基础上，说给出的房子是环形排列首尾相接的。区别就是第一栋房子和最后一栋房子不能同时偷。只需要计算两种情况：<br><a id="more"></a></p>
+<ol>
+<li>不偷第一个，问题就是在后边n-1个房子可以偷的最大价值。</li>
+<li>不偷最后一个，问题就是在前边n-1个房子可以偷的最大价值。</li>
+</ol>
+<p>这样转换就没有首尾连接的约束了，可以直接采用上一题的解法。取两种情况的最大值<br><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-comment">//首尾之能选一个偷</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">rob</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//思想很简单，不偷第一家，就在后面n-1家里偷，不偷最后一家，就在前n-1家里偷</span></span><br><span class="line">        <span class="hljs-keyword">int</span> len=nums.size();</span><br><span class="line">        <span class="hljs-keyword">if</span>(len==<span class="hljs-number">0</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span>(len==<span class="hljs-number">1</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> ans1 = rob1(nums, <span class="hljs-number">0</span>, len<span class="hljs-number">-2</span>);</span><br><span class="line">        <span class="hljs-keyword">int</span> ans2 = rob1(nums, <span class="hljs-number">1</span>, len<span class="hljs-number">-1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> max(ans1,ans2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">rob1</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> pre=<span class="hljs-number">0</span>,prepre=<span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=l;i&lt;=r;i++)&#123;</span><br><span class="line">            ans = max(prepre+nums[i], pre);</span><br><span class="line">            prepre = pre;</span><br><span class="line">            pre = ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/leetcode/">leetcode</a>, <a class="has-link-grey -link" href="/tags/刷题/">刷题</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">多源域域适应</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-20T14:44:11.000Z">2019-05-20</time>
                 
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 895 个字)
-                </span>
-                
-                
-            </div>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/05/20/DeepCockTailCode/">多源自适应-深度鸡尾酒网络代码</a>
-            
-        </h1>
-        <div class="content">
-            <h4 id="置信度"><a href="#置信度" class="headerlink" title="置信度"></a>置信度</h4><p>论文中，置信度计算公式：<br>$$<br>\sum_{c \in \mathcal{C}_{s_{j}}} \frac{\mathcal{S}_{c f}\left(x^{t} ; F, D_{s_{j}}\right)}{\sum_{c \in \mathcal{C}_{s_{k}}} \mathcal{S}_{c f}\left(x^{t} ; F, D_{s_{k}}\right)} C_{s_{j}}\left(c | F\left(x^{t}\right)\right)<br>$$<br>其中：<br>$$C_{s_{j}}\left(c | F\left(x^{t}\right)\right)$$<br>指的是一个样本的softmax值，这里的计算从下面的程序中得到</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/20/DeepCockTailCode/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
 
 
 
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-20T13:02:50.000Z">2019-05-20</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 907 个字)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/04/18/leetcode-tree/">
+                <span class="level-item">Leetcode 树</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/05/20/DeepCockTail/">深度鸡尾酒网络</a>
-            
-        </h1>
-        <div class="content">
-            <div align="center"><br>    <img src="/2019/05/20/DeepCockTail/example.png"><br></div>
-
-<h4 id="Problem-Setup"><a href="#Problem-Setup" class="headerlink" title="Problem Setup"></a>Problem Setup</h4><ul>
-<li>Category Shift<br>N个源域<br>$$\{\left(X_{s_{j}},Y_{s_{j}}\right)\}_{j=1}^{N}$$</li></ul>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/20/DeepCockTail/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
-
-
-
-
-
-
 
 
 </div>
@@ -884,7 +862,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="Leetcode 动态规划" height="28">
                 
                 </a>
                 <p class="is-size-7">
