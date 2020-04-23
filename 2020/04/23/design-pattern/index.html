@@ -2,19 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: Feature Embedding - 帝羲 的博客</title>
+<title>设计模式 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Feature-Embedding/index.html">
+    <meta name="description" content="观察者模式一对多的依赖，多个对象关注一个对象。当被关注的对象发生状态改变时，它的所有依赖都会收到通知并且自动更新状态。例如这样一个需求：App当中，如果在用户设置的二级界面修改了自己的用户名，那么此时一级界面上显示的用户名也需要发生相应的改变。又或者另外一个需求：天气数据发生改变，那么天气信息报告板也跟着更新其显示内容。 被观察的对象叫做Subject，其所有依赖者称为观察者。">
+<meta name="keywords" content="开发,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://yoursite.com/2020/04/23/design-pattern/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="观察者模式一对多的依赖，多个对象关注一个对象。当被关注的对象发生状态改变时，它的所有依赖都会收到通知并且自动更新状态。例如这样一个需求：App当中，如果在用户设置的二级界面修改了自己的用户名，那么此时一级界面上显示的用户名也需要发生相应的改变。又或者另外一个需求：天气数据发生改变，那么天气信息报告板也跟着更新其显示内容。 被观察的对象叫做Subject，其所有依赖者称为观察者。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-04-23T14:29:58.827Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="观察者模式一对多的依赖，多个对象关注一个对象。当被关注的对象发生状态改变时，它的所有依赖都会收到通知并且自动更新状态。例如这样一个需求：App当中，如果在用户设置的二级界面修改了自己的用户名，那么此时一级界面上显示的用户名也需要发生相应的改变。又或者另外一个需求：天气数据发生改变，那么天气信息报告板也跟着更新其显示内容。 被观察的对象叫做Subject，其所有依赖者称为观察者。">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -95,7 +100,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="设计模式" height="28">
             
             </a>
         </div>
@@ -116,6 +121,10 @@
             <div class="navbar-end">
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
             </div>
         </div>
@@ -126,33 +135,22 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Feature Embedding</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-26T10:39:52.000Z">2019-08-26</time>
+                <time class="level-item has-text-grey" datetime="2020-04-23T13:09:51.000Z">2020-04-23</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
+                <a class="has-link-grey -link" href="/categories/开发/">开发</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1239 个字)
+                    4 分钟 读完 (大约 580 个字)
                 </span>
                 
                 
@@ -161,23 +159,34 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/26/DeepEmbeddedValidation/">Deep Embedded Validation 非监督领域自适应的模型选择方法</a>
+                设计模式
             
         </h1>
         <div class="content">
-            <p>论文题目：<a href="https://youkaichao.github.io/files/icml2019/923.pdf" target="_blank" rel="noopener">Towards Accurate Model Selection in Deep Unsupervised Domain Adaptation</a></p>
-<p>论文作者：Kaichao You, Ximei Wang, Mingsheng Long, Michael I. Jordan</p>
-<p>会议期刊：ICML2019</p>
+            <h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><p>一对多的依赖，多个对象关注一个对象。当被关注的对象发生状态改变时，它的所有依赖都会收到通知并且自动更新状态。例如这样一个需求：App当中，如果在用户设置的二级界面修改了自己的用户名，那么此时一级界面上显示的用户名也需要发生相应的改变。又或者另外一个需求：天气数据发生改变，那么天气信息报告板也跟着更新其显示内容。</p>
+<p>被观察的对象叫做<code>Subject</code>，其所有依赖者称为观察者。<br><a id="more"></a><br><code>Subject</code>能注册和移除观察者、并通知所有观察者的功能，主题是通过维护一张观察者列表来实现这些操作的。凡是在修改Subject的数据时，调用notofy()函数通知所有Observer即可。</p>
+<p>观察者（Observer）的注册功能主要需要调用<code>Subject</code>的 registerObserver() 方法。</p>
+<div align="center"><br>    <img src="/2020/04/23/design-pattern/observer-diagram.png"><br></div>
+
+
+<h2 id="Subject-接口"><a href="#Subject-接口" class="headerlink" title="Subject 接口"></a>Subject 接口</h2><p><code>Subject</code>接口，里面定义的方法包括1. 添加观察者，把观察者对象放在自己的容器中，2. 移除观察者，3. 状态变化，通知观察者更新状态。<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Subject</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">registerObserver</span><span class="hljs-params">(Observer o)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">removeObserver</span><span class="hljs-params">(Observer o)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notifyObserver</span><span class="hljs-params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后实现一个具体的Subject<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WeatherData</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Subject</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//List是一个用来放observer的容器</span></span><br><span class="line">    <span class="hljs-keyword">private</span> List&lt;Observer&gt; observers;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> temperature;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> humidity;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> pressure;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">WeatherData</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        observers = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setMeasurements</span><span class="hljs-params">(<span class="hljs-keyword">float</span> temperature, <span class="hljs-keyword">float</span> humidity, <span class="hljs-keyword">float</span> pressure)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.temperature = temperature;</span><br><span class="line">        <span class="hljs-keyword">this</span>.humidity = humidity;</span><br><span class="line">        <span class="hljs-keyword">this</span>.pressure = pressure;</span><br><span class="line">        <span class="hljs-comment">//通知所有观察者</span></span><br><span class="line">        notifyObserver();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerObserver</span><span class="hljs-params">(Observer o)</span> </span>&#123;</span><br><span class="line">        observers.add(o);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeObserver</span><span class="hljs-params">(Observer o)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> i = observers.indexOf(o);</span><br><span class="line">        <span class="hljs-keyword">if</span> (i &gt;= <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            observers.remove(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notifyObserver</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (Observer o : observers) &#123;</span><br><span class="line">            o.update(temperature, humidity, pressure);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="观察者Observer接口，"><a href="#观察者Observer接口，" class="headerlink" title="观察者Observer接口，"></a>观察者Observer接口，</h2><p>实现一个，<code>update(data)</code>函数，参数是<code>Subject</code>更新相关数据。这里以天气数据为例子。<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Observer</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-keyword">float</span> temp, <span class="hljs-keyword">float</span> humidity, <span class="hljs-keyword">float</span> pressure)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面是一个具体的观察者<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StatisticsDisplay</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Observer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">StatisticsDisplay</span><span class="hljs-params">(Subject weatherData)</span> </span>&#123;</span><br><span class="line">        weatherData.reisterObserver(<span class="hljs-keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-keyword">float</span> temp, <span class="hljs-keyword">float</span> humidity, <span class="hljs-keyword">float</span> pressure)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="hljs-string">"StatisticsDisplay.update: "</span> + temp + <span class="hljs-string">" "</span> + humidity + <span class="hljs-string">" "</span> + pressure);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Main-函数例子"><a href="#Main-函数例子" class="headerlink" title="Main 函数例子"></a>Main 函数例子</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WeatherStation</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">        WeatherData weatherData = <span class="hljs-keyword">new</span> WeatherData();</span><br><span class="line">        </span><br><span class="line">        StatisticsDisplay statisticsDisplay = <span class="hljs-keyword">new</span> StatisticsDisplay(weatherData);</span><br><span class="line"></span><br><span class="line">        weatherData.setMeasurements(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);</span><br><span class="line">        weatherData.setMeasurements(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>剩余内容…</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/26/DeepEmbeddedValidation/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/开发/">开发</a>, <a class="has-link-grey -link" href="/tags/设计模式/">设计模式</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -185,9 +194,40 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/04/19/leetcode-dp/">
+                <span class="level-item">Leetcode 动态规划</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -377,6 +417,33 @@
         <div class="column-right-shadow is-hidden-widescreen ">
         
             
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#观察者模式">
+        <span class="has-mr-6">1</span>
+        <span>观察者模式</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Subject-接口">
+        <span class="has-mr-6">1.1</span>
+        <span>Subject 接口</span>
+        </a></li><li>
+        <a class="is-flex" href="#观察者Observer接口，">
+        <span class="has-mr-6">1.2</span>
+        <span>观察者Observer接口，</span>
+        </a></li><li>
+        <a class="is-flex" href="#Main-函数例子">
+        <span class="has-mr-6">1.3</span>
+        <span>Main 函数例子</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
         
             
 
@@ -622,6 +689,33 @@
 <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#观察者模式">
+        <span class="has-mr-6">1</span>
+        <span>观察者模式</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Subject-接口">
+        <span class="has-mr-6">1.1</span>
+        <span>Subject 接口</span>
+        </a></li><li>
+        <a class="is-flex" href="#观察者Observer接口，">
+        <span class="has-mr-6">1.2</span>
+        <span>观察者Observer接口，</span>
+        </a></li><li>
+        <a class="is-flex" href="#Main-函数例子">
+        <span class="has-mr-6">1.3</span>
+        <span>Main 函数例子</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
@@ -867,7 +961,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="设计模式" height="28">
                 
                 </a>
                 <p class="is-size-7">
