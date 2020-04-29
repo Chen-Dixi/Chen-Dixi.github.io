@@ -2,19 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>分类: 算法练习 - 帝羲 的博客</title>
+<title>异常检测 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/categories/算法练习/index.html">
+    <meta name="description" content="异常检测异常检测(Anomaly detection)问题是机器学习算法的一个常见应用。这种算法的一个有趣之处在于：它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。什么是异常检测呢？为了解释这个概念，让我举一个例子吧：">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异常检测">
+<meta property="og:url" content="http://yoursite.com/2020/04/29/anomaly-detection/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="异常检测异常检测(Anomaly detection)问题是机器学习算法的一个常见应用。这种算法的一个有趣之处在于：它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。什么是异常检测呢？为了解释这个概念，让我举一个例子吧：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-04-29T14:44:09.054Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="异常检测">
+<meta name="twitter:description" content="异常检测异常检测(Anomaly detection)问题是机器学习算法的一个常见应用。这种算法的一个有趣之处在于：它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。什么是异常检测呢？为了解释这个概念，让我举一个例子吧：">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -89,13 +94,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="异常检测" height="28">
             
             </a>
         </div>
@@ -125,122 +130,141 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-29T13:15:06.000Z">2020-04-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/机器学习/">机器学习</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 分钟 读完 (大约 1798 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                异常检测
+            
+        </h1>
+        <div class="content">
+            <h1 id="异常检测"><a href="#异常检测" class="headerlink" title="异常检测"></a>异常检测</h1><p>异常检测(Anomaly detection)问题是机器学习算法的一个常见应用。这种算法的一个有趣之处在于：它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。<br>什么是异常检测呢？为了解释这个概念，让我举一个例子吧：</p>
+<a id="more"></a>
+<p>假想你是一个飞机引擎制造商，当你生产的飞机引擎从生产线上流出时，你需要进行QA(质量控制测试)，而作为这个测试的一部分，你测量了飞机引擎的一些特征变量，比如引擎运转时产生的热量，或者引擎的振动等等。</p>
+<div align="center"><br><img src="https://upload-images.jianshu.io/upload_images/15527263-d1b17d65e8b0e4b4.png?imageMogr2/auto-orient/strip|imageView2/2/w/600/format/webp" alt="图1"><br></div>
+
+<p>这样一来，你就有了一个数据集，从x^(1) 到x^(m)，如果你生产了m个引擎的话，你将这些数据绘制成图表，看起来就是这个样子：</p>
+<div align="center"><br><img src="https://upload-images.jianshu.io/upload_images/15527263-a5b53a30a3f57dc4.png?imageMogr2/auto-orient/strip|imageView2/2/w/251/format/webp" alt="图2"><br></div>
+
+<p>这里的每个点、每个叉，都是你的无标签数据。这样，异常检测问题可以定义如下：我们假设后来有一天，你有一个新的飞机引擎从生产线上流出，而你的新飞机引擎有特征变量x_test。所谓的异常检测问题就是：我们希望知道这个新的飞机引擎是否有某种异常，或者说，我们希望判断这个引擎是否需要进一步测试。因为，如果它看起来像一个正常的引擎，那么我们可以直接将它运送到客户那里，而不需要进一步的测试。</p>
+<p>给定数据集 x^(1), x^(2) ,..,x^(m)，我们假使数据集是正常的，我们希望知道新的数据  是不是异常的，即这个测试数据不属于该组数据的几率如何。我们所构建的模型应该能根据该测试数据的位置告诉我们其属于一组数据的可能性 p(x)。</p>
+<div align="center"><br><img src="https://upload-images.jianshu.io/upload_images/15527263-e54ac0eb2b020803.png?imageMogr2/auto-orient/strip|imageView2/2/w/300/format/webp" alt="图3"><br></div>
+
+<h1 id="异常检测算法"><a href="#异常检测算法" class="headerlink" title="异常检测算法"></a>异常检测算法</h1><h2 id="基于高斯分布建立异常检测算法"><a href="#基于高斯分布建立异常检测算法" class="headerlink" title="基于高斯分布建立异常检测算法"></a>基于高斯分布建立异常检测算法</h2><p>用数据集建立起一个概率模型，<code>p(x)</code>，试图解决哪些特征量出现得比较高，哪些特征量出现得比较低，因此x就会是一个向量。</p>
+<p><code>x_{1}</code>到<code>x_{n}</code>上的一个独立假设，向量里n个分量各自服从独立正态分布。</p>
+<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-38d6795f37fcbf91.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图4"><br></div>
+
+<p>那么整个向量就服从高斯混合分布。</p>
+<p>异常检测的一个思路：</p>
+<ol>
+<li>选择出你认为可以反应出异常样本的几个特征分量<code>x_{i}</code>。</li>
+<li>使用数据集，在这些分量上计算出高斯分布的 <code>u</code>和<code>\sigm</code>。</li>
+<li>计算样本的<code>p(x)</code></li>
+</ol>
+<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-2410a1bfa6313d01.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图5"><br></div>
+
+<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>将数据转换成高斯分布</p>
+<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-d604b3f4a8a63909.png?imageMogr2/auto-orient/strip|imageView2/2/w/636/format/webp" alt="图6"><br></div>
+
+<p>特征组合，比如计算机状况的例子中，用CPU负载与网络通信量的比例作为一个新的特征，如果该值异常地大，便有可能意味着该服务器是陷入了一些问题中。</p>
+<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-504397f49569e9ca.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图7"><br></div>
+
+<h2 id="多元高斯分布"><a href="#多元高斯分布" class="headerlink" title="多元高斯分布"></a>多元高斯分布</h2><p>假使我们有两个相关的特征，而且这两个特征的值域范围比较宽，这种情况下，一般的高斯分布模型可能不能很好地识别异常数据。其原因在于，一般的高斯分布模型尝试的是去同时抓住两个特征的偏差，因此创造出一个比较大的判定边界。</p>
+<p>下图中是两个相关特征，洋红色的线（根据ε的不同其范围可大可小）是一般的高斯分布模型获得的判定边界，很明显绿色的X所代表的数据点很可能是异常值，但是其p(x)值却仍然在正常范围内。多元高斯分布将创建像图中蓝色曲线所示的判定边界。</p>
+<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-e63a1a44513b7062.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图8"><br></div>
+
+<p>多元高斯分布不是单独建模各个特征分量<code>p(x_{1}),p(x_{2})</code>的概率密度，而是对整个特征<code>p(x)</code>建模</p>
+<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-2854aa17197e3ba7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图8"><br></div>
+
+<p>$\sum$是一个协方差矩阵，它衡量的是方差，或者说特征变量x1和x2的变化量</p>
+<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-6dc8a45684b57117.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图9"><br></div>
+
+<p>协方差矩阵是如何影响模型的</p>
+<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-ca25bd6b6668606e.png?imageMogr2/auto-orient/strip|imageView2/2/w/974/format/webp" alt="图10"><br></div>
+
+<p>上图是5个不同的模型，从左往右依次分析：</p>
+<p>1.是一个一般的高斯分布模型<br>2.通过协方差矩阵，令特征1拥有较小的偏差，同时保持特征2的偏差<br>3.通过协方差矩阵，令特征2拥有较大的偏差，同时保持特征1的偏差<br>4.通过协方差矩阵，在不改变两个特征的原有偏差的基础上，增加两者之间的正相关性<br>5.通过协方差矩阵，在不改变两个特征的原有偏差的基础上，增加两者之间的负相关性</p>
+<p>多元高斯分布模型与原高斯分布模型的关系：<br>可以证明的是，原本的高斯分布模型是多元高斯分布模型的一个子集，即像上图中的第1、2、3，3个例子所示，如果协方差矩阵只在对角线的单位上有非零的值时，即为原本的高斯分布模型了。</p>
+<h2 id="原高斯分布模型和多元高斯分布模型的比较"><a href="#原高斯分布模型和多元高斯分布模型的比较" class="headerlink" title="原高斯分布模型和多元高斯分布模型的比较"></a>原高斯分布模型和多元高斯分布模型的比较</h2><div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-246f966331a7c6a1.png?imageMogr2/auto-orient/strip|imageView2/2/w/993/format/webp" alt="图11"><br></div>
+
+<p>原高斯分布模型被广泛使用着，如果特征之间在某种程度上存在相互关联的情况，我们可以通过构造新新特征的方法来捕捉这些相关性。</p>
+<p>如果训练集不是太大，并且没有太多的特征，我们可以使用多元高斯分布模型。</p>
+<h1 id="使用多元高斯分布进行异常检测"><a href="#使用多元高斯分布进行异常检测" class="headerlink" title="使用多元高斯分布进行异常检测"></a>使用多元高斯分布进行异常检测</h1><p>参考<a href="https://www.jianshu.com/p/620b584c2941" target="_blank" rel="noopener">异常检测(Anomaly Detection)</a></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.jianshu.com/p/620b584c2941" target="_blank" rel="noopener">[1]异常检测(Anomaly Detection)</a></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/机器学习/">机器学习</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">分类</a></li>
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
             
-            <li class="is-active"><a href="#" aria-current="page">算法练习</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-04-19T06:49:57.000Z">2020-04-19</time>
                 
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/算法练习/">算法练习</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10 分钟 读完 (大约 1467 个字)
-                </span>
-                
-                
-            </div>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/04/19/leetcode-dp/">Leetcode 动态规划</a>
-            
-        </h1>
-        <div class="content">
-            <p>很多动态规划问题大致可以按照下面5个步骤取解释：<br>1、状态定义<br>2、状态转移方程<br>3、初始化<br>4、输出<br>5、思考状态压缩<br></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/04/19/leetcode-dp/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
 
 
 
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-04-18T15:14:26.000Z">2020-04-18</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/算法练习/">算法练习</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 446 个字)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/04/29/feature-dist-metric/">
+                <span class="level-item">特征距离度量</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/04/18/leetcode-tree/">Leetcode 树</a>
-            
-        </h1>
-        <div class="content">
-            <p>树，要熟悉树的操作，运用大量的递归。多刷题，多锻炼大脑。</p>
-<h1 id="98-验证二叉搜索树"><a href="#98-验证二叉搜索树" class="headerlink" title="98 验证二叉搜索树"></a>98 验证二叉搜索树</h1><p>题目描述：给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
-<p>解题思路：不仅要判断左子节点和右子节点与父节点大小比较，还要注意整棵子树与父节点的关系（左子树所有节点的值都必须小于父节点的值）<br></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/04/18/leetcode-tree/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
-
-
-
-
-
-
 
 
 </div>
@@ -611,7 +635,7 @@
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow  ">
         
             
         
@@ -688,91 +712,6 @@
 
         
         </div>
-    
-</div>
-
-                
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        
-    
-        
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">我的独立App 配色笔记</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">itunes.apple.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">扬涛的博客</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">orzyt.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">夏木青</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">joselynzhao.top</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">DeamoV&#39;s Blog</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">vdeamov.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://saruagithub.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">WangXue</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">saruagithub.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
     
 </div>
 
@@ -786,7 +725,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="异常检测" height="28">
                 
                 </a>
                 <p class="is-size-7">

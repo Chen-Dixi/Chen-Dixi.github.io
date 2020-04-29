@@ -7,18 +7,18 @@
 
 
 
-    <meta name="description" content="3条距离公理 正定性 对称性 三角不等式">
+    <meta name="description" content="3条距离公理 正定性 对称性 三角不等性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="特征距离度量">
 <meta property="og:url" content="http://yoursite.com/2020/04/29/feature-dist-metric/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="3条距离公理 正定性 对称性 三角不等式">
+<meta property="og:description" content="3条距离公理 正定性 对称性 三角不等性">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-04-29T10:40:56.921Z">
+<meta property="og:updated_time" content="2020-04-29T11:49:57.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="特征距离度量">
-<meta name="twitter:description" content="3条距离公理 正定性 对称性 三角不等式">
+<meta name="twitter:description" content="3条距离公理 正定性 对称性 三角不等性">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -161,14 +161,17 @@
             <h1 id="3条距离公理"><a href="#3条距离公理" class="headerlink" title="3条距离公理"></a>3条距离公理</h1><ul>
 <li>正定性</li>
 <li>对称性</li>
-<li>三角不等式<a id="more"></a>
-如果每对元素都可以唯一确定一个实数，让三条距离公理成立，则该实数可以称为这对元素之间的距离。</li>
+<li>三角不等性<a id="more"></a>
+</li>
 </ul>
+<p>如果每对元素都可以唯一确定一个实数，让三条距离公理成立，则该实数可以称为这对元素之间的距离。</p>
 <h1 id="余弦相似度-和-余弦距离"><a href="#余弦相似度-和-余弦距离" class="headerlink" title="余弦相似度 和 余弦距离"></a>余弦相似度 和 余弦距离</h1><p>特征表示为向量的形式，所以在分析两个特征向量之间的相似性时，常用余弦相似度表示。例如将两篇文章向量化，余弦距离可以避免因为文章的长度不同而导致距离偏大，余弦距离只考虑两篇文章生成的向量的夹角。</p>
 <p>余弦相似度：$\cos (A, B)=\frac{A \cdot B}{|A|_{2}|B|_{2}}$</p>
 <p>余弦距离：$\operatorname{dist}(A, B)=1-\cos (A, B)=\frac{|A|_{2}|B|_{2}-A \cdot B}{|A|_{2}|B|_{2}}$</p>
 <p>余弦相似度满足正定性和对称性，<strong>不满足</strong>三角不等式，不是一个严格定义的距离。</p>
-<h1 id="神经网络特征之间选用余弦距离"><a href="#神经网络特征之间选用余弦距离" class="headerlink" title="神经网络特征之间选用余弦距离"></a>神经网络特征之间选用余弦距离</h1><p>通常，DCNN后面的分类器部分，就是拿特征向量$X_{i}$和分类器的anchor向量$W_{j}$做内积<code>inner product</code>。内积公式可以写作$\left|W_{j}\right|\left|X_{i}\right| \cos \theta_{j}$。这里$\theta_{j}$就是$X_{i}$和$W_{j}$之间的夹角。所以，线性softmax分类器主要就是由夹角决定的。因此，对fc层之前的特征做比较时，通常用余弦相似度来衡量距离。</p>
+<h1 id="神经网络特征之间选用余弦距离"><a href="#神经网络特征之间选用余弦距离" class="headerlink" title="神经网络特征之间选用余弦距离"></a>神经网络特征之间选用余弦距离</h1><div align="center"><br>    <img src="/2020/04/29/feature-dist-metric/virtual-class.png"><br></div>
+
+<p>通常，DCNN后面的分类器部分，就是拿特征向量$X_{i}$和分类器的anchor向量$W_{j}$做内积<code>inner product</code>。内积公式可以写作$\left|W_{j}\right|\left|X_{i}\right| \cos \theta_{j}$。这里$\theta_{j}$就是$X_{i}$和$W_{j}$之间的夹角。所以，线性softmax分类器主要就是由夹角决定的。因此，对fc层之前的特征做比较时，通常用余弦相似度来衡量距离。</p>
 
         </div>
         
@@ -202,6 +205,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/04/29/anomaly-detection/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">异常检测</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -260,7 +270,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        19
+                        20
                     </p>
                 </div>
             </div>
@@ -280,7 +290,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        23
                     </p>
                 </div>
             </div>
@@ -352,7 +362,7 @@
                 <span class="level-item">机器学习</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/算法/">
@@ -524,6 +534,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/文本分类/">
                         <span class="tag">文本分类</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
