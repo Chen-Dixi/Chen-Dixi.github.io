@@ -2,19 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: 语音合成 - 帝羲 的博客</title>
+<title>特征距离度量 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/tags/语音合成/index.html">
+    <meta name="description" content="3条距离公理 正定性 对称性 三角不等式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="特征距离度量">
+<meta property="og:url" content="http://yoursite.com/2020/04/29/feature-dist-metric/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="3条距离公理 正定性 对称性 三角不等式">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-04-29T10:40:56.921Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="特征距离度量">
+<meta name="twitter:description" content="3条距离公理 正定性 对称性 三角不等式">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -89,13 +93,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="特征距离度量" height="28">
             
             </a>
         </div>
@@ -125,34 +129,23 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">语音合成</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-08T15:17:48.000Z">2019-06-08</time>
+                <time class="level-item has-text-grey" datetime="2020-04-29T09:31:11.000Z">2020-04-29</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/语音合成/">语音合成</a>
+                <a class="has-link-grey -link" href="/categories/机器学习/">机器学习</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    17 分钟 读完 (大约 2521 个字)
+                    3 分钟 读完 (大约 379 个字)
                 </span>
                 
                 
@@ -161,23 +154,24 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/06/08/unsuper/">Almost Unsupervised Text to Speech and Automatic Speech Recognition</a>
+                特征距离度量
             
         </h1>
         <div class="content">
-            <div align="center"><br>    <img src="/2019/06/08/unsuper/banner.png"><br></div>
+            <h1 id="3条距离公理"><a href="#3条距离公理" class="headerlink" title="3条距离公理"></a>3条距离公理</h1><ul>
+<li>正定性</li>
+<li>对称性</li>
+<li>三角不等式<a id="more"></a>
+如果每对元素都可以唯一确定一个实数，让三条距离公理成立，则该实数可以称为这对元素之间的距离。</li>
+</ul>
+<h1 id="余弦相似度-和-余弦距离"><a href="#余弦相似度-和-余弦距离" class="headerlink" title="余弦相似度 和 余弦距离"></a>余弦相似度 和 余弦距离</h1><p>特征表示为向量的形式，所以在分析两个特征向量之间的相似性时，常用余弦相似度表示。例如将两篇文章向量化，余弦距离可以避免因为文章的长度不同而导致距离偏大，余弦距离只考虑两篇文章生成的向量的夹角。</p>
+<p>余弦相似度：$\cos (A, B)=\frac{A \cdot B}{|A|_{2}|B|_{2}}$</p>
+<p>余弦距离：$\operatorname{dist}(A, B)=1-\cos (A, B)=\frac{|A|_{2}|B|_{2}-A \cdot B}{|A|_{2}|B|_{2}}$</p>
+<p>余弦相似度满足正定性和对称性，<strong>不满足</strong>三角不等式，不是一个严格定义的距离。</p>
+<h1 id="神经网络特征之间选用余弦距离"><a href="#神经网络特征之间选用余弦距离" class="headerlink" title="神经网络特征之间选用余弦距离"></a>神经网络特征之间选用余弦距离</h1><p>通常，DCNN后面的分类器部分，就是拿特征向量$X_{i}$和分类器的anchor向量$W_{j}$做内积<code>inner product</code>。内积公式可以写作$\left|W_{j}\right|\left|X_{i}\right| \cos \theta_{j}$。这里$\theta_{j}$就是$X_{i}$和$W_{j}$之间的夹角。所以，线性softmax分类器主要就是由夹角决定的。因此，对fc层之前的特征做比较时，通常用余弦相似度来衡量距离。</p>
 
-<p>AI精准模仿你的声音<br></p>
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/08/unsuper/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -185,9 +179,40 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/04/26/road2offer1/">
+                <span class="level-item">剑指Offer上</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -551,7 +576,7 @@
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow  ">
         
             
         
@@ -628,91 +653,6 @@
 
         
         </div>
-    
-</div>
-
-                
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        
-    
-        
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">我的独立App 配色笔记</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">itunes.apple.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">扬涛的博客</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">orzyt.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">夏木青</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">joselynzhao.top</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">DeamoV&#39;s Blog</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">vdeamov.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://saruagithub.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">WangXue</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">saruagithub.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
     
 </div>
 
@@ -726,7 +666,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="特征距离度量" height="28">
                 
                 </a>
                 <p class="is-size-7">
