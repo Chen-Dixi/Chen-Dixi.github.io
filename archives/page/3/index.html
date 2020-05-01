@@ -2,24 +2,19 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>PyTorch官方Seq-to-Seq Network Attention 机器翻译指导 - 帝羲 的博客</title>
+<title>归档 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="没任何技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
-<meta name="keywords" content="RNN,Attention,机器翻译">
-<meta property="og:type" content="article">
-<meta property="og:title" content="PyTorch官方Seq-to-Seq Network Attention 机器翻译指导">
-<meta property="og:url" content="http://yoursite.com/2019/06/08/machineTranslation-tutorial/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="帝羲 的博客">
+<meta property="og:url" content="http://yoursite.com/archives/page/3/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="没任何技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-07-03T08:40:05.041Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PyTorch官方Seq-to-Seq Network Attention 机器翻译指导">
-<meta name="twitter:description" content="没任何技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
+<meta name="twitter:title" content="帝羲 的博客">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -94,13 +89,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-2-column">
+<body class="is-3-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="PyTorch官方Seq-to-Seq Network Attention 机器翻译指导" height="28">
+                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
             
             </a>
         </div>
@@ -130,119 +125,56 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-content article ">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-07T17:54:10.000Z">2019-06-08</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    8 分钟 读完 (大约 1270 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                PyTorch官方Seq-to-Seq Network Attention 机器翻译指导
-            
-        </h1>
-        <div class="content">
-            <p>没任何技术含量，按照官方<a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html" target="_blank" rel="noopener">tutorial</a>写的代码。地址：<a href="https://github.com/Chen-Dixi/MachineTranslation" target="_blank" rel="noopener">github</a><br>文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题<br><a id="more"></a><br>一个词一个词的进RNN<br>RNN的维度我自己不好搞清楚，在代码里添加了一些维度相关的注释，在main.py文件中<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EncoderRNN</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, input_size, hidden_size, device)</span>:</span></span><br><span class="line">        super(EncoderRNN, self).__init__()</span><br><span class="line">        self.hidden_size = hidden_size</span><br><span class="line">        self.device = device</span><br><span class="line">        self.embedding = nn.Embedding(input_size, hidden_size)</span><br><span class="line">        self.gru = nn.GRU(hidden_size, hidden_size)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, input, hidden)</span>:</span></span><br><span class="line">        embedded = self.embedding(input).view(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>)</span><br><span class="line">        output = embedded</span><br><span class="line">        output, hidden = self.gru(output, hidden)</span><br><span class="line">        <span class="hljs-keyword">return</span> output, hidden</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initHidden</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">return</span> torch.zeros(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, self.hidden_size, device=self.device)</span><br></pre></td></tr></table></figure></p>
-<h2 id="nn-GRU"><a href="#nn-GRU" class="headerlink" title="nn.GRU"></a>nn.GRU</h2><h4 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters:"></a>Parameters:</h4><blockquote>
-<ul>
-<li>input_size – The number of expected features in the input x</li>
-<li>hidden_size – The number of features in the hidden state h</li>
-<li>num_layers – Number of recurrent layers. E.g., setting num_layers=2 would - mean stacking two GRUs together to form a stacked GRU, with the second - GRU taking in outputs of the first GRU and computing the final results. - Default: 1</li>
-<li>bias – If False, then the layer does not use bias weights b_ih and b_hh. Default: True</li>
-<li>batch_first – If True, then the input and output tensors are provided as (batch, seq, feature). Default: False</li>
-<li>dropout – If non-zero, introduces a Dropout layer on the outputs of each GRU layer except the last layer, with dropout probability equal to dropout. Default: 0</li>
-<li>bidirectional – If True, becomes a bidirectional GRU. Default: False</li>
-</ul>
-</blockquote>
-<p>编码器前向传播过程中，经过embedding后有一个矩阵变换操作<code>embedded = self.embedding(input).view(1, 1, -1)</code>，这里刚开始有点懵。弄清楚GRU的前向传播过程<br>首先，GRU继承RNNBase(Module)，下面是RNNBase里面的前向传播过程<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, input, hx=None)</span>:</span></span><br><span class="line">    is_packed = isinstance(input, PackedSequence)</span><br><span class="line">    <span class="hljs-keyword">if</span> is_packed:</span><br><span class="line">        input, batch_sizes = input</span><br><span class="line">        max_batch_size = int(batch_sizes[<span class="hljs-number">0</span>])</span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        batch_sizes = <span class="hljs-literal">None</span></span><br><span class="line">        max_batch_size = input.size(<span class="hljs-number">0</span>) <span class="hljs-keyword">if</span> self.batch_first <span class="hljs-keyword">else</span> input.size(<span class="hljs-number">1</span>)</span><br><span class="line"></span><br><span class="line">......</span><br><span class="line">......省略</span><br></pre></td></tr></table></figure></p>
-<p>第二个函数参数<code>hx</code>就是代表第<code>x</code>时刻的隐藏层h_x或理解为上一个时刻的隐藏层$h^{(t-1)}$，<br>PyTorch文档GRU的<code>__call__</code>函数参数:</p>
-<blockquote>
-<ul>
-<li><strong>input</strong> of shape (<em>seq_len, batch, input_size</em>): tensor containing the features of the input sequence. The input can also be a packed variable length sequence. See <code>torch.nn.utils.rnn.pack_padded_sequence()</code> for details.</li>
-<li><strong>h_0</strong> of shape (<em>num_layers x num_directions, batch, hidden_size</em>): tensor containing the initial hidden state for each element in the batch. Defaults to zero if not provided. If the RNN is bidirectional, num_directions should be 2, else it should be 1.</li>
-</ul>
-</blockquote>
-<p>总结，<code>self.embedding(input).view(1, 1, -1)</code>得到tensor的shape表示序列长度为1，batch为1，后面的<code>-1</code>得到的就是词向量的维度，即<code>nn.Embedding(input_size, hidden_size)</code>中的<code>hidden_size</code>。每次forward就给一个词，所以view(1,1,-1)过后的shape是(1,1,hidden_size)，转换过后传递给GRU。</p>
-<h2 id="train函数的维度细节"><a href="#train函数的维度细节" class="headerlink" title="train函数的维度细节"></a>train函数的维度细节</h2><p>下面是官方教程训练步骤的代码，<code>train</code>函数分别从两种语言各自接收代表一句话的<code>tensor</code>，我把维度的分析说明加在下面的注释中。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train</span><span class="hljs-params">(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, max_length=MAX_LENGTH)</span>:</span></span><br><span class="line">    <span class="hljs-comment">#参数input_tensor，target_tensor分别只有一句话，2维tensor，shape是（句子长度， 1）</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">#encoder 的 0时刻的隐藏层</span></span><br><span class="line">    encoder_hidden = encoder.initHidden()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">#梯度置零</span></span><br><span class="line">    encoder_optimizer.zero_grad()</span><br><span class="line">    decoder_optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">#input ,target句子长度 </span></span><br><span class="line">    input_length = input_tensor.size(<span class="hljs-number">0</span>)</span><br><span class="line">    target_length = target_tensor.size(<span class="hljs-number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">#每个单词是RNN中的各个时刻输入，encoder_outputs存放各个时刻的输出</span></span><br><span class="line">    encoder_outputs = torch.zeros(max_length, encoder.hidden_size, device = device)</span><br><span class="line"></span><br><span class="line">    loss = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> ei <span class="hljs-keyword">in</span> range(input_length):</span><br><span class="line">        <span class="hljs-comment">#input_tensor[ei]是一个长度为1的1维tensor ,shape是torch.Size([1])，经过embedding后得到的shape是(1,embedding_size)</span></span><br><span class="line">        encoder_output, encoder_hidden = encoder(</span><br><span class="line">            input_tensor[ei], encoder_hidden)</span><br><span class="line">        <span class="hljs-comment">#encoder_output的shape是 (seq_len, batch, input_size),和gru的输入 shape一样</span></span><br><span class="line">        encoder_outputs[ei] = encoder_output[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]<span class="hljs-comment">#这种索引方式是tensor的索引方式</span></span><br><span class="line"></span><br><span class="line">    decoder_input = torch.tensor([[SOS_token]], device=device)</span><br><span class="line"></span><br><span class="line">    decoder_hidden = encoder_hidden</span><br><span class="line"></span><br><span class="line">    use_teacher_forcing = <span class="hljs-literal">True</span> <span class="hljs-keyword">if</span> random.random() &lt; teacher_forcing_ratio <span class="hljs-keyword">else</span> <span class="hljs-literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> use_teacher_forcing:</span><br><span class="line">        <span class="hljs-comment"># Teacher forcing: Feed the target as the next input</span></span><br><span class="line">        <span class="hljs-keyword">for</span> di <span class="hljs-keyword">in</span> range(target_length):</span><br><span class="line">            decoder_output, decoder_hidden, decoder_attention = decoder(</span><br><span class="line">                decoder_input, decoder_hidden, encoder_outputs)</span><br><span class="line">            loss += criterion(decoder_output, target_tensor[di])</span><br><span class="line">            decoder_input = target_tensor[di]  <span class="hljs-comment"># Teacher forcing</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        <span class="hljs-comment"># Without teacher forcing: use its own predictions as the next input</span></span><br><span class="line">        <span class="hljs-keyword">for</span> di <span class="hljs-keyword">in</span> range(target_length):</span><br><span class="line">            decoder_output, decoder_hidden, decoder_attention = decoder(</span><br><span class="line">                decoder_input, decoder_hidden, encoder_outputs)</span><br><span class="line">            topv, topi = decoder_output.topk(<span class="hljs-number">1</span>)</span><br><span class="line">            decoder_input = topi.squeeze().detach()  <span class="hljs-comment"># detach from history as input</span></span><br><span class="line"></span><br><span class="line">            loss += criterion(decoder_output, target_tensor[di])</span><br><span class="line">            <span class="hljs-keyword">if</span> decoder_input.item() == EOS_token:</span><br><span class="line">                <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">    loss.backward()</span><br><span class="line"></span><br><span class="line">    encoder_optimizer.step()</span><br><span class="line">    decoder_optimizer.step()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> loss.item() / target_length</span><br></pre></td></tr></table></figure></p>
-<h2 id="AttentionDecoder前馈代码细节"><a href="#AttentionDecoder前馈代码细节" class="headerlink" title="AttentionDecoder前馈代码细节"></a>AttentionDecoder前馈代码细节</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, input, hidden, encoder_outputs)</span>:</span></span><br><span class="line">    embedded = self.embedding(input).view(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>)</span><br><span class="line">    embedded = self.dropout(embedded)</span><br><span class="line"></span><br><span class="line">    attn_weights = F.softmax(</span><br><span class="line">        self.attn(torch.cat((embedded[<span class="hljs-number">0</span>], hidden[<span class="hljs-number">0</span>]), <span class="hljs-number">1</span>)), dim=<span class="hljs-number">1</span>)</span><br><span class="line">    attn_applied = torch.bmm(attn_weights.unsqueeze(<span class="hljs-number">0</span>),</span><br><span class="line">                             encoder_outputs.unsqueeze(<span class="hljs-number">0</span>))</span><br><span class="line">    <span class="hljs-comment">#attn_applied 就是一个计算好的encoder_outputs加权平均，权值是通过当前input单词的embedding和hidden计算，有max_length个权值，而每项权值对应encoder_outputs的每一项</span></span><br><span class="line">    <span class="hljs-comment">#加权平均又和 当前input的embedding合并，进一个全连接</span></span><br><span class="line">    output = torch.cat((embedded[<span class="hljs-number">0</span>], attn_applied[<span class="hljs-number">0</span>]), <span class="hljs-number">1</span>)</span><br><span class="line">    output = self.attn_combine(output).unsqueeze(<span class="hljs-number">0</span>)<span class="hljs-comment">#unsqueeze过后又变成(1,1,hidden_size)</span></span><br><span class="line"></span><br><span class="line">    output = F.relu(output)</span><br><span class="line">    output, hidden = self.gru(output, hidden)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">#再经过一层输出为度为output_size的全联接层，log_softmax用于判断是哪一个单词。output_size对应这个目标语言记录的单词数量</span></span><br><span class="line">    output = F.log_softmax(self.out(output[<span class="hljs-number">0</span>]), dim=<span class="hljs-number">1</span>)</span><br><span class="line">    <span class="hljs-keyword">return</span> output, hidden, attn_weights</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Attention/">Attention</a>, <a class="has-link-grey -link" href="/tags/RNN/">RNN</a>, <a class="has-link-grey -link" href="/tags/机器翻译/">机器翻译</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-<div class="card">
+<div class="card widget">
     <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
+        <h3 class="tag is-link">
+        2019
+        </h3>
+        <div class="timeline">
+        
+            <article class="media">
                 
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
-</a>
-
-                
+                <div class="media-content">
+                    <div class="content">
+                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-13T06:23:31.417Z">2019-05-13</time>
+                        <a href="/2019/05/13/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
+                        <div class="level article-meta is-mobile">
+                            <div class="level-left">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        
         </div>
     </div>
 </div>
 
+    
 
-
+    
 <div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/08/unsuper/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Almost Unsupervised Text to Speech and Automatic Speech Recognition</span>
-            </a>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/archives/page/2/">上一页</a>
         </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/04/LSR-UDA/">
-                <span class="level-item">Learning Smooth Representation for Unsupervised Domain Adaptation</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/archives/page/4/">下一页</a>
         </div>
-        
-    </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/archives/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/archives/page/2/">2</a></li>
+            
+            <li><a class="pagination-link is-current" href="/archives/page/3/">3</a></li>
+            
+        </ul>
+    </nav>
 </div>
-
-
 </div>
                 
 
@@ -618,7 +550,7 @@
 </div>
     
     
-        <div class="column-right-shadow  ">
+        <div class="column-right-shadow is-hidden-widescreen ">
         
             
         
@@ -699,6 +631,91 @@
 </div>
 
                 
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">我的独立App 配色笔记</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">itunes.apple.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">扬涛的博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">orzyt.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">夏木青</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">joselynzhao.top</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">DeamoV&#39;s Blog</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">vdeamov.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://saruagithub.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">WangXue</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">saruagithub.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+</div>
+
+                
             </div>
         </div>
     </section>
@@ -708,7 +725,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="PyTorch官方Seq-to-Seq Network Attention 机器翻译指导" height="28">
+                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
                 
                 </a>
                 <p class="is-size-7">

@@ -2,24 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>PyTorch官方Seq-to-Seq Network Attention 机器翻译指导 - 帝羲 的博客</title>
+<title>变分自编码器VAE，概率模型，不可导时的重参数化 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="没任何技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
-<meta name="keywords" content="RNN,Attention,机器翻译">
+    <meta name="description" content="分布变换VAE和GAN的目标都是从隐变量z生成目标数据X的模型，实现上不同。 假设隐变量服从某些常见的分布，希望训练一个模型，X=g(Z)，这个模型能够将原来的概率分布映射到训练集的概率分布。目的都是进行分布之间的变换。">
+<meta name="keywords" content="VAE,机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PyTorch官方Seq-to-Seq Network Attention 机器翻译指导">
-<meta property="og:url" content="http://yoursite.com/2019/06/08/machineTranslation-tutorial/index.html">
+<meta property="og:title" content="变分自编码器VAE，概率模型，不可导时的重参数化">
+<meta property="og:url" content="http://yoursite.com/2020/04/30/vae/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="没任何技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
+<meta property="og:description" content="分布变换VAE和GAN的目标都是从隐变量z生成目标数据X的模型，实现上不同。 假设隐变量服从某些常见的分布，希望训练一个模型，X=g(Z)，这个模型能够将原来的概率分布映射到训练集的概率分布。目的都是进行分布之间的变换。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-07-03T08:40:05.041Z">
+<meta property="og:updated_time" content="2020-05-01T00:55:21.090Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PyTorch官方Seq-to-Seq Network Attention 机器翻译指导">
-<meta name="twitter:description" content="没任何技术含量，按照官方tutorial写的代码。地址：github文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题">
+<meta name="twitter:title" content="变分自编码器VAE，概率模型，不可导时的重参数化">
+<meta name="twitter:description" content="分布变换VAE和GAN的目标都是从隐变量z生成目标数据X的模型，实现上不同。 假设隐变量服从某些常见的分布，希望训练一个模型，X=g(Z)，这个模型能够将原来的概率分布映射到训练集的概率分布。目的都是进行分布之间的变换。">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -100,7 +100,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="PyTorch官方Seq-to-Seq Network Attention 机器翻译指导" height="28">
+                <img src="/images/logo.svg" alt="变分自编码器VAE，概率模型，不可导时的重参数化" height="28">
             
             </a>
         </div>
@@ -136,17 +136,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-07T17:54:10.000Z">2019-06-08</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2020-04-30T09:43:46.000Z">2020-04-30</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1270 个字)
+                    10 分钟 读完 (大约 1528 个字)
                 </span>
                 
                 
@@ -155,40 +151,64 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                PyTorch官方Seq-to-Seq Network Attention 机器翻译指导
+                变分自编码器VAE，概率模型，不可导时的重参数化
             
         </h1>
         <div class="content">
-            <p>没任何技术含量，按照官方<a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html" target="_blank" rel="noopener">tutorial</a>写的代码。地址：<a href="https://github.com/Chen-Dixi/MachineTranslation" target="_blank" rel="noopener">github</a><br>文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题<br><a id="more"></a><br>一个词一个词的进RNN<br>RNN的维度我自己不好搞清楚，在代码里添加了一些维度相关的注释，在main.py文件中<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EncoderRNN</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, input_size, hidden_size, device)</span>:</span></span><br><span class="line">        super(EncoderRNN, self).__init__()</span><br><span class="line">        self.hidden_size = hidden_size</span><br><span class="line">        self.device = device</span><br><span class="line">        self.embedding = nn.Embedding(input_size, hidden_size)</span><br><span class="line">        self.gru = nn.GRU(hidden_size, hidden_size)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, input, hidden)</span>:</span></span><br><span class="line">        embedded = self.embedding(input).view(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>)</span><br><span class="line">        output = embedded</span><br><span class="line">        output, hidden = self.gru(output, hidden)</span><br><span class="line">        <span class="hljs-keyword">return</span> output, hidden</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initHidden</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">return</span> torch.zeros(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, self.hidden_size, device=self.device)</span><br></pre></td></tr></table></figure></p>
-<h2 id="nn-GRU"><a href="#nn-GRU" class="headerlink" title="nn.GRU"></a>nn.GRU</h2><h4 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters:"></a>Parameters:</h4><blockquote>
-<ul>
-<li>input_size – The number of expected features in the input x</li>
-<li>hidden_size – The number of features in the hidden state h</li>
-<li>num_layers – Number of recurrent layers. E.g., setting num_layers=2 would - mean stacking two GRUs together to form a stacked GRU, with the second - GRU taking in outputs of the first GRU and computing the final results. - Default: 1</li>
-<li>bias – If False, then the layer does not use bias weights b_ih and b_hh. Default: True</li>
-<li>batch_first – If True, then the input and output tensors are provided as (batch, seq, feature). Default: False</li>
-<li>dropout – If non-zero, introduces a Dropout layer on the outputs of each GRU layer except the last layer, with dropout probability equal to dropout. Default: 0</li>
-<li>bidirectional – If True, becomes a bidirectional GRU. Default: False</li>
-</ul>
-</blockquote>
-<p>编码器前向传播过程中，经过embedding后有一个矩阵变换操作<code>embedded = self.embedding(input).view(1, 1, -1)</code>，这里刚开始有点懵。弄清楚GRU的前向传播过程<br>首先，GRU继承RNNBase(Module)，下面是RNNBase里面的前向传播过程<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, input, hx=None)</span>:</span></span><br><span class="line">    is_packed = isinstance(input, PackedSequence)</span><br><span class="line">    <span class="hljs-keyword">if</span> is_packed:</span><br><span class="line">        input, batch_sizes = input</span><br><span class="line">        max_batch_size = int(batch_sizes[<span class="hljs-number">0</span>])</span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        batch_sizes = <span class="hljs-literal">None</span></span><br><span class="line">        max_batch_size = input.size(<span class="hljs-number">0</span>) <span class="hljs-keyword">if</span> self.batch_first <span class="hljs-keyword">else</span> input.size(<span class="hljs-number">1</span>)</span><br><span class="line"></span><br><span class="line">......</span><br><span class="line">......省略</span><br></pre></td></tr></table></figure></p>
-<p>第二个函数参数<code>hx</code>就是代表第<code>x</code>时刻的隐藏层h_x或理解为上一个时刻的隐藏层$h^{(t-1)}$，<br>PyTorch文档GRU的<code>__call__</code>函数参数:</p>
+            <h1 id="分布变换"><a href="#分布变换" class="headerlink" title="分布变换"></a>分布变换</h1><p>VAE和GAN的目标都是从隐变量z生成目标数据X的模型，实现上不同。</p>
+<p>假设隐变量服从某些常见的分布，希望训练一个模型，X=g(Z)，这个模型能够将原来的概率分布映射到训练集的概率分布。目的都是进行分布之间的变换。</p>
+<a id="more"></a>
+<div><br>    <img src="https://pic3.zhimg.com/80/v2-d7a52f6f211594a0853993365f51cb82_720w.jpg" alt><br></div>
+
+<p>生成模型的难题就是判断生成分布和真实分布的相似度。只知道两者采样结果，不知道他们的分布表达式。</p>
+<p>KL散度不行，KL散度需要知道两个分布的概率密度表达式。然而我们目前并不知道它们概率密度分布的表达式。</p>
 <blockquote>
-<ul>
-<li><strong>input</strong> of shape (<em>seq_len, batch, input_size</em>): tensor containing the features of the input sequence. The input can also be a packed variable length sequence. See <code>torch.nn.utils.rnn.pack_padded_sequence()</code> for details.</li>
-<li><strong>h_0</strong> of shape (<em>num_layers x num_directions, batch, hidden_size</em>): tensor containing the initial hidden state for each element in the batch. Defaults to zero if not provided. If the RNN is bidirectional, num_directions should be 2, else it should be 1.</li>
-</ul>
+<p><strong>KL散度</strong><br>KL散度称为相对熵。<br>首先信息熵的定义，需要满足3个特性</p>
+<ol>
+<li>单调性 2.非负性 3.累加性<br>相对熵称为KL散度。<br>$D_{K L}(p | q)=\sum_{x} p(x) \log \frac{p(x)}{q(x)}=E_{p(x)} \log \frac{p(x)}{q(x)}$<br>相对熵满足&gt;=0<br>$$\begin{aligned} D_{K L}(p | q) &amp;=\sum_{x} p(x) \log \frac{p(x)}{q(x)} \\ &amp;=-\sum_{x} p(x) \log \frac{q(x)}{p(x)} \\ &amp;=-E_{p(x)}\left(\log \frac{q(x)}{p(x)}\right) \\ &amp; \geq-\log E_{p(x)}\left(\frac{q(x)}{p(x)}\right) \\ &amp;=-\log \sum_{x} p(x) \frac{q(x)}{p(x)} \\ &amp;=-\log \sum_{x} q(x) \end{aligned}$$</li>
+</ol>
 </blockquote>
-<p>总结，<code>self.embedding(input).view(1, 1, -1)</code>得到tensor的shape表示序列长度为1，batch为1，后面的<code>-1</code>得到的就是词向量的维度，即<code>nn.Embedding(input_size, hidden_size)</code>中的<code>hidden_size</code>。每次forward就给一个词，所以view(1,1,-1)过后的shape是(1,1,hidden_size)，转换过后传递给GRU。</p>
-<h2 id="train函数的维度细节"><a href="#train函数的维度细节" class="headerlink" title="train函数的维度细节"></a>train函数的维度细节</h2><p>下面是官方教程训练步骤的代码，<code>train</code>函数分别从两种语言各自接收代表一句话的<code>tensor</code>，我把维度的分析说明加在下面的注释中。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train</span><span class="hljs-params">(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, decoder_optimizer, criterion, max_length=MAX_LENGTH)</span>:</span></span><br><span class="line">    <span class="hljs-comment">#参数input_tensor，target_tensor分别只有一句话，2维tensor，shape是（句子长度， 1）</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">#encoder 的 0时刻的隐藏层</span></span><br><span class="line">    encoder_hidden = encoder.initHidden()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">#梯度置零</span></span><br><span class="line">    encoder_optimizer.zero_grad()</span><br><span class="line">    decoder_optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">#input ,target句子长度 </span></span><br><span class="line">    input_length = input_tensor.size(<span class="hljs-number">0</span>)</span><br><span class="line">    target_length = target_tensor.size(<span class="hljs-number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">#每个单词是RNN中的各个时刻输入，encoder_outputs存放各个时刻的输出</span></span><br><span class="line">    encoder_outputs = torch.zeros(max_length, encoder.hidden_size, device = device)</span><br><span class="line"></span><br><span class="line">    loss = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> ei <span class="hljs-keyword">in</span> range(input_length):</span><br><span class="line">        <span class="hljs-comment">#input_tensor[ei]是一个长度为1的1维tensor ,shape是torch.Size([1])，经过embedding后得到的shape是(1,embedding_size)</span></span><br><span class="line">        encoder_output, encoder_hidden = encoder(</span><br><span class="line">            input_tensor[ei], encoder_hidden)</span><br><span class="line">        <span class="hljs-comment">#encoder_output的shape是 (seq_len, batch, input_size),和gru的输入 shape一样</span></span><br><span class="line">        encoder_outputs[ei] = encoder_output[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]<span class="hljs-comment">#这种索引方式是tensor的索引方式</span></span><br><span class="line"></span><br><span class="line">    decoder_input = torch.tensor([[SOS_token]], device=device)</span><br><span class="line"></span><br><span class="line">    decoder_hidden = encoder_hidden</span><br><span class="line"></span><br><span class="line">    use_teacher_forcing = <span class="hljs-literal">True</span> <span class="hljs-keyword">if</span> random.random() &lt; teacher_forcing_ratio <span class="hljs-keyword">else</span> <span class="hljs-literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> use_teacher_forcing:</span><br><span class="line">        <span class="hljs-comment"># Teacher forcing: Feed the target as the next input</span></span><br><span class="line">        <span class="hljs-keyword">for</span> di <span class="hljs-keyword">in</span> range(target_length):</span><br><span class="line">            decoder_output, decoder_hidden, decoder_attention = decoder(</span><br><span class="line">                decoder_input, decoder_hidden, encoder_outputs)</span><br><span class="line">            loss += criterion(decoder_output, target_tensor[di])</span><br><span class="line">            decoder_input = target_tensor[di]  <span class="hljs-comment"># Teacher forcing</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        <span class="hljs-comment"># Without teacher forcing: use its own predictions as the next input</span></span><br><span class="line">        <span class="hljs-keyword">for</span> di <span class="hljs-keyword">in</span> range(target_length):</span><br><span class="line">            decoder_output, decoder_hidden, decoder_attention = decoder(</span><br><span class="line">                decoder_input, decoder_hidden, encoder_outputs)</span><br><span class="line">            topv, topi = decoder_output.topk(<span class="hljs-number">1</span>)</span><br><span class="line">            decoder_input = topi.squeeze().detach()  <span class="hljs-comment"># detach from history as input</span></span><br><span class="line"></span><br><span class="line">            loss += criterion(decoder_output, target_tensor[di])</span><br><span class="line">            <span class="hljs-keyword">if</span> decoder_input.item() == EOS_token:</span><br><span class="line">                <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">    loss.backward()</span><br><span class="line"></span><br><span class="line">    encoder_optimizer.step()</span><br><span class="line">    decoder_optimizer.step()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> loss.item() / target_length</span><br></pre></td></tr></table></figure></p>
-<h2 id="AttentionDecoder前馈代码细节"><a href="#AttentionDecoder前馈代码细节" class="headerlink" title="AttentionDecoder前馈代码细节"></a>AttentionDecoder前馈代码细节</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, input, hidden, encoder_outputs)</span>:</span></span><br><span class="line">    embedded = self.embedding(input).view(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>)</span><br><span class="line">    embedded = self.dropout(embedded)</span><br><span class="line"></span><br><span class="line">    attn_weights = F.softmax(</span><br><span class="line">        self.attn(torch.cat((embedded[<span class="hljs-number">0</span>], hidden[<span class="hljs-number">0</span>]), <span class="hljs-number">1</span>)), dim=<span class="hljs-number">1</span>)</span><br><span class="line">    attn_applied = torch.bmm(attn_weights.unsqueeze(<span class="hljs-number">0</span>),</span><br><span class="line">                             encoder_outputs.unsqueeze(<span class="hljs-number">0</span>))</span><br><span class="line">    <span class="hljs-comment">#attn_applied 就是一个计算好的encoder_outputs加权平均，权值是通过当前input单词的embedding和hidden计算，有max_length个权值，而每项权值对应encoder_outputs的每一项</span></span><br><span class="line">    <span class="hljs-comment">#加权平均又和 当前input的embedding合并，进一个全连接</span></span><br><span class="line">    output = torch.cat((embedded[<span class="hljs-number">0</span>], attn_applied[<span class="hljs-number">0</span>]), <span class="hljs-number">1</span>)</span><br><span class="line">    output = self.attn_combine(output).unsqueeze(<span class="hljs-number">0</span>)<span class="hljs-comment">#unsqueeze过后又变成(1,1,hidden_size)</span></span><br><span class="line"></span><br><span class="line">    output = F.relu(output)</span><br><span class="line">    output, hidden = self.gru(output, hidden)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">#再经过一层输出为度为output_size的全联接层，log_softmax用于判断是哪一个单词。output_size对应这个目标语言记录的单词数量</span></span><br><span class="line">    output = F.log_softmax(self.out(output[<span class="hljs-number">0</span>]), dim=<span class="hljs-number">1</span>)</span><br><span class="line">    <span class="hljs-keyword">return</span> output, hidden, attn_weights</span><br></pre></td></tr></table></figure>
+<p>有一批数据样本{X1,X2..Xn}，整体用X表示，希望通过数据样本直接建模得到X的分布P(x)。可以的话就直接根据p(x)来采样。这样得到所有可能的X。这是一个终极理想的生成模型。</p>
+<p>实现这个很难，于是把分布改一下，加一个隐变量。</p>
+<p>$$p(X)=\sum_{Z} p(X | Z) p(Z)$$</p>
+<p>$p(X|Z)$描述了一个由Z生成X的模型，设Z服从标准正态分布，如果可以从标准正态分布中采样一个Z，根据Z来计算一个X，也是一个不错的生成模型。</p>
+<h1 id="VAE"><a href="#VAE" class="headerlink" title="VAE"></a>VAE</h1><p>整个VAE模型，<strong>并没有</strong>使用 隐变量z的先验分布 $p(z)$ 是正态分布。假设的是 后验分布$p(z|x)$。</p>
+<p>给定一个真实样本，假设存在一个属于这个样本$x_{k}$的后验分布$p(z|x_{k})$。进一步假设这个分布是<u><strong>独立多元</strong></u>的正态分布。</p>
+<p>强调“专属”。因为我们后面要训练一个生成器 X=g(Z)，希望能够把从分布 p(Z|Xk) 采样出来的一个 Zk 还原为 Xk。</p>
+<p>如果假设 p(Z) 是正态分布，然后从 p(Z) 中采样一个 Z，那么我们怎么知道这个 Z 对应于哪个真实的 X 呢？现在 p(Z|Xk) 专属于 Xk，我们有理由说从这个分布采样出来的 Z 应该要还原到Xk 中去。</p>
+<p>每一个 Xk 都配上了一个专属的正态分布，才方便后面的生成器做还原。但这样有多少个 X 就有多少个正态分布了。我们知道正态分布有两组参数：均值 μ 和方差 σ^2（多元的话，它们都是向量）</p>
+<p>1 . 用神经网络找出样本xk专属的正态分布(用神经网络拟合)</p>
+<blockquote>
+<p>于是我们构建两个神经网络 μk=f1(Xk)，logσ^2=f2(Xk) 来算它们了。我们选择拟合 logσ^2 而不是直接拟合 σ^2，是因为 σ^2 总是非负的，需要加激活函数处理，而拟合 logσ^2 不需要加激活函数，因为它可正可负。</p>
+</blockquote>
+<ol start="2">
+<li>知道方差和均值，采样一个zk出来。</li>
+</ol>
+<div align="center"><br>    <img src="https://pic1.zhimg.com/80/v2-36c7da0b2fe37bd021699532a2cff1e8_720w.jpg" alt><br></div> 
+
+
+
+<ol start="3">
+<li>分布标准化<br>zk 是通过重新采样过的，不是直接由 encoder 算出来的。所以zk会有噪声，最终模型为了重构得更好，会想尽办法让方差为0。如果方差为0，模型退化成普通AutoEncoder。<br>VAE让所有$p(z|x)$都向标准正态分布看齐，防止噪声为0，保证模型具有生成能力。</li>
+</ol>
+<h2 id="VAE的重参数技巧"><a href="#VAE的重参数技巧" class="headerlink" title="VAE的重参数技巧"></a>VAE的重参数技巧</h2><p>从正态分布采样的操作是不可导的，使用重参数技巧解决。</p>
+<p>算出了均值和方差后，直接从这里面采样没办法求导了。重参数技巧意思就是：让这个采样的结果，是通过之前计算的<code>均值和方差</code>可导计算的结果。</p>
+<div align="center"><br>    <img src="https://pic2.zhimg.com/80/v2-2952f780b506319c0911ab4297440079_720w.jpg" alt><br></div>
+
+<p>把从$\mathcal{N}\left(\mu, \sigma^{2}\right)$变成从$\mathcal{N}(0, I)$采样一个$\epsilon$，然后让$Z=\mu +\epsilon x \sigma$。</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">encode</span><span class="hljs-params">(self, input: Tensor)</span> -&gt; List[Tensor]:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Encodes the input by passing through the encoder network</span></span><br><span class="line"><span class="hljs-string">    and returns the latent codes.</span></span><br><span class="line"><span class="hljs-string">    :param input: (Tensor) Input tensor to encoder [N x C x H x W]</span></span><br><span class="line"><span class="hljs-string">    :return: (Tensor) List of latent codes</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    result = self.encoder(input)</span><br><span class="line">    result = torch.flatten(result, start_dim=<span class="hljs-number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># Split the result into mu and var components</span></span><br><span class="line">    <span class="hljs-comment"># of the latent Gaussian distribution</span></span><br><span class="line">    mu = self.fc_mu(result)</span><br><span class="line">    log_var = self.fc_var(result)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> [mu, log_var]</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reparameterize</span><span class="hljs-params">(self, mu: Tensor, logvar: Tensor)</span> -&gt; Tensor:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        Will a single z be enough ti compute the expectation</span></span><br><span class="line"><span class="hljs-string">        for the loss??</span></span><br><span class="line"><span class="hljs-string">        :param mu: (Tensor) Mean of the latent Gaussian</span></span><br><span class="line"><span class="hljs-string">        :param logvar: (Tensor) Standard deviation of the latent Gaussian</span></span><br><span class="line"><span class="hljs-string">        :return:</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        std = torch.exp(<span class="hljs-number">0.5</span> * logvar)</span><br><span class="line">        eps = torch.randn_like(std)</span><br><span class="line">        <span class="hljs-keyword">return</span> eps * std + mu</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, input: Tensor, **kwargs)</span> -&gt; Tensor:</span></span><br><span class="line">    mu, log_var = self.encode(input)</span><br><span class="line">    z = self.reparameterize(mu, log_var)</span><br><span class="line">    <span class="hljs-keyword">return</span>  [self.decode(z), input, mu, log_var]</span><br></pre></td></tr></table></figure>
+<p>从均值为0,标准差为1的高斯分布中采样,再放缩平移得到Z.</p>
+<p>$\mathbf{z}_{i}=\mu_{i}+\sigma_{i} * \epsilon, \epsilon \sim \mathcal{N}(0, \mathbf{I})$</p>
+<p>这样从 $\epsilon$ 到 $z$ 只涉及了线性操作(平移缩放),采样操作在神经网络计算图之外,而 $\epsilon$ 对于NN来说只是一个常数.</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/34998569" target="_blank" rel="noopener">变分自编码器VAE：原来是这么一回事 | 附开源代码</a><br><a href="https://zhuanlan.zhihu.com/p/97465608" target="_blank" rel="noopener">盘点深度学习中的不可导操作(次梯度和重参数化)</a></p>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Attention/">Attention</a>, <a class="has-link-grey -link" href="/tags/RNN/">RNN</a>, <a class="has-link-grey -link" href="/tags/机器翻译/">机器翻译</a>
+                    <a class="has-link-grey -link" href="/tags/VAE/">VAE</a>, <a class="has-link-grey -link" href="/tags/机器学习/">机器学习</a>
                 </div>
             </div>
         </div>
@@ -224,17 +244,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/08/unsuper/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Almost Unsupervised Text to Speech and Automatic Speech Recognition</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/04/LSR-UDA/">
-                <span class="level-item">Learning Smooth Representation for Unsupervised Domain Adaptation</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/04/29/anomaly-detection/">
+                <span class="level-item">异常检测</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -708,7 +721,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="PyTorch官方Seq-to-Seq Network Attention 机器翻译指导" height="28">
+                    <img src="/images/logo.svg" alt="变分自编码器VAE，概率模型，不可导时的重参数化" height="28">
                 
                 </a>
                 <p class="is-size-7">
