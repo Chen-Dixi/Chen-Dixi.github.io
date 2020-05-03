@@ -16,7 +16,7 @@
 <meta property="og:description" content="07 重建二叉树要重建二叉树，需要前序遍历/后序遍历+中序遍历。只有前序遍历+后序遍历不能重建二叉树前序遍历的第一个数字就是根节点，然后通过根节点在中序遍历的位置，找到其左子树和右子树的范围。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-04-29T07:12:50.903Z">
+<meta property="og:updated_time" content="2020-05-03T03:23:01.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指Offer上">
 <meta name="twitter:description" content="07 重建二叉树要重建二叉树，需要前序遍历/后序遍历+中序遍历。只有前序遍历+后序遍历不能重建二叉树前序遍历的第一个数字就是根节点，然后通过根节点在中序遍历的位置，找到其左子树和右子树的范围。">
@@ -146,7 +146,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1545 个字)
+                    10 分钟 读完 (大约 1532 个字)
                 </span>
                 
                 
@@ -196,7 +196,7 @@
 <p>下面是循环的写法：</p>
 <div align="center"><br>    <img src="https://pic.leetcode-cn.com/379a042b9d8df3a96d1ac0f27346718033bf3bfce69731bab52bf6f372b4c8f4-Picture2.png"><br></div>
 
-<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-comment">//思路，n有&lt;0的情况，用while循环代替递归。</span></span><br><span class="line">    <span class="hljs-comment">//</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">myPow</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//x的n次方</span></span><br><span class="line">        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> x;</span><br><span class="line">        <span class="hljs-keyword">long</span> b = n;</span><br><span class="line">        <span class="hljs-keyword">if</span>(b&lt;<span class="hljs-number">0</span>)&#123;</span><br><span class="line">            b=-b;</span><br><span class="line">            x = <span class="hljs-number">1</span>/x;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">double</span> res = <span class="hljs-number">1.0</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>(b&gt;<span class="hljs-number">0</span>)&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(b &amp; <span class="hljs-number">1</span>==<span class="hljs-number">1</span>)&#123;</span><br><span class="line">                res = res*x;</span><br><span class="line">            &#125;</span><br><span class="line">            x *= x;</span><br><span class="line">            b&gt;&gt;=<span class="hljs-number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-comment">//思路，n有&lt;0的情况，用while循环代替递归。</span></span><br><span class="line">    <span class="hljs-comment">//</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">myPow</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">long</span> b = n;</span><br><span class="line">        <span class="hljs-keyword">if</span>(b&lt;<span class="hljs-number">0</span>)&#123;</span><br><span class="line">            x=<span class="hljs-number">1</span>/x;</span><br><span class="line">            b=-b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">double</span> res=<span class="hljs-number">1.0</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>(b&gt;<span class="hljs-number">0</span>)&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="hljs-keyword">if</span>(b&amp;<span class="hljs-number">1</span>==<span class="hljs-number">1</span>)&#123;</span><br><span class="line">                res*=x;</span><br><span class="line">            &#125;</span><br><span class="line">            x*=x;</span><br><span class="line">            b&gt;&gt;=<span class="hljs-number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -304,7 +304,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        23
+                        24
                     </p>
                 </div>
             </div>
@@ -428,7 +428,7 @@
                 <span class="level-item">算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/算法/刷题/">
@@ -436,7 +436,7 @@
                 <span class="level-item">刷题</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/算法练习/">
@@ -508,7 +508,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 

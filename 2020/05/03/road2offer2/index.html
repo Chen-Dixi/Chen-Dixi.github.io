@@ -2,19 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>归档: 2019 - 帝羲 的博客</title>
+<title>剑指Offer中 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+    <meta name="description" content="17 打印从1到最大的n位数题目描述：输入n，从1打印到最大的第n位数。 思路：题目没有说明n的范围，有可能超出编程语言自带整数数据结构的范围，应该按照大数情况处理。按照大数情况处理。 把打印数字转换成数字排列的解法，递归让代码更简洁。在数字前面补0，n位所有十进制数就是n个从0到9的全排列。">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指Offer中">
+<meta property="og:url" content="http://yoursite.com/2020/05/03/road2offer2/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="17 打印从1到最大的n位数题目描述：输入n，从1打印到最大的第n位数。 思路：题目没有说明n的范围，有可能超出编程语言自带整数数据结构的范围，应该按照大数情况处理。按照大数情况处理。 把打印数字转换成数字排列的解法，递归让代码更简洁。在数字前面补0，n位所有十进制数就是n个从0到9的全排列。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-05-03T04:42:25.116Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="剑指Offer中">
+<meta name="twitter:description" content="17 打印从1到最大的n位数题目描述：输入n，从1打印到最大的第n位数。 思路：题目没有说明n的范围，有可能超出编程语言自带整数数据结构的范围，应该按照大数情况处理。按照大数情况处理。 把打印数字转换成数字排列的解法，递归让代码更简洁。在数字前面补0，n位所有十进制数就是n个从0到9的全排列。">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -89,13 +94,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="剑指Offer中" height="28">
             
             </a>
         </div>
@@ -125,221 +130,140 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-03T03:10:19.000Z">2020-05-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/算法/">算法</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/算法/刷题/">刷题</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 254 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                剑指Offer中
+            
+        </h1>
+        <div class="content">
+            <h1 id="17-打印从1到最大的n位数"><a href="#17-打印从1到最大的n位数" class="headerlink" title="17 打印从1到最大的n位数"></a>17 打印从1到最大的n位数</h1><p>题目描述：输入n，从1打印到最大的第n位数。</p>
+<p>思路：题目没有说明n的范围，有可能超出编程语言自带整数数据结构的范围，应该按照大数情况处理。按照大数情况处理。</p>
+<p>把打印数字转换成数字排列的解法，递归让代码更简洁。在数字前面补0，n位所有十进制数就是n个从0到9的全排列。<br><a id="more"></a><br><code>`</code>c++</p>
+<p>#include <cstdio></cstdio></p>
+<p>#include <iostream><br>class Solution {<br>public:<br>    // vector<int> printNumbers(int n) {<br>    //     //打印数字<br>    //     //按照大数方式来打印</int></iostream></p>
+<pre><code>// }
 
-<div class="card widget">
+void Print1ToMaxOfndigits(int n){
+    if(n&lt;=0)
+        return;
+
+    char * number = new char[n+1];
+
+    number[n] = &apos;\0&apos;;
+    for(int i=0;i&lt;10;i++)
+    {
+        number[0]=i+&apos;0&apos;;
+        Print1ToMaxOfNDigitsRecursively(number, n, 0);
+    }
+
+    delete [] number;
+}
+
+void Print1ToMaxOfNDigitsRecursively(char* number, int length, int index)
+{
+    if(index==length-1){
+        //打印数字
+        PrintNumber(number);
+        return;
+    }
+
+    for(int i=0;i&lt;10;i++){
+        number[index+1]=i+&apos;0&apos;;
+        Print1ToMaxOfNDigitsRecursively(number, length,index+1);    
+    }
+}
+void PrintNumber(char *number)
+{
+    int index=0;
+    int len = strlen(number);
+    while(index&lt;len &amp;&amp; number[index]==&apos;0&apos;)
+        index++;
+    while(index&lt;len){
+        printf(&quot;%c&quot;,number[index++]);
+    }
+    printf(&quot;\n&quot;);
+}
+</code></pre><p>};</p>
+<p>int main(){<br>    Solution sol = Solution();<br>    sol.Print1ToMaxOfndigits(2);<br>}</p>
+<p><code></code></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/LeetCode/">LeetCode</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2019
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-11-03T06:03:59.000Z">2019-11-03</time>
-                        <a href="/2019/11/03/analogy/" class="has-link-black-ter is-size-6">类推方法</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-09-23T15:03:12.000Z">2019-09-23</time>
-                        <a href="/2019/09/23/opensetReview/" class="has-link-black-ter is-size-6">开放集领域自适应调研</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-08-26T10:39:52.000Z">2019-08-26</time>
-                        <a href="/2019/08/26/DeepEmbeddedValidation/" class="has-link-black-ter is-size-6">Deep Embedded Validation 非监督领域自适应的模型选择方法</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-23T03:11:38.000Z">2019-06-23</time>
-                        <a href="/2019/06/23/domainAdaptionLiteratureReview/" class="has-link-black-ter is-size-6">组会介绍：领域自适应</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-22T06:42:52.000Z">2019-06-22</time>
-                        <a href="/2019/06/22/clan/" class="has-link-black-ter is-size-6">AMC S2E15 Slide：CLAN</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-08T15:17:48.000Z">2019-06-08</time>
-                        <a href="/2019/06/08/unsuper/" class="has-link-black-ter is-size-6">Almost Unsupervised Text to Speech and Automatic Speech Recognition</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/语音合成/">语音合成</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-07T17:54:10.000Z">2019-06-08</time>
-                        <a href="/2019/06/08/machineTranslation-tutorial/" class="has-link-black-ter is-size-6">PyTorch官方Seq-to-Seq Network Attention 机器翻译指导</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-04T15:41:12.000Z">2019-06-04</time>
-                        <a href="/2019/06/04/LSR-UDA/" class="has-link-black-ter is-size-6">Learning Smooth Representation for Unsupervised Domain Adaptation</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-28T02:27:04.000Z">2019-05-28</time>
-                        <a href="/2019/05/28/textclassification/" class="has-link-black-ter is-size-6">文本分类小作业</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-20T14:44:11.000Z">2019-05-20</time>
-                        <a href="/2019/05/20/DeepCockTailCode/" class="has-link-black-ter is-size-6">多源自适应-深度鸡尾酒网络代码</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
         </div>
     </div>
 </div>
 
 
 
-    
 <div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/2019/page/0/">上一页</a>
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/05/01/java-reflect/">
+                <span class="level-item">Java反射</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/2019/page/2/">下一页</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link is-current" href="/archives/2019/">1</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/2019/page/2/">2</a></li>
-            
-        </ul>
-    </nav>
+        
+    </div>
 </div>
+
+
 </div>
                 
 
@@ -746,7 +670,7 @@
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow  ">
         
             
         
@@ -823,91 +747,6 @@
 
         
         </div>
-    
-</div>
-
-                
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        
-    
-        
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">我的独立App 配色笔记</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">itunes.apple.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">扬涛的博客</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">orzyt.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">夏木青</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">joselynzhao.top</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">DeamoV&#39;s Blog</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">vdeamov.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://saruagithub.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">WangXue</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">saruagithub.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
     
 </div>
 
@@ -921,7 +760,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="剑指Offer中" height="28">
                 
                 </a>
                 <p class="is-size-7">
