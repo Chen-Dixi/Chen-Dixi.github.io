@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="占位">
+    <meta name="description" content="反射">
 <meta name="keywords" content="java,开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java反射">
 <meta property="og:url" content="http://yoursite.com/2020/05/01/java-reflect/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="占位">
+<meta property="og:description" content="反射">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-02T01:10:21.360Z">
+<meta property="og:updated_time" content="2020-05-06T13:39:33.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java反射">
-<meta name="twitter:description" content="占位">
+<meta name="twitter:description" content="反射">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -121,6 +121,10 @@
             <div class="navbar-end">
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
             </div>
         </div>
@@ -146,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 2 个字)
+                    2 分钟 读完 (大约 284 个字)
                 </span>
                 
                 
@@ -159,7 +163,12 @@
             
         </h1>
         <div class="content">
-            <p>占位</p>
+            <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><a id="more"></a>
+<p>每个类都有一个Class对象，包含了与类有关的信息。编译一个新类时，会产生一个同名的.class文件，文件内容保存着有Class对象。这是个二进制文件，在idea里面打开的时候看到的内容是idea反编译出来的。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Get</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//获取反射机制三种方式</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//方式一(通过建立对象)</span></span><br><span class="line">        Student stu = <span class="hljs-keyword">new</span> Student();</span><br><span class="line">        Class classobj1 = stu.getClass();</span><br><span class="line">        System.out.println(classobj1.getName());</span><br><span class="line">        <span class="hljs-comment">//方式二（所在通过路径-相对路径）</span></span><br><span class="line">        Class classobj2 = Class.forName(<span class="hljs-string">"dixi.bupt.reflect.Student"</span>);</span><br><span class="line">        System.out.println(classobj2.getName());</span><br><span class="line">        <span class="hljs-comment">//方式三（通过类名）</span></span><br><span class="line">        Class classobj3 = Student.class;</span><br><span class="line">        System.out.println(classobj3.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Class和java.lang.reflect一起对反射提供支持，java.lang.reflect类库包含以下三个类：</p>
+<p><u>反射可以提供运行时的类信息，这个类可以在运行时才加载进来。在编译时期该类的.class不存在也可以加载进来。</u></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> iscall:</span><br><span class="line">    <span class="hljs-keyword">if</span> isEuropean: <span class="hljs-comment">#如果是European</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">else</span>: <span class="hljs-comment"># 如果不是European</span></span><br><span class="line"><span class="hljs-keyword">else</span>:</span><br><span class="line">    <span class="hljs-keyword">if</span> isEuropean: <span class="hljs-comment">#如果是European</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">else</span>: <span class="hljs-comment"># 如果不是European</span></span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -267,7 +276,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        26
+                        27
                     </p>
                 </div>
             </div>
@@ -277,7 +286,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -287,7 +296,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        29
+                        31
                     </p>
                 </div>
             </div>
@@ -383,9 +392,17 @@
                 <span class="level-item">机器学习</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
-        </a></li><li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/机器学习/深度学习/">
+            <span class="level-start">
+                <span class="level-item">深度学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/算法/">
             <span class="level-start">
                 <span class="level-item">算法</span>
@@ -518,6 +535,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/cross-domain/">
+                        <span class="tag">cross-domain</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/java/">
                         <span class="tag">java</span>
                         <span class="tag is-grey">1</span>
@@ -602,6 +626,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/特征解藕/">
+                        <span class="tag">特征解藕</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/科研/">
                         <span class="tag">科研</span>
                         <span class="tag is-grey">1</span>
@@ -659,6 +690,21 @@
         <div class="column-right-shadow  ">
         
             
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#反射">
+        <span class="has-mr-6">1</span>
+        <span>反射</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
         
             
 

@@ -2,19 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: Attention - 帝羲 的博客</title>
+<title>特征解藕 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Attention/index.html">
+    <meta name="description" content="论文题目：Detach and Adapt: Learning Cross-Domain Disentangled Deep Representation[CVPR 2018 spotlight] | Code:[Github] | Present Video:[CVPR]">
+<meta name="keywords" content="cross-domain,特征解藕">
+<meta property="og:type" content="article">
+<meta property="og:title" content="特征解藕">
+<meta property="og:url" content="http://yoursite.com/2020/05/08/feature-disentangle/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="论文题目：Detach and Adapt: Learning Cross-Domain Disentangled Deep Representation[CVPR 2018 spotlight] | Code:[Github] | Present Video:[CVPR]">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-05-08T10:36:09.189Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="特征解藕">
+<meta name="twitter:description" content="论文题目：Detach and Adapt: Learning Cross-Domain Disentangled Deep Representation[CVPR 2018 spotlight] | Code:[Github] | Present Video:[CVPR]">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -89,13 +94,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="特征解藕" height="28">
             
             </a>
         </div>
@@ -125,34 +130,23 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Attention</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-07T17:54:10.000Z">2019-06-08</time>
+                <time class="level-item has-text-grey" datetime="2020-05-07T16:05:02.000Z">2020-05-08</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                <a class="has-link-grey -link" href="/categories/机器学习/">机器学习</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/机器学习/深度学习/">深度学习</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1270 个字)
+                    5 分钟 读完 (大约 742 个字)
                 </span>
                 
                 
@@ -161,21 +155,29 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/06/08/machineTranslation-tutorial/">PyTorch官方Seq-to-Seq Network Attention 机器翻译指导</a>
+                特征解藕
             
         </h1>
         <div class="content">
-            <p>没任何技术含量，按照官方<a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html" target="_blank" rel="noopener">tutorial</a>写的代码。地址：<a href="https://github.com/Chen-Dixi/MachineTranslation" target="_blank" rel="noopener">github</a><br>文章就只写了这个官方教程中，关于部分网络结构里面的一些维度问题<br></p>
+            <p>论文题目：Detach and Adapt: Learning Cross-Domain Disentangled Deep Representation<br><a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Liu_Detach_and_Adapt_CVPR_2018_paper.pdf" target="_blank" rel="noopener">[CVPR 2018 spotlight]</a> | Code:<a href="https://github.com/ycliu93/CDRD" target="_blank" rel="noopener">[Github]</a> | Present Video:<a href="https://www.youtube.com/watch?v=sIkUzmgUaxc&amp;feature=youtu.be&amp;t=4148" target="_blank" rel="noopener">[CVPR]</a></p>
+<a id="more"></a>
+<p>论文里面要做的就是跨域的特征解藕。<br>表示学习或特征学习的目的是对视觉数据得到可判断的特征，特征解藕就是进一步挖掘特征，使得可以定位和控制到图像某个特定属性。没有标签数据的话是很难做到特征解藕这一步的，所以论文提出的<code>Cross-Domain Representation Disentangler</code>用全部带标签的源域数据(fully annotated source-domain)和无标签的目标域数据(unlabeled target-domain)，把横跨在两个域当中的信息桥接起来，并由此迁移属性信息。由此，跨域的特征解藕和<code>adaptation</code>可以共同进行。这种特征解藕可以应用在无监督领域自适应中(UDA)。</p>
+<h1 id="特征解藕"><a href="#特征解藕" class="headerlink" title="特征解藕"></a>特征解藕</h1><p>特征解藕要做的就是把特征拆分成出一个隐含特征空间，让我们能定位和描述一些我们更加关注的特别属性，比如：脸所代表人的身份，脸做出的表情，图片的风格，等等，etc。不同的场景设置下都有很多特征解藕的工作被提出，无监督unsupervised，半监督semi-supervised和完全监督fully-supervised。</p>
+<h2 id="论文处理的问题："><a href="#论文处理的问题：" class="headerlink" title="论文处理的问题："></a>论文处理的问题：</h2><p>模型经过training data训练后，虽然可以特征解藕了，但是当遇到跨域的数据，和training data差别很大的数据时，效果又不好了。这和大多数的机器学习问题差不多。这种问题称作<code>domain shift</code>。处理这个问题就需要迁移学习的优势和领域自适应技术。借助一个事先就收集过标签的一组数据当作<code>源域</code>，然后把我们关心的无标签数据当作目标域。</p>
+<p>例子：要做人脸表情的特征解藕工作，把标记了情感的人脸图片数据集当作<code>源域</code>$X_{S}$。把没有情绪标记的<code>素描风格</code>人脸图片当作<code>目标域</code>$X_{T}$。此时跨域特征解藕工作的目标就是通过观察$X_{S}$和$X_{T}$来辨别出和情绪有关的隐含特征。</p>
+<h1 id="CDRD"><a href="#CDRD" class="headerlink" title="CDRD"></a>CDRD</h1><p>基于GAN的神经网络模型，我们提出的网络模型观察cross-domain的数据做特征解藕，这个可以被当作一个新的学习任务：在无监督设置下同时做<code>domain adaptation</code>和<code>representation disentanglement</code>。实验结果进一步表明，提取的特征能够同时用来描述<code>源域</code>和<code>目标域</code>，目标域上的分类效果也有提升。</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/08/machineTranslation-tutorial/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/cross-domain/">cross-domain</a>, <a class="has-link-grey -link" href="/tags/特征解藕/">特征解藕</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -183,9 +185,40 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/05/04/DA-paper-list/">
+                <span class="level-item">领域自适应论文列表</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -644,7 +677,7 @@
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow  ">
         
             
         
@@ -721,91 +754,6 @@
 
         
         </div>
-    
-</div>
-
-                
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        
-    
-        
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">我的独立App 配色笔记</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">itunes.apple.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">扬涛的博客</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">orzyt.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">夏木青</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">joselynzhao.top</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">DeamoV&#39;s Blog</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">vdeamov.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://saruagithub.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">WangXue</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">saruagithub.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
     
 </div>
 
@@ -819,7 +767,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="特征解藕" height="28">
                 
                 </a>
                 <p class="is-size-7">
