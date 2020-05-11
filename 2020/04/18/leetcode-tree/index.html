@@ -16,7 +16,7 @@
 <meta property="og:description" content="树，要熟悉树的操作，运用大量的递归。多刷题，多锻炼大脑。 98 验证二叉搜索树题目描述：给定一个二叉树，判断其是否是一个有效的二叉搜索树。 解题思路：不仅要判断左子节点和右子节点与父节点大小比较，还要注意整棵子树与父节点的关系（左子树所有节点的值都必须小于父节点的值）">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-04-18T16:50:58.457Z">
+<meta property="og:updated_time" content="2020-05-11T06:49:19.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode 树">
 <meta name="twitter:description" content="树，要熟悉树的操作，运用大量的递归。多刷题，多锻炼大脑。 98 验证二叉搜索树题目描述：给定一个二叉树，判断其是否是一个有效的二叉搜索树。 解题思路：不仅要判断左子节点和右子节点与父节点大小比较，还要注意整棵子树与父节点的关系（左子树所有节点的值都必须小于父节点的值）">
@@ -122,6 +122,10 @@
                 
                 
                 
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
             </div>
         </div>
     </div>
@@ -146,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 446 个字)
+                    6 分钟 读完 (大约 848 个字)
                 </span>
                 
                 
@@ -170,6 +174,14 @@
 <li>二叉搜索树的中序遍历是递增的<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isValidBST</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">        <span class="hljs-comment">//vector&lt;int&gt; t;</span></span><br><span class="line">        dfs(root);</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">0</span>;i &lt; t.size() - <span class="hljs-number">1</span>;i++)&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(t[i + <span class="hljs-number">1</span>] &lt;= t[i]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line"></span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode* root)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(root -&gt; left) dfs(root-&gt;left);</span><br><span class="line">        t.push_back(root -&gt; val);</span><br><span class="line">        <span class="hljs-keyword">if</span>(root -&gt; right) dfs(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-keyword">private</span>:</span><br><span class="line">    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; t;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<h1 id="236-二叉树的最近公共祖先"><a href="#236-二叉树的最近公共祖先" class="headerlink" title="236. 二叉树的最近公共祖先"></a>236. 二叉树的最近公共祖先</h1><p><strong>题目描述</strong>：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p><strong>解题思路</strong>：<br>最近公共祖先的题目遇见过两次：分别是<code>二叉搜索树</code>和<code>二叉树</code>的情况。这道题中的树是<code>二叉树</code>。<br>用<code>f_{\text{root}}</code>表示 以<code>root</code>结点为根的子树中是否包含<code>p</code>节点或<code>q</code>节点。符合条件的最近公共祖先节点x一定满足下面的条件，<code>lson</code>为左子节点，<code>rson为右子节点</code>。·<br>$$\left(f_{\text {lson }} \&amp; \&amp; f_{\text {rson }}\right)\left|\left((x=p | x=q) \&amp; \&amp;\left(f_{\text {lson }} | f_{\text {rson }}\right)\right)\right.$$</p>
+<ul>
+<li>$\left(f_{\text {lson }} \&amp; \&amp; f_{\text {rson }}\right)$ 表示左子树和右子树均包p结点或q结点。</li>
+<li>$\left((x=p | x=q) \&amp; \&amp;\left(f_{\text {lson }} | f_{\text {rson }}\right)\right)$ x 恰好是 <code>p</code> 节点或<code>q</code>节点且它的左子树或右子树有一个包含了另一个节点的情况.<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    TreeNode* ans;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">        <span class="hljs-keyword">bool</span> lson = dfs(root-&gt;left, p, q);</span><br><span class="line">        <span class="hljs-keyword">bool</span> rson = dfs(root-&gt;right, p, q);</span><br><span class="line">        <span class="hljs-keyword">if</span> ((lson &amp;&amp; rson) || ((root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val) &amp;&amp; (lson || rson))) &#123;</span><br><span class="line">            ans = root;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="hljs-keyword">return</span> lson || rson || (root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-function">TreeNode* <span class="hljs-title">lowestCommonAncestor</span><span class="hljs-params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        dfs(root, p, q);</span><br><span class="line">        <span class="hljs-keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>同样的思路，也可以写成单独一个递归函数。<br><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function">TreeNode* <span class="hljs-title">lowestCommonAncestor</span><span class="hljs-params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(root==<span class="hljs-literal">nullptr</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span>(root==p || root==q)</span><br><span class="line">            <span class="hljs-keyword">return</span> root;</span><br><span class="line"></span><br><span class="line">        TreeNode* left = lowestCommonAncestor(root-&gt;left,p,q);</span><br><span class="line">        TreeNode* right = lowestCommonAncestor(root-&gt;right,p,q);</span><br><span class="line">        <span class="hljs-keyword">if</span>(left &amp;&amp; right)</span><br><span class="line">            <span class="hljs-keyword">return</span> root;</span><br><span class="line">        <span class="hljs-keyword">if</span>(left==<span class="hljs-literal">nullptr</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> right;</span><br><span class="line">        <span class="hljs-keyword">if</span>(right==<span class="hljs-literal">nullptr</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> left;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
         </div>
         
@@ -277,7 +289,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        28
+                        27
                     </p>
                 </div>
             </div>
@@ -297,7 +309,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        30
                     </p>
                 </div>
             </div>
@@ -409,7 +421,7 @@
                 <span class="level-item">算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">2</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/算法/刷题/">
@@ -417,7 +429,7 @@
                 <span class="level-item">刷题</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/算法练习/">
@@ -487,16 +499,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/LeetCode/">
-                        <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/Leetcode/">
                         <span class="tag">Leetcode</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -874,6 +879,36 @@
 
 <script src="/js/main.js" defer></script>
 
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
     
 </body>
 </html>

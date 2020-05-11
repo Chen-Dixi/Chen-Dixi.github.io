@@ -126,6 +126,10 @@
                 </a>
                 
                 
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
             </div>
         </div>
     </div>
@@ -293,7 +297,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        28
+                        27
                     </p>
                 </div>
             </div>
@@ -313,7 +317,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        30
                     </p>
                 </div>
             </div>
@@ -425,7 +429,7 @@
                 <span class="level-item">算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">2</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/算法/刷题/">
@@ -433,7 +437,7 @@
                 <span class="level-item">刷题</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/算法练习/">
@@ -503,16 +507,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/LeetCode/">
-                        <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/Leetcode/">
                         <span class="tag">Leetcode</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -929,6 +926,36 @@
 
 <script src="/js/main.js" defer></script>
 
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
     
 </body>
 </html>

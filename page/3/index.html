@@ -117,6 +117,10 @@
                 
                 
                 
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
             </div>
         </div>
     </div>
@@ -126,60 +130,6 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-22T06:42:52.000Z">2019-06-22</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    12 分钟 读完 (大约 1739 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/06/22/clan/">AMC S2E15 Slide：CLAN</a>
-            
-        </h1>
-        <div class="content">
-            <p>论文题目：<a href="https://github.com/RoyalVane/CLAN" target="_blank" rel="noopener">CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation</a></p>
-<p>论文作者：Yawei Luo, Liang Zheng, Tao Guan, Junqing Yu, Yi Yang</p>
-<p>会议期刊：CVPR2019(Oral)</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/22/clan/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
     <div class="card">
     
     <div class="card-content article ">
@@ -611,7 +561,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        28
+                        27
                     </p>
                 </div>
             </div>
@@ -631,7 +581,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        30
                     </p>
                 </div>
             </div>
@@ -743,7 +693,7 @@
                 <span class="level-item">算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">2</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/算法/刷题/">
@@ -751,7 +701,7 @@
                 <span class="level-item">刷题</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/算法练习/">
@@ -821,16 +771,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/LeetCode/">
-                        <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/Leetcode/">
                         <span class="tag">Leetcode</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1293,6 +1236,36 @@
 
 <script src="/js/main.js" defer></script>
 
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
     
 </body>
 </html>

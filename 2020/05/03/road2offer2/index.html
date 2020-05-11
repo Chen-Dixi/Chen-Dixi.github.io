@@ -2,23 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>剑指Offer中 - 帝羲 的博客</title>
+<title>剑指Offer（中） - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
     <meta name="description" content="17 打印从1到最大的n位数题目描述：输入n，从1打印到最大的第n位数。 思路：题目没有说明n的范围，有可能超出编程语言自带整数数据结构的范围，应该按照大数情况处理。按照大数情况处理。 把打印数字转换成数字排列的解法，递归让代码更简洁。在数字前面补0，n位所有十进制数就是n个从0到9的全排列。">
-<meta name="keywords" content="LeetCode">
+<meta name="keywords" content="Leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指Offer中">
+<meta property="og:title" content="剑指Offer（中）">
 <meta property="og:url" content="http://yoursite.com/2020/05/03/road2offer2/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:description" content="17 打印从1到最大的n位数题目描述：输入n，从1打印到最大的第n位数。 思路：题目没有说明n的范围，有可能超出编程语言自带整数数据结构的范围，应该按照大数情况处理。按照大数情况处理。 把打印数字转换成数字排列的解法，递归让代码更简洁。在数字前面补0，n位所有十进制数就是n个从0到9的全排列。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-04T07:25:36.931Z">
+<meta property="og:updated_time" content="2020-05-10T14:26:30.035Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="剑指Offer中">
+<meta name="twitter:title" content="剑指Offer（中）">
 <meta name="twitter:description" content="17 打印从1到最大的n位数题目描述：输入n，从1打印到最大的第n位数。 思路：题目没有说明n的范围，有可能超出编程语言自带整数数据结构的范围，应该按照大数情况处理。按照大数情况处理。 把打印数字转换成数字排列的解法，递归让代码更简洁。在数字前面补0，n位所有十进制数就是n个从0到9的全排列。">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
@@ -100,7 +100,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="剑指Offer中" height="28">
+                <img src="/images/logo.svg" alt="剑指Offer（中）" height="28">
             
             </a>
         </div>
@@ -121,6 +121,14 @@
             <div class="navbar-end">
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
                 
             </div>
         </div>
@@ -146,7 +154,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1466 个字)
+                    10 分钟 读完 (大约 1546 个字)
                 </span>
                 
                 
@@ -155,7 +163,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                剑指Offer中
+                剑指Offer（中）
             
         </h1>
         <div class="content">
@@ -201,13 +209,16 @@
 </ul>
 <p>我们开数组要开 $n+1$ ，这样对于空串的处理十分方便。结果就是 $f[n][m]$</p>
 <figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isMatch</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s, <span class="hljs-built_in">string</span> p)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> n = s.size(), m = p.size();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">bool</span>&gt; &gt; dp(n+<span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">bool</span>&gt;(m+<span class="hljs-number">1</span>,<span class="hljs-literal">false</span>));</span><br><span class="line">        <span class="hljs-comment">/*dp数组已经被初始化成false，</span></span><br><span class="line"><span class="hljs-comment">        非空串和空正则必然不匹配，f[1][0]=...=f[n][0]=false 已经被定义好了</span></span><br><span class="line"><span class="hljs-comment">        空串和非空正则必须要计算出来</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">        */</span></span><br><span class="line">        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;<span class="hljs-comment">//空串和空正则是匹配的f[0][0]</span></span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;=n;i++)</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">                <span class="hljs-keyword">if</span>(p[j<span class="hljs-number">-1</span>]!=<span class="hljs-string">'*'</span>)&#123;</span><br><span class="line">                    <span class="hljs-comment">//前面两种情况</span></span><br><span class="line">                    dp[i][j] = i &amp;&amp; dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] &amp;&amp; (s[i<span class="hljs-number">-1</span>]==p[j<span class="hljs-number">-1</span>]||p[j<span class="hljs-number">-1</span>]==<span class="hljs-string">'.'</span>);</span><br><span class="line">                &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                    <span class="hljs-comment">//        不考虑这个*号 || 考虑星号*， （S往前挪动一个看是否匹配 &amp;&amp; 字符等于*号前一个的字符，或者*号前一个字符是点'.'）</span></span><br><span class="line">                    <span class="hljs-comment">//  (这里的 i &amp;&amp; ...) 是防止下标出错，以免后面i-1让下标小于0</span></span><br><span class="line">                    dp[i][j] = dp[i][j<span class="hljs-number">-2</span>] || (i &amp;&amp; dp[i<span class="hljs-number">-1</span>][j] &amp;&amp; (s[i<span class="hljs-number">-1</span>]==p[j<span class="hljs-number">-2</span>] || p[j<span class="hljs-number">-2</span>]==<span class="hljs-string">'.'</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> dp[n][m];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="20-表示数值的字符串"><a href="#20-表示数值的字符串" class="headerlink" title="20 表示数值的字符串"></a>20 表示数值的字符串</h1><p><strong>题目描述</strong>：请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串”+100”、”5e2”、”-123”、”3.1416”、”0123”都表示数值，但”12e”、”1a3.14”、”1.2.3”、”+-5”、”-1E-16”及”12e+5.4”都不是。</p>
+<p><strong>解题思路</strong>：<br><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/LeetCode/">LeetCode</a>
+                    <a class="has-link-grey -link" href="/tags/Leetcode/">Leetcode</a>
                 </div>
             </div>
         </div>
@@ -307,7 +318,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        28
+                        27
                     </p>
                 </div>
             </div>
@@ -327,7 +338,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        30
                     </p>
                 </div>
             </div>
@@ -439,7 +450,7 @@
                 <span class="level-item">算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">2</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/算法/刷题/">
@@ -447,7 +458,7 @@
                 <span class="level-item">刷题</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/算法练习/">
@@ -517,16 +528,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/LeetCode/">
-                        <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/Leetcode/">
                         <span class="tag">Leetcode</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -721,6 +725,37 @@
         <div class="column-right-shadow  ">
         
             
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#17-打印从1到最大的n位数">
+        <span class="has-mr-6">1</span>
+        <span>17 打印从1到最大的n位数</span>
+        </a></li><li>
+        <a class="is-flex" href="#18-在O-1-时间删除链表节点">
+        <span class="has-mr-6">2</span>
+        <span>18 在O(1)时间删除链表节点</span>
+        </a></li><li>
+        <a class="is-flex" href="#18-2-删除链表中重复的节点">
+        <span class="has-mr-6">3</span>
+        <span>18.2 删除链表中重复的节点</span>
+        </a></li><li>
+        <a class="is-flex" href="#19-正则表达式匹配-（难）">
+        <span class="has-mr-6">4</span>
+        <span>19 正则表达式匹配 （难）</span>
+        </a></li><li>
+        <a class="is-flex" href="#20-表示数值的字符串">
+        <span class="has-mr-6">5</span>
+        <span>20 表示数值的字符串</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
         
             
 
@@ -808,7 +843,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="剑指Offer中" height="28">
+                    <img src="/images/logo.svg" alt="剑指Offer（中）" height="28">
                 
                 </a>
                 <p class="is-size-7">
@@ -904,6 +939,36 @@
 
 <script src="/js/main.js" defer></script>
 
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
     
 </body>
 </html>

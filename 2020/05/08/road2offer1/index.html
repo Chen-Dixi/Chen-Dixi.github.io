@@ -2,23 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>剑指Offer上 - 帝羲 的博客</title>
+<title>剑指Offer（上） - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
     <meta name="description" content="03 数组重复的数题目描述：在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。">
-<meta name="keywords" content="LeetCode">
+<meta name="keywords" content="Leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指Offer上">
+<meta property="og:title" content="剑指Offer（上）">
 <meta property="og:url" content="http://yoursite.com/2020/05/08/road2offer1/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:description" content="03 数组重复的数题目描述：在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-10T05:12:33.183Z">
+<meta property="og:updated_time" content="2020-05-10T14:26:34.486Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="剑指Offer上">
+<meta name="twitter:title" content="剑指Offer（上）">
 <meta name="twitter:description" content="03 数组重复的数题目描述：在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
@@ -100,7 +100,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="剑指Offer上" height="28">
+                <img src="/images/logo.svg" alt="剑指Offer（上）" height="28">
             
             </a>
         </div>
@@ -121,6 +121,14 @@
             <div class="navbar-end">
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
                 
             </div>
         </div>
@@ -155,7 +163,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                剑指Offer上
+                剑指Offer（上）
             
         </h1>
         <div class="content">
@@ -199,7 +207,7 @@
 </ul>
 <h1 id="12-矩阵中的路径"><a href="#12-矩阵中的路径" class="headerlink" title="12 矩阵中的路径"></a>12 矩阵中的路径</h1><p>题目描述：判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向上下左右移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。</p>
 <p>解题思路：深度优先搜索。</p>
-<p>从board上每个点开始进行搜索，上下左右DFS。搜索过一个字符，把他改成’/‘，这样就表示访问过这个位置的字符，回溯后把他恢复。<br><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-comment">//回溯法</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">exist</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; board, <span class="hljs-built_in">string</span> word)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//怎么回溯呢</span></span><br><span class="line">        <span class="hljs-comment">//暴力法遍历矩阵中所有字符串可能性</span></span><br><span class="line">        <span class="hljs-comment">// 朝一个方向搜到底，再回溯至上一个节点，沿另一个方向搜索</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> rows = board.size();</span><br><span class="line">        <span class="hljs-keyword">if</span>(rows&lt;=<span class="hljs-number">0</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> cols = board[<span class="hljs-number">0</span>].size();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//每个点都可以开始搜索</span></span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;rows;i++)</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;cols;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="hljs-keyword">if</span>(dfs(board, word,i,j,<span class="hljs-number">0</span>)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-comment">//dfs + 回溯</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; board, <span class="hljs-built_in">string</span> word,<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j,<span class="hljs-keyword">int</span> k)</span></span></span><br><span class="line"><span class="hljs-function">    </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(i&lt;<span class="hljs-number">0</span> || i&gt;=board.size() || j&lt;<span class="hljs-number">0</span> || j&gt;=board[<span class="hljs-number">0</span>].size() || board[i][j]!=word[k] )<span class="hljs-comment">//board[i][j]==‘/’（表示访问过） or board[i][j]!=word[k]时，都可以在这里退出去</span></span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span>(k==word.size()<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> drow[<span class="hljs-number">4</span>] = &#123;<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>&#125;;</span><br><span class="line">        <span class="hljs-keyword">int</span> dcol[<span class="hljs-number">4</span>] = &#123;<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>&#125;;</span><br><span class="line">        <span class="hljs-keyword">char</span> tmp = board[i][j];</span><br><span class="line">        board[i][j]=<span class="hljs-string">'/'</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l=<span class="hljs-number">0</span>;l&lt;<span class="hljs-number">4</span>;l++)&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(dfs(board,word,i+drow[l],j+dcol[l],k+<span class="hljs-number">1</span>)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        board[i][j]=tmp;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>从board上每个点开始进行搜索，上下左右DFS。搜索过一个字符，把他改成’/‘，这样就表示访问过这个位置的字符，回溯后把他恢复。<br><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-comment">//回溯法</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">exist</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; board, <span class="hljs-built_in">string</span> word)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//怎么回溯呢</span></span><br><span class="line">        <span class="hljs-comment">//暴力法遍历矩阵中所有字符串可能性</span></span><br><span class="line">        <span class="hljs-comment">// 朝一个方向搜到底，再回溯至上一个节点，沿另一个方向搜索</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> rows = board.size();</span><br><span class="line">        <span class="hljs-keyword">if</span>(rows&lt;=<span class="hljs-number">0</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> cols = board[<span class="hljs-number">0</span>].size();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//每个点都可以开始搜索</span></span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;rows;i++)</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;cols;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="hljs-keyword">if</span>(dfs(board, word,i,j,<span class="hljs-number">0</span>)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-comment">//dfs + 回溯</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; board, <span class="hljs-built_in">string</span> word, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j,<span class="hljs-keyword">int</span> k)</span></span></span><br><span class="line"><span class="hljs-function">    </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(i&lt;<span class="hljs-number">0</span> || i&gt;=board.size() || j&lt;<span class="hljs-number">0</span> || j&gt;=board[<span class="hljs-number">0</span>].size() || board[i][j]!=word[k] )<span class="hljs-comment">//board[i][j]==‘/’（表示访问过） or board[i][j]!=word[k]时，都可以在这里退出去</span></span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span>(k==word.size()<span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> drow[<span class="hljs-number">4</span>] = &#123;<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>&#125;;</span><br><span class="line">        <span class="hljs-keyword">int</span> dcol[<span class="hljs-number">4</span>] = &#123;<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>&#125;;</span><br><span class="line">        <span class="hljs-keyword">char</span> tmp = board[i][j];</span><br><span class="line">        board[i][j]=<span class="hljs-string">'/'</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l=<span class="hljs-number">0</span>;l&lt;<span class="hljs-number">4</span>;l++)&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(dfs(board,word,i+drow[l],j+dcol[l],k+<span class="hljs-number">1</span>)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        board[i][j]=tmp;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h1 id="14-1-剪绳子"><a href="#14-1-剪绳子" class="headerlink" title="14.1 剪绳子"></a>14.1 剪绳子</h1><p>题目描述：把一根绳子剪成多段，并且使得每段的长度乘积最大。没规定一段绳子必须减多少段</p>
 <p>解题思路：动态规划</p>
 <ul>
@@ -231,7 +239,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/LeetCode/">LeetCode</a>
+                    <a class="has-link-grey -link" href="/tags/Leetcode/">Leetcode</a>
                 </div>
             </div>
         </div>
@@ -331,7 +339,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        28
+                        27
                     </p>
                 </div>
             </div>
@@ -351,7 +359,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        30
                     </p>
                 </div>
             </div>
@@ -463,7 +471,7 @@
                 <span class="level-item">算法</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">2</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/算法/刷题/">
@@ -471,7 +479,7 @@
                 <span class="level-item">刷题</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/算法练习/">
@@ -541,16 +549,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/LeetCode/">
-                        <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/Leetcode/">
                         <span class="tag">Leetcode</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -745,6 +746,69 @@
         <div class="column-right-shadow  ">
         
             
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#03-数组重复的数">
+        <span class="has-mr-6">1</span>
+        <span>03 数组重复的数</span>
+        </a></li><li>
+        <a class="is-flex" href="#04-二维数组中的查找">
+        <span class="has-mr-6">2</span>
+        <span>04 二维数组中的查找</span>
+        </a></li><li>
+        <a class="is-flex" href="#05-替换空格">
+        <span class="has-mr-6">3</span>
+        <span>05 替换空格</span>
+        </a></li><li>
+        <a class="is-flex" href="#06-从尾到头打印链表">
+        <span class="has-mr-6">4</span>
+        <span>06 从尾到头打印链表</span>
+        </a></li><li>
+        <a class="is-flex" href="#07-重建二叉树">
+        <span class="has-mr-6">5</span>
+        <span>07 重建二叉树</span>
+        </a></li><li>
+        <a class="is-flex" href="#8-二叉树的下一个节点">
+        <span class="has-mr-6">6</span>
+        <span>8 二叉树的下一个节点</span>
+        </a></li><li>
+        <a class="is-flex" href="#9-两个栈实现队列">
+        <span class="has-mr-6">7</span>
+        <span>9 两个栈实现队列</span>
+        </a></li><li>
+        <a class="is-flex" href="#斐波那契数列">
+        <span class="has-mr-6">8</span>
+        <span>斐波那契数列</span>
+        </a></li><li>
+        <a class="is-flex" href="#11-旋转数组的最小数字">
+        <span class="has-mr-6">9</span>
+        <span>11 旋转数组的最小数字</span>
+        </a></li><li>
+        <a class="is-flex" href="#12-矩阵中的路径">
+        <span class="has-mr-6">10</span>
+        <span>12 矩阵中的路径</span>
+        </a></li><li>
+        <a class="is-flex" href="#14-1-剪绳子">
+        <span class="has-mr-6">11</span>
+        <span>14.1 剪绳子</span>
+        </a></li><li>
+        <a class="is-flex" href="#14-2-剪绳子2">
+        <span class="has-mr-6">12</span>
+        <span>14.2 剪绳子2</span>
+        </a></li><li>
+        <a class="is-flex" href="#16-数值的整数次方">
+        <span class="has-mr-6">13</span>
+        <span>16 数值的整数次方</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
         
             
 
@@ -832,7 +896,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="剑指Offer上" height="28">
+                    <img src="/images/logo.svg" alt="剑指Offer（上）" height="28">
                 
                 </a>
                 <p class="is-size-7">
@@ -928,6 +992,36 @@
 
 <script src="/js/main.js" defer></script>
 
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
     
 </body>
 </html>
