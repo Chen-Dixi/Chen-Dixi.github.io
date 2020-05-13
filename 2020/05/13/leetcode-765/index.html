@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="题目描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。 人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。 这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上">
+    <meta name="description" content="题目描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。">
 <meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日一题 leetcode 765 情侣牵手">
 <meta property="og:url" content="http://yoursite.com/2020/05/13/leetcode-765/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="题目描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。 人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。 这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上">
+<meta property="og:description" content="题目描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-13T13:39:53.078Z">
+<meta property="og:updated_time" content="2020-05-13T13:41:57.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日一题 leetcode 765 情侣牵手">
-<meta name="twitter:description" content="题目描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。 人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。 这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上">
+<meta name="twitter:description" content="题目描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 369 个字)
+                    2 分钟 读完 (大约 370 个字)
                 </span>
                 
                 
@@ -163,8 +163,7 @@
             
         </h1>
         <div class="content">
-            <p><strong>题目描述</strong>：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。</p>
-<p>人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。</p>
+            <p><strong>题目描述</strong>：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。<br><a id="more"></a><br>人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。</p>
 <p>这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上的人决定的。</p>
 <p><strong>解题</strong>：</p>
 <p>用贪心的方法解决比较方便，可以制定按顺序让每张沙发上情侣开心的策略。对于每张沙发，找到沙发上第一个人的情侣，如果不在同一个沙发上，就把沙发上的第二人换成第一个人的情侣。<br>如果一个人的编号为 x，那么他的情侣的编号为 <code>x ^ 1</code>， <code>^</code>在这里是异或操作。对于每张沙发上的第一个人 x = row[i]，找到他们的同伴所在的位置 row[j]，将 row[j] 和 row[i + 1] 互相交换。</p>
