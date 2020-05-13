@@ -16,7 +16,7 @@
 <meta property="og:description" content="异常检测异常检测(Anomaly detection)问题是机器学习算法的一个常见应用。这种算法的一个有趣之处在于：它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。什么是异常检测呢？为了解释这个概念，让我举一个例子吧：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-04-30T07:37:57.147Z">
+<meta property="og:updated_time" content="2020-05-13T07:52:40.373Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="异常检测">
 <meta name="twitter:description" content="异常检测异常检测(Anomaly detection)问题是机器学习算法的一个常见应用。这种算法的一个有趣之处在于：它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。什么是异常检测呢？为了解释这个概念，让我举一个例子吧：">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    15 分钟 读完 (大约 2218 个字)
+                    14 分钟 读完 (大约 2029 个字)
                 </span>
                 
                 
@@ -166,18 +166,18 @@
             <h1 id="异常检测"><a href="#异常检测" class="headerlink" title="异常检测"></a>异常检测</h1><p>异常检测(Anomaly detection)问题是机器学习算法的一个常见应用。这种算法的一个有趣之处在于：它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。<br>什么是异常检测呢？为了解释这个概念，让我举一个例子吧：</p>
 <a id="more"></a>
 <p>假想你是一个飞机引擎制造商，当你生产的飞机引擎从生产线上流出时，你需要进行QA(质量控制测试)，而作为这个测试的一部分，你测量了飞机引擎的一些特征变量，比如引擎运转时产生的热量，或者引擎的振动等等。</p>
-<div align="center"><br><img src="https://upload-images.jianshu.io/upload_images/15527263-d1b17d65e8b0e4b4.png?imageMogr2/auto-orient/strip|imageView2/2/w/600/format/webp" alt="图1"><br></div>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/05/13/YdkTjU.png" alt><br></div>
 
 <p>这样一来，你就有了一个数据集，从x^(1) 到x^(m)，如果你生产了m个引擎的话，你将这些数据绘制成图表，看起来就是这个样子：</p>
-<div align="center"><br><img src="https://upload-images.jianshu.io/upload_images/15527263-a5b53a30a3f57dc4.png?imageMogr2/auto-orient/strip|imageView2/2/w/251/format/webp" alt="图2"><br></div>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/05/13/Ydkj41.png" alt><br></div>
 
 <p>这里的每个点、每个叉，都是你的无标签数据。这样，异常检测问题可以定义如下：我们假设后来有一天，你有一个新的飞机引擎从生产线上流出，而你的新飞机引擎有特征变量x_test。所谓的异常检测问题就是：我们希望知道这个新的飞机引擎是否有某种异常，或者说，我们希望判断这个引擎是否需要进一步测试。因为，如果它看起来像一个正常的引擎，那么我们可以直接将它运送到客户那里，而不需要进一步的测试。</p>
 <p>给定数据集 x^(1), x^(2) ,..,x^(m)，我们假使数据集是正常的，我们希望知道新的数据  是不是异常的，即这个测试数据不属于该组数据的几率如何。我们所构建的模型应该能根据该测试数据的位置告诉我们其属于一组数据的可能性 p(x)。</p>
-<div align="center"><br><img src="https://upload-images.jianshu.io/upload_images/15527263-e54ac0eb2b020803.png?imageMogr2/auto-orient/strip|imageView2/2/w/300/format/webp" alt="图3"><br></div>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/05/13/YdAe8P.png" alt><br></div>
 
 <h1 id="异常检测算法"><a href="#异常检测算法" class="headerlink" title="异常检测算法"></a>异常检测算法</h1><h2 id="基于高斯分布建立异常检测算法"><a href="#基于高斯分布建立异常检测算法" class="headerlink" title="基于高斯分布建立异常检测算法"></a>基于高斯分布建立异常检测算法</h2><p>用数据集建立起一个概率模型，<code>p(x)</code>，试图解决哪些特征量出现得比较高，哪些特征量出现得比较低，因此x就会是一个向量。</p>
 <p><code>x_{1}</code>到<code>x_{n}</code>上的一个独立假设，向量里n个分量各自服从独立正态分布。</p>
-<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-38d6795f37fcbf91.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图4"><br></div>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdA3Us.png" alt><br></div>
 
 <p>那么整个向量的概率密度就是各个分量的概率密度相乘。</p>
 <p>异常检测的一个思路：</p>
@@ -186,20 +186,20 @@
 <li>使用数据集，在这些分量上计算出高斯分布的 $u$和$\sigma$。</li>
 <li>计算样本的<code>p(x)</code></li>
 </ol>
-<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-2410a1bfa6313d01.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图5"><br></div>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdAwb4.png" alt><br></div>
 
 <h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>将数据转换成高斯分布</p>
-<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-d604b3f4a8a63909.png?imageMogr2/auto-orient/strip|imageView2/2/w/636/format/webp" alt="图6"><br></div>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdA68x.png" alt><br></div>
 
 <p>特征组合，比如计算机状况的例子中，用CPU负载与网络通信量的比例作为一个新的特征，如果该值异常地大，便有可能意味着该服务器是陷入了一些问题中。</p>
-<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-504397f49569e9ca.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图7"><br></div>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdA4VH.png" alt><br></div>
 
 <h2 id="多元高斯分布"><a href="#多元高斯分布" class="headerlink" title="多元高斯分布"></a>多元高斯分布</h2><p>假使我们有两个相关的特征，而且这两个特征的值域范围比较宽，这种情况下，一般的高斯分布模型可能不能很好地识别异常数据。其原因在于，一般的高斯分布模型尝试的是去同时抓住两个特征的偏差，因此创造出一个比较大的判定边界。</p>
 <p>下图的两个特征是相关的，用一般的高斯分布模型(各自独立服从一个高斯分布)，得到的判定边界类似于一个圆。$p(x_{1})*p(x_{2})$的值可能很大，仍然在正常范围内，但是却不在椭圆判定边界里面。多元高斯分布将创建像图中蓝色曲线所示的判定边界。</p>
-<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-e63a1a44513b7062.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图8"><br></div>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdAXqg.png" alt><br></div>
 
 <p>多元高斯分布不是单独建模各个特征分量<code>p(x_{1}),p(x_{2})</code>的概率密度，而是对整个特征<code>p(x)</code>建模</p>
-<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-2854aa17197e3ba7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图8"><br></div>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdE9Gq.png" alt><br></div>
 
 <p>$\sum$是一个协方差矩阵，它衡量的是方差，或者说特征变量x1和x2的变化量</p>
 <blockquote>
@@ -207,10 +207,10 @@
 <p>$c_{21}=E\left[X_{2}-E\left(X_{2}\right)\right]\left[X_{1}-E\left(X_{1}\right)\right], c_{22}=E\left[X_{2}-E\left(X_{2}\right)\right]^{2}$。</p>
 <p>多元高斯分布：<br>$$p(x ; \mu, \Sigma)=\frac{1}{(2 \pi)^{\frac{n}{2}}|\Sigma|^{\frac{1}{2}}} \exp \left(-\frac{1}{2}(x-\mu)^{T} \Sigma^{-1}(x-\mu)\right)$$</p>
 </blockquote>
-<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-6dc8a45684b57117.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000/format/webp" alt="图9"><br></div>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdEVZ4.png" alt><br></div>
 
 <p>协方差矩阵是如何影响模型的</p>
-<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-ca25bd6b6668606e.png?imageMogr2/auto-orient/strip|imageView2/2/w/974/format/webp" alt="图10"><br></div>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdElQK.png" alt><br></div>
 
 <p>上图是5个不同的模型，从左往右依次分析：</p>
 <p>1.是一个一般的高斯分布模型，协方差矩阵维对角矩阵，运算出来的式子就是一般的高斯分布模型($p(x_{1})*p(x_{2})$)。<br>2.通过协方差矩阵，令特征1拥有较小的偏差，同时保持特征2的偏差。<br>3.通过协方差矩阵，令特征2拥有较大的偏差，同时保持特征1的偏差。<br>4.通过协方差矩阵，在不改变两个特征的原有偏差的基础上，增加两者之间的正相关性。<br>5.通过协方差矩阵，在不改变两个特征的原有偏差的基础上，增加两者之间的负相关性。</p>
@@ -221,11 +221,11 @@
 <p>$$<br>\Sigma=\left[\begin{array}{cccc}\sigma_{1}^{2} &amp; &amp; &amp; \\ &amp; \sigma_{2}^{2} &amp; &amp; \\ &amp; &amp; \ddots &amp; \\ &amp; &amp; &amp; \sigma_{n}^{2}\end{array}\right]<br>$$</p>
 <p>我们进行一个简单的推演<br>假设只有两个特征：<br>$$<br>x=\left[\begin{array}{l}x_{1} \\ x_{2}\end{array}\right]<br>$$<br>那么均值和协方差矩阵分别是：协方差矩阵是对角矩阵<br>$$<br>\mu=\left[\begin{array}{l}\mu_{1} \\ \mu_{2}\end{array}\right] \quad \Sigma=\left[\begin{array}{cc}\sigma_{1}^{2} &amp; 0 \\ 0 &amp; \sigma_{2}^{2}\end{array}\right]<br>$$</p>
 <p>代入多元高斯分布，公式推演，就可以得到一个一般的高斯分布密度的乘积：</p>
-<div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/3985559-fb9293f81a8a2274.png?imageMogr2/auto-orient/strip|imageView2/2/w/652/format/webp" alt><br></div>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdEhlV.png" alt><br></div>
 
-<h2 id="原高斯分布模型和多元高斯分布模型的比较"><a href="#原高斯分布模型和多元高斯分布模型的比较" class="headerlink" title="原高斯分布模型和多元高斯分布模型的比较"></a>原高斯分布模型和多元高斯分布模型的比较</h2><div align="center"><br>    <img src="https://upload-images.jianshu.io/upload_images/15527263-246f966331a7c6a1.png?imageMogr2/auto-orient/strip|imageView2/2/w/993/format/webp" alt="图11"><br></div>
+<h2 id="原高斯分布模型和多元高斯分布模型的比较"><a href="#原高斯分布模型和多元高斯分布模型的比较" class="headerlink" title="原高斯分布模型和多元高斯分布模型的比较"></a>原高斯分布模型和多元高斯分布模型的比较</h2><div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdE7TJ.png" alt><br></div>
 
-<p><div align="center"><br><img src="https://upload-images.jianshu.io/upload_images/8538493-309cd3fe2ae8af63.JPG?imageMogr2/auto-orient/strip|imageView2/2/w/637/format/webp" alt><br></div><br>原高斯分布模型被广泛使用着，如果特征之间在某种程度上存在相互关联的情况，我们可以通过构造新新特征的方法来捕捉这些相关性。</p>
+<p><div align="center"><br><img src="https://s1.ax1x.com/2020/05/13/YdExOO.png" alt><br></div><br>原高斯分布模型被广泛使用着，如果特征之间在某种程度上存在相互关联的情况，我们可以通过构造新新特征的方法来捕捉这些相关性。</p>
 <p>如果训练集不是太大，并且没有太多的特征，我们可以使用多元高斯分布模型。</p>
 <h1 id="使用多元高斯分布进行异常检测"><a href="#使用多元高斯分布进行异常检测" class="headerlink" title="使用多元高斯分布进行异常检测"></a>使用多元高斯分布进行异常检测</h1><p>参考<a href="https://www.jianshu.com/p/620b584c2941" target="_blank" rel="noopener">异常检测(Anomaly Detection)</a></p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.jianshu.com/p/620b584c2941" target="_blank" rel="noopener">[1]异常检测(Anomaly Detection)</a></p>
