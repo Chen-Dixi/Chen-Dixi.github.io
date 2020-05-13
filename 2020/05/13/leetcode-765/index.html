@@ -2,24 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Leetcode 动态规划 - 帝羲 的博客</title>
+<title>每日一题 leetcode 765 情侣牵手 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="很多动态规划问题大致可以按照下面5个步骤取解释：1、状态定义2、状态转移方程3、初始化4、输出5、思考状态压缩">
-<meta name="keywords" content="leetcode,刷题">
+    <meta name="description" content="题目描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。 人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。 这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上">
+<meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode 动态规划">
-<meta property="og:url" content="http://yoursite.com/2020/04/19/leetcode-dp/index.html">
+<meta property="og:title" content="每日一题 leetcode 765 情侣牵手">
+<meta property="og:url" content="http://yoursite.com/2020/05/13/leetcode-765/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="很多动态规划问题大致可以按照下面5个步骤取解释：1、状态定义2、状态转移方程3、初始化4、输出5、思考状态压缩">
+<meta property="og:description" content="题目描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。 人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。 这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-04-26T04:04:26.232Z">
+<meta property="og:updated_time" content="2020-05-13T13:39:53.078Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode 动态规划">
-<meta name="twitter:description" content="很多动态规划问题大致可以按照下面5个步骤取解释：1、状态定义2、状态转移方程3、初始化4、输出5、思考状态压缩">
+<meta name="twitter:title" content="每日一题 leetcode 765 情侣牵手">
+<meta name="twitter:description" content="题目描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。 人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。 这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -100,7 +100,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Leetcode 动态规划" height="28">
+                <img src="/images/logo.svg" alt="每日一题 leetcode 765 情侣牵手" height="28">
             
             </a>
         </div>
@@ -140,17 +140,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-04-19T06:49:57.000Z">2020-04-19</time>
+                <time class="level-item has-text-grey" datetime="2020-05-13T13:33:34.000Z">2020-05-13</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/算法练习/">算法练习</a>
+                <a class="has-link-grey -link" href="/categories/刷题/">刷题</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1467 个字)
+                    2 分钟 读完 (大约 369 个字)
                 </span>
                 
                 
@@ -159,46 +159,23 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Leetcode 动态规划
+                每日一题 leetcode 765 情侣牵手
             
         </h1>
         <div class="content">
-            <p>很多动态规划问题大致可以按照下面5个步骤取解释：<br>1、状态定义<br>2、状态转移方程<br>3、初始化<br>4、输出<br>5、思考状态压缩<br><a id="more"></a></p>
-<h2 id="动态规划原理"><a href="#动态规划原理" class="headerlink" title="动态规划原理"></a>动态规划原理</h2><p>都是把大问题拆分成小问题。寻找大问题和小问题的<strong>递推关系</strong>。解决一个个小问题，最终达到解决原问题的效果。动态规划有记忆性，填表把所有已经解决的子问题答案记录下来,在新问题里需要用到的子问题可以直接提取，避免了重复计算，从而节约了时间，所以在问题满足最优性原理之后，用动态规划解决问题的核心就在于填表，表填写完毕，最优解也就找到。</p>
-<h1 id="213-打家劫舍2"><a href="#213-打家劫舍2" class="headerlink" title="213 打家劫舍2"></a>213 打家劫舍2</h1><p>题目描述：房屋都围成一圈，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
-<p>解题思路：在<a href="https://leetcode-cn.com/problems/house-robber/" target="_blank" rel="noopener">打家劫舍1</a>的基础上，说给出的房子是环形排列首尾相接的。区别就是第一栋房子和最后一栋房子不能同时偷。只需要计算两种情况：</p>
-<ol>
-<li>不偷第一个，问题就是在后边n-1个房子可以偷的最大价值。</li>
-<li>不偷最后一个，问题就是在前边n-1个房子可以偷的最大价值。</li>
-</ol>
-<p>这样转换就没有首尾连接的约束了，可以直接采用上一题的解法。取两种情况的最大值<br><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-comment">//首尾之能选一个偷</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">rob</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//思想很简单，不偷第一家，就在后面n-1家里偷，不偷最后一家，就在前n-1家里偷</span></span><br><span class="line">        <span class="hljs-keyword">int</span> len=nums.size();</span><br><span class="line">        <span class="hljs-keyword">if</span>(len==<span class="hljs-number">0</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span>(len==<span class="hljs-number">1</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> ans1 = rob1(nums, <span class="hljs-number">0</span>, len<span class="hljs-number">-2</span>);</span><br><span class="line">        <span class="hljs-keyword">int</span> ans2 = rob1(nums, <span class="hljs-number">1</span>, len<span class="hljs-number">-1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> max(ans1,ans2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">rob1</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> pre=<span class="hljs-number">0</span>,prepre=<span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=l;i&lt;=r;i++)&#123;</span><br><span class="line">            ans = max(prepre+nums[i], pre);</span><br><span class="line">            prepre = pre;</span><br><span class="line">            pre = ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h1 id="213-打家劫舍3"><a href="#213-打家劫舍3" class="headerlink" title="213 打家劫舍3"></a>213 打家劫舍3</h1><p>题目描述：房屋成一个二叉树结构，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
-<p>解题思路：结点r，分为偷和不偷两种情况。</p>
-<p>偷r结点：左右儿子不能偷。最大价值等于不偷左儿子的最大价值+不偷右儿子的最大价值+r的价值</p>
-<p>不偷r节点： 最大价值等于<strong>偷或不偷</strong>左儿子的最大价值+<strong>偷或不偷</strong>右儿子的最大价值。</p>
-<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-keyword">typedef</span> pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; pii;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">rob</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// 可行窃地区是二叉树</span></span><br><span class="line">        <span class="hljs-keyword">if</span>(root==<span class="hljs-literal">nullptr</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        pii ans = helper(root);</span><br><span class="line">        <span class="hljs-keyword">return</span> max(ans.first, ans.second);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-comment">//偷r结点：左右儿子不能偷。最大价值等于不偷左儿子的最大价值+不偷右儿子的最大价值+r的价值</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//不偷r节点： 最大价值等于**偷或不偷**左儿子的最大价值+**偷或不偷**右儿子的最大价值。</span></span><br><span class="line">    <span class="hljs-function">pii <span class="hljs-title">helper</span><span class="hljs-params">(TreeNode* root)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(root==<span class="hljs-literal">nullptr</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> &#123;<span class="hljs-number">0</span>,<span class="hljs-number">0</span>&#125;;</span><br><span class="line">        <span class="hljs-comment">//helper 返回 偷 这个结点能取到的最大价值，还有 不偷 这个结点时能取到的最大价值</span></span><br><span class="line">        pii l = helper(root-&gt;left);</span><br><span class="line">        pii r = helper(root-&gt;right);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//偷</span></span><br><span class="line">        <span class="hljs-keyword">int</span> r0 = l.second+r.second+root-&gt;val;</span><br><span class="line">        <span class="hljs-comment">//不偷当前</span></span><br><span class="line">        <span class="hljs-keyword">int</span> r1 = max(l.first,l.second)+max(r.first,r.second);</span><br><span class="line">        <span class="hljs-keyword">return</span> make_pair(r0,r1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="72-编辑距离"><a href="#72-编辑距离" class="headerlink" title="72 编辑距离"></a>72 编辑距离</h1><p>题目描述：删除，修改，插入，把word1变成word2的最小编辑距离</p>
-<p>思路：动态规划，D[i][j]表示word1的前i个字母和word2的前j个之间的编辑距离。</p>
-<ul>
-<li><p><code>D[i][j-1]</code> 为 A 的前 i 个字符和 B 的前 j - 1 个字符编辑距离的子问题。即对于 B 的第 j 个字符，我们在 A 的末尾添加了一个相同的字符，那么 <code>D[i][j]</code>最小可以为 <code>D[i][j-1] + 1</code>；</p>
-</li>
-<li><p><code>D[i-1][j]</code> 为 A 的前 i - 1 个字符和 B 的前 j 个字符编辑距离的子问题。即对于 A 的第 i 个字符，我们在 B 的末尾添加了一个相同的字符，那么 <code>D[i][j]</code> 最小可以为 <code>D[i-1][j] + 1</code>；</p>
-</li>
-<li><p><code>D[i-1][j-1]</code> 为 A 前 i - 1 个字符和 B 的前 j - 1 个字符编辑距离的子问题。即对于 B 的第 j 个字符，我们修改 A 的第 i 个字符使它们相同，那么 <code>D[i][j]</code> 最小可以为 <code>D[i-1][j-1] + 1</code>。特别地，如果 A 的第 i 个字符和 B 的第 j 个字符原本就相同，那么我们实际上不需要进行修改操作。在这种情况下，<code>D[i][j]</code> 最小可以为 <code>D[i-1][j-1]</code>。</p>
-</li>
-</ul>
-<p>如果word1[i]==word2[j]:<br>$$<br>\begin{aligned} D[i][j] &amp;=\min (D[i][j-1]+1, D[i-1][j]+1, D[i-1][j-1]) \\ &amp;=1+\min (D[i][j-1], D[i-1][j], D[i-1][j-1]-1) \end{aligned}<br>$$<br>如果word1[i]!=word2[j]:<br>$$<br>D[i][j]=1+\min (D[i][j-1], D[i-1][j], D[i-1][j-1])<br>$$</p>
-<p><div align="center"><br>    <img src="/2020/04/19/leetcode-dp/edit-distance.png"><br></div><br><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minDistance</span><span class="hljs-params">(<span class="hljs-built_in">string</span> word1, <span class="hljs-built_in">string</span> word2)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> n = word1.length();</span><br><span class="line">    <span class="hljs-keyword">int</span> m = word2.length();</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 有一个字符串为空串</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (n * m == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> n + m;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// DP 数组</span></span><br><span class="line">    <span class="hljs-keyword">int</span> D[n + <span class="hljs-number">1</span>][m + <span class="hljs-number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 边界状态初始化</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n + <span class="hljs-number">1</span>; i++) &#123;</span><br><span class="line">        D[i][<span class="hljs-number">0</span>] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; m + <span class="hljs-number">1</span>; j++) &#123;</span><br><span class="line">        D[<span class="hljs-number">0</span>][j] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 计算所有 DP 值</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n + <span class="hljs-number">1</span>; i++) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt; m + <span class="hljs-number">1</span>; j++) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> left = D[i - <span class="hljs-number">1</span>][j] + <span class="hljs-number">1</span>;</span><br><span class="line">            <span class="hljs-keyword">int</span> down = D[i][j - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;</span><br><span class="line">            <span class="hljs-keyword">int</span> left_down = D[i - <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>];</span><br><span class="line">            <span class="hljs-keyword">if</span> (word1[i - <span class="hljs-number">1</span>] != word2[j - <span class="hljs-number">1</span>]) left_down += <span class="hljs-number">1</span>;</span><br><span class="line">            D[i][j] = min(left, min(down, left_down));</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> D[n][m];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="416-分割等和子集"><a href="#416-分割等和子集" class="headerlink" title="416 分割等和子集"></a>416 分割等和子集</h1><p>题目描述：给定一个只包含正整数的非空数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。<br>注意:<br>每个数组中的元素不会超过 100<br>数组的大小不会超过 200</p>
-<p>解题思路：</p>
-
+            <p><strong>题目描述</strong>：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。</p>
+<p>人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。</p>
+<p>这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上的人决定的。</p>
+<p><strong>解题</strong>：</p>
+<p>用贪心的方法解决比较方便，可以制定按顺序让每张沙发上情侣开心的策略。对于每张沙发，找到沙发上第一个人的情侣，如果不在同一个沙发上，就把沙发上的第二人换成第一个人的情侣。<br>如果一个人的编号为 x，那么他的情侣的编号为 <code>x ^ 1</code>， <code>^</code>在这里是异或操作。对于每张沙发上的第一个人 x = row[i]，找到他们的同伴所在的位置 row[j]，将 row[j] 和 row[i + 1] 互相交换。</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minSwapsCouples</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; row)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> len = row.size();</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len; i = i+<span class="hljs-number">2</span>)&#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> x = row[i];</span><br><span class="line">            <span class="hljs-keyword">if</span>(row[i+<span class="hljs-number">1</span>] == (x^<span class="hljs-number">1</span>))</span><br><span class="line">                <span class="hljs-keyword">continue</span>;</span><br><span class="line">             </span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i+<span class="hljs-number">2</span>;i&lt;len;j++)&#123;</span><br><span class="line">                <span class="hljs-keyword">if</span>(row[j]==(x^<span class="hljs-number">1</span>))&#123;</span><br><span class="line">                    row[j]=row[i+<span class="hljs-number">1</span>];</span><br><span class="line">                    row[i+<span class="hljs-number">1</span>]=x^<span class="hljs-number">1</span>;</span><br><span class="line">                    <span class="hljs-keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/leetcode/">leetcode</a>, <a class="has-link-grey -link" href="/tags/刷题/">刷题</a>
+                    <a class="has-link-grey -link" href="/tags/leetcode/">leetcode</a>
                 </div>
             </div>
         </div>
@@ -234,17 +211,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/04/23/design-pattern/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">设计模式</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/04/18/leetcode-tree/">
-                <span class="level-item">Leetcode 树</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/05/09/leetcode-bin-search/">
+                <span class="level-item">Leetcode 二分查找</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -800,7 +770,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Leetcode 动态规划" height="28">
+                    <img src="/images/logo.svg" alt="每日一题 leetcode 765 情侣牵手" height="28">
                 
                 </a>
                 <p class="is-size-7">

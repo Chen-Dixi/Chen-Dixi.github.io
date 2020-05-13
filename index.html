@@ -136,6 +136,55 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-13T13:33:34.000Z">2020-05-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/刷题/">刷题</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 369 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/05/13/leetcode-765/">每日一题 leetcode 765 情侣牵手</a>
+            
+        </h1>
+        <div class="content">
+            <p><strong>题目描述</strong>：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。</p>
+<p>人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。</p>
+<p>这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上的人决定的。</p>
+<p><strong>解题</strong>：</p>
+<p>用贪心的方法解决比较方便，可以制定按顺序让每张沙发上情侣开心的策略。对于每张沙发，找到沙发上第一个人的情侣，如果不在同一个沙发上，就把沙发上的第二人换成第一个人的情侣。<br>如果一个人的编号为 x，那么他的情侣的编号为 <code>x ^ 1</code>， <code>^</code>在这里是异或操作。对于每张沙发上的第一个人 x = row[i]，找到他们的同伴所在的位置 row[j]，将 row[j] 和 row[i + 1] 互相交换。</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minSwapsCouples</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; row)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> len = row.size();</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len; i = i+<span class="hljs-number">2</span>)&#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> x = row[i];</span><br><span class="line">            <span class="hljs-keyword">if</span>(row[i+<span class="hljs-number">1</span>] == (x^<span class="hljs-number">1</span>))</span><br><span class="line">                <span class="hljs-keyword">continue</span>;</span><br><span class="line">             </span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i+<span class="hljs-number">2</span>;i&lt;len;j++)&#123;</span><br><span class="line">                <span class="hljs-keyword">if</span>(row[j]==(x^<span class="hljs-number">1</span>))&#123;</span><br><span class="line">                    row[j]=row[i+<span class="hljs-number">1</span>];</span><br><span class="line">                    row[i+<span class="hljs-number">1</span>]=x^<span class="hljs-number">1</span>;</span><br><span class="line">                    <span class="hljs-keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-05-09T04:46:18.000Z">2020-05-09</time>
                 
                 <div class="level-item">
@@ -608,58 +657,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-04-29T13:15:06.000Z">2020-04-29</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/机器学习/">机器学习</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    14 分钟 读完 (大约 2029 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/04/29/anomaly-detection/">异常检测</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="异常检测"><a href="#异常检测" class="headerlink" title="异常检测"></a>异常检测</h1><p>异常检测(Anomaly detection)问题是机器学习算法的一个常见应用。这种算法的一个有趣之处在于：它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。<br>什么是异常检测呢？为了解释这个概念，让我举一个例子吧：</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/04/29/anomaly-detection/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -726,7 +723,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        28
+                        29
                     </p>
                 </div>
             </div>
@@ -736,7 +733,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        14
                     </p>
                 </div>
             </div>
@@ -813,6 +810,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/刷题/">
+            <span class="level-start">
+                <span class="level-item">刷题</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/开发/">
             <span class="level-start">
                 <span class="level-item">开发</span>
@@ -994,7 +999,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/leetcode/">
                         <span class="tag">leetcode</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
