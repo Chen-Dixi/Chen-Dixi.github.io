@@ -164,8 +164,8 @@
         </h1>
         <div class="content">
             <p>Open Set Domain Adaptation 论文列表:<a href="https://github.com/ChenJinBIT/OSDA" target="_blank" rel="noopener">ChenJinBIT/OSDA</a><br><a id="more"></a></p>
-<h1 id="论文题目：Open-Set-Domain-Adaptation"><a href="#论文题目：Open-Set-Domain-Adaptation" class="headerlink" title="论文题目：Open Set Domain Adaptation"></a>论文题目：Open Set Domain Adaptation</h1><p>会议期刊：ICCV2017</p>
-<h2 id="理论方法"><a href="#理论方法" class="headerlink" title="理论方法"></a>理论方法</h2><ol>
+<h1><span id="论文题目open-set-domain-adaptation">论文题目：Open Set Domain Adaptation</span></h1><p>会议期刊：ICCV2017</p>
+<h2><span id="理论方法">理论方法</span></h2><ol>
 <li>用线性规划问题，给每个目标域赋上标签（类别c或者unknown）<br>$$<br>\begin{array}{lll}{\underset{x_{c t}, o_{t}}{\operatorname{minimise}}} &amp; {\sum_{t}\left(\sum_{c} d_{c t} x_{c t}+\lambda o_{t}\right)} \\ {\text { subject to }} &amp; {\sum_{c} x_{c t}+o_{t}=1} &amp; {\forall t} \\ {} &amp; {\sum_{t} x_{c t} \geq 1} &amp; {\forall c} \\ {} &amp; {x_{c t}, o_{t} \in{0,1}} &amp; {\forall c, t}\end{array}<br>$$</li>
 </ol>
 <p>$x_{c t}$ 来标识，target domain中的第$t$ 个样本是否被标记为类别 $c$。同时，因为是个open set，所以，引入一个$o_{t}$ 来标识第 $t$ 个样本是否为未知类别(outlier;unknown)</p>
@@ -179,15 +179,15 @@
 <ol start="3">
 <li>用映射后的源域重新优化公式1，重复1到2步骤，即每迭代一次，源域样本就“靠近”或“近似”目标域一点。收敛之后在source数据 和 带标签目标域数据（如果有）上训练线性SVM</li>
 </ol>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>数据集Office31 ，82.9%</p>
+<h2><span id="实验">实验</span></h2><p>数据集Office31 ，82.9%</p>
 <div align="center"><br>    <img src="/2019/09/23/opensetReview/ATI-office.png"><br></div>
 
 <p>作者首先对比了现有的一些深度方法，比如DAN、RTN、BP，然后发现提出的方法不仅在open set，在close set上也很好。然后，提取深度特征后，又对比了TCA、GFK、SA、CORAL这几个方法，仍然是作者的方法好。 文章做了大量的实验，解释了很多open set下进行domain adaptation的规律</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>但是迭代式的方法，一会儿学assignment ，之后又学mapping，如此反复也很costly.准确率不知道能不能保证。迭代收敛后再用SVM</p>
-<h1 id="论文题目：Open-Set-Domain-Adaptation-by-Backpropagation"><a href="#论文题目：Open-Set-Domain-Adaptation-by-Backpropagation" class="headerlink" title="论文题目：Open Set Domain Adaptation by Backpropagation"></a>论文题目：Open Set Domain Adaptation by Backpropagation</h1><p>会议期刊：ECCV2018</p>
-<h2 id="理论方法-1"><a href="#理论方法-1" class="headerlink" title="理论方法"></a>理论方法</h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/openBP.png"><br></div><br>源域数据还是用来正常地训练Generator和分类器Classifier<br><br>对抗方法只用目标域数据，在unknown那一个分类上做交叉熵为t的对抗。generator让$p(y=K+1| Xt)$的概率远离t，classifier让$p(y = K+1 | Xt)$的概率靠近t。Xt的K+1概率在如果是t，则优化G时有可能会向两个方向滑落。能保证known样本往p=0方向走的道理是，该样本的前K个probability之和相对更高<br><br>$$<br>L_{a d v}\left(\boldsymbol{x}_{t}\right)=-t \log \left(p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)-(1-t) \log \left(1-p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)<br>$$<br><br>分类器目标就是尽可能将其目标域输入氛围未知类的概率接近t，特征提取器的目标将这个概率远离t<br><br>$$<br>\begin{array}{l}{\min _{C} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)+L_{a d v}\left(\boldsymbol{x}_{t}\right)} \\ {\min _{G} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)-L_{a d v}\left(\boldsymbol{x}_{t}\right)}\end{array}<br>$$<br><br><div align="center"><br>    <img src="/2019/09/23/opensetReview/.png"><br></div>
+<h2><span id="分析">分析</span></h2><p>但是迭代式的方法，一会儿学assignment ，之后又学mapping，如此反复也很costly.准确率不知道能不能保证。迭代收敛后再用SVM</p>
+<h1><span id="论文题目open-set-domain-adaptation-by-backpropagation">论文题目：Open Set Domain Adaptation by Backpropagation</span></h1><p>会议期刊：ECCV2018</p>
+<h2><span id="理论方法">理论方法</span></h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/openBP.png"><br></div><br>源域数据还是用来正常地训练Generator和分类器Classifier<br><br>对抗方法只用目标域数据，在unknown那一个分类上做交叉熵为t的对抗。generator让$p(y=K+1| Xt)$的概率远离t，classifier让$p(y = K+1 | Xt)$的概率靠近t。Xt的K+1概率在如果是t，则优化G时有可能会向两个方向滑落。能保证known样本往p=0方向走的道理是，该样本的前K个probability之和相对更高<br><br>$$<br>L_{a d v}\left(\boldsymbol{x}_{t}\right)=-t \log \left(p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)-(1-t) \log \left(1-p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)<br>$$<br><br>分类器目标就是尽可能将其目标域输入氛围未知类的概率接近t，特征提取器的目标将这个概率远离t<br><br>$$<br>\begin{array}{l}{\min _{C} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)+L_{a d v}\left(\boldsymbol{x}_{t}\right)} \\ {\min _{G} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)-L_{a d v}\left(\boldsymbol{x}_{t}\right)}\end{array}<br>$$<br><br><div align="center"><br>    <img src="/2019/09/23/opensetReview/.png"><br></div>
 
-<h2 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h2><ol>
+<h2><span id="实验">实验</span></h2><ol>
 <li>Office数据集</li>
 </ol>
 <p>不是在所有的指标上都高于之前的方法，A-W的适应上，OS，OS*比其他低，但是’ALL’比其他高，这说明现有的方法都倾向于把unknown识别为known上的某一个类别。<br>整体上效果都不是特别优秀，只有W-D之间达到了90+的accuracy</p>
@@ -204,16 +204,16 @@
 <p>在Open Set Recog(无domain shift)设定下，SVHN的unkown识别很差，fail in classifying unknown samples。因为generator已经不错了，是classifier没训练好，加上OSVM就好了</p>
 <div align="center"><br>    <img src="/2019/09/23/opensetReview/openBP-digits-opensetRecog.png"><br></div>
 
-<h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><p>当domain discrepancy太大的时候，或者，源域和目标域之间openess差别太大的时候(openess:proportion of unknown classes in the target domain)，会出现问题</p>
-<h1 id="论文题目：Learning-Factorized-Representations-for-Open-set-Domain-Adaptation"><a href="#论文题目：Learning-Factorized-Representations-for-Open-set-Domain-Adaptation" class="headerlink" title="论文题目：Learning Factorized Representations for Open-set Domain Adaptation"></a>论文题目：Learning Factorized Representations for Open-set Domain Adaptation</h1><p>会议期刊：ICLR2019</p>
-<h2 id="理论方法-2"><a href="#理论方法-2" class="headerlink" title="理论方法"></a>理论方法</h2><p>在子空间建模源域和目标域数据，<br>“tried to find a sub- space based on samples from known classes through learning a factorized representations.”—(KASE论文)</p>
+<h2><span id="分析">分析</span></h2><p>当domain discrepancy太大的时候，或者，源域和目标域之间openess差别太大的时候(openess:proportion of unknown classes in the target domain)，会出现问题</p>
+<h1><span id="论文题目learning-factorized-representations-for-open-set-domain-adaptation">论文题目：Learning Factorized Representations for Open-set Domain Adaptation</span></h1><p>会议期刊：ICLR2019</p>
+<h2><span id="理论方法">理论方法</span></h2><p>在子空间建模源域和目标域数据，<br>“tried to find a sub- space based on samples from known classes through learning a factorized representations.”—(KASE论文)</p>
 <p>基于假设，known class的source和target样本可以由共享的子空间生成，而目标target域中的unknown可以由一个private特有的子空间生成。目标域上的每个样本既用shared子空间，又用private子空间去处理，由此作为识别unknown样本的关键</p>
 <p>列出下面的式子，用数学方法逐个解出要求的变量，推倒过程详见论文</p>
 <div align="center"><br>    <img src="/2019/09/23/opensetReview/FRODA-equation.png"><br></div>
 
 <div align="center"><br>    <img src="/2019/09/23/opensetReview/FRODA-algo.png"><br></div>
 
-<h2 id="实验-2"><a href="#实验-2" class="headerlink" title="实验"></a>实验</h2><ol>
+<h2><span id="实验">实验</span></h2><ol>
 <li>BCIS: 40个物体分类，来自4个数据集，Bing Ca-ltech256，ImageNet，Sun。简称BCIS  。按照ATI论文中的方法，把这个数据集前10个当作known class。11, 12, · · · , 25 and 26, 27, · · · , 40作为unknown（省略以下其他细节）</li>
 </ol>
 <div align="center"><br>    <img src="/2019/09/23/opensetReview/FRODA-BCIS.png"><br></div>
@@ -223,14 +223,14 @@
 </ol>
 <div align="center"><br>    <img src="/2019/09/23/opensetReview/FRODA-office.png"><br></div>
 
-<h2 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h2><p>可以和更有效的分类器结合，比如说SVM，直接将SVM放到FRODA公式中运算</p>
+<h2><span id="分析">分析</span></h2><p>可以和更有效的分类器结合，比如说SVM，直接将SVM放到FRODA公式中运算</p>
 <p>实验还验证了不依赖imagenet的预训练信息是否有效，选出4个不在ImageNet中的类别当作unknow类别，做对比实验后验证可以”applies to truly never-seen-before classes”</p>
-<h1 id="论文题目：Universal-Domain-Adaptation"><a href="#论文题目：Universal-Domain-Adaptation" class="headerlink" title="论文题目：Universal-Domain-Adaptation"></a>论文题目：Universal-Domain-Adaptation</h1><p>会议期刊：CVPR2019</p>
-<h2 id="理论方法-3"><a href="#理论方法-3" class="headerlink" title="理论方法"></a>理论方法</h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/universalDA.png"><br></div>
+<h1><span id="论文题目universal-domain-adaptation">论文题目：Universal-Domain-Adaptation</span></h1><p>会议期刊：CVPR2019</p>
+<h2><span id="理论方法">理论方法</span></h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/universalDA.png"><br></div>
 
 <p>核心思想是利用可迁移性判据来找到两个领域中公共类别的数据，在这些数据中进行适配。<br>可迁移性判据由领域相似度与预测不确定度两部分共同构成：</p>
 <p>$$<br>\begin{aligned} w^{s} &amp;=\frac{H(\hat{\mathbf{y}})}{\log \left|C_{s}\right|}-\hat{d}^{\prime} \\ w^{t} &amp;=\hat{d}^{\prime}-\frac{H(\hat{\mathbf{y}})}{\log \left|C_{s}\right|} \end{aligned}<br>$$</p>
-<h2 id="实验效果"><a href="#实验效果" class="headerlink" title="实验效果"></a>实验效果</h2><table>
+<h2><span id="实验效果">实验效果</span></h2><table>
 <thead>
 <tr>
 <th>Office-Home</th>
@@ -250,9 +250,9 @@
 </table>
 <div align="center"><br>    <img src="/2019/09/23/opensetReview/universalDA-experiment.png"><br></div>
 
-<h2 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h2><p>缺点和问题：和KASE同样用到了熵这个方法来设计权值，这个权值并不是很合理，无标注目标域里面有很多unknone的样本和源域known类别相似，构造的权值可能并没有很好地达到目的</p>
-<h1 id="论文题目：Known-class-Aware-Self-ensemble-for-Open-Set-Domain-Adaptation-KASE"><a href="#论文题目：Known-class-Aware-Self-ensemble-for-Open-Set-Domain-Adaptation-KASE" class="headerlink" title="论文题目：Known-class Aware Self-ensemble for Open Set Domain Adaptation (KASE)"></a>论文题目：Known-class Aware Self-ensemble for Open Set Domain Adaptation (KASE)</h1><p>会议期刊：暂时Arxiv</p>
-<h2 id="理论方法-4"><a href="#理论方法-4" class="headerlink" title="理论方法"></a>理论方法</h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/KASE.png"><br></div>
+<h2><span id="分析">分析</span></h2><p>缺点和问题：和KASE同样用到了熵这个方法来设计权值，这个权值并不是很合理，无标注目标域里面有很多unknone的样本和源域known类别相似，构造的权值可能并没有很好地达到目的</p>
+<h1><span id="论文题目known-class-aware-self-ensemble-for-open-set-domain-adaptation-kase">论文题目：Known-class Aware Self-ensemble for Open Set Domain Adaptation (KASE)</span></h1><p>会议期刊：暂时Arxiv</p>
+<h2><span id="理论方法">理论方法</span></h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/KASE.png"><br></div>
 
 <p>KAR+KAA 模块 ，用KAR和KAA改进self-ensemble模型</p>
 <ol>
@@ -268,7 +268,7 @@
 </ol>
 <p>$$<br>w_{i}=\exp \left(-\frac{1}{C} \sum_{k=1}^{C} f_{k}\left(\mathbf{x}_{i}^{t}\right) \log f_{k}\left(\mathbf{x}_{i}^{t}\right)\right)<br>$$</p>
 <p>$$<br>\mathcal{L}_{U}=\sum_{i=1}^{n_{t}} w_{i}\left(f\left(\mathbf{x}_{i}^{t}\right)-g\left(\mathbf{x}_{i}^{t}\right)\right)^{2}<br>$$</p>
-<h2 id="实验-3"><a href="#实验-3" class="headerlink" title="实验"></a>实验</h2><p>数据集：Digits，Syn2Real(VisDA2018-openset)，Office-31 </p>
+<h2><span id="实验">实验</span></h2><p>数据集：Digits，Syn2Real(VisDA2018-openset)，Office-31 </p>
 <ol>
 <li>visDA2018-open数据集上有12个known（源域和目标域都有的）类别，openBP在这上面表现不好可能是因为目标域上极度不均衡的数据。相比于SE模型，这个KASE方法在引入KAR模块后，平均准确率从65.3%提升到67.9%，加入KAA后提升到70.2%。在visDA2018比赛上，测试集上的mAcc达到68%~69%的平均准确率</li>
 </ol>
@@ -391,7 +391,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -411,7 +411,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -499,7 +499,7 @@
                 <span class="level-item">开发技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库/">
@@ -613,6 +613,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
                         <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -850,79 +857,79 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#论文题目：Open-Set-Domain-Adaptation">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>论文题目：Open Set Domain Adaptation</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#理论方法">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>理论方法</span>
         </a></li><li>
-        <a class="is-flex" href="#实验">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>实验</span>
         </a></li><li>
-        <a class="is-flex" href="#分析">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.3</span>
         <span>分析</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#论文题目：Open-Set-Domain-Adaptation-by-Backpropagation">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2</span>
         <span>论文题目：Open Set Domain Adaptation by Backpropagation</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#理论方法-1">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2.1</span>
         <span>理论方法</span>
         </a></li><li>
-        <a class="is-flex" href="#实验-1">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2.2</span>
         <span>实验</span>
         </a></li><li>
-        <a class="is-flex" href="#分析-1">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2.3</span>
         <span>分析</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#论文题目：Learning-Factorized-Representations-for-Open-set-Domain-Adaptation">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3</span>
         <span>论文题目：Learning Factorized Representations for Open-set Domain Adaptation</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#理论方法-2">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3.1</span>
         <span>理论方法</span>
         </a></li><li>
-        <a class="is-flex" href="#实验-2">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3.2</span>
         <span>实验</span>
         </a></li><li>
-        <a class="is-flex" href="#分析-2">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3.3</span>
         <span>分析</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#论文题目：Universal-Domain-Adaptation">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">4</span>
         <span>论文题目：Universal-Domain-Adaptation</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#理论方法-3">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">4.1</span>
         <span>理论方法</span>
         </a></li><li>
-        <a class="is-flex" href="#实验效果">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">4.2</span>
         <span>实验效果</span>
         </a></li><li>
-        <a class="is-flex" href="#分析-3">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">4.3</span>
         <span>分析</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#论文题目：Known-class-Aware-Self-ensemble-for-Open-Set-Domain-Adaptation-KASE">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5</span>
         <span>论文题目：Known-class Aware Self-ensemble for Open Set Domain Adaptation (KASE)</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#理论方法-4">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5.1</span>
         <span>理论方法</span>
         </a></li><li>
-        <a class="is-flex" href="#实验-3">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5.2</span>
         <span>实验</span>
         </a></li></ul></li></ul>

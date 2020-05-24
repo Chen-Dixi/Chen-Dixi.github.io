@@ -167,7 +167,7 @@
             
         </h1>
         <div class="content">
-            <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><a id="more"></a>
+            <h1><span id="反射">反射</span></h1><a id="more"></a>
 <p>每个类都有一个Class对象，包含了与类有关的信息。编译一个新类时，会产生一个同名的.class文件，文件内容保存着有Class对象。这是个二进制文件，在idea里面打开的时候看到的内容是idea反编译出来的。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Get</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//获取反射机制三种方式</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//方式一(通过建立对象)</span></span><br><span class="line">        Student stu = <span class="hljs-keyword">new</span> Student();</span><br><span class="line">        Class classobj1 = stu.getClass();</span><br><span class="line">        System.out.println(classobj1.getName());</span><br><span class="line">        <span class="hljs-comment">//方式二（所在通过路径-相对路径）</span></span><br><span class="line">        Class classobj2 = Class.forName(<span class="hljs-string">"dixi.bupt.reflect.Student"</span>);</span><br><span class="line">        System.out.println(classobj2.getName());</span><br><span class="line">        <span class="hljs-comment">//方式三（通过类名）</span></span><br><span class="line">        Class classobj3 = Student.class;</span><br><span class="line">        System.out.println(classobj3.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Class和java.lang.reflect一起对反射提供支持，java.lang.reflect类库包含以下三个类：</p>
@@ -280,7 +280,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -300,7 +300,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -388,7 +388,7 @@
                 <span class="level-item">开发技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库/">
@@ -502,6 +502,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
                         <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -739,7 +746,7 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#反射">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>反射</span>
         </a></li></ul>

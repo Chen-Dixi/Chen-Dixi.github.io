@@ -165,7 +165,7 @@
         <div class="content">
             <div align="center"><br>    <img src="/2019/05/20/DeepCockTail/example.png"><br></div>
 
-<h4 id="Problem-Setup"><a href="#Problem-Setup" class="headerlink" title="Problem Setup"></a>Problem Setup</h4><ul>
+<h4><span id="problem-setup">Problem Setup</span></h4><ul>
 <li>Category Shift<br>N个源域<br>$$\{\left(X_{s_{j}},Y_{s_{j}}\right)\}_{j=1}^{N}$$<a id="more"></a>
 </li>
 </ul>
@@ -174,10 +174,10 @@
 <p>源域之间并不是有同样的分类数量：<br>$$\mathcal{C}_{s_{j_1}}\cap\mathcal{C}_{S_{j_2}}\subseteq \mathcal{C}_{s_{j_{1}}} \cup \mathcal{C}_{s_{j_{2}}}$$</p>
 <p>目标域分别和N个源域的混淆分数：<br>$${\mathcal{S}_{cf}(x^{t},F,D_{s}) }$$</p>
 <p>$$<br>\mathcal{S}_{cf}\left(x^{t} ; F, D_{s_{j}}\right)=-\log \left(1-D_{s_{j}}\left(F\left(x^{t}\right)\right)\right)+\alpha_{s_{j}}<br>$$<br>目标域分类器中，目标域数据xt属于类别c的置信度是：<br>$$<br>\sum_{c \in \mathcal{C}_{s_{j}}} \frac{\mathcal{S}_{c f}\left(x^{t} ; F, D_{s_{j}}\right)}{\sum_{c \in \mathcal{C}_{s_{k}}} \mathcal{S}_{c f}\left(x^{t} ; F, D_{s_{k}}\right)} C_{s_{j}}\left(c | F\left(x^{t}\right)\right)<br>$$</p>
-<h3 id="Learning学习过程"><a href="#Learning学习过程" class="headerlink" title="Learning学习过程"></a>Learning学习过程</h3><ul>
+<h3><span id="learning学习过程">Learning学习过程</span></h3><ul>
 <li>多路对抗适应<br>第一步first stage：<br>$$<br>\min _{F} \max _{D} V(F, D ; \overline{C})=\mathcal{L}_{a d v}(F, D)+\mathcal{L}_{c l s}(F, \overline{C})<br>$$<br>where<br>$$<br>\begin{array}{c}{\mathcal{L}_{a d v}(F, D)=\frac{1}{N} \sum_{j}^{N} \mathbb{E}_{x \sim X_{s_{j}}}\left[\log D_{s_{j}}(F(x))\right]} \\ {+\mathbb{E}_{x^{t} \sim X_{t}}\left[\log \left(1-D_{s_{j}}\left(F\left(x^{t}\right)\right)\right)\right]}\end{array}<br>$$</li>
 </ul>
-<h4 id="自构建数据集：Digit-five"><a href="#自构建数据集：Digit-five" class="headerlink" title="自构建数据集：Digit-five"></a>自构建数据集：Digit-five</h4><h4 id="PaperWeekly"><a href="#PaperWeekly" class="headerlink" title="PaperWeekly"></a>PaperWeekly</h4><blockquote>
+<h4><span id="自构建数据集digit-five">自构建数据集：Digit-five</span></h4><h4><span id="paperweekly">PaperWeekly</span></h4><blockquote>
 <p>为满足多源分布结合律，我们提出 Deep CockTail Network（鸡尾酒网络 DCTN）。在图 2 的具体数据流中，我们利用共享特征网络对所有源域以及目标域进行特征建模，然后利用多路对抗域适应技术（基于单路对抗域适应（adversarial domain adaptation）下的扩展，对抗域适应的共享特征网络对应于生成对抗学习 (GAN) 里面的生成器），每个源域分别与目标域进行两两组合对抗学习域不变特征。同时每个源域也分别进行监督学习，训练基于不同源类别下的多个 softmax 分类器。注意到，基于对抗学习的建模，我们在得到共享特征网络的同时，也可以得到多个源分别和目标域对抗的判别器。<u>这些判别器在对于目标域的数据，可以分别给出与每一个源域之间的混淆分数（perplexity score）去衡量该源域与目标域之间的相似性</u>。因此，对于每一个来自目标域的数据，我们首先利用不同源下的 softmax 分类器给出其多个分类结果。然后，基于每一个类别，我们找到包含该类别的所有源域 softmax 分类概率，再基于这些源域与目标域的混淆分数，对分类概率取加权平均得到每个类别的分数。简而言之就是，越跟目标域相识的源域混淆度会更高，意味着其分类结果更可信从而具有更高的加权权值。需要注意的是，我们并没有直接作用于所有 softmax 分类器上反而是基于每个类别分别进行加权平均处理。这是因为在我们的假设下，每个源的类别不一定共享，从而 softmax 结果不能简单相加。当然，我们的方法也适用于所有源共享类别的情况，这样我们的公式会等价于直接将 softmax 分类结果进行加权相加。</p>
 </blockquote>
 
@@ -287,7 +287,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -307,7 +307,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -395,7 +395,7 @@
                 <span class="level-item">开发技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库/">
@@ -509,6 +509,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
                         <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

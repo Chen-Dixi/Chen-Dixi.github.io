@@ -166,7 +166,7 @@
             <p>论文题目：<a href="http://pengcui.thumedialab.com/papers/VANER.pdf" target="_blank" rel="noopener">Learning to learn image classifiers with visual analogy</a></p>
 <p>会议期刊：CVPR2019<br><a id="more"></a></p>
 <p>介绍的两个方法，大致framework都是，维护一个结构反应不同class之间的某种关系()</p>
-<h1 id="VAGER：Visual-Ananolgy-Graph-Embedded-Regression-model"><a href="#VAGER：Visual-Ananolgy-Graph-Embedded-Regression-model" class="headerlink" title="VAGER：Visual Ananolgy Graph Embedded Regression model"></a>VAGER：Visual Ananolgy Graph Embedded Regression model</h1><p>一个人学习认识狗会需要非常多的training data，但这个人当学习认识狼的时候，学习的速度就会加速。所以人学习会有一个common sense，就是说人学习的知识越多，再学习新的，相关的知识或者概念速度就会越快。</p>
+<h1><span id="vagervisual-ananolgy-graph-embedded-regression-model">VAGER：Visual Ananolgy Graph Embedded Regression model</span></h1><p>一个人学习认识狗会需要非常多的training data，但这个人当学习认识狼的时候，学习的速度就会加速。所以人学习会有一个common sense，就是说人学习的知识越多，再学习新的，相关的知识或者概念速度就会越快。</p>
 <p>本文作者从这点出发重新定义了visual learning的问题。我们知道人学习新的概念之前会有一些base classes已经掌握，那么人会基于basic data和已经学习到的模型，进而泛化完成学习新概念的任务。</p>
 <p>学习概念跟很多领域相关，本文作者想摒弃前人总结的各种复杂的学习机制，探索一种更加符合学习人直觉的学习方法</p>
 <div align="center"><br>    <img src="/2019/11/03/analogy/fig1.png"><br></div>
@@ -187,11 +187,11 @@
 <ul>
 <li>类推 体现在，嵌入空间$\mathbf{V} \in \mathbb{R}^{n\times q}$保留视觉类比结构($\beta\left|\mathbf{A}-\mathbf{V} \mathbf{V}^{\top}\right|_{F}^{2}$做的约束)，线性映射$\mathbf{T} \in \mathbb{R}^{q \times p}$收集起到类推分类器作用</li>
 </ul>
-<h1 id="Unsupervised-Open-Domain-Recognition-by-Semantic-Discrepancy-Minimization"><a href="#Unsupervised-Open-Domain-Recognition-by-Semantic-Discrepancy-Minimization" class="headerlink" title="Unsupervised Open Domain Recognition by Semantic Discrepancy Minimization"></a>Unsupervised Open Domain Recognition by Semantic Discrepancy Minimization</h1><p>模型网络：UODR  Github开源:<a href="https://github.com/junbaoZHUO/UODTN" target="_blank" rel="noopener">junbaoZHUO / UODTN</a></p>
+<h1><span id="unsupervised-open-domain-recognition-by-semantic-discrepancy-minimization">Unsupervised Open Domain Recognition by Semantic Discrepancy Minimization</span></h1><p>模型网络：UODR  Github开源:<a href="https://github.com/junbaoZHUO/UODTN" target="_blank" rel="noopener">junbaoZHUO / UODTN</a></p>
 <div align="center"><br>    <img src="/2019/11/03/analogy/open-transfer.png"><br></div>
 
 <p>目标是对目标域的所有实例进行分类，有点像zero-shot learning。但是generalized ZSL假设数据来自同一个域，没有domain discrepancy</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><ul>
+<h2><span id="method">Method</span></h2><ul>
 <li>GCN产生unknown的语义embedding，分类器网络用这些embedding初始化</li>
 <li>进一步缩小semantic-guided matching discrepancy</li>
 <li>用平衡约束和GCN结合缩小化semantic discrepancy</li>
@@ -206,7 +206,7 @@
 
 
 
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>无监督Open Domain Recognition很难，因为有很大的语义差异：</p>
+<h2><span id="conclusion">Conclusion</span></h2><p>无监督Open Domain Recognition很难，因为有很大的语义差异：</p>
 <ol>
 <li>从分布和内容content角度，两个域都有很大不同差异，很大discrepancy</li>
 <li>unknown到known类别的 语义偏移，semantic shift（这列semantic shift具体什么鬼？）</li>
@@ -323,7 +323,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -343,7 +343,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -431,7 +431,7 @@
                 <span class="level-item">开发技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库/">
@@ -545,6 +545,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
                         <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -782,19 +789,19 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#VAGER：Visual-Ananolgy-Graph-Embedded-Regression-model">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>VAGER：Visual Ananolgy Graph Embedded Regression model</span>
         </a></li><li>
-        <a class="is-flex" href="#Unsupervised-Open-Domain-Recognition-by-Semantic-Discrepancy-Minimization">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2</span>
         <span>Unsupervised Open Domain Recognition by Semantic Discrepancy Minimization</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#Method">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2.1</span>
         <span>Method</span>
         </a></li><li>
-        <a class="is-flex" href="#Conclusion">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2.2</span>
         <span>Conclusion</span>
         </a></li></ul></li></ul>

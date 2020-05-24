@@ -167,14 +167,14 @@
             
         </h1>
         <div class="content">
-            <h3 id="一-Domain-Adaptation"><a href="#一-Domain-Adaptation" class="headerlink" title="一 Domain Adaptation"></a>一 Domain Adaptation</h3><ul>
+            <h3><span id="一-domain-adaptation">一 Domain Adaptation</span></h3><ul>
 <li>计算机视觉中的一个重要问题</li>
 <li><a href="http://openaccess.thecvf.com/CVPR2019.py" target="_blank" rel="noopener">CVPR2019</a>的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇<a id="more"></a>
 </li>
 </ul>
-<h3 id="二-研究价值"><a href="#二-研究价值" class="headerlink" title="二 研究价值"></a>二 研究价值</h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/application.png"><br></div>
+<h3><span id="二-研究价值">二 研究价值</span></h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/application.png"><br></div>
 
-<h3 id="三-领域自适应问题形式化"><a href="#三-领域自适应问题形式化" class="headerlink" title="三 领域自适应问题形式化"></a>三 领域自适应问题形式化</h3><ul>
+<h3><span id="三-领域自适应问题形式化">三 领域自适应问题形式化</span></h3><ul>
 <li>Domain Adaptation ;同构迁移学习,迁移学习中和计算机视觉交叉的方法<br><strong>有标签的源域和无标签的目标域共享相同的特征和类别，但是特征分布不同</strong></li>
 </ul>
 <p>$$<br>\mathcal{D}_{S}\neq\mathcal{D}_{T} : P_{S}(X) \neq P_{T}(X)<br>$$</p>
@@ -197,7 +197,7 @@
 </ul>
 <div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/DAType.png"><br></div>
 
-<h3 id="四-领域自适应理论"><a href="#四-领域自适应理论" class="headerlink" title="四 领域自适应理论"></a>四 领域自适应理论</h3><ul>
+<h3><span id="四-领域自适应理论">四 领域自适应理论</span></h3><ul>
 <li><a href="https://papers.nips.cc/paper/2983-analysis-of-representations-for-domain-adaptation" target="_blank" rel="noopener">Analysis of Representations for Domain Adaptation, Ben-David, 2006</a><br>提出了$\mathcal{H} \Delta \mathcal{H} \text { -divergence }$作为传统分布差异的替代衡量式子，克服了从有限样本估计差异的困难。</li>
 </ul>
 <ul>
@@ -218,9 +218,9 @@
 </li>
 </ul>
 <p>域适应其中一个思想方法是，在一个联合子空间上把源域和目标域的差距Gap减小。这样在源域上训练出的分类器也能很好地迁移到目标域。这篇文章提供了严密的框架来解释为什么可以在联合公共空间缩小<code>源域</code>和<code>目标域</code>的差距。更确切地，研究迁移过程中产生的损失，提供了理论来解释和概括现有主要凭经验的深度域适应工作。能够让我们解释，为什么缩小<code>源域</code>和<code>目标域</code>的差距能直接最小化迁移学习的损失<code>loss</code>。</p>
-<h3 id="五-方法概览"><a href="#五-方法概览" class="headerlink" title="五 方法概览"></a>五 方法概览</h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/methodOverview.png"><br></div>
+<h3><span id="五-方法概览">五 方法概览</span></h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/methodOverview.png"><br></div>
 
-<h4 id="5-1-概率分布适配法"><a href="#5-1-概率分布适配法" class="headerlink" title="5.1 概率分布适配法"></a>5.1 概率分布适配法</h4><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/distributionAdaptation.png"><br></div>
+<h4><span id="51-概率分布适配法">5.1 概率分布适配法</span></h4><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/distributionAdaptation.png"><br></div>
 
 <ul>
 <li>边缘分布适配<ul>
@@ -268,7 +268,7 @@
 <p> <strong>概率分布适配法总结</strong></p>
 <div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/distributionSummary.png"><br></div>
 
-<h4 id="5-2-特征选择法"><a href="#5-2-特征选择法" class="headerlink" title="5.2 特征选择法"></a>5.2 特征选择法</h4><p>从源域和目标域中选择提取共享的特征，建立统一模型</p>
+<h4><span id="52-特征选择法">5.2 特征选择法</span></h4><p>从源域和目标域中选择提取共享的特征，建立统一模型</p>
 <ul>
 <li>Structural Correspondence Learning (SCL) [Blitzer, ECML-06]<br>假设源域和目标域有一些特征可以找出来对齐，把这些feature叫做pivot feature.</li>
 </ul>
@@ -279,7 +279,7 @@
 <li>通常和分布适配进行结合，选择特征通常利用稀疏矩阵。</li>
 <li>没有单独非常出色的工作，除了上面的一个。</li>
 </ul>
-<h4 id="5-3-子空间学习法"><a href="#5-3-子空间学习法" class="headerlink" title="5.3 子空间学习法"></a>5.3 子空间学习法</h4><ul>
+<h4><span id="53-子空间学习法">5.3 子空间学习法</span></h4><ul>
 <li>将源域和目标域变换到相同的子空间，然后建立统一的模型<ul>
 <li>统计特征变换 (Statistical Feature Transformation)<br> 将源域和目标域的一些统计特征进行变换对齐<div align="center"><br><img src="/2019/06/23/domainAdaptionLiteratureReview/subspace1.png"><br></div><br><div align="center"><br><img src="/2019/06/23/domainAdaptionLiteratureReview/subspace2.png"><br></div>
 
@@ -287,7 +287,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="5-4-一些的新方法"><a href="#5-4-一些的新方法" class="headerlink" title="5.4 一些的新方法"></a>5.4 一些的新方法</h4><ul>
+<h4><span id="54-一些的新方法">5.4 一些的新方法</span></h4><ul>
 <li>与深度学习结合<br>比如上面的<a href="https://arxiv.org/abs/1607.01719" target="_blank" rel="noopener">Deep Coral</a></li>
 </ul>
 <div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/deep-coral.png"><br></div>
@@ -412,7 +412,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -432,7 +432,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -520,7 +520,7 @@
                 <span class="level-item">开发技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库/">
@@ -634,6 +634,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
                         <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -871,39 +878,39 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#一-Domain-Adaptation">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>一 Domain Adaptation</span>
         </a></li><li>
-        <a class="is-flex" href="#二-研究价值">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2</span>
         <span>二 研究价值</span>
         </a></li><li>
-        <a class="is-flex" href="#三-领域自适应问题形式化">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3</span>
         <span>三 领域自适应问题形式化</span>
         </a></li><li>
-        <a class="is-flex" href="#四-领域自适应理论">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">4</span>
         <span>四 领域自适应理论</span>
         </a></li><li>
-        <a class="is-flex" href="#五-方法概览">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5</span>
         <span>五 方法概览</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#5-1-概率分布适配法">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5.1</span>
         <span>5.1 概率分布适配法</span>
         </a></li><li>
-        <a class="is-flex" href="#5-2-特征选择法">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5.2</span>
         <span>5.2 特征选择法</span>
         </a></li><li>
-        <a class="is-flex" href="#5-3-子空间学习法">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5.3</span>
         <span>5.3 子空间学习法</span>
         </a></li><li>
-        <a class="is-flex" href="#5-4-一些的新方法">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5.4</span>
         <span>5.4 一些的新方法</span>
         </a></li></ul></li></ul>

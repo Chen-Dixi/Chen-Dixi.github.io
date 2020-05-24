@@ -166,10 +166,10 @@
             <p>论文题目：Detach and Adapt: Learning Cross-Domain Disentangled Deep Representation<br><a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Liu_Detach_and_Adapt_CVPR_2018_paper.pdf" target="_blank" rel="noopener">[CVPR 2018 spotlight]</a> | Code:<a href="https://github.com/ycliu93/CDRD" target="_blank" rel="noopener">[Github]</a> | Present Video:<a href="https://www.youtube.com/watch?v=sIkUzmgUaxc&amp;feature=youtu.be&amp;t=4148" target="_blank" rel="noopener">[CVPR]</a></p>
 <a id="more"></a>
 <p>论文里面要做的就是跨域的特征解藕。<br>表示学习或特征学习的目的是对视觉数据得到可判断的特征，特征解藕就是进一步挖掘特征，使得可以定位和控制到图像某个特定属性。没有标签数据的话是很难做到特征解藕这一步的，所以论文提出的<code>Cross-Domain Representation Disentangler</code>用全部带标签的源域数据(fully annotated source-domain)和无标签的目标域数据(unlabeled target-domain)，把横跨在两个域当中的信息桥接起来，并由此迁移属性信息。由此，跨域的特征解藕和<code>adaptation</code>可以共同进行。这种特征解藕可以应用在无监督领域自适应中(UDA)。</p>
-<h1 id="特征解藕"><a href="#特征解藕" class="headerlink" title="特征解藕"></a>特征解藕</h1><p>特征解藕要做的就是把特征拆分成出一个隐含特征空间，让我们能定位和描述一些我们更加关注的特别属性，比如：脸所代表人的身份，脸做出的表情，图片的风格，等等，etc。不同的场景设置下都有很多特征解藕的工作被提出，无监督unsupervised，半监督semi-supervised和完全监督fully-supervised。</p>
-<h2 id="论文处理的问题："><a href="#论文处理的问题：" class="headerlink" title="论文处理的问题："></a>论文处理的问题：</h2><p>模型经过training data训练后，虽然可以特征解藕了，但是当遇到跨域的数据，和training data差别很大的数据时，效果又不好了。这和大多数的机器学习问题差不多。这种问题称作<code>domain shift</code>。处理这个问题就需要迁移学习的优势和领域自适应技术。借助一个事先就收集过标签的一组数据当作<code>源域</code>，然后把我们关心的无标签数据当作目标域。</p>
+<h1><span id="特征解藕">特征解藕</span></h1><p>特征解藕要做的就是把特征拆分成出一个隐含特征空间，让我们能定位和描述一些我们更加关注的特别属性，比如：脸所代表人的身份，脸做出的表情，图片的风格，等等，etc。不同的场景设置下都有很多特征解藕的工作被提出，无监督unsupervised，半监督semi-supervised和完全监督fully-supervised。</p>
+<h2><span id="论文处理的问题">论文处理的问题：</span></h2><p>模型经过training data训练后，虽然可以特征解藕了，但是当遇到跨域的数据，和training data差别很大的数据时，效果又不好了。这和大多数的机器学习问题差不多。这种问题称作<code>domain shift</code>。处理这个问题就需要迁移学习的优势和领域自适应技术。借助一个事先就收集过标签的一组数据当作<code>源域</code>，然后把我们关心的无标签数据当作目标域。</p>
 <p>例子：要做人脸表情的特征解藕工作，把标记了情感的人脸图片数据集当作<code>源域</code>$X_{S}$。把没有情绪标记的<code>素描风格</code>人脸图片当作<code>目标域</code>$X_{T}$。此时跨域特征解藕工作的目标就是通过观察$X_{S}$和$X_{T}$来辨别出和情绪有关的隐含特征。</p>
-<h1 id="CDRD"><a href="#CDRD" class="headerlink" title="CDRD"></a>CDRD</h1><p>基于GAN的神经网络模型，我们提出的网络模型观察cross-domain的数据做特征解藕，这个可以被当作一个新的学习任务：在无监督设置下同时做<code>domain adaptation</code>和<code>representation disentanglement</code>。实验结果进一步表明，提取的特征能够同时用来描述<code>源域</code>和<code>目标域</code>，目标域上的分类效果也有提升。</p>
+<h1><span id="cdrd">CDRD</span></h1><p>基于GAN的神经网络模型，我们提出的网络模型观察cross-domain的数据做特征解藕，这个可以被当作一个新的学习任务：在无监督设置下同时做<code>domain adaptation</code>和<code>representation disentanglement</code>。实验结果进一步表明，提取的特征能够同时用来描述<code>源域</code>和<code>目标域</code>，目标域上的分类效果也有提升。</p>
 
         </div>
         
@@ -277,7 +277,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -297,7 +297,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -385,7 +385,7 @@
                 <span class="level-item">开发技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库/">
@@ -499,6 +499,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
                         <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

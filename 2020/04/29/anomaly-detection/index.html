@@ -163,7 +163,7 @@
             
         </h1>
         <div class="content">
-            <h1 id="异常检测"><a href="#异常检测" class="headerlink" title="异常检测"></a>异常检测</h1><p>异常检测(Anomaly detection)问题是机器学习算法的一个常见应用。这种算法的一个有趣之处在于：它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。<br>什么是异常检测呢？为了解释这个概念，让我举一个例子吧：</p>
+            <h1><span id="异常检测">异常检测</span></h1><p>异常检测(Anomaly detection)问题是机器学习算法的一个常见应用。这种算法的一个有趣之处在于：它虽然主要用于非监督学习问题，但从某些角度看，它又类似于一些监督学习问题。<br>什么是异常检测呢？为了解释这个概念，让我举一个例子吧：</p>
 <a id="more"></a>
 <p>假想你是一个飞机引擎制造商，当你生产的飞机引擎从生产线上流出时，你需要进行QA(质量控制测试)，而作为这个测试的一部分，你测量了飞机引擎的一些特征变量，比如引擎运转时产生的热量，或者引擎的振动等等。</p>
 <div align="center"><br><img src="https://s1.ax1x.com/2020/05/13/YdkTjU.png" alt><br></div>
@@ -175,7 +175,7 @@
 <p>给定数据集 x^(1), x^(2) ,..,x^(m)，我们假使数据集是正常的，我们希望知道新的数据  是不是异常的，即这个测试数据不属于该组数据的几率如何。我们所构建的模型应该能根据该测试数据的位置告诉我们其属于一组数据的可能性 p(x)。</p>
 <div align="center"><br><img src="https://s1.ax1x.com/2020/05/13/YdAe8P.png" alt><br></div>
 
-<h1 id="异常检测算法"><a href="#异常检测算法" class="headerlink" title="异常检测算法"></a>异常检测算法</h1><h2 id="基于高斯分布建立异常检测算法"><a href="#基于高斯分布建立异常检测算法" class="headerlink" title="基于高斯分布建立异常检测算法"></a>基于高斯分布建立异常检测算法</h2><p>用数据集建立起一个概率模型，<code>p(x)</code>，试图解决哪些特征量出现得比较高，哪些特征量出现得比较低，因此x就会是一个向量。</p>
+<h1><span id="异常检测算法">异常检测算法</span></h1><h2><span id="基于高斯分布建立异常检测算法">基于高斯分布建立异常检测算法</span></h2><p>用数据集建立起一个概率模型，<code>p(x)</code>，试图解决哪些特征量出现得比较高，哪些特征量出现得比较低，因此x就会是一个向量。</p>
 <p><code>x_{1}</code>到<code>x_{n}</code>上的一个独立假设，向量里n个分量各自服从独立正态分布。</p>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdA3Us.png" alt><br></div>
 
@@ -188,13 +188,13 @@
 </ol>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdAwb4.png" alt><br></div>
 
-<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>将数据转换成高斯分布</p>
+<h2><span id="特征选择">特征选择</span></h2><p>将数据转换成高斯分布</p>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdA68x.png" alt><br></div>
 
 <p>特征组合，比如计算机状况的例子中，用CPU负载与网络通信量的比例作为一个新的特征，如果该值异常地大，便有可能意味着该服务器是陷入了一些问题中。</p>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdA4VH.png" alt><br></div>
 
-<h2 id="多元高斯分布"><a href="#多元高斯分布" class="headerlink" title="多元高斯分布"></a>多元高斯分布</h2><p>假使我们有两个相关的特征，而且这两个特征的值域范围比较宽，这种情况下，一般的高斯分布模型可能不能很好地识别异常数据。其原因在于，一般的高斯分布模型尝试的是去同时抓住两个特征的偏差，因此创造出一个比较大的判定边界。</p>
+<h2><span id="多元高斯分布">多元高斯分布</span></h2><p>假使我们有两个相关的特征，而且这两个特征的值域范围比较宽，这种情况下，一般的高斯分布模型可能不能很好地识别异常数据。其原因在于，一般的高斯分布模型尝试的是去同时抓住两个特征的偏差，因此创造出一个比较大的判定边界。</p>
 <p>下图的两个特征是相关的，用一般的高斯分布模型(各自独立服从一个高斯分布)，得到的判定边界类似于一个圆。$p(x_{1})*p(x_{2})$的值可能很大，仍然在正常范围内，但是却不在椭圆判定边界里面。多元高斯分布将创建像图中蓝色曲线所示的判定边界。</p>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdAXqg.png" alt><br></div>
 
@@ -223,12 +223,12 @@
 <p>代入多元高斯分布，公式推演，就可以得到一个一般的高斯分布密度的乘积：</p>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdEhlV.png" alt><br></div>
 
-<h2 id="原高斯分布模型和多元高斯分布模型的比较"><a href="#原高斯分布模型和多元高斯分布模型的比较" class="headerlink" title="原高斯分布模型和多元高斯分布模型的比较"></a>原高斯分布模型和多元高斯分布模型的比较</h2><div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdE7TJ.png" alt><br></div>
+<h2><span id="原高斯分布模型和多元高斯分布模型的比较">原高斯分布模型和多元高斯分布模型的比较</span></h2><div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/13/YdE7TJ.png" alt><br></div>
 
 <p><div align="center"><br><img src="https://s1.ax1x.com/2020/05/13/YdExOO.png" alt><br></div><br>原高斯分布模型被广泛使用着，如果特征之间在某种程度上存在相互关联的情况，我们可以通过构造新新特征的方法来捕捉这些相关性。</p>
 <p>如果训练集不是太大，并且没有太多的特征，我们可以使用多元高斯分布模型。</p>
-<h1 id="使用多元高斯分布进行异常检测"><a href="#使用多元高斯分布进行异常检测" class="headerlink" title="使用多元高斯分布进行异常检测"></a>使用多元高斯分布进行异常检测</h1><p>参考<a href="https://www.jianshu.com/p/620b584c2941" target="_blank" rel="noopener">异常检测(Anomaly Detection)</a></p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.jianshu.com/p/620b584c2941" target="_blank" rel="noopener">[1]异常检测(Anomaly Detection)</a></p>
+<h1><span id="使用多元高斯分布进行异常检测">使用多元高斯分布进行异常检测</span></h1><p>参考<a href="https://www.jianshu.com/p/620b584c2941" target="_blank" rel="noopener">异常检测(Anomaly Detection)</a></p>
+<h1><span id="参考链接">参考链接</span></h1><p><a href="https://www.jianshu.com/p/620b584c2941" target="_blank" rel="noopener">[1]异常检测(Anomaly Detection)</a></p>
 
         </div>
         
@@ -336,7 +336,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -356,7 +356,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -444,7 +444,7 @@
                 <span class="level-item">开发技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库/">
@@ -558,6 +558,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
                         <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

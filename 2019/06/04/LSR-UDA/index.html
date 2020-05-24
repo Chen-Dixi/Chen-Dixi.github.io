@@ -169,7 +169,7 @@
 <p>However, the reason why a decision boundary robust in the source domain becomes invalid in the target domain is not well explained</p>
 </blockquote>
 <p>就是为什么这个decision boundary在target不好，没有解释，本文从一个角度来解释这个问题，</p>
-<h2 id="local-smooth-discrepancy"><a href="#local-smooth-discrepancy" class="headerlink" title="local smooth discrepancy"></a>local smooth discrepancy</h2><p>a local smooth discrepancy</p>
+<h2><span id="local-smooth-discrepancy">local smooth discrepancy</span></h2><p>a local smooth discrepancy</p>
 <p>文章从分类器的boundary说起，过拟合问题就是，out-of-distribution样本没有被这个分类boundary正确划分。在UDA（非监督域适应）中，dataset shift加剧这个问题。</p>
 <div align="center"><br>    <img src="/2019/06/04/LSR-UDA/LSR.png"><br></div>
 
@@ -186,10 +186,10 @@
 </li>
 </ul>
 <p>$L S D(x, \theta)=D\left(C\left(G(x)+r_{a d v}\right), C(G(x))\right)$</p>
-<h3 id="Optimization-for-Local-Smooth-Discrepancy"><a href="#Optimization-for-Local-Smooth-Discrepancy" class="headerlink" title="Optimization for Local Smooth Discrepancy"></a>Optimization for Local Smooth Discrepancy</h3><p>1.<br>$\min _{G, C} \mathcal{L}\left(X_{s}, Y_{s}\right), \text { where } \mathcal{L}\left(X_{s}, Y_{s}\right)=\mathbb{E}_{x_{s}, y_{s} \sim P_{s}}\left[\sum_{k=1}^{K} \mathbb{1}\left[k=y_{s}\right] \log C\left(G\left(x_{s}\right)\right)\right]  (6)$</p>
+<h3><span id="optimization-for-local-smooth-discrepancy">Optimization for Local Smooth Discrepancy</span></h3><p>1.<br>$\min _{G, C} \mathcal{L}\left(X_{s}, Y_{s}\right), \text { where } \mathcal{L}\left(X_{s}, Y_{s}\right)=\mathbb{E}_{x_{s}, y_{s} \sim P_{s}}\left[\sum_{k=1}^{K} \mathbb{1}\left[k=y_{s}\right] \log C\left(G\left(x_{s}\right)\right)\right]  (6)$</p>
 <p>2.<br>$$\mathbf{g}_{\mathrm{t}}^{\prime}=\mathbf{g}_{\mathrm{t}}+r (7)$$</p>
 <p>3.<br>$\min _{G} L S D\left(X_{t}, \theta_{G}\right), \text { where } L S D\left(X_{t}, \theta_{G}\right)=\mathbb{E}_{x_{t} \sim P_{t}} D\left(C\left(\mathbf{g}_{t}^{\prime}\right), C\left(\mathbf{g}_{t}\right)\right) (8)$<br>其中，$\theta_{G}$是G里面的参数，$D(\cdot, \cdot)$是交叉熵,公式(6)(7)(8)按照图1的流程重复。</p>
-<h3 id="Generalization-Error-Bound"><a href="#Generalization-Error-Bound" class="headerlink" title="Generalization Error Bound"></a>Generalization Error Bound</h3><p>解释这个式子为什么work well。优化LSD，就能优化$d_{\mathcal{H} \Delta \mathcal{H}}(S, T) \approx \mathbb{E}_{x \in T, x^{\prime} \in T^{\prime}} \mathbb{1}\left[h(x) \neq h\left(x^{\prime}\right)\right]$</p>
+<h3><span id="generalization-error-bound">Generalization Error Bound</span></h3><p>解释这个式子为什么work well。优化LSD，就能优化$d_{\mathcal{H} \Delta \mathcal{H}}(S, T) \approx \mathbb{E}_{x \in T, x^{\prime} \in T^{\prime}} \mathbb{1}\left[h(x) \neq h\left(x^{\prime}\right)\right]$</p>
 
         </div>
         
@@ -297,7 +297,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -317,7 +317,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -405,7 +405,7 @@
                 <span class="level-item">开发技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库/">
@@ -519,6 +519,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
                         <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

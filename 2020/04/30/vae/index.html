@@ -159,7 +159,7 @@
             
         </h1>
         <div class="content">
-            <h1 id="分布变换"><a href="#分布变换" class="headerlink" title="分布变换"></a>分布变换</h1><p>VAE和GAN的目标都是从隐变量z生成目标数据X的模型，实现上不同。</p>
+            <h1><span id="分布变换">分布变换</span></h1><p>VAE和GAN的目标都是从隐变量z生成目标数据X的模型，实现上不同。</p>
 <p>假设隐变量服从某些常见的分布，希望训练一个模型，X=g(Z)，这个模型能够将原来的概率分布映射到训练集的概率分布。目的都是进行分布之间的变换。</p>
 <a id="more"></a>
 <div><br>    <img src="https://pic3.zhimg.com/80/v2-d7a52f6f211594a0853993365f51cb82_720w.jpg" alt><br></div>
@@ -176,7 +176,7 @@
 <p>实现这个很难，于是把分布改一下，加一个隐变量。</p>
 <p>$$p(X)=\sum_{Z} p(X | Z) p(Z)$$</p>
 <p>$p(X|Z)$描述了一个由Z生成X的模型，设Z服从标准正态分布，如果可以从标准正态分布中采样一个Z，根据Z来计算一个X，也是一个不错的生成模型。</p>
-<h1 id="VAE"><a href="#VAE" class="headerlink" title="VAE"></a>VAE</h1><p>整个VAE模型，<strong>并没有</strong>使用 隐变量z的先验分布 $p(z)$ 是正态分布。假设的是 后验分布$p(z|x)$。</p>
+<h1><span id="vae">VAE</span></h1><p>整个VAE模型，<strong>并没有</strong>使用 隐变量z的先验分布 $p(z)$ 是正态分布。假设的是 后验分布$p(z|x)$。</p>
 <p>给定一个真实样本，假设存在一个属于这个样本$x_{k}$的后验分布$p(z|x_{k})$。进一步假设这个分布是<u><strong>独立多元</strong></u>的正态分布。</p>
 <p>强调“专属”。因为我们后面要训练一个生成器 X=g(Z)，希望能够把从分布 p(Z|Xk) 采样出来的一个 Zk 还原为 Xk。</p>
 <p>如果假设 p(Z) 是正态分布，然后从 p(Z) 中采样一个 Z，那么我们怎么知道这个 Z 对应于哪个真实的 X 呢？现在 p(Z|Xk) 专属于 Xk，我们有理由说从这个分布采样出来的 Z 应该要还原到Xk 中去。</p>
@@ -195,7 +195,7 @@
 <ol start="3">
 <li>分布标准化<br>zk 是通过重新采样过的，不是直接由 encoder 算出来的。所以zk会有噪声，最终模型为了重构得更好，会想尽办法让方差为0。如果方差为0，模型退化成普通AutoEncoder。<br>VAE让所有$p(z|x)$都向标准正态分布看齐，防止噪声为0，保证模型具有生成能力。</li>
 </ol>
-<h2 id="VAE的重参数技巧"><a href="#VAE的重参数技巧" class="headerlink" title="VAE的重参数技巧"></a>VAE的重参数技巧</h2><p>从正态分布采样的操作是不可导的，使用重参数技巧解决。</p>
+<h2><span id="vae的重参数技巧">VAE的重参数技巧</span></h2><p>从正态分布采样的操作是不可导的，使用重参数技巧解决。</p>
 <p>算出了均值和方差后，直接从这里面采样没办法求导了。重参数技巧意思就是：让这个采样的结果，是通过之前计算的<code>均值和方差</code>可导计算的结果。</p>
 <div align="center"><br>    <img src="https://pic2.zhimg.com/80/v2-2952f780b506319c0911ab4297440079_720w.jpg" alt><br></div>
 
@@ -204,7 +204,7 @@
 <p>从均值为0,标准差为1的高斯分布中采样,再放缩平移得到Z.</p>
 <p>$\mathbf{z}_{i}=\mu_{i}+\sigma_{i} * \epsilon, \epsilon \sim \mathcal{N}(0, \mathbf{I})$</p>
 <p>这样从 $\epsilon$ 到 $z$ 只涉及了线性操作(平移缩放),采样操作在神经网络计算图之外,而 $\epsilon$ 对于NN来说只是一个常数.</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zhuanlan.zhihu.com/p/34998569" target="_blank" rel="noopener">变分自编码器VAE：原来是这么一回事 | 附开源代码</a><br><a href="https://zhuanlan.zhihu.com/p/97465608" target="_blank" rel="noopener">盘点深度学习中的不可导操作(次梯度和重参数化)</a></p>
+<h1><span id="参考资料">参考资料</span></h1><p><a href="https://zhuanlan.zhihu.com/p/34998569" target="_blank" rel="noopener">变分自编码器VAE：原来是这么一回事 | 附开源代码</a><br><a href="https://zhuanlan.zhihu.com/p/97465608" target="_blank" rel="noopener">盘点深度学习中的不可导操作(次梯度和重参数化)</a></p>
 
         </div>
         
@@ -312,7 +312,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -332,7 +332,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -420,7 +420,7 @@
                 <span class="level-item">开发技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库/">
@@ -534,6 +534,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Automatic-Speech-Recognition/">
                         <span class="tag">Automatic-Speech-Recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Docker/">
+                        <span class="tag">Docker</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
