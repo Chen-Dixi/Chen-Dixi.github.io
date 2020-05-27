@@ -16,7 +16,7 @@
 <meta property="og:description" content="Open Set Domain Adaptation 论文列表:ChenJinBIT/OSDA">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-09-23T15:03:12.047Z">
+<meta property="og:updated_time" content="2020-05-27T01:08:35.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开放集领域自适应调研">
 <meta name="twitter:description" content="Open Set Domain Adaptation 论文列表:ChenJinBIT/OSDA">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    14 分钟 读完 (大约 2080 个字)
+                    15 分钟 读完 (大约 2216 个字)
                 </span>
                 
                 
@@ -164,6 +164,39 @@
         </h1>
         <div class="content">
             <p>Open Set Domain Adaptation 论文列表:<a href="https://github.com/ChenJinBIT/OSDA" target="_blank" rel="noopener">ChenJinBIT/OSDA</a><br><a id="more"></a></p>
+<!-- toc -->
+<ul>
+<li><a href="#论文题目open-set-domain-adaptation">论文题目：Open Set Domain Adaptation</a><ul>
+<li><a href="#理论方法">理论方法</a></li>
+<li><a href="#实验">实验</a></li>
+<li><a href="#分析">分析</a></li>
+</ul>
+</li>
+<li><a href="#论文题目open-set-domain-adaptation-by-backpropagation">论文题目：Open Set Domain Adaptation by Backpropagation</a><ul>
+<li><a href="#理论方法-1">理论方法</a></li>
+<li><a href="#实验-1">实验</a></li>
+<li><a href="#分析-1">分析</a></li>
+</ul>
+</li>
+<li><a href="#论文题目learning-factorized-representations-for-open-set-domain-adaptation">论文题目：Learning Factorized Representations for Open-set Domain Adaptation</a><ul>
+<li><a href="#理论方法-2">理论方法</a></li>
+<li><a href="#实验-2">实验</a></li>
+<li><a href="#分析-2">分析</a></li>
+</ul>
+</li>
+<li><a href="#论文题目universal-domain-adaptation">论文题目：Universal-Domain-Adaptation</a><ul>
+<li><a href="#理论方法-3">理论方法</a></li>
+<li><a href="#实验效果">实验效果</a></li>
+<li><a href="#分析-3">分析</a></li>
+</ul>
+</li>
+<li><a href="#论文题目known-class-aware-self-ensemble-for-open-set-domain-adaptation-kase">论文题目：Known-class Aware Self-ensemble for Open Set Domain Adaptation (KASE)</a><ul>
+<li><a href="#理论方法-4">理论方法</a></li>
+<li><a href="#实验-3">实验</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
 <h1><span id="论文题目open-set-domain-adaptation">论文题目：Open Set Domain Adaptation</span></h1><p>会议期刊：ICCV2017</p>
 <h2><span id="理论方法">理论方法</span></h2><ol>
 <li>用线性规划问题，给每个目标域赋上标签（类别c或者unknown）<br>$$<br>\begin{array}{lll}{\underset{x_{c t}, o_{t}}{\operatorname{minimise}}} &amp; {\sum_{t}\left(\sum_{c} d_{c t} x_{c t}+\lambda o_{t}\right)} \\ {\text { subject to }} &amp; {\sum_{c} x_{c t}+o_{t}=1} &amp; {\forall t} \\ {} &amp; {\sum_{t} x_{c t} \geq 1} &amp; {\forall c} \\ {} &amp; {x_{c t}, o_{t} \in{0,1}} &amp; {\forall c, t}\end{array}<br>$$</li>
@@ -185,8 +218,18 @@
 <p>作者首先对比了现有的一些深度方法，比如DAN、RTN、BP，然后发现提出的方法不仅在open set，在close set上也很好。然后，提取深度特征后，又对比了TCA、GFK、SA、CORAL这几个方法，仍然是作者的方法好。 文章做了大量的实验，解释了很多open set下进行domain adaptation的规律</p>
 <h2><span id="分析">分析</span></h2><p>但是迭代式的方法，一会儿学assignment ，之后又学mapping，如此反复也很costly.准确率不知道能不能保证。迭代收敛后再用SVM</p>
 <h1><span id="论文题目open-set-domain-adaptation-by-backpropagation">论文题目：Open Set Domain Adaptation by Backpropagation</span></h1><p>会议期刊：ECCV2018</p>
-<h2><span id="理论方法">理论方法</span></h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/openBP.png"><br></div><br>源域数据还是用来正常地训练Generator和分类器Classifier<br><br>对抗方法只用目标域数据，在unknown那一个分类上做交叉熵为t的对抗。generator让$p(y=K+1| Xt)$的概率远离t，classifier让$p(y = K+1 | Xt)$的概率靠近t。Xt的K+1概率在如果是t，则优化G时有可能会向两个方向滑落。能保证known样本往p=0方向走的道理是，该样本的前K个probability之和相对更高<br><br>$$<br>L_{a d v}\left(\boldsymbol{x}_{t}\right)=-t \log \left(p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)-(1-t) \log \left(1-p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)<br>$$<br><br>分类器目标就是尽可能将其目标域输入氛围未知类的概率接近t，特征提取器的目标将这个概率远离t<br><br>$$<br>\begin{array}{l}{\min _{C} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)+L_{a d v}\left(\boldsymbol{x}_{t}\right)} \\ {\min _{G} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)-L_{a d v}\left(\boldsymbol{x}_{t}\right)}\end{array}<br>$$<br><br><div align="center"><br>    <img src="/2019/09/23/opensetReview/.png"><br></div>
+<h2><span id="理论方法">理论方法</span></h2><div align="center"><br>    <img src="/2019/09/23/opensetReview/openBP.png"><br></div>
 
+
+<p>$$<br>L_{a d v}\left(\boldsymbol{x}_{t}\right)=-t \log \left(p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)-(1-t) \log \left(1-p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)<br>$$</p>
+<p>$p\left(y=K+1 | \boldsymbol{x}_{t}\right)$的意思就是就是一个目标域样本属于属于未知类的概率(K+1表示未知类的下标索引)。</p>
+<p>方法中 特征生成部分（Generator）和分类器部分（Classifer）对抗训练。</p>
+<!-- 
+源域数据还是用来正常地训练Generator和分类器Classifier
+
+对抗方法只用目标域数据，在unknown那一个分类上做交叉熵为t的对抗。generator让$p(y=K+1| Xt)$的概率远离t，classifier让$p(y = K+1 | Xt)$的概率靠近t。Xt的K+1概率在如果是t，则优化G时有可能会向两个方向滑落。能保证known样本往p=0方向走的道理是，该样本的前K个probability之和相对更高 -->
+<p>$$<br>\begin{array}{l}{\min _{C} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)+L_{a d v}\left(\boldsymbol{x}_{t}\right)} \\ {\min _{G} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)-L_{a d v}\left(\boldsymbol{x}_{t}\right)}\end{array}<br>$$</p>
+<p>两者的共同目标是将源域数据正确分类。<br>训练过程中，分类器Classifier让$L_{a d v}\left(\boldsymbol{x}_{t}\right)$尽可能小，根据熵的知识，$L_{a d v}\left(\boldsymbol{x}_{t}\right)$越小表示$p\left(y=K+1 | \boldsymbol{x}_{t}\right)$的值越接近$t$。意思就是对分类器而言，所有目标域数据有$t$的概率是一个未知类样本。</p>
 <h2><span id="实验">实验</span></h2><ol>
 <li>Office数据集</li>
 </ol>
@@ -391,7 +434,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        32
+                        33
                     </p>
                 </div>
             </div>
@@ -401,7 +444,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        17
                     </p>
                 </div>
             </div>
@@ -411,7 +454,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        34
+                        35
                     </p>
                 </div>
             </div>
@@ -529,6 +572,14 @@
         <a class="level is-marginless" href="/categories/科研/">
             <span class="level-start">
                 <span class="level-item">科研</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/笔记/">
+            <span class="level-start">
+                <span class="level-item">笔记</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -730,6 +781,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/异常检测/">
+                        <span class="tag">异常检测</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/文本分类/">
                         <span class="tag">文本分类</span>
                         <span class="tag is-grey">1</span>
@@ -739,7 +797,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/机器学习/">
                         <span class="tag">机器学习</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -837,7 +895,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/领域自适应/">
                         <span class="tag">领域自适应</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

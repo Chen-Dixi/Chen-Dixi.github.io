@@ -171,7 +171,7 @@
 <h2><span id="二-数据预处理">二. 数据预处理</span></h2><ul>
 <li><h4><span id="1训练集和测试集划分">1.训练集和测试集划分</span></h4><p>按照PPT中的“一般实验设置”，我简单的把数据集按照4:1的比例划分为训练集和测试集</p>
 </li>
-<li><h4><span id="2文本内容过滤">2.文本内容“过滤”</span></h4><p>20_newsgroups的内容是新闻文本，包含很多<code>header</code>、<code>footer</code>和<code>quotes</code>内容<br><div align="center"><br>  <img src="/2019/05/28/textclassification/newsgrouptext.png"><br></div><br>自己写字符串过滤比较麻烦，幸运的是我在<code>sciki-learn</code>的python包<code>sklearn.datasets.fetch_20newsgroups</code>里面找到对<code>20newsgroups</code>进行文本过滤的代码，拷贝过来直接使用。</p>
+<li><h4><span id="2文本内容过滤">2.文本内容“过滤”</span></h4><p>20_newsgroups的内容是新闻文本，包含很多<code>header</code>、<code>footer</code>和<code>quotes</code>内容<br><div align="center"><br>  <img src="/newsgrouptext.png"><br></div><br>自己写字符串过滤比较麻烦，幸运的是我在<code>sciki-learn</code>的python包<code>sklearn.datasets.fetch_20newsgroups</code>里面找到对<code>20newsgroups</code>进行文本过滤的代码，拷贝过来直接使用。</p>
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">strip_newsgroup_header</span><span class="hljs-params">(text)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Given text in "news" format, strip the headers, by removing everything</span></span><br><span class="line"><span class="hljs-string">    before the first blank line.</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    Parameters</span></span><br><span class="line"><span class="hljs-string">    ----------</span></span><br><span class="line"><span class="hljs-string">    text : string</span></span><br><span class="line"><span class="hljs-string">        The text from which to remove the signature block.</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    _before, _blankline, after = text.partition(<span class="hljs-string">'\n\n'</span>)</span><br><span class="line">    <span class="hljs-keyword">return</span> after</span><br><span class="line"></span><br><span class="line">_QUOTE_RE = re.compile(<span class="hljs-string">r'(writes in|writes:|wrote:|says:|said:'</span></span><br><span class="line">                       <span class="hljs-string">r'|^In article|^Quoted from|^\||^&gt;)'</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">strip_newsgroup_quoting</span><span class="hljs-params">(text)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Given text in "news" format, strip lines beginning with the quote</span></span><br><span class="line"><span class="hljs-string">    characters &gt; or |, plus lines that often introduce a quoted section</span></span><br><span class="line"><span class="hljs-string">    (for example, because they contain the string 'writes:'.)</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    Parameters</span></span><br><span class="line"><span class="hljs-string">    ----------</span></span><br><span class="line"><span class="hljs-string">    text : string</span></span><br><span class="line"><span class="hljs-string">        The text from which to remove the signature block.</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    good_lines = [line <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> text.split(<span class="hljs-string">'\n'</span>)</span><br><span class="line">                  <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> _QUOTE_RE.search(line)]</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'\n'</span>.join(good_lines)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">strip_newsgroup_footer</span><span class="hljs-params">(text)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Given text in "news" format, attempt to remove a signature block.</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    As a rough heuristic, we assume that signatures are set apart by either</span></span><br><span class="line"><span class="hljs-string">    a blank line or a line made of hyphens, and that it is the last such line</span></span><br><span class="line"><span class="hljs-string">    in the file (disregarding blank lines at the end).</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    Parameters</span></span><br><span class="line"><span class="hljs-string">    ----------</span></span><br><span class="line"><span class="hljs-string">    text : string</span></span><br><span class="line"><span class="hljs-string">        The text from which to remove the signature block.</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    lines = text.strip().split(<span class="hljs-string">'\n'</span>)</span><br><span class="line">    <span class="hljs-keyword">for</span> line_num <span class="hljs-keyword">in</span> range(len(lines) - <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>):</span><br><span class="line">        line = lines[line_num]</span><br><span class="line">        <span class="hljs-keyword">if</span> line.strip().strip(<span class="hljs-string">'-'</span>) == <span class="hljs-string">''</span>:</span><br><span class="line">            <span class="hljs-keyword">break</span></span><br><span class="line">    <span class="hljs-keyword">if</span> line_num &gt; <span class="hljs-number">0</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">'\n'</span>.join(lines[:line_num])</span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> text</span><br></pre></td></tr></table></figure>
 </li>
 <li><h4><span id="3每篇文本转换为长度相等一维整数向量">3.每篇文本转换为长度相等一维整数向量</span></h4><p>我的文本分类器用的是卷积神经网络CNN，所以除了把文本中的每个英文单词转换为整数数字外，还需要将每篇文章通过<code>pad_sequence</code>转换为一样的长度。上述两个繁琐的操作也可以方便地通过<code>keras</code>提供的<code>keras.preprocessing.text.Tokenizer</code>和<code>keras.preprocessing.sequence.pad_sequences</code>直接完成。</p>
@@ -182,14 +182,14 @@
 <h2><span id="三-训练网络">三. 训练网络</span></h2><ul>
 <li><h4><span id="1词嵌入embedding">1.词嵌入Embedding</span></h4><code>PyTorch</code>中，词嵌入的结构用<code>nn.Embedding</code>，里面的权重是一个二维矩阵，每一行代表一个单词的词向量。输入必须是<code>LongTensor</code>类型。其他文章说，在数据量充足的情况下，其实不一定需要预训练的词向量，于是我就开始尝试’train from scratch’。问题是训练开始的时候非常令人揪心，仿佛要训练到时间的尽头😅，所以就先停了。</li>
 </ul>
-<div align="center"><br>    <img src="/2019/05/28/textclassification/withoupretrainedembedding.png"><br></div>
+<div align="center"><br>    <img src="/withoupretrainedembedding.png"><br></div>
 
 <p>我在github中找到一个<a href="https://github.com/eyaler/word2vec-slim" target="_blank" rel="noopener">缩小版的word2vec GoogleNews词向量</a>，里面有299567个英文单词的300维词向量。使用预训练词向量意味着我们需要重新预处理数据集。词向量中每一行都代表不同单词，<code>word2vec</code>中除了包含[299567x300]的权重外，还有一个英文单词到数字的<code>vocabulary哈希</code>。因此数据预处理的第3.步骤也应该按照这个<code>vocabulary哈希</code>将单词转为对应的数字，此时数据预处理代码有一些小更改，可以在我的程序中看到处理细节。</p>
 <ul>
 <li><h4><span id="2分类器">2.分类器</span></h4>embedding后面的网络结构不是这次作业的重点，我使用了北邮学长在“知乎看山杯”取得第一名自创的结构<code>CNNText_inception</code>，这是关于那次比赛的纪录文章：<a href="https://zhuanlan.zhihu.com/p/28923961" target="_blank" rel="noopener">知乎“看山杯” 夺冠记</a></li>
 </ul>
 <h2><span id="四-总结">四. 总结</span></h2><p><del>没有调参，没有使用什么技巧，准确率很差，50个epoch在测试集上准确率最高只有71%，就这么把作业交了吧。</del><br>之前因为一块GPU内存限制，把网络里面的某些维度调整小了，后面通过两个GPU并行增加了一些维度，到了83%。如果在数据预处理再做一些调整，增加文章的长度，应该会再提高一点，之前直接人为规定每篇文章长度为5000，有点arbitrary。<br>83%的模型参数链接:<a href="https://pan.baidu.com/s/19KJUbMclbPMx_iogG-et1Q" target="_blank" rel="noopener">https://pan.baidu.com/s/19KJUbMclbPMx_iogG-et1Q</a>  密码:rfdc</p>
-<div align="center"><br>    <img src="/2019/05/28/textclassification/result.png"><br></div>
+<div align="center"><br>    <img src="/result.png"><br></div>
 
         </div>
         
@@ -297,7 +297,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        32
+                        33
                     </p>
                 </div>
             </div>
@@ -307,7 +307,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        17
                     </p>
                 </div>
             </div>
@@ -317,7 +317,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        34
+                        35
                     </p>
                 </div>
             </div>
@@ -435,6 +435,14 @@
         <a class="level is-marginless" href="/categories/科研/">
             <span class="level-start">
                 <span class="level-item">科研</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/笔记/">
+            <span class="level-start">
+                <span class="level-item">笔记</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -636,6 +644,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/异常检测/">
+                        <span class="tag">异常检测</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/文本分类/">
                         <span class="tag">文本分类</span>
                         <span class="tag is-grey">1</span>
@@ -645,7 +660,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/机器学习/">
                         <span class="tag">机器学习</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -743,7 +758,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/领域自适应/">
                         <span class="tag">领域自适应</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

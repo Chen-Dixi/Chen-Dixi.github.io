@@ -2,19 +2,24 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>归档 - 帝羲 的博客</title>
+<title>小论文方法解读 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/archives/page/4/index.html">
+    <meta name="description" content="中文解释">
+<meta name="keywords" content="领域自适应,机器学习,异常检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小论文方法解读">
+<meta property="og:url" content="http://yoursite.com/2020/05/26/paper-illustrate/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="中文解释">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-05-27T05:44:16.907Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="小论文方法解读">
+<meta name="twitter:description" content="中文解释">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -89,13 +94,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="小论文方法解读" height="28">
             
             </a>
         </div>
@@ -129,96 +134,118 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
         
-<div class="card widget">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-26T08:49:12.000Z">2020-05-26</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/笔记/">笔记</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 745 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                小论文方法解读
+            
+        </h1>
+        <div class="content">
+            <p>中文解释</p>
+<a id="more"></a>
+<!-- toc -->
+<ul>
+<li><a href="#33-known-class-distribution-modeling">3.3 Known-class Distribution Modeling</a></li>
+<li><a href="#34-adversarial-adaptation-by-backpropagation">3.4 Adversarial Adaptation by Backpropagation</a></li>
+<li><a href="#35-stepwise-feature-norm-alignment">3.5 Stepwise Feature Norm Alignment</a></li>
+</ul>
+<!-- tocstop -->
+<h1><span id="33-known-class-distribution-modeling">3.3 Known-class Distribution Modeling</span></h1><h1><span id="34-adversarial-adaptation-by-backpropagation">3.4 Adversarial Adaptation by Backpropagation</span></h1><p>在论文：[Open Set Domain Adaptation by Backpropagation]里提出。</p>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/27/tkQ1C4.png" alt><br></div>
+
+
+<p>$$<br>L_{a d v}\left(\boldsymbol{x}_{t}\right)=-t \log \left(p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)-(1-t) \log \left(1-p\left(y=K+1 | \boldsymbol{x}_{t}\right)\right)<br>$$</p>
+<p>$p\left(y=K+1 | \boldsymbol{x}_{t}\right)$的意思就是就是一个目标域样本属于属于未知类的概率(K+1表示未知类的下标索引)。</p>
+<p>方法中 特征生成部分（Generator）和分类器部分（Classifer）对抗训练。</p>
+<!-- 
+源域数据还是用来正常地训练Generator和分类器Classifier
+
+对抗方法只用目标域数据，在unknown那一个分类上做交叉熵为t的对抗。generator让$p(y=K+1| Xt)$的概率远离t，classifier让$p(y = K+1 | Xt)$的概率靠近t。Xt的K+1概率在如果是t，则优化G时有可能会向两个方向滑落。能保证known样本往p=0方向走的道理是，该样本的前K个probability之和相对更高 -->
+<p>$$<br>\begin{array}{l}{\min _{C} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)+L_{a d v}\left(\boldsymbol{x}_{t}\right)} \\ {\min _{G} L_{s}\left(\boldsymbol{x}_{s}, y_{s}\right)-L_{a d v}\left(\boldsymbol{x}_{t}\right)}\end{array}<br>$$</p>
+<p>两者的共同目标是将源域数据正确分类。<br>训练过程中，分类器$\text{Classifier}$让$L_{a d v}\left(\boldsymbol{x}_{t}\right)$尽可能小，根据熵的知识，$L_{a d v}\left(\boldsymbol{x}_{t}\right)$越小表示$p\left(y=K+1 | \boldsymbol{x}_{t}\right)$的值越接近$t$。意思就是让对分类器而言，所有目标域数据属于未知类的概率为$t$。</p>
+<p>Softmax 的输出是K+1维的概率，且和为1，$\sum_{k=1 … K+1} p\left(y=k | \boldsymbol{x}_{t}\right) = 1$。<br>生成器$\text{Generator}$让$L_{a d v}\left(\boldsymbol{x}_{t}\right)$变大，意思就是让所有目标域样本属于未知类的概率远离$t$。目标域数据最后分类的结果，属于未知类的概率$p\left(y=K+1 | \boldsymbol{x}_{t}\right)$就会各自落在$[0,t]$和$[t,1]$的地方。目标域样本数据中$p\left(y=K+1 | \boldsymbol{x}_{t}\right)$如果落在$[0,t]$的范围，那么该数据$x_{t}$和源域更相近，判定为目标域中的已知类。如果$p\left(y=K+1 | \boldsymbol{x}_{t}\right)$落在$[t,1]$的范围，认为该$x_{t}$是未知类。</p>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/27/tkxamq.png" alt><br></div>
+
+
+<p>为什么已知类的$p\left(y=K+1 | \boldsymbol{x}_{t}\right)$更容易往$[0,t]$的区域滑动，因为已知类更接近源域数据，他的前K个概率和$\sum_{k=1 … K} p\left(y=k | \boldsymbol{x}_{t}\right)$会相对更高，使得$p\left(y=K+1 | \boldsymbol{x}_{t}\right)$就更容易往$[0,t]$的位置移动。</p>
+<h1><span id="35-stepwise-feature-norm-alignment">3.5 Stepwise Feature Norm Alignment</span></h1><p><a href="https://mp.weixin.qq.com/s/DInzy5wpqOdgJ3YltghywA" target="_blank" rel="noopener">【速览】ICCV2019 | 基于特征范数适配的无监督领域自适应算法</a></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/异常检测/">异常检测</a>, <a class="has-link-grey -link" href="/tags/机器学习/">机器学习</a>, <a class="has-link-grey -link" href="/tags/领域自适应/">领域自适应</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2019
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-20T14:44:11.000Z">2019-05-20</time>
-                        <a href="/2019/05/20/DeepCockTailCode/" class="has-link-black-ter is-size-6">多源自适应-深度鸡尾酒网络代码</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-20T13:02:50.000Z">2019-05-20</time>
-                        <a href="/2019/05/20/DeepCockTail/" class="has-link-black-ter is-size-6">深度鸡尾酒网络</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-05-13T06:23:31.417Z">2019-05-13</time>
-                        <a href="/2019/05/13/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
         </div>
     </div>
 </div>
 
-    
 
-    
+
 <div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/page/3/">上一页</a>
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/05/24/DA-paper-list/">
+                <span class="level-item">领域自适应论文列表</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        <div class="pagination-next is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/page/5/">下一页</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/">1</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/page/2/">2</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/page/3/">3</a></li>
-            
-            <li><a class="pagination-link is-current" href="/archives/page/4/">4</a></li>
-            
-        </ul>
-    </nav>
+        
+    </div>
 </div>
+
+
 </div>
                 
 
@@ -735,7 +762,7 @@
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow  ">
         
             
         
@@ -812,91 +839,6 @@
 
         
         </div>
-    
-</div>
-
-                
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        
-    
-        
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">我的独立App 配色笔记</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">itunes.apple.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">扬涛的博客</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">orzyt.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">夏木青</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">joselynzhao.top</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">DeamoV&#39;s Blog</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">vdeamov.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://saruagithub.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">WangXue</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">saruagithub.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
     
 </div>
 
@@ -910,7 +852,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="小论文方法解读" height="28">
                 
                 </a>
                 <p class="is-size-7">

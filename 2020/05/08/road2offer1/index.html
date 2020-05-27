@@ -202,7 +202,7 @@
 <h1><span id="11-旋转数组的最小数字">11 旋转数组的最小数字</span></h1><p>题目描述，{1,2,3,4,5} <code>-旋转-&gt;</code> {3,4,5,1,2}。找最小的<code>1</code>。</p>
 <p>从头到尾遍历，找最小的O(n)算法不满足要求，数组最小值为1。</p>
 <ul>
-<li>二分查找，把<code>线性级别</code>降低成<code>对数级别</code>。<br><div align="center"><br>  <img src="/2020/05/08/road2offer1/png1.png" alt><br></div><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minArray</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; numbers)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = numbers.size() - <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span> (i &lt; j) &#123;<span class="hljs-comment">//i==j时跳出循环</span></span><br><span class="line">            <span class="hljs-keyword">int</span> m = (i + j) / <span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span> (numbers[m] &gt; numbers[j]) i = m + <span class="hljs-number">1</span>;</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (numbers[m] &lt; numbers[j]) j = m;</span><br><span class="line">            <span class="hljs-keyword">else</span> j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> numbers[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<li>二分查找，把<code>线性级别</code>降低成<code>对数级别</code>。<br><div align="center"><br>  <img src="/png1.png" alt><br></div><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minArray</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; numbers)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = numbers.size() - <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span> (i &lt; j) &#123;<span class="hljs-comment">//i==j时跳出循环</span></span><br><span class="line">            <span class="hljs-keyword">int</span> m = (i + j) / <span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span> (numbers[m] &gt; numbers[j]) i = m + <span class="hljs-number">1</span>;</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (numbers[m] &lt; numbers[j]) j = m;</span><br><span class="line">            <span class="hljs-keyword">else</span> j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> numbers[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h1><span id="12-矩阵中的路径">12 矩阵中的路径</span></h1><p>题目描述：判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向上下左右移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。</p>
@@ -358,7 +358,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        32
+                        33
                     </p>
                 </div>
             </div>
@@ -368,7 +368,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        17
                     </p>
                 </div>
             </div>
@@ -378,7 +378,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        34
+                        35
                     </p>
                 </div>
             </div>
@@ -496,6 +496,14 @@
         <a class="level is-marginless" href="/categories/科研/">
             <span class="level-start">
                 <span class="level-item">科研</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/笔记/">
+            <span class="level-start">
+                <span class="level-item">笔记</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -697,6 +705,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/异常检测/">
+                        <span class="tag">异常检测</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/文本分类/">
                         <span class="tag">文本分类</span>
                         <span class="tag is-grey">1</span>
@@ -706,7 +721,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/机器学习/">
                         <span class="tag">机器学习</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -804,7 +819,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/领域自适应/">
                         <span class="tag">领域自适应</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

@@ -173,7 +173,7 @@
 <p>余弦相似度：$\cos (A, B)=\frac{A \cdot B}{|A|_{2}|B|_{2}}$</p>
 <p>余弦距离：$\operatorname{dist}(A, B)=1-\cos (A, B)=\frac{|A|_{2}|B|_{2}-A \cdot B}{|A|_{2}|B|_{2}}$</p>
 <p>余弦相似度满足正定性和对称性，<strong>不满足</strong>三角不等式，不是一个严格定义的距离。</p>
-<h1><span id="神经网络特征之间选用余弦距离">神经网络特征之间选用余弦距离</span></h1><div align="center"><br>    <img src="/2020/04/29/feature-dist-metric/virtual-class.png"><br></div>
+<h1><span id="神经网络特征之间选用余弦距离">神经网络特征之间选用余弦距离</span></h1><div align="center"><br>    <img src="/virtual-class.png"><br></div>
 
 <p>通常，DCNN后面的分类器部分，就是拿特征向量$X_{i}$和分类器的anchor向量$W_{j}$做内积<code>inner product</code>。内积公式可以写作$\left|W_{j}\right|\left|X_{i}\right| \cos \theta_{j}$。这里$\theta_{j}$就是$X_{i}$和$W_{j}$之间的夹角。所以，线性softmax分类器主要就是由夹角决定的。因此，对fc层之前的特征做比较时，通常用余弦相似度来衡量距离。</p>
 
@@ -274,7 +274,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        32
+                        33
                     </p>
                 </div>
             </div>
@@ -284,7 +284,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        17
                     </p>
                 </div>
             </div>
@@ -294,7 +294,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        34
+                        35
                     </p>
                 </div>
             </div>
@@ -412,6 +412,14 @@
         <a class="level is-marginless" href="/categories/科研/">
             <span class="level-start">
                 <span class="level-item">科研</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/笔记/">
+            <span class="level-start">
+                <span class="level-item">笔记</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -613,6 +621,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/异常检测/">
+                        <span class="tag">异常检测</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/文本分类/">
                         <span class="tag">文本分类</span>
                         <span class="tag is-grey">1</span>
@@ -622,7 +637,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/机器学习/">
                         <span class="tag">机器学习</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -720,7 +735,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/领域自适应/">
                         <span class="tag">领域自适应</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
