@@ -16,7 +16,7 @@
 <meta property="og:description" content="中文解释">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-27T12:36:50.160Z">
+<meta property="og:updated_time" content="2020-05-27T12:44:06.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小论文方法解读">
 <meta name="twitter:description" content="中文解释">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1444 个字)
+                    11 分钟 读完 (大约 1616 个字)
                 </span>
                 
                 
@@ -199,15 +199,18 @@
 <p>模型压缩领域中，小范数提供的信息量更少（smaller-norm-less-informative）的假设指出范数更小特征在推断（inference）时提供的信息更少，不足以做出正确的推断，由于目标域缺乏监督信息，因此更容易产生低范数的特征。这个方法的核心就是施加一个损失函数，强制模型学到更多计算路径，增大目标域的特征范数（增大图中红圈的半径）。</p>
 <p>论文提出了两种方法</p>
 <ol>
-<li>特征范数硬适配<br>源域和目标域漂移可能是由其特征范数期望不一致导致的，因此适配两个领域的特征范数均值到任意一个相同的数值都应该能带来相似的迁移。将源域和目标域的平均特征范数限制到同一个特征范数常量。</li>
+<li>特征范数硬适配（Hard Adaptive Feature Norm）<br>源域和目标域漂移可能是由其特征范数期望不一致导致的，因此适配两个领域的特征范数均值到任意一个相同的数值都应该能带来相似的迁移。将源域和目标域的平均特征范数限制到同一个特征范数常量。</li>
 </ol>
 <p>$$<br>C_{1}\left(\theta_{g}, \theta_{f}, \theta_{y}\right)=\frac{1}{n_{s}} \sum_{\left(x_{i} y_{i}\right) \in D_{s}} L_{y}\left(x_{i}, y_{i}\right)+\lambda\left(L_{d}\left(\frac{1}{n_{s}} \sum_{x_{i} \in D_{s}} h\left(x_{i}\right), R\right)+L_{d}\left(\frac{1}{n_{t}} \sum_{x_{i} \in D_{t}} h\left(x_{i}\right), R\right)\right)<br>$$</p>
 <ol start="2">
-<li>特征范数逐步适配<br>领域漂移可能是由于目标领域中样本特征范数过小导致信息量太小导致的。基于这一假设，只要把目标域的特征拽离小范数区域而无需严格的范数对齐就应该能带来稳定的迁移。</li>
+<li>特征范数逐步适配（Stepwise Adaptive Feature Norm）<br>领域漂移可能是由于目标领域中样本特征范数过小导致信息量太小导致的。基于这一假设，只要把目标域的特征拽离小范数区域而无需严格的范数对齐就应该能带来稳定的迁移。</li>
 </ol>
 <p>$$<br>\mathrm{C}_{2}\left(\theta_{\mathrm{g}}, \theta_{\mathrm{f}}, \theta_{\mathrm{y}}\right)=\frac{1}{\mathrm{n}_{\mathrm{s}}} \sum_{\left(\mathrm{x}_{\mathrm{i}}, y_{\mathrm{j}}\right) \in \mathrm{D}_{\mathrm{s}}} \mathrm{L}_{\mathrm{y}}\left(\mathrm{x}_{\mathrm{i}}, \mathrm{y}_{\mathrm{i}}\right)+\frac{\lambda}{\mathrm{n}_{\mathrm{s}}+\mathrm{n}_{\mathrm{r}}} \sum_{\mathrm{x}_{\mathrm{i}} \in \mathrm{D}_{\mathrm{s}} \mathrm{v} \mathrm{D}_{\mathrm{t}}} \mathrm{L}_{\mathrm{d}}\left(\mathrm{h}\left(\mathrm{x}_{\mathrm{i}} ; \theta_{0}\right)+\Delta \mathrm{r}, \mathrm{h}\left(\mathrm{x}_{\mathrm{i}} ; \theta\right)\right)<br>$$</p>
+<p>论文使用第二种逐步适配的方法，在每次迭代中，加入SAFN第二个损失项的目的为激励每个样本根据上一次迭代算出的特征范数自增Δr，而不是像HAFN显式设置一个最终特征范数阈值目标。因此，SAFN的优化过程会更加稳定且更容易平衡分类损失和特征范数适配损失，SAFN也可以免受梯度爆炸的困扰而逐步探索达到一个更大的特征范数值，并随之取得更好的实验性能。</p>
 <p>通过下面的代码就能实现。</p>
-<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/27/tEel8A.png" alt><br></div><br><div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/27/tEtxrF.png" alt><br></div>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/27/tEel8A.png" alt><br></div>
+
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/27/tEtxrF.png" alt><br></div>
         </div>
         
         <div class="level is-size-7 is-uppercase">
