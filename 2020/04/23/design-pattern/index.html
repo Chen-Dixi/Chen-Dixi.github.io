@@ -170,7 +170,7 @@
             <h1><span id="行为型"><strong>行为型</strong></span></h1><h2><span id="观察者模式"><strong>观察者模式</strong></span></h2><p>一对多的依赖，多个对象关注一个对象。当被关注的对象发生状态改变时，它的所有依赖都会收到通知并且自动更新状态。例如这样一个需求：App当中，如果在用户设置的二级界面修改了自己的用户名，那么此时一级界面上显示的用户名也需要发生相应的改变。又或者另外一个需求：天气数据发生改变，那么天气信息报告板也跟着更新其显示内容。</p>
 <p>被观察的对象叫做<code>Subject</code>，其所有依赖者称为观察者。<br><a id="more"></a><br><code>Subject</code>能注册和移除观察者、并通知所有观察者的功能，主题是通过维护一张观察者列表来实现这些操作的。凡是在修改Subject的数据时，调用notofy()函数通知所有Observer即可。</p>
 <p>观察者（Observer）的注册功能主要需要调用<code>Subject</code>的 registerObserver() 方法。</p>
-<div align="center"><br>    <img src="/observer-diagram.png"><br></div>
+<div align="center"><br>    <img src="/2020/04/23/design-pattern/observer-diagram.png"><br></div>
 
 <h3><span id="subject-接口">Subject 接口</span></h3><p><code>Subject</code>接口，里面定义的方法包括1. 添加观察者，把观察者对象放在自己的容器中，2. 移除观察者，3. 状态变化，通知观察者更新状态。<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Subject</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">registerObserver</span><span class="hljs-params">(Observer o)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">removeObserver</span><span class="hljs-params">(Observer o)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notifyObserver</span><span class="hljs-params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>然后实现一个具体的Subject<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WeatherData</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Subject</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//List是一个用来放observer的容器</span></span><br><span class="line">    <span class="hljs-keyword">private</span> List&lt;Observer&gt; observers;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> temperature;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> humidity;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> pressure;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">WeatherData</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        observers = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setMeasurements</span><span class="hljs-params">(<span class="hljs-keyword">float</span> temperature, <span class="hljs-keyword">float</span> humidity, <span class="hljs-keyword">float</span> pressure)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.temperature = temperature;</span><br><span class="line">        <span class="hljs-keyword">this</span>.humidity = humidity;</span><br><span class="line">        <span class="hljs-keyword">this</span>.pressure = pressure;</span><br><span class="line">        <span class="hljs-comment">//通知所有观察者</span></span><br><span class="line">        notifyObserver();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerObserver</span><span class="hljs-params">(Observer o)</span> </span>&#123;</span><br><span class="line">        observers.add(o);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeObserver</span><span class="hljs-params">(Observer o)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> i = observers.indexOf(o);</span><br><span class="line">        <span class="hljs-keyword">if</span> (i &gt;= <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            observers.remove(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notifyObserver</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (Observer o : observers) &#123;</span><br><span class="line">            o.update(temperature, humidity, pressure);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -350,7 +350,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -360,7 +360,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -370,7 +370,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        35
+                        36
                     </p>
                 </div>
             </div>
@@ -544,6 +544,14 @@
         <a class="level is-marginless" href="/categories/语音合成/">
             <span class="level-start">
                 <span class="level-item">语音合成</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/说明书/">
+            <span class="level-start">
+                <span class="level-item">说明书</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -741,6 +749,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/特征解藕/">
                         <span class="tag">特征解藕</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/生活/">
+                        <span class="tag">生活</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

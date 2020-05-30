@@ -163,7 +163,7 @@
             
         </h1>
         <div class="content">
-            <div align="center"><br>    <img src="/banner.png"><br></div>
+            <div align="center"><br>    <img src="/2019/06/08/unsuper/banner.png"><br></div>
 
 <p>AI精准模仿你的声音<br><a id="more"></a><br>这个方法由下面几个步骤组成</p>
 <ul>
@@ -184,14 +184,14 @@
 </li>
 </ul>
 <h3><span id="方法">方法</span></h3><h4><span id="去噪自动编码器">去噪自动编码器</span></h4><p>学会怎么理解语音和文本(encode)，怎么建模生成语音文本序列(decode)，是实现文本语音相互转换的第一步。<br>利用自监督学习的概念，让模型分别建立对语言以及语音的理解建模能力。具体来说，我们基于不成对的语音和文本数据，利用去噪自动编码器（Denoising Auto-Encoder, DAE）在编码器-解码器框架中重建人为加有噪声的语音和文本。 – 去噪自动编码器是自监督学习典型的方法，广泛用在无监督学习上。</p>
-<div align="center"><br>    <img src="/dae.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/08/unsuper/dae.png"><br></div>
 
 <p>-DAE的损失函数：<br>$$<br>\begin{aligned} \mathcal{L}^{d a e}=&amp; \mathcal{L}_{\mathcal{S}}\left(x | C(x) ; \theta_{\text {enc}}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{S}}\right) \\ &amp;+\mathcal{L}_{\mathcal{T}}\left(y | C(y) ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{T}}\right) \end{aligned} (2)<br>$$<br>$\mathcal{L}_{\mathcal{S}},\mathcal{L}_{\mathcal{T}}$分别是<br>$$<br>\begin{array}{c}{\mathcal{L}_{\mathcal{S}}\left(y | x ; \theta_{\text {enc}}, \theta_{\text {dec}}\right)=\operatorname{MSE}\left(y, f\left(x ; \theta_{\text {enc}}, \theta_{\text {dec}}\right)\right)}(3) \\ {\mathcal{L}_{\mathcal{T}}\left(y | x ; \theta_{\text {enc}}, \theta_{\text {dec}}\right)=-\Sigma_{x} \log P\left(y | x ; \theta_{\text {enc}}, \theta_{\text {dec}}\right) )(4)}\end{array}<br>$$</p>
 <ul>
 <li>语音的DAE用的是均方误差</li>
 <li>文本就是log条件似然<h4><span id="对偶转换-dual-transformation">对偶转换 dual transformation</span></h4>使用对偶转换（Dual Transformation, DT），来分别训练模型将文本转为语音和将语音转为文本的能力：（a）TTS模型将文本X转换为语音Y，然后ASR模型利用转换得到语音-文本数据（Y，X）进行训练; （b）ASR模型将语音Y转换为文本X，然后TTS模型利用文本-语音数据（X，Y）进行训练。对偶转换在TTS和ASR之间不断迭代，逐步提高两个任务的准确性.<br>损失函数：</li>
 </ul>
-<div align="center"><br>    <img src="/dt.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/08/unsuper/dt.png"><br></div>
 
 <p>$$<br>\mathcal{L}^{d t}=\mathcal{L}_{\mathcal{S}}\left(x | \hat{y} ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{S}\right)+\mathcal{L}_{\mathcal{T}}\left(y | \hat{x} ; \theta_{e n c}^{S}, \theta_{d e c}^{\mathcal{T}}\right) \space \space(5)<br>$$<br>其中：$\hat{y} =\arg \max P\left(y | x ; \theta_{e n c}^{S}, \theta_{d e c}^{\mathcal{T}}\right)$, $\hat{x} = f\left(y ; \theta_{\text {enc}}^{\mathcal{T}}, \theta_{\text {dec}}^{\mathcal{S}}\right)$</p>
 <h4><span id="双向序列建模bidirectional-sequence-modeling-bsm">双向序列建模（Bidirectional Sequence Modeling, BSM）</span></h4><blockquote>
@@ -201,17 +201,17 @@
 <p>让模型分别按顺序和按反序来接收序列和生成序列，可以理解为一种数据增强（data argument）的方法。基于双向序列建模改变之前的损失公式：</p>
 <p>$$<br>\begin{array}{c}{\begin{aligned} \mathcal{L}^{\overrightarrow{d a e}}=&amp; \mathcal{L}_{\mathcal{S}}\left(\overrightarrow{x} | C(\overrightarrow{x}) ; \theta_{e n c}^{\mathcal{S}} \theta_{d e c}^{\mathcal{S}}\right) \\ &amp;+\mathcal{L}_{\mathcal{T}}\left(\overrightarrow{y} | C(\overrightarrow{y}) ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{T}}\right) \end{aligned}} \\<br>{\begin{aligned} \mathcal{L}^{\overleftarrow{d a e}}=&amp; \mathcal{L}_{\mathcal{S}}\left(\overleftarrow{x} | C(\overleftarrow{x}) ; \theta_{e n c}^{\mathcal{S}} \theta_{d e c}^{\mathcal{S}}\right) \\ &amp;+\mathcal{L}_{\mathcal{T}}\left(\overleftarrow{y} | C(\overleftarrow{y}) ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{T}}\right) \end{aligned}}\end{array} \space\space(6)<br>$$<br>$$<br>\begin{array}{c}{<br>\begin{aligned}<br>\mathcal{L}^{\overrightarrow{d t}}=&amp;\mathcal{L}_{\mathcal{S}}\left(\overrightarrow{x} | \hat{\overrightarrow{y}} ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{S}}\right) \\<br>&amp;+\mathcal{L}_{\mathcal{S}}\left(\overrightarrow{x} | R(\hat{\overleftarrow{y}} ) ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{S}}\right) \\<br>&amp;+\mathcal{L}_{\mathcal{T}}\left(\overrightarrow{y} | \hat{\overrightarrow{x}}  ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}}\right)\\<br>&amp;+\mathcal{L}_{\mathcal{T}}\left(\overrightarrow{y} | R(\hat{\overleftarrow{x}} ) ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}}\right),<br>\end{aligned}<br>} \\<br>{<br>\begin{aligned}<br>\mathcal{L}^{\overleftarrow{d t}}=&amp;\mathcal{L}_{\mathcal{S}}\left(\overleftarrow{x} | \hat{\overleftarrow{y}} ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{S}}\right) \\<br>&amp;+\mathcal{L}_{\mathcal{S}}\left(\overleftarrow{x} | R(\hat{\overrightarrow{y}} ) ; \theta_{e n c}^{\mathcal{T}}, \theta_{d e c}^{\mathcal{S}}\right) \\<br>&amp;+\mathcal{L}_{\mathcal{T}}\left(\overleftarrow{y} | \hat{\overleftarrow{x}}  ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}}\right)\\<br>&amp;+\mathcal{L}_{\mathcal{T}}\left(\overleftarrow{y} | R(\hat{\overrightarrow{x}} ) ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}}\right),<br>\end{aligned}<br>}\end{array} \space \space(7)<br>$$</p>
 <h4><span id="基于transformer的统一模型架构">基于Transformer的统一模型架构</span></h4><p>少量的成对数据也放进来：<br>$$<br>\begin{array}{c}{\begin{aligned} \mathcal{L}^{\overrightarrow{s u p}}=&amp; \mathcal{L}_{\mathcal{S}}\left(\overrightarrow{x} | \overrightarrow{y} ; \theta_{e n c}^{\mathcal{T}} \theta_{d e c}^{\mathcal{S}},(x,y)\in(\mathcal{S},\mathcal{T}) \right) \\ &amp;+\mathcal{L}_{\mathcal{T}}\left(\overrightarrow{y} |\overrightarrow{x}  ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}},(x,y)\in(\mathcal{S},\mathcal{T})\right) \end{aligned}} \\<br>{\begin{aligned} \mathcal{L}^{\overleftarrow{s u p}}=&amp; \mathcal{L}_{\mathcal{S}}\left(\overleftarrow{x} | \overleftarrow{y} ; \theta_{e n c}^{\mathcal{T}} \theta_{d e c}^{\mathcal{S}},(x,y)\in(\mathcal{S},\mathcal{T}) \right) \\ &amp;+\mathcal{L}_{\mathcal{T}}\left(\overleftarrow{y} |\overleftarrow{x}  ; \theta_{e n c}^{\mathcal{S}}, \theta_{d e c}^{\mathcal{T}},(x,y)\in(\mathcal{S},\mathcal{T})\right) \end{aligned}}\end{array} \space\space(8)<br>$$<br>$(x, y)$ 代表少量的成对匹配的语音文本数据.<br>于是该方法总的loss如下：<br>$$<br>\mathcal{L}=\mathcal{L}^{\overrightarrow{d a e}}+\mathcal{L}^{\overleftarrow{d a e}}+\mathcal{L}^{\overrightarrow{d t}}+\mathcal{L}^{\overleftarrow{d t}}+\mathcal{L}^{\overrightarrow{s u p}}+\mathcal{L}^{\overleftarrow{sup}}, \space\space(9)<br>$$</p>
-<div align="center"><br>    <img src="/figure1.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/08/unsuper/figure1.png"><br></div>
 
 <p>图（a）描述了DAE和DT的转换流程，图（b）展示了我们采用的Transformer模型结构，图（c）显示了语音和文本的输入输出处理模块。</p>
 <h3><span id="实验">实验</span></h3><blockquote>
 <p>为了验证这一方法的有效性，我们在英语上模拟低资源的场景，选用LJSpeech数据集进行实验，LJSpeech包含13100个英语音频片段和相应的文本，音频的总长度约为24小时。我们将数据集分成3组：300个样本作为验证集，300个样本作为测试集，剩下的12500个样本用来训练。在这12500个样本中，我们随机选择200个配对的语音和文本数据，剩下的数据当作不配对的语音文本数据。<br>我们邀请了30个专业评估员对生成的声音进行可懂度（Intelligibility Rate）以及MOS（Mean Opinion Score，平均主观意见分）评测。MOS指标用来衡量声音接近人声的自然度，在极低资源场景下，我们一般用可懂度来评估是否能产生可理解的声音。<br>经过实验，我们提出的方法可以产生可理解的语音，其单词级的可懂度高达99.84％，而如果仅对200个配对数据进行训练，则几乎无法产生可以被听懂的语音，这显示出我们方法在极低资源场景下的实用性。$^{[1]}$</p>
 </blockquote>
 <ul>
-<li><p>与其他系统在TTS和ASR任务上进行对比，并用MOS（平均主观意见分）衡量合成音与真实人声的相似度。用PER（音素错误率）衡量自动语音识别的表现。<br><div align="center"><br>  <img src="/table1.png"><br></div><br>这种方法的TTS任务上的MOS分达到了2.68，在ASR任务上的PER达到了11.7%，得分已经远高于200个配对样本的基线模型数据了。</p>
+<li><p>与其他系统在TTS和ASR任务上进行对比，并用MOS（平均主观意见分）衡量合成音与真实人声的相似度。用PER（音素错误率）衡量自动语音识别的表现。<br><div align="center"><br>  <img src="/2019/06/08/unsuper/table1.png"><br></div><br>这种方法的TTS任务上的MOS分达到了2.68，在ASR任务上的PER达到了11.7%，得分已经远高于200个配对样本的基线模型数据了。</p>
 </li>
 <li><p>分别将不同的添加到系统中，结果显示，当分别加入去噪自编码器（DAE）、对偶变换（DT）和双向序列建模（BSM）模块时，评分均有增高</p>
-<div align="center"><br>  <img src="/table2.png"><br></div>
+<div align="center"><br>  <img src="/2019/06/08/unsuper/table2.png"><br></div>
 
 </li>
 </ul>
@@ -323,7 +323,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -333,7 +333,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -343,7 +343,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        35
+                        36
                     </p>
                 </div>
             </div>
@@ -517,6 +517,14 @@
         <a class="level is-marginless" href="/categories/语音合成/">
             <span class="level-start">
                 <span class="level-item">语音合成</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/说明书/">
+            <span class="level-start">
+                <span class="level-item">说明书</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -714,6 +722,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/特征解藕/">
                         <span class="tag">特征解藕</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/生活/">
+                        <span class="tag">生活</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

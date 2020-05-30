@@ -169,7 +169,7 @@
 <h1><span id="vagervisual-ananolgy-graph-embedded-regression-model">VAGER：Visual Ananolgy Graph Embedded Regression model</span></h1><p>一个人学习认识狗会需要非常多的training data，但这个人当学习认识狼的时候，学习的速度就会加速。所以人学习会有一个common sense，就是说人学习的知识越多，再学习新的，相关的知识或者概念速度就会越快。</p>
 <p>本文作者从这点出发重新定义了visual learning的问题。我们知道人学习新的概念之前会有一些base classes已经掌握，那么人会基于basic data和已经学习到的模型，进而泛化完成学习新概念的任务。</p>
 <p>学习概念跟很多领域相关，本文作者想摒弃前人总结的各种复杂的学习机制，探索一种更加符合学习人直觉的学习方法</p>
-<div align="center"><br>    <img src="/fig1.png"><br></div>
+<div align="center"><br>    <img src="/2019/11/03/analogy/fig1.png"><br></div>
 
 <p>传统图片分类的深度学习：大量图片，每种类别有大量样本，用AlexNet训练：<br>然后用卷积网络(eg. AlexNet)的后面的某一层层特征作为图片的高维特征。用这些特征$\mathbf{x}_{i j}^{B} \in \mathscr{X}$ 计算出一个对称相似度矩阵$\mathbf{A}_{i j}$，大小为$nxn$，相似度用余弦相似度计算。</p>
 <p>$$<br>\mathbf{A}_{i j}=\frac{\overline{\mathbf{x}_{i}^{B}} \cdot \overline{\mathbf{x}_{j}^{B}}}{|\overline{\mathbf{x}_{i}^{B}}|_{2} \cdot|\overline{\mathbf{x}_{j}^{B}}|_{2}}<br>$$</p>
@@ -182,13 +182,13 @@
 <p>$$<br>\min \mathscr{L}\left(\mathbf{v}_{n e w}\right)=2\left|\mathbf{a}_{n e w}-\mathbf{v}_{n e w} \mathbf{V}^{\top}\right|_{2}^{2}+\left(\mathbf{v}_{n e w} \mathbf{v}_{n e w}^{\top}-1\right)<br>$$</p>
 <p>不用梯度下降，直接计算$\mathbf{v}_{n e w}=\mathbf{a}_{n e w}\left(\mathbf{V}^{\top}\right)^{+}$</p>
 <p>然后这个新类的二分类器参数就是$\mathbf{w}_{n e w}^{N}=\mathbf{v}_{n e w} \mathbf{T}$</p>
-<div align="center"><br>    <img src="/fig2.png"><br></div>
+<div align="center"><br>    <img src="/2019/11/03/analogy/fig2.png"><br></div>
 
 <ul>
 <li>类推 体现在，嵌入空间$\mathbf{V} \in \mathbb{R}^{n\times q}$保留视觉类比结构($\beta\left|\mathbf{A}-\mathbf{V} \mathbf{V}^{\top}\right|_{F}^{2}$做的约束)，线性映射$\mathbf{T} \in \mathbb{R}^{q \times p}$收集起到类推分类器作用</li>
 </ul>
 <h1><span id="unsupervised-open-domain-recognition-by-semantic-discrepancy-minimization">Unsupervised Open Domain Recognition by Semantic Discrepancy Minimization</span></h1><p>模型网络：UODR  Github开源:<a href="https://github.com/junbaoZHUO/UODTN" target="_blank" rel="noopener">junbaoZHUO / UODTN</a></p>
-<div align="center"><br>    <img src="/open-transfer.png"><br></div>
+<div align="center"><br>    <img src="/2019/11/03/analogy/open-transfer.png"><br></div>
 
 <p>目标是对目标域的所有实例进行分类，有点像zero-shot learning。但是generalized ZSL假设数据来自同一个域，没有domain discrepancy</p>
 <h2><span id="method">Method</span></h2><ul>
@@ -197,12 +197,12 @@
 <li>用平衡约束和GCN结合缩小化semantic discrepancy</li>
 <li>backbone和GCN一起，为了保留词向量和知识图谱的语义结构</li>
 </ul>
-<div align="center"><br>    <img src="/UODR.png"><br></div>
+<div align="center"><br>    <img src="/2019/11/03/analogy/UODR.png"><br></div>
 
 <p>构造unknown类的分类器参数，通过GCN保留语义结构（类别之间的关系），然后生成更新known和unknown 分类器的权重weight，核心是这些权重间接具有了语义结构(文中使用了WordNet编码一个邻居矩阵)</p>
-<div align="center"><br>    <img src="/propogate-relation1.png"><br></div>
+<div align="center"><br>    <img src="/2019/11/03/analogy/propogate-relation1.png"><br></div>
 
-<div align="center"><br>    <img src="/propogate-relation2.png"><br></div>
+<div align="center"><br>    <img src="/2019/11/03/analogy/propogate-relation2.png"><br></div>
 
 
 
@@ -323,7 +323,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -333,7 +333,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -343,7 +343,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        35
+                        36
                     </p>
                 </div>
             </div>
@@ -517,6 +517,14 @@
         <a class="level is-marginless" href="/categories/语音合成/">
             <span class="level-start">
                 <span class="level-item">语音合成</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/说明书/">
+            <span class="level-start">
+                <span class="level-item">说明书</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -714,6 +722,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/特征解藕/">
                         <span class="tag">特征解藕</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/生活/">
+                        <span class="tag">生活</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

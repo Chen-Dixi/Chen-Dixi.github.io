@@ -172,7 +172,7 @@
 <li><a href="http://openaccess.thecvf.com/CVPR2019.py" target="_blank" rel="noopener">CVPR2019</a>的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇<a id="more"></a>
 </li>
 </ul>
-<h3><span id="二-研究价值">二 研究价值</span></h3><div align="center"><br>    <img src="/application.png"><br></div>
+<h3><span id="二-研究价值">二 研究价值</span></h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/application.png"><br></div>
 
 <h3><span id="三-领域自适应问题形式化">三 领域自适应问题形式化</span></h3><ul>
 <li>Domain Adaptation ;同构迁移学习,迁移学习中和计算机视觉交叉的方法<br><strong>有标签的源域和无标签的目标域共享相同的特征和类别，但是特征分布不同</strong></li>
@@ -181,21 +181,21 @@
 <ul>
 <li>按照源域和目标域，包含的标签集合关系划分</li>
 </ul>
-<div align="center"><br>    <img src="/label_set_fomula.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/label_set_fomula.png"><br></div>
 
-<div align="center"><br>    <img src="/label_set.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/label_set.png"><br></div>
 
 <ul>
 <li>按源域数量划分</li>
 </ul>
-<div align="center"><br>    <img src="/domainAmount.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/domainAmount.png"><br></div>
 
-<div align="center"><br>    <img src="/multi-source.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/multi-source.png"><br></div>
 
 <ul>
 <li>按目标域有无标签</li>
 </ul>
-<div align="center"><br>    <img src="/DAType.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/DAType.png"><br></div>
 
 <h3><span id="四-领域自适应理论">四 领域自适应理论</span></h3><ul>
 <li><a href="https://papers.nips.cc/paper/2983-analysis-of-representations-for-domain-adaptation" target="_blank" rel="noopener">Analysis of Representations for Domain Adaptation, Ben-David, 2006</a><br>提出了$\mathcal{H} \Delta \mathcal{H} \text { -divergence }$作为传统分布差异的替代衡量式子，克服了从有限样本估计差异的困难。</li>
@@ -218,9 +218,9 @@
 </li>
 </ul>
 <p>域适应其中一个思想方法是，在一个联合子空间上把源域和目标域的差距Gap减小。这样在源域上训练出的分类器也能很好地迁移到目标域。这篇文章提供了严密的框架来解释为什么可以在联合公共空间缩小<code>源域</code>和<code>目标域</code>的差距。更确切地，研究迁移过程中产生的损失，提供了理论来解释和概括现有主要凭经验的深度域适应工作。能够让我们解释，为什么缩小<code>源域</code>和<code>目标域</code>的差距能直接最小化迁移学习的损失<code>loss</code>。</p>
-<h3><span id="五-方法概览">五 方法概览</span></h3><div align="center"><br>    <img src="/methodOverview.png"><br></div>
+<h3><span id="五-方法概览">五 方法概览</span></h3><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/methodOverview.png"><br></div>
 
-<h4><span id="51-概率分布适配法">5.1 概率分布适配法</span></h4><div align="center"><br>    <img src="/distributionAdaptation.png"><br></div>
+<h4><span id="51-概率分布适配法">5.1 概率分布适配法</span></h4><div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/distributionAdaptation.png"><br></div>
 
 <ul>
 <li>边缘分布适配<ul>
@@ -233,7 +233,7 @@
 </ul>
 </li>
 </ul>
-<div align="center"><br>    <img src="/TCAextension.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/TCAextension.png"><br></div>
 
 <ul>
 <li><p>条件分布适配</p>
@@ -263,16 +263,16 @@
 </ul>
 </li>
 </ul>
-<div align="center"><br>    <img src="/JDAextension.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/JDAextension.png"><br></div>
 
 <p> <strong>概率分布适配法总结</strong></p>
-<div align="center"><br>    <img src="/distributionSummary.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/distributionSummary.png"><br></div>
 
 <h4><span id="52-特征选择法">5.2 特征选择法</span></h4><p>从源域和目标域中选择提取共享的特征，建立统一模型</p>
 <ul>
 <li>Structural Correspondence Learning (SCL) [Blitzer, ECML-06]<br>假设源域和目标域有一些特征可以找出来对齐，把这些feature叫做pivot feature.</li>
 </ul>
-<div align="center"><br>    <img src="/SCL.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/SCL.png"><br></div>
 
 <p>上下两个日报，经常出现的词频率不同，他们之间有没有什么可以对齐的关系</p>
 <ul>
@@ -281,7 +281,7 @@
 </ul>
 <h4><span id="53-子空间学习法">5.3 子空间学习法</span></h4><ul>
 <li>将源域和目标域变换到相同的子空间，然后建立统一的模型<ul>
-<li>统计特征变换 (Statistical Feature Transformation)<br> 将源域和目标域的一些统计特征进行变换对齐<div align="center"><br><img src="/subspace1.png"><br></div><br><div align="center"><br><img src="/subspace2.png"><br></div>
+<li>统计特征变换 (Statistical Feature Transformation)<br> 将源域和目标域的一些统计特征进行变换对齐<div align="center"><br><img src="/2019/06/23/domainAdaptionLiteratureReview/subspace1.png"><br></div><br><div align="center"><br><img src="/2019/06/23/domainAdaptionLiteratureReview/subspace2.png"><br></div>
 
 </li>
 </ul>
@@ -290,7 +290,7 @@
 <h4><span id="54-一些的新方法">5.4 一些的新方法</span></h4><ul>
 <li>与深度学习结合<br>比如上面的<a href="https://arxiv.org/abs/1607.01719" target="_blank" rel="noopener">Deep Coral</a></li>
 </ul>
-<div align="center"><br>    <img src="/deep-coral.png"><br></div>
+<div align="center"><br>    <img src="/2019/06/23/domainAdaptionLiteratureReview/deep-coral.png"><br></div>
 
 <ul>
 <li><p>结合对抗方法<br>深度网络加入对抗，把对抗用在子空间学习中，进行特征变换对齐。<br><a href="http://www.jmlr.org/papers/volume17/15-239/15-239.pdf" target="_blank" rel="noopener">Y. Ganin ,Domain-adversarial neural network, JMLR-16</a></p>
@@ -298,7 +298,7 @@
 <li><p>非Close Set 领域自适应<br>当源域和目标域只共享一部分类别时如何迁移<br><a href="https://youkaichao.github.io/files/cvpr2019/1628.pdf" target="_blank" rel="noopener">Kaichao You, Universal Domain Adaptation ,CVPR2019</a><br><a href="http://openaccess.thecvf.com/content_ICCV_2017/papers/Busto_Open_Set_Domain_ICCV_2017_paper.pdf" target="_blank" rel="noopener">Busto, Open set domain adaptation, ICCV2017</a></p>
 </li>
 <li><p>多源域领域自适应<br>从不止一个源域中迁移到目标域中，也考虑各个源域之间的差异<br><a href="https://arxiv.org/abs/1803.00830" target="_blank" rel="noopener">Multi-source Unsupervised Domain Adaptation with Category Shift,Ruijia Xu,et al., CVPR2018</a></p>
-<div align="center"><br>  <img src="/cocktail.png"><br></div>
+<div align="center"><br>  <img src="/2019/06/23/domainAdaptionLiteratureReview/cocktail.png"><br></div>
 
 
 
@@ -412,7 +412,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -422,7 +422,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -432,7 +432,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        35
+                        36
                     </p>
                 </div>
             </div>
@@ -606,6 +606,14 @@
         <a class="level is-marginless" href="/categories/语音合成/">
             <span class="level-start">
                 <span class="level-item">语音合成</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/说明书/">
+            <span class="level-start">
+                <span class="level-item">说明书</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -803,6 +811,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/特征解藕/">
                         <span class="tag">特征解藕</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/生活/">
+                        <span class="tag">生活</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

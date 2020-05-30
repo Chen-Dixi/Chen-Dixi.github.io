@@ -167,7 +167,7 @@
 <p>索引是在存储引擎层实现的，而不是在服务器层实现的，所以不同存储引擎具有不同的索引类型和实现。<br><a id="more"></a><br>索引的应用在生活中很常见，例如图书的目录、词典等，都是通过不断的缩小想要获得数据的范围来筛选出最终想要的结果。</p>
 <h1><span id="索引的数据结构">索引的数据结构</span></h1><p>数据库的数据存储在磁盘中，磁盘IO是花时间，十分高昂。每次查找数据需要把IO控制在一个很小的数量级。</p>
 <p>参考资料：<a href="https://blog.csdn.net/qq_26222859/article/details/80631121" target="_blank" rel="noopener">cnblog</a></p>
-<h2><span id="b树">B树</span></h2><div align="center"><br>    <img src="/B-Tree.png"><br></div>
+<h2><span id="b树">B树</span></h2><div align="center"><br>    <img src="/2020/04/17/database/B-Tree.png"><br></div>
 
 <p>在这之前介绍B树，B树是平衡树，一棵查找树，所有叶子节点位于同一层。数据结构比较矮胖。B-树满足这一个特征。</p>
 <p>一个<strong>M阶</strong>的B树：</p>
@@ -190,7 +190,7 @@
 <li>查询性能稳定。B树最好情况只查找根节点，最坏情况查找到叶节点。B+树每一次查找都是稳定的。</li>
 <li>范围查找更便捷。所有叶子节点形成有序链表，便于范围查找。</li>
 </ul>
-<div align="center"><br>    <img src="/b+range_search.png"><br></div>
+<div align="center"><br>    <img src="/2020/04/17/database/b+range_search.png"><br></div>
 
 <h1><span id="索引类型">索引类型</span></h1><p>在 MySQL 中，索引分为两大类：聚簇索引和非聚簇索引。</p>
 <p>InnoDB 使用的是聚簇索引，聚簇索引是按照数据存放的物理位置为顺序的，将行数据存储到叶子节点上。有主键时，根据主键创建聚簇索引；没有主键时，会用一个唯一且不为空的索引列做为主键，成为此表的聚簇索引。</p>
@@ -302,7 +302,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -312,7 +312,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -322,7 +322,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        35
+                        36
                     </p>
                 </div>
             </div>
@@ -496,6 +496,14 @@
         <a class="level is-marginless" href="/categories/语音合成/">
             <span class="level-start">
                 <span class="level-item">语音合成</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/说明书/">
+            <span class="level-start">
+                <span class="level-item">说明书</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -693,6 +701,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/特征解藕/">
                         <span class="tag">特征解藕</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/生活/">
+                        <span class="tag">生活</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
