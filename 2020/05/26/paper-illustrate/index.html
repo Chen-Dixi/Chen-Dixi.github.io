@@ -16,7 +16,7 @@
 <meta property="og:description" content="中文解释">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-27T15:29:15.333Z">
+<meta property="og:updated_time" content="2020-05-31T07:49:29.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小论文方法解读">
 <meta name="twitter:description" content="中文解释">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1616 个字)
+                    17 分钟 读完 (大约 2543 个字)
                 </span>
                 
                 
@@ -167,12 +167,56 @@
 <a id="more"></a>
 <!-- toc -->
 <ul>
-<li><a href="#33-known-class-distribution-modeling">3.3 Known-class Distribution Modeling</a></li>
+<li><a href="#33-known-class-distribution-modeling">3.3 Known-class Distribution Modeling</a><ul>
+<li><a href="#center-loss">Center loss:</a></li>
+<li><a href="#large-margin-softmax-loss">Large Margin Softmax Loss</a></li>
+<li><a href="#l-gm-loss">L-GM loss</a></li>
+</ul>
+</li>
 <li><a href="#34-adversarial-adaptation-by-backpropagation">3.4 Adversarial Adaptation by Backpropagation</a></li>
 <li><a href="#35-stepwise-feature-norm-alignment">3.5 Stepwise Feature Norm Alignment</a></li>
 </ul>
 <!-- tocstop -->
-<h1><span id="33-known-class-distribution-modeling">3.3 Known-class Distribution Modeling</span></h1><h1><span id="34-adversarial-adaptation-by-backpropagation">3.4 Adversarial Adaptation by Backpropagation</span></h1><p>在论文：[Open Set Domain Adaptation by Backpropagation]里提出。</p>
+<h1><span id="33-known-class-distribution-modeling">3.3 Known-class Distribution Modeling</span></h1><p><a href="https://www.youtube.com/watch?v=op9IBox_TTc&amp;t=2310s" target="_blank" rel="noopener">Video 38:30</a><br><a href="https://github.com/WeitaoVan/L-GM-loss" target="_blank" rel="noopener">L-GM-Loss:Github</a></p>
+<h2><span id="center-loss">Center loss:</span></h2><p>$\text { Center loss }[3] \quad \mathcal{L}_{C}=\frac{1}{2} \sum_{i=1}^{m}\left|x_{i}-c_{y_{i}}\right|_{2}^{2}$</p>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/31/tlqVhR.png" alt><br></div>
+
+<p><code>Center loss</code>去记录每一个类别的中心，相比于pair-wise的<code>Contrastive loss</code>和<code>Triplet loss</code>减少了计算量。</p>
+<p><code>Center loss</code>，<code>Contrastive loss</code>和<code>Triplet loss</code>都是一个$\text{Softmax}+\text{regularization}$的形式。目的是通过<code>regularization</code>提高促进<code>inter-class separability and intra-class compactness</code>。</p>
+<h2><span id="large-margin-softmax-loss">Large Margin Softmax Loss</span></h2><p>相比于Softmax，L-Softmax在判别边界之间塞进Decision Margin。<br>Softmax原本的形式：</p>
+<p>$L_{i}=-\log \left(\frac{e^{\left|\boldsymbol{W}_{y_{i}}\right|\left|\boldsymbol{x}_{i}\right| \cos \left(\theta_{v_{i}}\right)}}{\sum_{j} e^{\left|\boldsymbol{W}_{j}\right|\left|\boldsymbol{x}_{i}\right| \cos \left(\theta_{j}\right)}}\right)$</p>
+<p>L-Sofmaxt将余弦的部分做出改变，$\cos \left(\theta_{y_{i}}\right) \rightarrow \cos \left(m \theta_{y_{i}}\right)$，m是一个正整数。</p>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/31/t1Ppge.png" alt><br></div>
+
+<p>函数用了另外的一个复杂的式子$\psi\left(\theta_{y_{i}}\right)$来代替$\cos \left(\theta_{y_{i}}\right)$来增加一个Large-Margin</p>
+<p>$$<br>\psi(\theta)=(-1)^{k} \cos (m \theta)-2 k, \quad \theta \in\left[\frac{k \pi}{m}, \frac{(k+1) \pi}{m}\right]<br>$$</p>
+<h2><span id="l-gm-loss">L-GM loss</span></h2><ul>
+<li>Motivation1<br>  增加一个Decision Margin的式子比L-Softmax简单：$d_{y_{i}} \rightarrow d_{y_{i}}+m$</li>
+<li><p>Motivation2<br>  对特征分布进行建模来分辨异常数据，Adversarial Examples和Unseen categories</p>
+<p>  目的是希望这些异常数据abnomal inputs在特征分布上有一个很小的似然值(likelihood)。似然（likelihood）这个词其实和概率（probability）是差不多的意思</p>
+</li>
+<li><p>把image feature建模成混合高斯模型<br>$$<br>\begin{array}{l}\text { Model the image features as GMM } \\ p\left(z_{i} | x_{i}\right)=\frac{\mathcal{N}\left(x_{i} ; \mu_{z_{i}}, \Sigma_{z_{i}}\right) p\left(z_{i}\right)}{\sum_{k=1}^{K} \mathcal{N}\left(x_{i} ; \mu_{k}, \Sigma_{k}\right) p(k)}\end{array}<br>$$<br>x代表特征。</p>
+</li>
+</ul>
+<p>首先写出特征x的边缘概率分布，$\mu_{k} \text { and } \Sigma_{k}$是类别k的平均和协方差。$p(k)$是类别k的先验概率</p>
+<p>$$<br>p(x)=\sum_{k=1}^{K} \mathcal{N}\left(x ; \mu_{k}, \Sigma_{k}\right) p(k)<br>$$</p>
+<p>那基于这个定义，给出一个类别标签zi后$z_{i} \in[1, K]$，特征的条件概率就是$p\left(x_{i} | z_{i}\right)=\mathcal{N}\left(x_{i} ; \mu_{z_{i}}, \Sigma_{z_{i}}\right)$。根据贝叶斯公式，类别的后验概率就是<br>$$p\left(z_{i} | x_{i}\right)=\frac{\mathcal{N}\left(x_{i} ; \mu_{z_{i}}, \Sigma_{z_{i}}\right) p\left(z_{i}\right)}{\sum_{k=1}^{K} \mathcal{N}\left(x_{i} ; \mu_{k}, \Sigma_{k}\right) p(k)}$$</p>
+<p>然后用这个后验概率分布和CrossEntropy做分类loss就是:</p>
+<p>$$<br>\begin{aligned} \mathcal{L}_{c l s} &amp;=-\frac{1}{N} \sum_{i=1}^{N} \sum_{k=1}^{K} \mathbb{1}\left(z_{i}=k\right) \log p\left(k | x_{i}\right) \\ &amp;=-\frac{1}{N} \sum_{i=1}^{N} \log \frac{\mathcal{N}\left(x_{i} ; \mu_{z_{i}}, \Sigma_{z_{i}}\right) p\left(z_{i}\right)}{\sum_{k=1}^{K} \mathcal{N}\left(x_{i} ; \mu_{k}, \Sigma_{k}\right) p(k)} \end{aligned}<br>$$</p>
+<p>实际实验中，把$\Sigma$当作对角矩阵，意思是每个类别对应特征的各个维度是独立正太分布的<a href="https://chen-dixi.github.io/2020/04/29/anomaly-detection/" target="_blank" rel="noopener">（参考异常检测博客部分）</a>，类别k的先验概率$p(k)$为平均分布。</p>
+<p>基于这样的公式，我们可以添加一个Classification Margin。在ground truth类别的指数部分减去一个margin。</p>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/31/t1ujUg.png" alt><br></div>
+
+<p>$\alpha$控制这个分类Margin的大小size。</p>
+<ul>
+<li>让Features遵循GM分布。</li>
+</ul>
+<p>引入一个likelihood regularization正则项，让特征趋近这个分布。</p>
+<p>$$<br>\mathcal{L}_{l k d}=-\sum_{i=1}^{N} \log \mathcal{N}\left(x_{i} ; \mu_{z_{i}}, \Sigma_{z_{i}}\right)<br>$$</p>
+<p>把它放进最后的Classification loss 作为完整的LGM loss。</p>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/31/t1Qkh4.png" alt><br></div>
+
+<h1><span id="34-adversarial-adaptation-by-backpropagation">3.4 Adversarial Adaptation by Backpropagation</span></h1><p>在论文：[Open Set Domain Adaptation by Backpropagation]里提出。</p>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/27/tkQ1C4.png" alt><br></div>
 
 
