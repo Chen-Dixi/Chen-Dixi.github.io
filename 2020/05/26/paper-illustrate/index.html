@@ -16,7 +16,7 @@
 <meta property="og:description" content="中文解释">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-31T07:49:29.239Z">
+<meta property="og:updated_time" content="2020-05-31T12:42:17.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小论文方法解读">
 <meta name="twitter:description" content="中文解释">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    17 分钟 读完 (大约 2543 个字)
+                    18 分钟 读完 (大约 2758 个字)
                 </span>
                 
                 
@@ -190,9 +190,10 @@
 
 <p>函数用了另外的一个复杂的式子$\psi\left(\theta_{y_{i}}\right)$来代替$\cos \left(\theta_{y_{i}}\right)$来增加一个Large-Margin</p>
 <p>$$<br>\psi(\theta)=(-1)^{k} \cos (m \theta)-2 k, \quad \theta \in\left[\frac{k \pi}{m}, \frac{(k+1) \pi}{m}\right]<br>$$</p>
-<h2><span id="l-gm-loss">L-GM loss</span></h2><ul>
+<h2><span id="l-gm-loss">L-GM loss</span></h2><p>Loss基于高丝混合分布</p>
+<ul>
 <li>Motivation1<br>  增加一个Decision Margin的式子比L-Softmax简单：$d_{y_{i}} \rightarrow d_{y_{i}}+m$</li>
-<li><p>Motivation2<br>  对特征分布进行建模来分辨异常数据，Adversarial Examples和Unseen categories</p>
+<li><p>Motivation2<br>  对特征分布进行分布建模后来分辨异常数据，Adversarial Examples和Unseen categories</p>
 <p>  目的是希望这些异常数据abnomal inputs在特征分布上有一个很小的似然值(likelihood)。似然（likelihood）这个词其实和概率（probability）是差不多的意思</p>
 </li>
 <li><p>把image feature建模成混合高斯模型<br>$$<br>\begin{array}{l}\text { Model the image features as GMM } \\ p\left(z_{i} | x_{i}\right)=\frac{\mathcal{N}\left(x_{i} ; \mu_{z_{i}}, \Sigma_{z_{i}}\right) p\left(z_{i}\right)}{\sum_{k=1}^{K} \mathcal{N}\left(x_{i} ; \mu_{k}, \Sigma_{k}\right) p(k)}\end{array}<br>$$<br>x代表特征。</p>
@@ -207,6 +208,8 @@
 <p>基于这样的公式，我们可以添加一个Classification Margin。在ground truth类别的指数部分减去一个margin。</p>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/31/t1ujUg.png" alt><br></div>
 
+<p>减去一个m后，要想样本$x_{i}$被正确分类到所属类别$z_{i}$，就需要满足下面的公式，表示样本离 类别中心(feature mean)的距离更近，至少比离其他中心更近一个m。</p>
+<p>$$<br>e^{-d_{z_{i}}-m}&gt;e^{-d_{k}} \Longleftrightarrow d_{k}-d_{z_{i}}&gt;m \quad, \forall k \neq z_{i}<br>$$</p>
 <p>$\alpha$控制这个分类Margin的大小size。</p>
 <ul>
 <li>让Features遵循GM分布。</li>
@@ -215,6 +218,15 @@
 <p>$$<br>\mathcal{L}_{l k d}=-\sum_{i=1}^{N} \log \mathcal{N}\left(x_{i} ; \mu_{z_{i}}, \Sigma_{z_{i}}\right)<br>$$</p>
 <p>把它放进最后的Classification loss 作为完整的LGM loss。</p>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/31/t1Qkh4.png" alt><br></div>
+
+<ul>
+<li>L-GM likelihood的计算</li>
+</ul>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/31/t39rDA.png" alt><br></div>
+
+<p>图f就是一个likelihood的heat map。靠近各个类别中心附近区域的likelihood比较高。论文里L-GM的likelihood按照如下的方式计算：</p>
+<p>根据样本$x_{i}$的预测结果，$\hat{z}_{i}=\arg \max _{k} p\left(k | x_{i}\right)$，$x_{i}$的likelihood就是$l_{G M, i}=\exp \left(-\left||x_{i}-\mu_{\hat{z}_{i}}|\right|^{2} / 2\right)$</p>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/31/t3FZMF.png" alt><br></div>
 
 <h1><span id="34-adversarial-adaptation-by-backpropagation">3.4 Adversarial Adaptation by Backpropagation</span></h1><p>在论文：[Open Set Domain Adaptation by Backpropagation]里提出。</p>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/05/27/tkQ1C4.png" alt><br></div>
