@@ -7,19 +7,16 @@
 
 
 
-    <meta name="description" content="51. 数组中的逆序对题目描述：在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。 解题思路：归并排序去做，归并的过程统计逆序对个数，归并时从右边插入。">
-<meta name="keywords" content="Leetcode">
+    <meta name="keywords" content="Leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="剑指Offer（下）">
 <meta property="og:url" content="http://yoursite.com/2020/04/15/road2offer3/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="51. 数组中的逆序对题目描述：在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。 解题思路：归并排序去做，归并的过程统计逆序对个数，归并时从右边插入。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-11T07:19:43.397Z">
+<meta property="og:updated_time" content="2020-06-01T08:38:50.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指Offer（下）">
-<meta name="twitter:description" content="51. 数组中的逆序对题目描述：在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。 解题思路：归并排序去做，归并的过程统计逆序对个数，归并时从右边插入。">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -154,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1694 个字)
+                    11 分钟 读完 (大约 1704 个字)
                 </span>
                 
                 
@@ -167,8 +164,26 @@
             
         </h1>
         <div class="content">
-            <h1><span id="51-数组中的逆序对">51. 数组中的逆序对</span></h1><p>题目描述：在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
-<p>解题思路：归并排序去做，归并的过程统计逆序对个数，归并时从右边插入。<br><a id="more"></a><br>以前写的归并排序模板做这道题比较麻烦起来比较麻烦。<br><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">while</span>(p&gt;=l || q&gt;=mid+<span class="hljs-number">1</span>)&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(q&gt;r || (p&lt;=mid &amp;&amp; nums[p]&gt;nums[q]))&#123;</span><br><span class="line">        T[i--]=nums[p--];</span><br><span class="line">    &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">        T[i--]=nums[q--];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            <div align="center"><br>    <img src="https://s1.ax1x.com/2020/06/01/tGw68s.png" alt><br></div>
+
+<a id="more"></a>
+<!-- toc -->
+<ul>
+<li><a href="#51-数组中的逆序对">51. 数组中的逆序对</a></li>
+<li><a href="#60-n个骰子">60. n个骰子</a></li>
+<li><a href="#64-求-12n">64. 求 1+2+…+n</a></li>
+<li><a href="#65-不用加减乘除做加法">65. 不用加减乘除做加法</a></li>
+<li><a href="#66-构建乘积数组">66. 构建乘积数组</a></li>
+<li><a href="#67-把字符串转换成整数">67. 把字符串转换成整数</a></li>
+<li><a href="#68-树中两个节点的最低公共祖先">68. 树中两个节点的最低公共祖先</a><ul>
+<li><a href="#二叉搜索树">二叉搜索树</a></li>
+<li><a href="#普通二叉树">普通二叉树</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1><span id="51-数组中的逆序对">51. 数组中的逆序对</span></h1><p>题目描述：在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
+<p>解题思路：归并排序去做，归并的过程统计逆序对个数，归并时从右边插入。<br><!-- more --><br>以前写的归并排序模板做这道题比较麻烦起来比较麻烦。<br><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">while</span>(p&gt;=l || q&gt;=mid+<span class="hljs-number">1</span>)&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(q&gt;r || (p&lt;=mid &amp;&amp; nums[p]&gt;nums[q]))&#123;</span><br><span class="line">        T[i--]=nums[p--];</span><br><span class="line">    &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">        T[i--]=nums[q--];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>按照下面的写法比较顺利</p>
 <figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">while</span>(p&gt;=l &amp;&amp; q&gt;=mid+<span class="hljs-number">1</span>)&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(nums[p]&gt;nums[q])&#123;</span><br><span class="line">        copy[k--]=nums[p--];</span><br><span class="line">        counter+=(q-mid); <span class="hljs-comment">//全局变量counter只需要在这里统计逆序对就行了</span></span><br><span class="line">    &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">        copy[k--]=nums[q--];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">for</span>(;p&gt;=l;--p)&#123;</span><br><span class="line">    copy[k--]=nums[p];</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">for</span>(;q&gt;=mid+<span class="hljs-number">1</span>;q--)</span><br><span class="line">    copy[k--]=nums[q];</span><br></pre></td></tr></table></figure>
 <p>c++代码<br><figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>&#123;</span></span><br><span class="line"><span class="hljs-keyword">private</span>:</span><br><span class="line">    <span class="hljs-keyword">int</span> counter=<span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">reversePairs</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> len = nums,size();</span><br><span class="line">        <span class="hljs-keyword">if</span>(len&lt;=<span class="hljs-number">1</span>)&#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        &#125;   </span><br><span class="line">        counter=<span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-comment">//归并排序</span></span><br><span class="line">        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; copy(len,<span class="hljs-number">0</span>);</span><br><span class="line">        mergesort(nums,copy,<span class="hljs-number">0</span>,len<span class="hljs-number">-1</span>);</span><br><span class="line">        <span class="hljs-keyword">return</span> counter;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> mergesort(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; copy,<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(l&gt;=r) <span class="hljs-keyword">return</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> mid = (l+r)/<span class="hljs-number">2</span>;   </span><br><span class="line">        mergesort(nums,copy,l,mid);</span><br><span class="line">        mergesort(nums,copy,mid+<span class="hljs-number">1</span>,r);</span><br><span class="line">        <span class="hljs-comment">//这里归并过程，从子数组最后往前归并</span></span><br><span class="line">        <span class="hljs-keyword">int</span> p=mid,q=r;</span><br><span class="line">        <span class="hljs-keyword">int</span> k=r;</span><br><span class="line">        <span class="hljs-keyword">while</span>(p&gt;=l &amp;&amp; q&gt;=mid+<span class="hljs-number">1</span>)&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(nums[p]&gt;nums[q])&#123;</span><br><span class="line">                copy[k--]=nums[p--];</span><br><span class="line">                counter+=(q-mid);</span><br><span class="line">            &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">                copy[k--]=data[q--];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">for</span>(;p&gt;=l;--p)&#123;</span><br><span class="line">            copy[k--]=nums[p];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">for</span>(;q&gt;=mid+<span class="hljs-number">1</span>;q--)</span><br><span class="line">            copy[k--]=nums[q];</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=l;i&lt;=r;i++)&#123;</span><br><span class="line">            nums[i]=copy[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>

@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="行为型观察者模式一对多的依赖，多个对象关注一个对象。当被关注的对象发生状态改变时，它的所有依赖都会收到通知并且自动更新状态。例如这样一个需求：App当中，如果在用户设置的二级界面修改了自己的用户名，那么此时一级界面上显示的用户名也需要发生相应的改变。又或者另外一个需求：天气数据发生改变，那么天气信息报告板也跟着更新其显示内容。 被观察的对象叫做Subject，其所有依赖者称为观察者。">
+    <meta name="description" content="基于Java的设计模式">
 <meta name="keywords" content="开发,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式">
 <meta property="og:url" content="http://yoursite.com/2020/04/23/design-pattern/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="行为型观察者模式一对多的依赖，多个对象关注一个对象。当被关注的对象发生状态改变时，它的所有依赖都会收到通知并且自动更新状态。例如这样一个需求：App当中，如果在用户设置的二级界面修改了自己的用户名，那么此时一级界面上显示的用户名也需要发生相应的改变。又或者另外一个需求：天气数据发生改变，那么天气信息报告板也跟着更新其显示内容。 被观察的对象叫做Subject，其所有依赖者称为观察者。">
+<meta property="og:description" content="基于Java的设计模式">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-20T06:44:11.777Z">
+<meta property="og:updated_time" content="2020-06-01T08:04:09.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式">
-<meta name="twitter:description" content="行为型观察者模式一对多的依赖，多个对象关注一个对象。当被关注的对象发生状态改变时，它的所有依赖都会收到通知并且自动更新状态。例如这样一个需求：App当中，如果在用户设置的二级界面修改了自己的用户名，那么此时一级界面上显示的用户名也需要发生相应的改变。又或者另外一个需求：天气数据发生改变，那么天气信息报告板也跟着更新其显示内容。 被观察的对象叫做Subject，其所有依赖者称为观察者。">
+<meta name="twitter:description" content="基于Java的设计模式">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -154,7 +154,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    18 分钟 读完 (大约 2774 个字)
+                    19 分钟 读完 (大约 2783 个字)
                 </span>
                 
                 
@@ -167,8 +167,47 @@
             
         </h1>
         <div class="content">
-            <h1><span id="行为型"><strong>行为型</strong></span></h1><h2><span id="观察者模式"><strong>观察者模式</strong></span></h2><p>一对多的依赖，多个对象关注一个对象。当被关注的对象发生状态改变时，它的所有依赖都会收到通知并且自动更新状态。例如这样一个需求：App当中，如果在用户设置的二级界面修改了自己的用户名，那么此时一级界面上显示的用户名也需要发生相应的改变。又或者另外一个需求：天气数据发生改变，那么天气信息报告板也跟着更新其显示内容。</p>
-<p>被观察的对象叫做<code>Subject</code>，其所有依赖者称为观察者。<br><a id="more"></a><br><code>Subject</code>能注册和移除观察者、并通知所有观察者的功能，主题是通过维护一张观察者列表来实现这些操作的。凡是在修改Subject的数据时，调用notofy()函数通知所有Observer即可。</p>
+            <p>基于Java的设计模式</p>
+<a id="more"></a>
+<!-- toc -->
+<ul>
+<li><a href="#行为型"><strong>行为型</strong></a><ul>
+<li><a href="#观察者模式"><strong>观察者模式</strong></a><ul>
+<li><a href="#subject-接口">Subject 接口</a></li>
+<li><a href="#观察者observer接口">观察者Observer接口，</a></li>
+<li><a href="#main-函数例子">Main 函数例子</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#创建型">创建型</a><ul>
+<li><a href="#单例模式"><strong>单例模式</strong></a><ul>
+<li><a href="#饿汉式-线程安全">饿汉式-线程安全</a></li>
+<li><a href="#懒汉式-线程安全">懒汉式-线程安全</a></li>
+<li><a href="#双重校验锁-线程安全">双重校验锁-线程安全</a></li>
+<li><a href="#静态内部类实现">静态内部类实现</a></li>
+<li><a href="#枚举实现">枚举实现</a></li>
+</ul>
+</li>
+<li><a href="#简单工厂"><strong>简单工厂</strong></a></li>
+<li><a href="#工厂方法"><strong>工厂方法</strong></a></li>
+<li><a href="#抽象工厂"><strong>抽象工厂</strong></a></li>
+</ul>
+</li>
+<li><a href="#结构型"><strong>结构型</strong></a><ul>
+<li><a href="#适配器adapter"><strong>适配器(Adapter)</strong></a></li>
+<li><a href="#装饰者"><strong>装饰者</strong></a><ul>
+<li><a href="#intent">Intent</a></li>
+<li><a href="#class-diagram">Class Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1><span id="行为型"><strong>行为型</strong></span></h1><h2><span id="观察者模式"><strong>观察者模式</strong></span></h2><p>一对多的依赖，多个对象关注一个对象。当被关注的对象发生状态改变时，它的所有依赖都会收到通知并且自动更新状态。例如这样一个需求：App当中，如果在用户设置的二级界面修改了自己的用户名，那么此时一级界面上显示的用户名也需要发生相应的改变。又或者另外一个需求：天气数据发生改变，那么天气信息报告板也跟着更新其显示内容。</p>
+<p>被观察的对象叫做<code>Subject</code>，其所有依赖者称为观察者。</p>
+<p><code>Subject</code>能注册和移除观察者、并通知所有观察者的功能，主题是通过维护一张观察者列表来实现这些操作的。凡是在修改Subject的数据时，调用notofy()函数通知所有Observer即可。</p>
 <p>观察者（Observer）的注册功能主要需要调用<code>Subject</code>的 registerObserver() 方法。</p>
 <div align="center"><br>    <img src="/2020/04/23/design-pattern/observer-diagram.png"><br></div>
 
