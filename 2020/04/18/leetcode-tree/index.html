@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="树，要熟悉树的操作，运用大量的递归。多刷题，多锻炼大脑。 98 验证二叉搜索树题目描述：给定一个二叉树，判断其是否是一个有效的二叉搜索树。 解题思路：不仅要判断左子节点和右子节点与父节点大小比较，还要注意整棵子树与父节点的关系（左子树所有节点的值都必须小于父节点的值）">
+    <meta name="description" content="树，要熟悉树的操作，运用大量的递归。多刷题，多锻炼大脑。">
 <meta name="keywords" content="leetcode,刷题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode 树">
 <meta property="og:url" content="http://yoursite.com/2020/04/18/leetcode-tree/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
-<meta property="og:description" content="树，要熟悉树的操作，运用大量的递归。多刷题，多锻炼大脑。 98 验证二叉搜索树题目描述：给定一个二叉树，判断其是否是一个有效的二叉搜索树。 解题思路：不仅要判断左子节点和右子节点与父节点大小比较，还要注意整棵子树与父节点的关系（左子树所有节点的值都必须小于父节点的值）">
+<meta property="og:description" content="树，要熟悉树的操作，运用大量的递归。多刷题，多锻炼大脑。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-11T06:49:19.197Z">
+<meta property="og:updated_time" content="2020-06-06T09:10:59.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode 树">
-<meta name="twitter:description" content="树，要熟悉树的操作，运用大量的递归。多刷题，多锻炼大脑。 98 验证二叉搜索树题目描述：给定一个二叉树，判断其是否是一个有效的二叉搜索树。 解题思路：不仅要判断左子节点和右子节点与父节点大小比较，还要注意整棵子树与父节点的关系（左子树所有节点的值都必须小于父节点的值）">
+<meta name="twitter:description" content="树，要熟悉树的操作，运用大量的递归。多刷题，多锻炼大脑。">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 848 个字)
+                    6 分钟 读完 (大约 849 个字)
                 </span>
                 
                 
@@ -164,8 +164,16 @@
         </h1>
         <div class="content">
             <p>树，要熟悉树的操作，运用大量的递归。多刷题，多锻炼大脑。</p>
+<a id="more"></a>
+<!-- toc -->
+<ul>
+<li><a href="#98-验证二叉搜索树">98 验证二叉搜索树</a></li>
+<li><a href="#236-二叉树的最近公共祖先">236. 二叉树的最近公共祖先</a></li>
+</ul>
+<!-- tocstop -->
 <h1><span id="98-验证二叉搜索树">98 验证二叉搜索树</span></h1><p>题目描述：给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
-<p>解题思路：不仅要判断左子节点和右子节点与父节点大小比较，还要注意整棵子树与父节点的关系（左子树所有节点的值都必须小于父节点的值）<br><a id="more"></a><br>刚开始，想的是自底向上，先判断子树是不是BST，然后把左子树的最大值和右子树的最小值拿来和根结点比较。没想到实现办法，还是看了参考答案。<br>遍历树的同时保留结点的上界与下界，在比较时不仅比较子结点的值，也要与上下界比较。</p>
+<p>解题思路：不仅要判断左子节点和右子节点与父节点大小比较，还要注意整棵子树与父节点的关系（左子树所有节点的值都必须小于父节点的值）</p>
+<p>刚开始，想的是自底向上，先判断子树是不是BST，然后把左子树的最大值和右子树的最小值拿来和根结点比较。没想到实现办法，还是看了参考答案。<br>遍历树的同时保留结点的上界与下界，在比较时不仅比较子结点的值，也要与上下界比较。</p>
 <ol>
 <li>递归</li>
 </ol>
