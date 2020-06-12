@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-01T08:42:49.644Z">
+<meta property="og:updated_time" content="2020-06-12T04:27:00.725Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java知识汇总">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1131 个字)
+                    19 分钟 读完 (大约 2923 个字)
                 </span>
                 
                 
@@ -166,6 +166,24 @@
         <div class="content">
             <div align="center"><img src="/2020/05/01/java-review/java.png" alt></div><br><a id="more"></a><br><div align="center"><img src="/2020/05/01/java-review/java-path.png" alt></div>
 
+<!-- toc -->
+<ul>
+<li><a href="#面向过程和面向对象">面向过程和面向对象</a></li>
+<li><a href="#继承和多态">继承和多态</a></li>
+<li><a href="#关键字">关键字</a><ul>
+<li><a href="#final">final</a></li>
+</ul>
+</li>
+<li><a href="#string-stringbuilder-stringbuffer">String, StringBuilder, StringBuffer</a></li>
+<li><a href="#synchronized-实现原理">Synchronized 实现原理</a></li>
+<li><a href="#容器">容器</a><ul>
+<li><a href="#hashmap和hashtable">HashMap和HashTable</a></li>
+<li><a href="#arraylist和linkedlist">ArrayList和LinkedList</a></li>
+</ul>
+</li>
+<li><a href="#参考">参考</a></li>
+</ul>
+<!-- tocstop -->
 <h1><span id="面向过程和面向对象">面向过程和面向对象</span></h1><p>1 面向过程：</p>
 <blockquote>
 <p>分析出问题解决步骤，用函数把这些步骤一步一步实现，使用的时候一个一个调用</p>
@@ -235,8 +253,56 @@
 <li>一个类可以实现多个接口，但是只能继承一个抽象类</li>
 <li>接口中基本数据类型的数据成员，都默认为static final，抽象类则不是</li>
 </ul>
-<p># </p>
-<h1><span id="参考">参考</span></h1><p><a href="https://blog.csdn.net/yy2017220302028/article/details/104631329" target="_blank" rel="noopener">Java基础知识汇总</a></p>
+<h1><span id="关键字">关键字</span></h1><h2><span id="final">final</span></h2><p>对这个final有疑问，是来自于，String类型内部用来存储数据的成员变量是<code>final</code>修饰的，<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">String</span></span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span>, <span class="hljs-title">Comparable</span>&lt;<span class="hljs-title">String</span>&gt;, <span class="hljs-title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">char</span> value[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这意味着value数组被初始化后就不能再去引用其他数组了。因此final不可变。但是，value是一个数组(引用类型)，不可变指的是value引用的地址不可变，但是这个地址指向的对象里面的内容还是可以改变的。</p>
+<ul>
+<li>修饰类<br>类不能被继承，<br>final类，里面的<code>成员方法</code>被自动隐式指定为final方法。<code>成员变量</code>还是根据自己需要设计成final。</li>
+<li>修饰方法<br>final方法不能被重写</li>
+<li>修饰成员变量<br>必须要赋初始值，而且只能被初始化一次。<br>被final修饰的成员变量赋值，1，直接赋值，2，在构造方法中赋初始值。<br>final变量是一个基本类型，则这个变量里面的值不能改变。<br>final变量是一个引用类型，则是说这个引用的地址的值不能被改变，但是引用指向的对象里面的内容可以被改变</li>
+</ul>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/06/10/tIsRuq.jpg" alt><br></div>
+
+<h1><span id="string-stringbuilder-stringbuffer">String, StringBuilder, StringBuffer</span></h1><p>String不可变的好处，</p>
+<ol>
+<li>只有当字符串是不可变的，字符串池才有可能实现。字符串池的实现可以在运行时节约很多heap空间，因为不同的字符串引用可以指向池中的同一个字符串。但如果字符串是可变的，如果变量改变了它的值，那么其它指向这个值的变量的值也会一起改变。</li>
+<li>如果字符串是可变的，那么会引起很严重的安全问题。譬如，数据库的用户名、密码都是以字符串的形式传入数据库，以获得数据库的连接，或者在socket编程中，主机名和端口都是以字符串的形式传入。因为字符串是不可变的，所以它的值是不可改变的，否则黑客们可以钻到空子，改变字符串指向的对象的值，造成安全漏洞。</li>
+<li>字符串不可变，所以是多线程安全的</li>
+<li>类加载器要用到字符串，不可变性提供安全性，以便正确的类被加载。类加载器要用到字符串，不可变性提供了安全性，以便正确的类被加载。譬如你想加载java.sql.Connection类，而这个值被改成了myhacked.Connection，那么会对你的数据库造成不可知的破坏。</li>
+<li>因为字符串是不可变的，所以在它创建的时候hashcode就被缓存了，不需要重新计算，这就使得字符串很适合作为Map中的键，字符串的处理速度要快过其它的键对象。这就是HashMap中的键往往都使用字符串的原因。</li>
+</ol>
+<p>String不可变，StringBuilder和StringBuffer可变。</p>
+<ul>
+<li>String不可变，线程安全。</li>
+<li>StringBuilder可变，线程不安全</li>
+<li>StringBuffer线程安全，内部使用synchronized进行同步</li>
+</ul>
+<p>根据String 的特点下面代码<br>String s = “hello”;s = s + “World”，这个过程需要在堆中开辟内存空间，最终得到“hello World”也需要开辟空间，这样就开辟了三个字符串空间。是内存空间的浪费。用StringBuilder和StringBuffer对此字符串变化作处理，StringBuilder 和 StringBuffer类的对象能够被多次的修改，并且不产生新的未使用对象<br>速度方面，StringBuilder更快。StringBuilder &gt; StringBuffer &gt; String<br>对于三者使用的总结：<br>如果要操作少量的数据用String<br>单线程操作字符串缓冲区下操作大量数据用StringBuilder（非线程安全）<br>多线程操作字符串缓冲区下操作大量数据用StringBuffer（线程安全）</p>
+<h1><span id="synchronized-实现原理">Synchronized 实现原理</span></h1><p>使用互斥同步方法（有多种同步方法：1互斥同步，2 非阻塞同步，3 无同步方案）</p>
+<ul>
+<li><p>修饰普通方法</p>
+</li>
+<li><p>修饰静态方法</p>
+</li>
+<li><p>修饰代码块</p>
+</li>
+</ul>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">static</span> Singleton uniqueInstance;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getUniqueInstance</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(uniqueInstance == <span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">            <span class="hljs-keyword">synchronized</span> (Singleton.class)&#123;</span><br><span class="line">                <span class="hljs-keyword">if</span>(uniqueInstance == <span class="hljs-keyword">null</span>)&#123; <span class="hljs-comment">// `这里使用双重校验`</span></span><br><span class="line">                    uniqueInstance = <span class="hljs-keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>互斥同步（Mutual Exclusion &amp; Synchronization）是常见的并发正确性保证手段。互斥是实现同步的手段，临界区，互斥量，信号量都是常见的互斥实现方式。sychronized加在同步块上的时候，经过javac编译，会在同步块这段代码前后加上 <code>monitorenter</code>和<code>monitorexit</code>两个字节码指令。</p>
+<p>1）<code>monitorenter</code>字节码指令尝试获取对象的锁，得到后锁的计数器+1。<br>2）执行<code>monitorexit</code>后计数器-1。</p>
+<ul>
+<li>synchronized修饰的同步块对于同一个线程是可重入的。同一线程反复进入一个同步块不会把自己锁死。</li>
+<li>sychronized同步块，在持有锁的线程执行完毕释放锁之前会无条件阻塞其他线程进入。意味着：1 无法强制持有锁的线程释放锁。2 无法让正在等待锁的线程中断等待或超时退出。</li>
+</ul>
+<h1><span id="容器">容器</span></h1><h2><span id="hashmap和hashtable">HashMap和HashTable</span></h2><p><strong>Hashtable：</strong><br>是<code>线程安全</code>的，Hashtable中的方法都是synchronized修饰的，在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步。</p>
+<p><strong>HashMap：</strong><br>是<code>非线程安全</code>的，HashMap中的方法在缺省情况下是非synchronized的。在多线程并发的环境下，可能会产生死锁等问题。需要自己手动增加同步处理。虽然HashMap不是线程安全的，但是它的效率会比Hashtable要高很多。这样设计是合理的。在我们的日常使用当中，大部分时间是单线程操作的。HashMap把这部分操作解放出来了。</p>
+<p>Hashtable 和 HashMap的区别：</p>
+<ul>
+<li>继承的父类不同<br>  Hashtable继承自Dictionary类，而HashMap继承自AbstractMap类。但二者都实现了Map接口。</li>
+<li>线程安全性不同<br>  Hashtable是线程安全的，HashMap是非线程安全的。</li>
+<li>是否提供contains()方法<br>  Hashtable保留了contains()，containsValue()和containsKey()三个方法，其中contains()和containsValue()功能相同。<br>  HashMap把Hashtable的contains()方法去掉了，改成containsValue()和containsKey()，因为contains()方法容易让人引起误解。</li>
+<li>key和value是否允许null值<br>  Hashtable既不支持Null key也不支持Null value；<br>  HashMap支持null作为键，这样的键只有一个，同时，它还支持可以有一个或多个键所对应的值为null。</li>
+</ul>
+<h2><span id="arraylist和linkedlist">ArrayList和LinkedList</span></h2><h1><span id="参考">参考</span></h1><p><a href="https://blog.csdn.net/yy2017220302028/article/details/104631329" target="_blank" rel="noopener">Java基础知识汇总</a></p>
 
         </div>
         
@@ -344,7 +410,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        34
+                        35
                     </p>
                 </div>
             </div>
@@ -354,7 +420,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        18
+                        19
                     </p>
                 </div>
             </div>
@@ -364,7 +430,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        36
+                        38
                     </p>
                 </div>
             </div>
@@ -546,6 +612,14 @@
         <a class="level is-marginless" href="/categories/说明书/">
             <span class="level-start">
                 <span class="level-item">说明书</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/读书/">
+            <span class="level-start">
+                <span class="level-item">读书</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -776,6 +850,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/自我发展/">
+                        <span class="tag">自我发展</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/英语/">
                         <span class="tag">英语</span>
                         <span class="tag is-grey">1</span>
@@ -806,6 +887,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/语音合成/">
                         <span class="tag">语音合成</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/读书/">
+                        <span class="tag">读书</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -850,6 +938,34 @@
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3</span>
+        <span>关键字</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.1</span>
+        <span>final</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">4</span>
+        <span>String, StringBuilder, StringBuffer</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">5</span>
+        <span>Synchronized 实现原理</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">6</span>
+        <span>容器</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">6.1</span>
+        <span>HashMap和HashTable</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">6.2</span>
+        <span>ArrayList和LinkedList</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">7</span>
         <span>参考</span>
         </a></li></ul>
         </div>
