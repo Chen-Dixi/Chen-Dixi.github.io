@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-06-12T04:27:00.725Z">
+<meta property="og:updated_time" content="2020-06-17T08:03:55.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java知识汇总">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -144,14 +144,14 @@
                 <time class="level-item has-text-grey" datetime="2020-05-01T03:43:22.000Z">2020-05-01</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Java/">Java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Java/开发技术/">开发技术</a>
+                <a class="has-link-grey -link" href="/categories/Java/">Java</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    19 分钟 读完 (大约 2923 个字)
+                    32 分钟 读完 (大约 4778 个字)
                 </span>
                 
                 
@@ -164,26 +164,46 @@
             
         </h1>
         <div class="content">
-            <div align="center"><img src="/2020/05/01/java-review/java.png" alt></div><br><a id="more"></a><br><div align="center"><img src="/2020/05/01/java-review/java-path.png" alt></div>
+            <div align="center"><img src="/2020/05/01/java-review/java.png" alt></div>
 
+<a id="more"></a>
 <!-- toc -->
 <ul>
+<li><a href="#路线图">路线图</a></li>
 <li><a href="#面向过程和面向对象">面向过程和面向对象</a></li>
 <li><a href="#继承和多态">继承和多态</a></li>
 <li><a href="#关键字">关键字</a><ul>
 <li><a href="#final">final</a></li>
+<li><a href="#transient">transient</a></li>
+<li><a href="#volatile">volatile</a></li>
 </ul>
 </li>
 <li><a href="#string-stringbuilder-stringbuffer">String, StringBuilder, StringBuffer</a></li>
 <li><a href="#synchronized-实现原理">Synchronized 实现原理</a></li>
 <li><a href="#容器">容器</a><ul>
-<li><a href="#hashmap和hashtable">HashMap和HashTable</a></li>
+<li><a href="#hashmap和hashtable">HashMap和HashTable</a><ul>
+<li><a href="#hashtable-和-hashmap的区别">Hashtable 和 HashMap的区别：</a><ul>
+<li><a href="#fail-fast知识">fail-fast知识</a></li>
+</ul>
+</li>
+<li><a href="#hashmap-扩容">HashMap 扩容</a><ul>
+<li><a href="#计算新的容器大小">计算新的容器大小</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#concurrenthashmap">ConcurrentHashMap</a><ul>
+<li><a href="#如何保证线程安全">如何保证线程安全</a></li>
+</ul>
+</li>
 <li><a href="#arraylist和linkedlist">ArrayList和LinkedList</a></li>
 </ul>
 </li>
 <li><a href="#参考">参考</a></li>
 </ul>
 <!-- tocstop -->
+<h1><span id="路线图">路线图</span></h1><div align="center"><img src="/2020/05/01/java-review/java-path.png" alt></div>
+
 <h1><span id="面向过程和面向对象">面向过程和面向对象</span></h1><p>1 面向过程：</p>
 <blockquote>
 <p>分析出问题解决步骤，用函数把这些步骤一步一步实现，使用的时候一个一个调用</p>
@@ -253,7 +273,8 @@
 <li>一个类可以实现多个接口，但是只能继承一个抽象类</li>
 <li>接口中基本数据类型的数据成员，都默认为static final，抽象类则不是</li>
 </ul>
-<h1><span id="关键字">关键字</span></h1><h2><span id="final">final</span></h2><p>对这个final有疑问，是来自于，String类型内部用来存储数据的成员变量是<code>final</code>修饰的，<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">String</span></span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span>, <span class="hljs-title">Comparable</span>&lt;<span class="hljs-title">String</span>&gt;, <span class="hljs-title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">char</span> value[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1><span id="关键字">关键字</span></h1><p><a href="https://str818.github.io/2019/04/08/java-concurrency-keyword.html" target="_blank" rel="noopener">Java 并发关键字</a></p>
+<h2><span id="final">final</span></h2><p>对这个final有疑问，是来自于，String类型内部用来存储数据的成员变量是<code>final</code>修饰的，<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">String</span></span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span>, <span class="hljs-title">Comparable</span>&lt;<span class="hljs-title">String</span>&gt;, <span class="hljs-title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">char</span> value[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这意味着value数组被初始化后就不能再去引用其他数组了。因此final不可变。但是，value是一个数组(引用类型)，不可变指的是value引用的地址不可变，但是这个地址指向的对象里面的内容还是可以改变的。</p>
 <ul>
 <li>修饰类<br>类不能被继承，<br>final类，里面的<code>成员方法</code>被自动隐式指定为final方法。<code>成员变量</code>还是根据自己需要设计成final。</li>
@@ -262,6 +283,8 @@
 </ul>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/06/10/tIsRuq.jpg" alt><br></div>
 
+<h2><span id="transient">transient</span></h2><p><code>transient</code>关键字修饰的东西在序列化的时候会被忽略。</p>
+<h2><span id="volatile">volatile</span></h2><p><a href="https://str818.github.io/2019/04/08/java-concurrency-keyword.html#%E4%BA%8Cvolatile" target="_blank" rel="noopener">str818</a><br>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）<br>禁止进行指令重排序。（实现有序性）<br>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性。</p>
 <h1><span id="string-stringbuilder-stringbuffer">String, StringBuilder, StringBuffer</span></h1><p>String不可变的好处，</p>
 <ol>
 <li>只有当字符串是不可变的，字符串池才有可能实现。字符串池的实现可以在运行时节约很多heap空间，因为不同的字符串引用可以指向池中的同一个字符串。但如果字符串是可变的，如果变量改变了它的值，那么其它指向这个值的变量的值也会一起改变。</li>
@@ -293,15 +316,59 @@
 <li>synchronized修饰的同步块对于同一个线程是可重入的。同一线程反复进入一个同步块不会把自己锁死。</li>
 <li>sychronized同步块，在持有锁的线程执行完毕释放锁之前会无条件阻塞其他线程进入。意味着：1 无法强制持有锁的线程释放锁。2 无法让正在等待锁的线程中断等待或超时退出。</li>
 </ul>
-<h1><span id="容器">容器</span></h1><h2><span id="hashmap和hashtable">HashMap和HashTable</span></h2><p><strong>Hashtable：</strong><br>是<code>线程安全</code>的，Hashtable中的方法都是synchronized修饰的，在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步。</p>
+<h1><span id="容器">容器</span></h1><h2><span id="hashmap和hashtable">HashMap和HashTable</span></h2><p><a href="https://www.jianshu.com/p/ee0de4c99f87" target="_blank" rel="noopener">简书：读懂HashMap</a></p>
+<p><strong>Hashtable：</strong><br>是<code>线程安全</code>的，Hashtable中的方法都是synchronized修饰的，在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步。</p>
 <p><strong>HashMap：</strong><br>是<code>非线程安全</code>的，HashMap中的方法在缺省情况下是非synchronized的。在多线程并发的环境下，可能会产生死锁等问题。需要自己手动增加同步处理。虽然HashMap不是线程安全的，但是它的效率会比Hashtable要高很多。这样设计是合理的。在我们的日常使用当中，大部分时间是单线程操作的。HashMap把这部分操作解放出来了。</p>
-<p>Hashtable 和 HashMap的区别：</p>
-<ul>
-<li>继承的父类不同<br>  Hashtable继承自Dictionary类，而HashMap继承自AbstractMap类。但二者都实现了Map接口。</li>
-<li>线程安全性不同<br>  Hashtable是线程安全的，HashMap是非线程安全的。</li>
-<li>是否提供contains()方法<br>  Hashtable保留了contains()，containsValue()和containsKey()三个方法，其中contains()和containsValue()功能相同。<br>  HashMap把Hashtable的contains()方法去掉了，改成containsValue()和containsKey()，因为contains()方法容易让人引起误解。</li>
-<li>key和value是否允许null值<br>  Hashtable既不支持Null key也不支持Null value；<br>  HashMap支持null作为键，这样的键只有一个，同时，它还支持可以有一个或多个键所对应的值为null。</li>
+<h3><span id="hashtable-和-hashmap的区别">Hashtable 和 HashMap的区别：</span></h3><ol>
+<li>继承的父类不同<br> Hashtable继承自Dictionary类，而HashMap继承自AbstractMap类。但二者都实现了Map接口。</li>
+</ol>
+<p><strong>Hashtable</strong><br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hashtable</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;</span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">extends</span> <span class="hljs-title">Dictionary</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;</span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">Map</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;, <span class="hljs-title">Cloneable</span>, <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>HashMap</strong><br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HashMap</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt; </span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractMap</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;</span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">Map</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;, <span class="hljs-title">Cloneable</span>, <span class="hljs-title">Serializable</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>线程安全性不同<br> Hashtable是线程安全的，使用<code>synchronized</code>来进行同步，HashMap是非线程安全的。<br> 为什么HashMap线程不安全<ul>
+<li>put导致多线程数据不一致   </li>
+<li>resize引起死循环</li>
 </ul>
+</li>
+<li>key和value是否允许null值<br> Hashtable既不支持Null key也不支持Null value；<br> HashMap支持null作为键，这样的键只有一个，同时，它还支持可以有一个或多个键所对应的值为null。</li>
+<li>HashMap的迭代器是<code>fail-fast</code>迭代器，另一个区别是HashMap的迭代器(Iterator)是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。这条同样也是Enumeration和Iterator的区别。<br><strong>Enumeration</strong></li>
+</ol>
+<p>Enumeration用来遍历Vector, Hashtable的keys和values。有了<code>Iterator</code>接口后， 可以优先考虑使用<code>Iterator</code>接口。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Enumeration</span>&lt;<span class="hljs-title">E</span>&gt; </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">hasMoreElements</span><span class="hljs-params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function">E <span class="hljs-title">nextElement</span><span class="hljs-params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Iterator</strong><br>Iterator相比于Enumeration，多了一个<code>remove</code>操作。<br>相比于Enumeration：</p>
+<pre><code>- 在遍历中可以删除Collection中的元素
+- 方法名称优化
+</code></pre><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Iterator</span>&lt;<span class="hljs-title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function">E <span class="hljs-title">next</span><span class="hljs-params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException(<span class="hljs-string">"remove"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">forEachRemaining</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-keyword">super</span> E&gt; action)</span> </span>&#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="hljs-keyword">while</span> (hasNext())</span><br><span class="line">            action.accept(next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="fail-fast知识">fail-fast知识</span></h4><p><a href="https://www.cnblogs.com/shamo89/p/6685216.html" target="_blank" rel="noopener"><strong>快速失败(fail-fast)和安全失败(fail-safe)的区别</strong></a></p>
+<p>HashMap使用<code>Iterator</code>迭代器</p>
+<blockquote>
+<p>The iterators returned by all of this class’s “collection view methods” are fail-fast: if the map is structurally modified at any time after the iterator is created, in any way except through the iterator’s own remove method, the iterator will throw a ConcurrentModificationException. Thus, in the face of concurrent modification, the iterator fails quickly and cleanly, rather than risking arbitrary, non-deterministic behavior at an undetermined time in the future.<br>Note that the fail-fast behavior of an iterator cannot be guaranteed as it is, generally speaking, impossible to make any hard guarantees in the presence of unsynchronized concurrent modification. Fail-fast iterators throw ConcurrentModificationException on a best-effort basis. Therefore, it would be wrong to write a program that depended on this exception for its correctness: the fail-fast behavior of iterators should be used only to detect bugs.</p>
+</blockquote>
+<p>HashMap中的迭代器是fail-fast。不是说<code>Iterator</code>是fail-fast的。HashMap里面实现的Iterator实现了fail-fast功能。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HashIterator</span> </span>&#123;</span><br><span class="line">    Node&lt;K,V&gt; next;        <span class="hljs-comment">// next entry to return</span></span><br><span class="line">    Node&lt;K,V&gt; current;     <span class="hljs-comment">// current entry</span></span><br><span class="line">    <span class="hljs-keyword">int</span> expectedModCount;  <span class="hljs-comment">// for fast-fail</span></span><br><span class="line">    <span class="hljs-keyword">int</span> index;             <span class="hljs-comment">// current slot</span></span><br><span class="line"></span><br><span class="line">    HashIterator() &#123;</span><br><span class="line">        expectedModCount = modCount;</span><br><span class="line">        Node&lt;K,V&gt;[] t = table;</span><br><span class="line">        current = next = <span class="hljs-keyword">null</span>;</span><br><span class="line">        index = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span> (t != <span class="hljs-keyword">null</span> &amp;&amp; size &gt; <span class="hljs-number">0</span>) &#123; <span class="hljs-comment">// advance to first entry</span></span><br><span class="line">            <span class="hljs-keyword">do</span> &#123;&#125; <span class="hljs-keyword">while</span> (index &lt; t.length &amp;&amp; (next = t[index++]) == <span class="hljs-keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> next != <span class="hljs-keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">final</span> Node&lt;K,V&gt; <span class="hljs-title">nextNode</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        Node&lt;K,V&gt;[] t;</span><br><span class="line">        Node&lt;K,V&gt; e = next;</span><br><span class="line">        <span class="hljs-keyword">if</span> (modCount != expectedModCount)</span><br><span class="line">            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        <span class="hljs-keyword">if</span> (e == <span class="hljs-keyword">null</span>)</span><br><span class="line">            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NoSuchElementException();</span><br><span class="line">        <span class="hljs-keyword">if</span> ((next = (current = e).next) == <span class="hljs-keyword">null</span> &amp;&amp; (t = table) != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">do</span> &#123;&#125; <span class="hljs-keyword">while</span> (index &lt; t.length &amp;&amp; (next = t[index++]) == <span class="hljs-keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> e;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        Node&lt;K,V&gt; p = current;</span><br><span class="line">        <span class="hljs-keyword">if</span> (p == <span class="hljs-keyword">null</span>)</span><br><span class="line">            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException();</span><br><span class="line">        <span class="hljs-keyword">if</span> (modCount != expectedModCount)</span><br><span class="line">            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        current = <span class="hljs-keyword">null</span>;</span><br><span class="line">        K key = p.key;</span><br><span class="line">        removeNode(hash(key), key, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">false</span>);</span><br><span class="line">        expectedModCount = modCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KeyIterator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HashIterator</span></span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">Iterator</span>&lt;<span class="hljs-title">K</span>&gt; </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> K <span class="hljs-title">next</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> nextNode().key; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ValueIterator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HashIterator</span></span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">Iterator</span>&lt;<span class="hljs-title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> V <span class="hljs-title">next</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> nextNode().value; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EntryIterator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HashIterator</span></span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">Iterator</span>&lt;<span class="hljs-title">Map</span>.<span class="hljs-title">Entry</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;&gt; </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> Map.<span class="hljs-function">Entry&lt;K,V&gt; <span class="hljs-title">next</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> nextNode(); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HashMap中用来帮助fail-fast的modCount<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * The number of times this HashMap has been structurally modified</span></span><br><span class="line"><span class="hljs-comment"> * Structural modifications are those that change the number of mappings in</span></span><br><span class="line"><span class="hljs-comment"> * the HashMap or otherwise modify its internal structure (e.g.,</span></span><br><span class="line"><span class="hljs-comment"> * rehash).  This field is used to make iterators on Collection-views of</span></span><br><span class="line"><span class="hljs-comment"> * the HashMap fail-fast.  (See ConcurrentModificationException).</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">transient</span> <span class="hljs-keyword">int</span> modCount;</span><br></pre></td></tr></table></figure></p>
+<p>java.util. 下面的package是<code>快速失败fail-fast</code>的，java.util.concurrent包下面的所有类是失败安全的，快速失败的迭代器会抛出ConcurrentModificationException异常，而安全失败的迭代器永远不会抛出这样的异常。</p>
+<p>HashMap实现fail-fast就是在<code>modCount != expectedModCount</code>的时候，抛出<code>ConcurrentModificationException</code>。modCount is for ‘modification count’。HashMap的迭代器在初始化的时候会将<code>expectedModCount</code>初始化为<code>modCount</code>。迭代器自己修改容器里面内容后，会更新<code>++modCount</code>，然后<code>expectedModCount = modCount</code>。如果在自己操作之前发现<code>modCount != expectedModCount</code>，就说明有其他线程修改了容器的结构。</p>
+<blockquote>
+<p>即，当多个线程对同一个集合进行操作的时候，某线程访问集合的过程中，该集合的内容被其他线程所改变(即其它线程通过add、remove、clear等方法，改变了modCount的值)；这时，就会抛出ConcurrentModificationException异常，产生fail-fast事件。</p>
+</blockquote>
+<p>但是<code>fail-fast</code>并不保证一定会发生，一般来说，非同步的并发修改过程都是不可能绝对保证fail-fast的。上面实现的fail-fast只是尽力而为的。所以，想要依赖这个<code>ConcurrentModificationException</code>异常保证程序正确性的想法是错误的。<strong>fail-fast行为只能用来检测程序bug。</strong></p>
+<h3><span id="hashmap-扩容">HashMap 扩容</span></h3><p>什么时候扩容？向容器添加元素时，看当前元素个数是否到达阈值。阈值=当前table数组长度 * 负载因子loadfactor。</p>
+<p>扩容就是重新算出一个新的table数组，然后将原来容器中的元素放进去。</p>
+<h4><span id="计算新的容器大小">计算新的容器大小</span></h4><p>返回一个比给定数字大，最接近的2的幂次方整数。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">tableSizeFor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> cap)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> n = cap - <span class="hljs-number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="hljs-number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="hljs-number">2</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="hljs-number">4</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="hljs-number">8</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="hljs-number">16</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> (n &lt; <span class="hljs-number">0</span>) ? <span class="hljs-number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="concurrenthashmap">ConcurrentHashMap</span></h2><p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Java%20%E5%AE%B9%E5%99%A8?id=concurrenthashmap" target="_blank" rel="noopener"><strong>Cyc ConcurrentHashMap</strong></a></p>
+<p>ConcurrentHashMap 和 HashMap 实现上类似，最主要的差别是 ConcurrentHashMap 采用了分段锁（Segment），每个分段锁维护着几个桶（HashEntry），多个线程可以同时访问不同分段锁上的桶，从而使其并发度更高（并发度就是 Segment 的个数）。</p>
+<p>Hashtable效率低下，以为所有访问Hashtable的线程都在竞争同一把锁。ConcurrentHashMap就是用分段锁技术，每把锁管理容器的一部分数据。这样就不需要多个线程都竞争一把锁了，提高并发访问效率。</p>
+<p><strong>JDK1.8的实现已经抛弃了Segment分段锁机制，利用CAS+Synchronized来保证并发更新的安全。数据结构采用：数组+链表+红黑树。</strong><br><a href="https://blog.csdn.net/xingxiupaioxue/article/details/88062163" target="_blank" rel="noopener"><strong>ConcurrentHashMap 1.7和1.8区别</strong></a></p>
+<p>与Hashtable的区别</p>
+<blockquote>
+<p>ConcurrentHashMap是一个并发散列映射表，允许完全并发读。Hashtale和同步包装的HashMap只有一个锁，并发访问变成串行化的。Hashtable任何操作会将整个表锁住，阻塞访问的，效率低。ConcurrentHashMap设计为非阻塞，局部锁住部分数据。坏处是严格来说读取操作不能保证反映最近的更新。例如线程A调用putAll写入大量数据，期间线程B调用get，则只能get到目前为止已经顺利插入的部分数据。应该根据具体的应用场景选择合适的HashMap。</p>
+</blockquote>
+<h3><span id="如何保证线程安全">如何保证线程安全</span></h3><p><strong>1.7</strong></p>
+<p>结构和1.7的HashMap类似，用分段锁，核心是<code>Segment</code>类，继承自<code>重入锁ReentrantLock</code>。并发度和<code>Segment</code>数量相等。</p>
+<p><strong>1.8</strong></p>
+<p>JDK 1.8 使用了 CAS 操作来支持更高的并发度，在 CAS 操作失败时使用内置锁 synchronized。并且 JDK 1.8 的实现也在链表过长时会转换为红黑树。</p>
 <h2><span id="arraylist和linkedlist">ArrayList和LinkedList</span></h2><h1><span id="参考">参考</span></h1><p><a href="https://blog.csdn.net/yy2017220302028/article/details/104631329" target="_blank" rel="noopener">Java基础知识汇总</a></p>
 
         </div>
@@ -410,7 +477,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        35
+                        36
                     </p>
                 </div>
             </div>
@@ -420,7 +487,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        19
+                        18
                     </p>
                 </div>
             </div>
@@ -430,7 +497,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        38
+                        39
                     </p>
                 </div>
             </div>
@@ -486,17 +553,9 @@
                 <span class="level-item">Java</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Java/开发技术/">
-            <span class="level-start">
-                <span class="level-item">开发技术</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/刷题/">
             <span class="level-start">
                 <span class="level-item">刷题</span>
@@ -670,6 +729,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Feature-Embedding/">
                         <span class="tag">Feature Embedding</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -930,42 +996,70 @@
             <ul class="menu-list"><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
-        <span>面向过程和面向对象</span>
+        <span>路线图</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2</span>
-        <span>继承和多态</span>
+        <span>面向过程和面向对象</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3</span>
+        <span>继承和多态</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">4</span>
         <span>关键字</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">3.1</span>
+        <span class="has-mr-6">4.1</span>
         <span>final</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">4.2</span>
+        <span>transient</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">4.3</span>
+        <span>volatile</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">4</span>
+        <span class="has-mr-6">5</span>
         <span>String, StringBuilder, StringBuffer</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">5</span>
+        <span class="has-mr-6">6</span>
         <span>Synchronized 实现原理</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">6</span>
+        <span class="has-mr-6">7</span>
         <span>容器</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">6.1</span>
+        <span class="has-mr-6">7.1</span>
         <span>HashMap和HashTable</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">7.1.1</span>
+        <span>Hashtable 和 HashMap的区别：</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">6.2</span>
+        <span class="has-mr-6">7.1.2</span>
+        <span>HashMap 扩容</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">7.2</span>
+        <span>ConcurrentHashMap</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">7.2.1</span>
+        <span>如何保证线程安全</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">7.3</span>
         <span>ArrayList和LinkedList</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">7</span>
+        <span class="has-mr-6">8</span>
         <span>参考</span>
         </a></li></ul>
         </div>
