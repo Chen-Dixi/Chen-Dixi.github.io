@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-06-17T08:03:55.171Z">
+<meta property="og:updated_time" content="2020-06-19T11:44:46.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java知识汇总">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    32 分钟 读完 (大约 4778 个字)
+                    32 分钟 读完 (大约 4791 个字)
                 </span>
                 
                 
@@ -316,7 +316,8 @@
 <li>synchronized修饰的同步块对于同一个线程是可重入的。同一线程反复进入一个同步块不会把自己锁死。</li>
 <li>sychronized同步块，在持有锁的线程执行完毕释放锁之前会无条件阻塞其他线程进入。意味着：1 无法强制持有锁的线程释放锁。2 无法让正在等待锁的线程中断等待或超时退出。</li>
 </ul>
-<h1><span id="容器">容器</span></h1><h2><span id="hashmap和hashtable">HashMap和HashTable</span></h2><p><a href="https://www.jianshu.com/p/ee0de4c99f87" target="_blank" rel="noopener">简书：读懂HashMap</a></p>
+<h1><span id="容器">容器</span></h1><p><a href="https://yqh.aliyun.com/detail/9664?utm_content=g_1000117326" target="_blank" rel="noopener">Java 集合面试</a></p>
+<h2><span id="hashmap和hashtable">HashMap和HashTable</span></h2><p><a href="https://www.jianshu.com/p/ee0de4c99f87" target="_blank" rel="noopener">简书：读懂HashMap</a></p>
 <p><strong>Hashtable：</strong><br>是<code>线程安全</code>的，Hashtable中的方法都是synchronized修饰的，在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步。</p>
 <p><strong>HashMap：</strong><br>是<code>非线程安全</code>的，HashMap中的方法在缺省情况下是非synchronized的。在多线程并发的环境下，可能会产生死锁等问题。需要自己手动增加同步处理。虽然HashMap不是线程安全的，但是它的效率会比Hashtable要高很多。这样设计是合理的。在我们的日常使用当中，大部分时间是单线程操作的。HashMap把这部分操作解放出来了。</p>
 <h3><span id="hashtable-和-hashmap的区别">Hashtable 和 HashMap的区别：</span></h3><ol>
