@@ -16,7 +16,7 @@
 <meta property="og:description" content="尽量坚持每日一题">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-07T11:12:08.657Z">
+<meta property="og:updated_time" content="2020-07-08T06:53:03.075Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日一题Leetcode">
 <meta name="twitter:description" content="尽量坚持每日一题">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    35 分钟 读完 (大约 5266 个字)
+                    36 分钟 读完 (大约 5449 个字)
                 </span>
                 
                 
@@ -198,6 +198,7 @@
 <li><a href="#44-通配符匹配-7月5日"><strong>44. 通配符匹配</strong> 7月5日</a></li>
 <li><a href="#63-不同路径-ii-7月6日"><strong>63. 不同路径 II</strong> 7月6日</a></li>
 <li><a href="#6112-路径总和-7月7日"><strong>6112. 路径总和</strong> 7月7日</a></li>
+<li><a href="#面试题-1611-跳水板-7月8日"><strong>面试题 16.11. 跳水板</strong> 7月8日</a></li>
 </ul>
 <!-- tocstop -->
 <h1><span id="765-情侣牵手"><strong>765 情侣牵手</strong></span></h1><p><strong>题目描述</strong>：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。</p>
@@ -334,6 +335,15 @@
 <p><strong>题目描述：</strong><br>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。<br>说明: 叶子节点是指没有子节点的节点。</p>
 <p><strong>解题思路：</strong></p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="hljs-comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="hljs-comment"> *     int val;</span></span><br><span class="line"><span class="hljs-comment"> *     TreeNode left;</span></span><br><span class="line"><span class="hljs-comment"> *     TreeNode right;</span></span><br><span class="line"><span class="hljs-comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="hljs-comment"> * &#125;</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasPathSum</span><span class="hljs-params">(TreeNode root, <span class="hljs-keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">if</span>(root==<span class="hljs-keyword">null</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">if</span>(root.left == <span class="hljs-keyword">null</span> &amp;&amp; root.right==<span class="hljs-keyword">null</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> sum == root.val;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">return</span> hasPathSum(root.left, sum-root.val) || hasPathSum(root.right, sum-root.val);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="面试题-1611-跳水板-7月8日"><strong>面试题 16.11. 跳水板</strong> 7月8日</span></h1><p><a href="https://leetcode-cn.com/problems/diving-board-lcci/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
+<p><strong>题目描述：</strong><br>你正在使用一堆木板建造跳水板。有两种类型的木板，其中长度较短的木板长度为shorter，长度较长的木板长度为longer。你必须正好使用k块木板。编写一个方法，生成跳水板所有可能的长度。</p>
+<p>返回的长度需要从小到大排列。</p>
+<p>示例：</p>
+<blockquote>
+<p>输入：<br>shorter = 1<br>longer = 2<br>k = 3<br>输出： {3,4,5,6}</p>
+</blockquote>
+<p><strong>解题思路：</strong></p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] divingBoard(<span class="hljs-keyword">int</span> shorter, <span class="hljs-keyword">int</span> longer, <span class="hljs-keyword">int</span> k) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (k == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">if</span> (shorter == longer) &#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;shorter * k&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span>[] ans = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[k+<span class="hljs-number">1</span>];</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=k;i++)&#123;</span><br><span class="line">            ans[i] = shorter*(k-i) + longer*i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
