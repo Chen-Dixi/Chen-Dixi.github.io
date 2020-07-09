@@ -2,19 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: 生活 - 帝羲 的博客</title>
+<title>操作系统 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/tags/生活/index.html">
+    <meta name="description" content="笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统">
+<meta property="og:url" content="http://yoursite.com/2020/07/09/OS/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="笔记">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-07-09T07:26:16.127Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="操作系统">
+<meta name="twitter:description" content="笔记">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -89,13 +93,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="操作系统" height="28">
             
             </a>
         </div>
@@ -129,34 +133,19 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">生活</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-30T12:00:18.000Z">2020-05-30</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/说明书/">说明书</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2020-07-09T03:06:05.000Z">2020-07-09</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 689 个字)
+                    14 分钟 读完 (大约 2143 个字)
                 </span>
                 
                 
@@ -165,21 +154,132 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/30/life-tip/">当代生活指南</a>
+                操作系统
             
         </h1>
         <div class="content">
-            <p>工作技能之外的生活指南书</p>
+            <h1><span id="笔记">笔记</span></h1><a id="more"></a>
+<!-- toc -->
+<ul>
+<li><a href="#同步-互斥">同步、互斥</a><ul>
+<li><a href="#同步">同步</a></li>
+<li><a href="#进程互斥">进程互斥</a><ul>
+<li><a href="#进程互斥4个部分">进程互斥4个部分</a></li>
+<li><a href="#遵循规则">遵循规则</a></li>
+<li><a href="#互斥的实现方法">互斥的实现方法</a><ul>
+<li><a href="#软件实习方法">软件实习方法</a></li>
+<li><a href="#硬件方法">硬件方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#信号量">信号量</a><ul>
+<li><a href="#整数型信号量">整数型信号量</a></li>
+<li><a href="#记录型信号量">记录型信号量</a></li>
+<li><a href="#用信号量实现进程互斥-同步-前驱关系">用信号量实现进程互斥、同步、前驱关系</a></li>
+</ul>
+</li>
+<li><a href="#管程">管程</a><ul>
+<li><a href="#为什么引入管程">为什么引入管程</a></li>
+<li><a href="#管程的定义和基本特征">管程的定义和基本特征</a></li>
+<li><a href="#管程解决生产者消费者问题">管程解决生产者消费者问题</a></li>
+<li><a href="#java种类似于管程的机制synchronized">Java种类似于管程的机制（synchronized）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#死锁">死锁</a><ul>
+<li><a href="#什么是死锁说一个会出现死锁的场景">什么是死锁，说一个会出现死锁的场景</a></li>
+<li><a href="#死锁条件">死锁条件</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1><span id="同步-互斥">同步、互斥</span></h1><h2><span id="同步">同步</span></h2><p>进程具有<code>异步性</code>：各个并发执行的进程以各自独立的、不可预知的速度向前推进。</p>
+<p>让并发运行的进场按照我们想要的顺序执行，“读数据”和“写数据”两个进程先后顺序本身不确定，我们让它按照“<code>写数据👉读数据</code>”的顺序执行，如何解决这种<code>异步</code>问题就是<code>进程同步</code>要讨论的内容。</p>
+<p>进程同步是进程之间有直接制约关系，也就是进程间有<code>合作关系</code>。比如先写后读。</p>
+<h2><span id="进程互斥">进程互斥</span></h2><p>进程并发<code>共享</code>某个资源。</p>
+<p><code>临界资源</code>：<strong>一个时间只允许一个进程使用的资源</strong></p>
+<p>进程互斥：指当一个进程访问某个临界资源时，另一个进程想要访问这个临界资源就必须等待。当前访问临界资源的进程访问结束，并且释放该资源后，另一个进程才能去访问这个临界资源。</p>
+<p>进程互斥是进程间的<strong>间接制约关系</strong>，进程间没有合作关系，只是都需要访问一个临界资源。</p>
+<h3><span id="进程互斥4个部分">进程互斥4个部分</span></h3><p>访问临界资源，逻辑分为4个部分: 进入区，临界区，退出区，剩余区</p>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/Ue5hPU.jpg" alt><br></div>
+
+<h3><span id="遵循规则">遵循规则</span></h3><p>空闲让进：临界区空闲时，应允许一个进程进入<br>忙则等待：临界区正在被访问的时候，其他试图访问的进程应该等待<br>有限等待：要在有限的时间内进入临界区，保证不会饥饿<br>让权等待：进不了临界区的进程，要释放处理机，防止忙等</p>
+<h3><span id="互斥的实现方法">互斥的实现方法</span></h3><h4><span id="软件实习方法">软件实习方法</span></h4><ul>
+<li><p>单标志法</p>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UeTB8O.jpg" alt><br></div>
+</li>
+<li><p>双标志先检查法</p>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UeHO3T.jpg" alt><br></div>
+
+</li>
+</ul>
+<p>违反忙则等待原则，原因是<code>进入区</code>的”检查“和”上锁“两个处理不是原子性的。“检查”后，在“上锁”之前可能发生进程切换。</p>
+<ul>
+<li>双标志后检查法</li>
+</ul>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UeqGJx.jpg" alt><br></div>
+
+<ul>
+<li>Peterson算法<br>turn变量记录优先让哪一个进程进入。 孔融让梨的思想，进入区操作没有原子性，但遵循了空闲让进，忙则等待，有限等待原则。</li>
+</ul>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UeOhin.jpg" alt><br></div>
+
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UeOLdJ.jpg" alt><br></div>
+
+<h4><span id="硬件方法">硬件方法</span></h4><div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UmShi4.jpg" alt><br></div>
+
+<h2><span id="信号量">信号量</span></h2><p>实现进程互斥、同步的方法—信号量机制</p>
+<p>信号量 semaphore有<code>整型变量</code>和<code>记录型变量</code>。wait和signal操作。</p>
+<ul>
+<li>wait： 如果信号量大于0，执行-1操作；如果信号量等于0，进程睡眠，等待信号量大于0</li>
+<li>signal：对信号量+1.唤醒睡眠的进程让其完成signal操作。</li>
+</ul>
+<p>wait和signal操作需要被设计成<code>原语</code>。不可分割，满足操作的原子性，通常是在执行这些操作时屏蔽制动。<br><code>信号量</code>是一个变量，用一个信号量<code>表示系统中某种资源的数量</code>。<br>如果信号量的值只能是0或1，就成为了互斥量（Mutex），0表示临界区已经加锁，1表示临界区解锁。</p>
+<h3><span id="整数型信号量">整数型信号量</span></h3><p>检查和上锁一气呵成，避免并发异步导致的问题。存在问题：不满足“让权等待”原则，会发生“忙等”。</p>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UmkhBn.jpg" alt><br></div>
+
+<h3><span id="记录型信号量">记录型信号量</span></h3><p>用一个记录型数据结构表示。里面有一个表示等待队列的指针，和<code>value</code>剩余资源数量。</p>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UmA3uj.jpg" alt><br></div>
+
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UmE9Zn.jpg" alt><br></div>
+
+<h3><span id="用信号量实现进程互斥-同步-前驱关系">用信号量实现进程互斥、同步、前驱关系</span></h3><h2><span id="管程">管程</span></h2><h3><span id="为什么引入管程">为什么引入管程</span></h3><p>信号量机制的问题：编写程序困难，容易出错。<br>想要设计一种机制，程序员写程序不再需要关注复杂的PV操作。</p>
+<h3><span id="管程的定义和基本特征">管程的定义和基本特征</span></h3><p>也来用来进程的互斥和同步的，管程是一种特殊的软件模块，有这些部分组成：</p>
+<ol>
+<li>局部于管程的<code>共享数据结构</code>说明</li>
+<li>对该数据结构进行操作的一组过程</li>
+<li>对局部于管程的共享数据设置初始值的语句</li>
+<li>管程有一个名字</li>
+</ol>
+<p>管程的基本特征：</p>
+<ol>
+<li>局部于管程的数据只能被局部于管程的过程所访问  （管程中共享数据结构只能被管程的函数过程修改）</li>
+<li>一个进程只能通过调用管程内的过程才能进入管程访问的数据（我们只能通过调用管程中定义的函数来访问共享数据）</li>
+<li>每次仅允许一个进程在管程内执行某个内部过程 （管程中定义了很多函数，同一时间只有一个进程在使用管程中的函数）生产者消费者中，缓冲区定义为管程的共享数据结构。</li>
+</ol>
+<h3><span id="管程解决生产者消费者问题">管程解决生产者消费者问题</span></h3><p>为了容易理解才用的类似语言的为代码来做</p>
+<p>使用管程的时候，由编译器负责实现各进程互斥地进入管程的过程。所以互斥地使用一些共享数据，是由编译器负责为我们实现的。</p>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UmYEAf.jpg" alt><br></div>
+
+<p>基于上图过程，用自己的话对管程特点进行描述。</p>
+<ol>
+<li>我们需要在管程中定义共享数据（如生产者消费者问题的缓冲区）</li>
+<li>在管程中定义一些用于访问这些共享数据的“入口” – 其实就是一些函数。（比如生产者消费者问题中，一个函数把物品放进缓冲区，一个函数从缓冲区取出物品。）</li>
+<li>只有通过这些“入口”才能访问共享数据。</li>
+<li>管程中有很多“入口”，并且同一时间只能让一个进程或线程进入（比如生产者消费者问题中，最多只会有一个进程在访问缓冲区，这种互斥特性是由编译器负责实现的。）</li>
+<li>设置<code>条件变量</code>和<code>等待/唤醒</code>操作解决同步问题，可以让一个进程或线程在条件变量上等待（<code>此时，该进程先释放管程的使用权，也就是让出这个“入口”</code>）；可以通过唤醒操作将等待在条件变量上的进程或线程唤醒。</li>
+</ol>
+<h3><span id="java种类似于管程的机制synchronized">Java种类似于管程的机制（synchronized）</span></h3><p>Java中用<code>Synchronized</code>来修饰函数，那么这个函数同一个时间只能被一个线程访问。编译器负责实现互斥。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">monitor</span></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">private</span> Item buffer[] = <span class="hljs-keyword">new</span> Iten[N];</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(Item item)</span></span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UmUHPK.jpg" alt><br></div>
+
+<h1><span id="死锁">死锁</span></h1><h3><span id="什么是死锁说一个会出现死锁的场景">什么是死锁，说一个会出现死锁的场景</span></h3><p>两个或两个以上进程占有自身资源，并请求等待对方的资源，导致每个进程都不能进行下去，这就是死锁。<br>死锁必要条件：互斥，占有并等待，不可剥夺，循环等待<br>死锁场景：就两个线程，各自获取自己的锁，然后去请求对方的锁。破解死锁，去违反上述一个条件就行。</p>
+<h3><span id="死锁条件">死锁条件</span></h3><p>互斥：每个资源要么已经分配给了一个进程，要么就是可用的。<br>占有和等待：已经得到了某个资源的进程可以再请求新的资源<br>不可强占：已经分配给了一个进程的资源不能强制性地被强占，它只能被占有它的进程显式地释放。<br>环路等待：有两个或两个以上的进程组成一条环路，环路中的每个进程都在等待下一个进程所占有的资源。</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/05/30/life-tip/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -187,9 +287,40 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/07/09/sort/">
+                <span class="level-item">排序算法</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -744,7 +875,7 @@
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow  ">
         
             
         
@@ -832,102 +963,6 @@
 
         
         </div>
-    
-</div>
-
-                
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        
-    
-        
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">我的独立App 配色笔记</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">itunes.apple.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">扬涛的博客</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">orzyt.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">夏木青</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">joselynzhao.top</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">DeamoV&#39;s Blog</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">vdeamov.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://saruagithub.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">WangXue</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">saruagithub.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://str818.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">str818</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">str818.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
     
 </div>
 
@@ -941,7 +976,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="操作系统" height="28">
                 
                 </a>
                 <p class="is-size-7">

@@ -2,19 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: 生活 - 帝羲 的博客</title>
+<title>排序算法 - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/tags/生活/index.html">
+    <meta name="description" content="笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序算法">
+<meta property="og:url" content="http://yoursite.com/2020/07/09/sort/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="笔记">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-07-09T03:00:16.092Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="排序算法">
+<meta name="twitter:description" content="笔记">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -89,13 +93,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="排序算法" height="28">
             
             </a>
         </div>
@@ -129,34 +133,19 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">生活</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-30T12:00:18.000Z">2020-05-30</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/说明书/">说明书</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2020-07-09T02:42:38.000Z">2020-07-09</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 689 个字)
+                    5 分钟 读完 (大约 760 个字)
                 </span>
                 
                 
@@ -165,21 +154,42 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/30/life-tip/">当代生活指南</a>
+                排序算法
             
         </h1>
         <div class="content">
-            <p>工作技能之外的生活指南书</p>
+            <h1><span id="笔记">笔记</span></h1><a id="more"></a>
+<!-- toc -->
+<ul>
+<li><a href="#稳定性">稳定性</a></li>
+<li><a href="#排序算法">排序算法</a><ul>
+<li><a href="#选择排序">选择排序</a></li>
+<li><a href="#冒泡排序">冒泡排序</a></li>
+<li><a href="#归并排序">归并排序</a></li>
+<li><a href="#快速排序">快速排序</a></li>
+<li><a href="#希尔排序">希尔排序</a></li>
+<li><a href="#堆排序">堆排序</a></li>
+<li><a href="#计数排序">计数排序</a></li>
+<li><a href="#桶排序">桶排序</a></li>
+<li><a href="#基数排序">基数排序</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1><span id="稳定性">稳定性</span></h1><p>假定在待排序的记录序列中，存在多个具有相同的关键字的记录，若经过排序，这些记录的相对次序保持不变，即在原序列中，r[i]=r[j]，且r[i]在r[j]之前，而在排序后的序列中，r[i]仍在r[j]之前，则称这种排序算法是稳定的；否则称为不稳定的。</p>
+<p>排序算法稳定性：键值相同的元素，排序后的相对位置保持不变</p>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/07/09/Ue6S74.png" alt><br></div>
+
+<h1><span id="排序算法">排序算法</span></h1><h2><span id="选择排序">选择排序</span></h2><p> 时间复杂度O(n^2)，依次选择第i小的数字，放在第一个位置，再放第二个位置。。。。。。，不稳定</p>
+<h2><span id="冒泡排序">冒泡排序</span></h2><p>完全倒序的时候时间复杂度最差O(n^2)，一轮冒泡如果没有交换，说明当前已经排好序了</p>
+<p>##插入排序<br>扑克牌整理方法，从第二张牌开始，往左边移动，和左边的牌交换，直到遇到不用交换的情况。倒序排列时最差情况O(N^2)。最好情况O(N)。</p>
+<h2><span id="归并排序">归并排序</span></h2><p>O(NlogN) 。空间复杂度O(n)</p>
+<h2><span id="快速排序">快速排序</span></h2><p>最好是O(logN)，每次选的基数正好等分当前数列。 最差是O(N^2)，待排序数组是逆序时，每次划分只少一个元素，平均时间复杂度O(NlogN)。空间复杂度O(1)，没有额外利用其他辅助空间。不稳定，切分操作里，从前向后扫描，遇到大数放到后面的大端，如果后面紧跟相等大数，则被置于该数前面。</p>
+<h2><span id="希尔排序">希尔排序</span></h2><p>通过粗粒度的插入排序改善数列的有序程度，逐步细化，直到间隔为1。如果序列很长，无序程度就高，向前插入一次可能导致移动操作很大。如果原来的序列相对有序，就能缓解这个问题。希尔排序就是在插入排序之前进行粗略的排序，让原序列相对更有序一点。  最坏时间复杂度 还是O(N^2)。但能有效改进序列无序且长度大时的大长度数列位移。希尔排序中对于增量序列选择十分重要。直接影响希尔排序性能，可以使用希尔增量。还有Hibbard增量. 希尔排序不稳定</p>
+<h2><span id="堆排序">堆排序</span></h2><p>构建堆，无序数组建立堆最直接的方法是从左到右遍历数组进行上浮操作。更高效的是从右至左进行下沉，如果一个节点的两个节点都已经是堆有序的，☑️。不是稳定，算法复杂度Nlog(N)</p>
+<h2><span id="计数排序">计数排序</span></h2><h2><span id="桶排序">桶排序</span></h2><h2><span id="基数排序">基数排序</span></h2>
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/05/30/life-tip/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -187,9 +197,47 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/07/09/OS/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">操作系统</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/12/amazing-me/">
+                <span class="level-item">《了不起的我》 -- 自身僵固型思维反思</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -744,7 +792,7 @@
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow  ">
         
             
         
@@ -832,102 +880,6 @@
 
         
         </div>
-    
-</div>
-
-                
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        
-    
-        
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">我的独立App 配色笔记</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">itunes.apple.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">扬涛的博客</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">orzyt.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">夏木青</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">joselynzhao.top</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">DeamoV&#39;s Blog</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">vdeamov.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://saruagithub.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">WangXue</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">saruagithub.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://str818.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">str818</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">str818.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
     
 </div>
 
@@ -941,7 +893,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="排序算法" height="28">
                 
                 </a>
                 <p class="is-size-7">
