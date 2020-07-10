@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-10T10:05:31.166Z">
+<meta property="og:updated_time" content="2020-07-10T10:08:04.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java知识汇总">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -169,110 +169,110 @@
 <a id="more"></a>
 <!-- toc -->
 <ul>
-<li><a href="#路线图">路线图</a></li>
-<li><a href="#面向过程和面向对象">面向过程和面向对象</a></li>
-<li><a href="#继承和多态">继承和多态</a></li>
-<li><a href="#关键字">关键字</a><ul>
-<li><a href="#final">final</a></li>
-<li><a href="#transient">transient</a></li>
-<li><a href="#volatile">volatile</a></li>
+<li><a href="#路线图"><strong>路线图</strong></a></li>
+<li><a href="#面向过程和面向对象"><strong>面向过程和面向对象</strong></a></li>
+<li><a href="#继承和多态"><strong>继承和多态</strong></a></li>
+<li><a href="#关键字"><strong>关键字</strong></a><ul>
+<li><a href="#final"><strong>final</strong></a></li>
+<li><a href="#transient"><strong>transient</strong></a></li>
+<li><a href="#volatile"><strong>volatile</strong></a></li>
 </ul>
 </li>
-<li><a href="#string-stringbuilder-stringbuffer">String, StringBuilder, StringBuffer</a></li>
-<li><a href="#synchronized-实现原理">Synchronized 实现原理</a></li>
-<li><a href="#容器">容器</a><ul>
-<li><a href="#hashmap和hashtable">HashMap和HashTable</a><ul>
-<li><a href="#hashtable-和-hashmap的区别">Hashtable 和 HashMap的区别：</a><ul>
-<li><a href="#fail-fast知识">fail-fast知识</a></li>
+<li><a href="#string-stringbuilder-stringbuffer"><strong>String, StringBuilder, StringBuffer</strong></a></li>
+<li><a href="#synchronized-实现原理"><strong>Synchronized 实现原理</strong></a></li>
+<li><a href="#容器"><strong>容器</strong></a><ul>
+<li><a href="#hashmap和hashtable"><strong>HashMap和HashTable</strong></a><ul>
+<li><a href="#hashtable-和-hashmap的区别"><strong>Hashtable 和 HashMap的区别：</strong></a><ul>
+<li><a href="#fail-fast知识"><strong>fail-fast知识</strong></a></li>
 </ul>
 </li>
-<li><a href="#hashmap-扩容">HashMap 扩容</a><ul>
-<li><a href="#计算新的容器大小">计算新的容器大小</a></li>
+<li><a href="#hashmap-扩容"><strong>HashMap 扩容</strong></a><ul>
+<li><a href="#计算新的容器大小"><strong>计算新的容器大小</strong></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#concurrenthashmap">ConcurrentHashMap</a><ul>
-<li><a href="#如何保证线程安全">如何保证线程安全</a></li>
+<li><a href="#concurrenthashmap"><strong>ConcurrentHashMap</strong></a><ul>
+<li><a href="#如何保证线程安全"><strong>如何保证线程安全</strong></a></li>
 </ul>
 </li>
-<li><a href="#arraylist和linkedlist">ArrayList和LinkedList</a></li>
+<li><a href="#arraylist和linkedlist"><strong>ArrayList和LinkedList</strong></a></li>
 </ul>
 </li>
-<li><a href="#容器-1">容器</a><ul>
-<li><a href="#hashmap">HashMap</a><ul>
-<li><a href="#17">1.7</a></li>
-<li><a href="#18">1.8</a></li>
+<li><a href="#容器-1"><strong>容器</strong></a><ul>
+<li><a href="#hashmap"><strong>HashMap</strong></a><ul>
+<li><a href="#17"><strong>1.7</strong></a></li>
+<li><a href="#18"><strong>1.8</strong></a></li>
 </ul>
 </li>
-<li><a href="#concurrenthashmap-1">ConcurrentHashMap</a><ul>
-<li><a href="#18-1">1.8</a></li>
+<li><a href="#concurrenthashmap-1"><strong>ConcurrentHashMap</strong></a><ul>
+<li><a href="#18-1"><strong>1.8</strong></a></li>
 </ul>
 </li>
-<li><a href="#arraylist-和-vector">ArrayList 和 Vector</a></li>
+<li><a href="#arraylist-和-vector"><strong>ArrayList 和 Vector</strong></a></li>
 </ul>
 </li>
-<li><a href="#锁">锁</a></li>
-<li><a href="#线程池-并发">线程池、并发</a><ul>
-<li><a href="#excutor">Excutor</a></li>
-<li><a href="#daemon">Daemon</a></li>
-<li><a href="#中断">中断</a><ul>
-<li><a href="#interruptedexception">InterruptedException</a></li>
-<li><a href="#interrupted">interrupted()</a></li>
-<li><a href="#executor-的中断操作">Executor 的中断操作</a></li>
+<li><a href="#锁"><strong>锁</strong></a></li>
+<li><a href="#线程池-并发"><strong>线程池、并发</strong></a><ul>
+<li><a href="#excutor"><strong>Excutor</strong></a></li>
+<li><a href="#daemon"><strong>Daemon</strong></a></li>
+<li><a href="#中断"><strong>中断</strong></a><ul>
+<li><a href="#interruptedexception"><strong>InterruptedException</strong></a></li>
+<li><a href="#interrupted"><strong>interrupted()</strong></a></li>
+<li><a href="#executor-的中断操作"><strong>Executor 的中断操作</strong></a></li>
 </ul>
 </li>
-<li><a href="#互斥同步">互斥同步</a><ul>
-<li><a href="#synchronized">Synchronized</a></li>
-<li><a href="#reentrantlock">ReentrantLock</a></li>
-<li><a href="#区别">区别</a></li>
+<li><a href="#互斥同步"><strong>互斥同步</strong></a><ul>
+<li><a href="#synchronized"><strong>Synchronized</strong></a></li>
+<li><a href="#reentrantlock"><strong>ReentrantLock</strong></a></li>
+<li><a href="#区别"><strong>区别</strong></a></li>
 </ul>
 </li>
-<li><a href="#线程池大小怎么设定">线程池大小怎么设定</a></li>
+<li><a href="#线程池大小怎么设定"><strong>线程池大小怎么设定</strong></a></li>
 </ul>
 </li>
-<li><a href="#aqs">AQS</a></li>
-<li><a href="#jvm">JVM</a><ul>
-<li><a href="#jvm内存区域与内存溢出">JVM内存区域与内存溢出</a><ul>
-<li><a href="#程序计数器">程序计数器</a></li>
-<li><a href="#java虚拟机栈">java虚拟机栈</a></li>
-<li><a href="#本地方法栈">本地方法栈</a></li>
-<li><a href="#java堆">Java堆</a></li>
-<li><a href="#方法区-method-area">方法区 Method Area</a></li>
-<li><a href="#运行时常量池">运行时常量池</a></li>
-<li><a href="#直接内存">直接内存</a></li>
+<li><a href="#aqs"><strong>AQS</strong></a></li>
+<li><a href="#jvm"><strong>JVM</strong></a><ul>
+<li><a href="#jvm内存区域与内存溢出"><strong>JVM内存区域与内存溢出</strong></a><ul>
+<li><a href="#程序计数器"><strong>程序计数器</strong></a></li>
+<li><a href="#java虚拟机栈"><strong>java虚拟机栈</strong></a></li>
+<li><a href="#本地方法栈"><strong>本地方法栈</strong></a></li>
+<li><a href="#java堆"><strong>Java堆</strong></a></li>
+<li><a href="#方法区-method-area"><strong>方法区 Method Area</strong></a></li>
+<li><a href="#运行时常量池"><strong>运行时常量池</strong></a></li>
+<li><a href="#直接内存"><strong>直接内存</strong></a></li>
 </ul>
 </li>
-<li><a href="#类加载器">类加载器</a><ul>
-<li><a href="#类加载的过程">类加载的过程</a><ul>
-<li><a href="#1-加载">1. 加载</a></li>
-<li><a href="#2-验证">2. 验证</a></li>
-<li><a href="#3-准备">3. 准备</a></li>
-<li><a href="#4-解析">4. 解析</a></li>
-<li><a href="#5-初始化">5. 初始化</a></li>
+<li><a href="#类加载器"><strong>类加载器</strong></a><ul>
+<li><a href="#类加载的过程"><strong>类加载的过程</strong></a><ul>
+<li><a href="#1-加载"><strong>1. 加载</strong></a></li>
+<li><a href="#2-验证"><strong>2. 验证</strong></a></li>
+<li><a href="#3-准备"><strong>3. 准备</strong></a></li>
+<li><a href="#4-解析"><strong>4. 解析</strong></a></li>
+<li><a href="#5-初始化"><strong>5. 初始化</strong></a></li>
 </ul>
 </li>
-<li><a href="#类与类加载器">类与类加载器</a></li>
-<li><a href="#类加载器分类">类加载器分类</a></li>
-<li><a href="#双亲委派模型">双亲委派模型</a></li>
+<li><a href="#类与类加载器"><strong>类与类加载器</strong></a></li>
+<li><a href="#类加载器分类"><strong>类加载器分类</strong></a></li>
+<li><a href="#双亲委派模型"><strong>双亲委派模型</strong></a></li>
 </ul>
 </li>
-<li><a href="#垃圾回收">垃圾回收</a></li>
-<li><a href="#out-of-memory">Out of Memory</a></li>
+<li><a href="#垃圾回收"><strong>垃圾回收</strong></a></li>
+<li><a href="#out-of-memory"><strong>Out of Memory</strong></a></li>
 </ul>
 </li>
-<li><a href="#java-io">Java IO</a><ul>
-<li><a href="#nio-bio">NIO BIO</a></li>
+<li><a href="#java-io"><strong>Java IO</strong></a><ul>
+<li><a href="#nio-bio"><strong>NIO BIO</strong></a></li>
 </ul>
 </li>
-<li><a href="#注解">注解</a></li>
-<li><a href="#反射">反射</a></li>
-<li><a href="#参考">参考</a></li>
+<li><a href="#注解"><strong>注解</strong></a></li>
+<li><a href="#反射"><strong>反射</strong></a></li>
+<li><a href="#参考"><strong>参考</strong></a></li>
 </ul>
 <!-- tocstop -->
-<h1><span id="路线图">路线图</span></h1><div align="center"><img src="/2020/05/01/java-review/java-path.png" alt></div>
+<h1><span id="路线图"><strong>路线图</strong></span></h1><div align="center"><img src="/2020/05/01/java-review/java-path.png" alt></div>
 
-<h1><span id="面向过程和面向对象">面向过程和面向对象</span></h1><p>1 面向过程：</p>
+<h1><span id="面向过程和面向对象"><strong>面向过程和面向对象</strong></span></h1><p>1 面向过程：</p>
 <blockquote>
 <p>分析出问题解决步骤，用函数把这些步骤一步一步实现，使用的时候一个一个调用</p>
 </blockquote>
@@ -282,7 +282,7 @@
 <p>封装 继承 多态</p>
 <p>优点：<code>易维护，易复用，易扩展</code>，由于面向对象有封装，继承，多态的特性，可以设计低耦合的系统。</p>
 <p>缺点：性能比面向过程低。</p>
-<h1><span id="继承和多态">继承和多态</span></h1><ol>
+<h1><span id="继承和多态"><strong>继承和多态</strong></span></h1><ol>
 <li>继承是指：保持已有类的特性而构造新类的过程。继承后，子类能够利用父类中定义的变量和方法，就像它们属于子类本身一样。</li>
 </ol>
 <p>单继承，java的<code>类</code>是单继承的，一个类只能有一个父类<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">B</span></span>&#123; &#125;  <span class="hljs-comment">//继承单个父类</span></span><br></pre></td></tr></table></figure></p>
@@ -341,8 +341,8 @@
 <li>一个类可以实现多个接口，但是只能继承一个抽象类</li>
 <li>接口中基本数据类型的数据成员，都默认为static final，抽象类则不是</li>
 </ul>
-<h1><span id="关键字">关键字</span></h1><p><a href="https://str818.github.io/2019/04/08/java-concurrency-keyword.html" target="_blank" rel="noopener">Java 并发关键字</a></p>
-<h2><span id="final">final</span></h2><p>对这个final有疑问，是来自于，String类型内部用来存储数据的成员变量是<code>final</code>修饰的，<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">String</span></span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span>, <span class="hljs-title">Comparable</span>&lt;<span class="hljs-title">String</span>&gt;, <span class="hljs-title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">char</span> value[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1><span id="关键字"><strong>关键字</strong></span></h1><p><a href="https://str818.github.io/2019/04/08/java-concurrency-keyword.html" target="_blank" rel="noopener">Java 并发关键字</a></p>
+<h2><span id="final"><strong>final</strong></span></h2><p>对这个final有疑问，是来自于，String类型内部用来存储数据的成员变量是<code>final</code>修饰的，<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">String</span></span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span>, <span class="hljs-title">Comparable</span>&lt;<span class="hljs-title">String</span>&gt;, <span class="hljs-title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">char</span> value[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这意味着value数组被初始化后就不能再去引用其他数组了。因此final不可变。但是，value是一个数组(引用类型)，不可变指的是value引用的地址不可变，但是这个地址指向的对象里面的内容还是可以改变的。</p>
 <ul>
 <li>修饰类<br>类不能被继承，<br>final类，里面的<code>成员方法</code>被自动隐式指定为final方法。<code>成员变量</code>还是根据自己需要设计成final。</li>
@@ -351,9 +351,9 @@
 </ul>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/06/10/tIsRuq.jpg" alt><br></div>
 
-<h2><span id="transient">transient</span></h2><p><code>transient</code>关键字修饰的东西在序列化的时候会被忽略。</p>
-<h2><span id="volatile">volatile</span></h2><p><a href="https://str818.github.io/2019/04/08/java-concurrency-keyword.html#%E4%BA%8Cvolatile" target="_blank" rel="noopener">str818</a><br>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）<br>禁止进行指令重排序。（实现有序性）<br>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性。</p>
-<h1><span id="string-stringbuilder-stringbuffer">String, StringBuilder, StringBuffer</span></h1><p>String不可变的好处，</p>
+<h2><span id="transient"><strong>transient</strong></span></h2><p><code>transient</code>关键字修饰的东西在序列化的时候会被忽略。</p>
+<h2><span id="volatile"><strong>volatile</strong></span></h2><p><a href="https://str818.github.io/2019/04/08/java-concurrency-keyword.html#%E4%BA%8Cvolatile" target="_blank" rel="noopener">str818</a><br>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）<br>禁止进行指令重排序。（实现有序性）<br>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性。</p>
+<h1><span id="string-stringbuilder-stringbuffer"><strong>String, StringBuilder, StringBuffer</strong></span></h1><p>String不可变的好处，</p>
 <ol>
 <li>只有当字符串是不可变的，字符串池才有可能实现。字符串池的实现可以在运行时节约很多heap空间，因为不同的字符串引用可以指向池中的同一个字符串。但如果字符串是可变的，如果变量改变了它的值，那么其它指向这个值的变量的值也会一起改变。</li>
 <li>如果字符串是可变的，那么会引起很严重的安全问题。譬如，数据库的用户名、密码都是以字符串的形式传入数据库，以获得数据库的连接，或者在socket编程中，主机名和端口都是以字符串的形式传入。因为字符串是不可变的，所以它的值是不可改变的，否则黑客们可以钻到空子，改变字符串指向的对象的值，造成安全漏洞。</li>
@@ -368,7 +368,7 @@
 <li>StringBuffer线程安全，内部使用synchronized进行同步</li>
 </ul>
 <p>根据String 的特点下面代码<br>String s = “hello”;s = s + “World”，这个过程需要在堆中开辟内存空间，最终得到“hello World”也需要开辟空间，这样就开辟了三个字符串空间。是内存空间的浪费。用StringBuilder和StringBuffer对此字符串变化作处理，StringBuilder 和 StringBuffer类的对象能够被多次的修改，并且不产生新的未使用对象<br>速度方面，StringBuilder更快。StringBuilder &gt; StringBuffer &gt; String<br>对于三者使用的总结：<br>如果要操作少量的数据用String<br>单线程操作字符串缓冲区下操作大量数据用StringBuilder（非线程安全）<br>多线程操作字符串缓冲区下操作大量数据用StringBuffer（线程安全）</p>
-<h1><span id="synchronized-实现原理">Synchronized 实现原理</span></h1><p>使用互斥同步方法（有多种同步方法：1互斥同步，2 非阻塞同步，3 无同步方案）</p>
+<h1><span id="synchronized-实现原理"><strong>Synchronized 实现原理</strong></span></h1><p>使用互斥同步方法（有多种同步方法：1互斥同步，2 非阻塞同步，3 无同步方案）</p>
 <ul>
 <li><p>修饰普通方法</p>
 </li>
@@ -384,11 +384,11 @@
 <li>synchronized修饰的同步块对于同一个线程是可重入的。同一线程反复进入一个同步块不会把自己锁死。</li>
 <li>sychronized同步块，在持有锁的线程执行完毕释放锁之前会无条件阻塞其他线程进入。意味着：1 无法强制持有锁的线程释放锁。2 无法让正在等待锁的线程中断等待或超时退出。</li>
 </ul>
-<h1><span id="容器">容器</span></h1><p><a href="https://yqh.aliyun.com/detail/9664?utm_content=g_1000117326" target="_blank" rel="noopener">Java 集合面试</a></p>
-<h2><span id="hashmap和hashtable">HashMap和HashTable</span></h2><p><a href="https://www.jianshu.com/p/ee0de4c99f87" target="_blank" rel="noopener">简书：读懂HashMap</a></p>
+<h1><span id="容器"><strong>容器</strong></span></h1><p><a href="https://yqh.aliyun.com/detail/9664?utm_content=g_1000117326" target="_blank" rel="noopener">Java 集合面试</a></p>
+<h2><span id="hashmap和hashtable"><strong>HashMap和HashTable</strong></span></h2><p><a href="https://www.jianshu.com/p/ee0de4c99f87" target="_blank" rel="noopener">简书：读懂HashMap</a></p>
 <p><strong>Hashtable：</strong><br>是<code>线程安全</code>的，Hashtable中的方法都是synchronized修饰的，在多线程并发的环境下，可以直接使用Hashtable，不需要自己为它的方法实现同步。</p>
 <p><strong>HashMap：</strong><br>是<code>非线程安全</code>的，HashMap中的方法在缺省情况下是非synchronized的。在多线程并发的环境下，可能会产生死锁等问题。需要自己手动增加同步处理。虽然HashMap不是线程安全的，但是它的效率会比Hashtable要高很多。这样设计是合理的。在我们的日常使用当中，大部分时间是单线程操作的。HashMap把这部分操作解放出来了。</p>
-<h3><span id="hashtable-和-hashmap的区别">Hashtable 和 HashMap的区别：</span></h3><ol>
+<h3><span id="hashtable-和-hashmap的区别"><strong>Hashtable 和 HashMap的区别：</strong></span></h3><ol>
 <li>继承的父类不同<br> Hashtable继承自Dictionary类，而HashMap继承自AbstractMap类。但二者都实现了Map接口。</li>
 </ol>
 <p><strong>Hashtable</strong><br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hashtable</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;</span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">extends</span> <span class="hljs-title">Dictionary</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;</span></span><br><span class="line"><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">Map</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;, <span class="hljs-title">Cloneable</span>, <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -408,7 +408,7 @@
 <pre><code>- 在遍历中可以删除Collection中的元素
 - 方法名称优化
 </code></pre><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Iterator</span>&lt;<span class="hljs-title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function">E <span class="hljs-title">next</span><span class="hljs-params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException(<span class="hljs-string">"remove"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">forEachRemaining</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-keyword">super</span> E&gt; action)</span> </span>&#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="hljs-keyword">while</span> (hasNext())</span><br><span class="line">            action.accept(next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4><span id="fail-fast知识">fail-fast知识</span></h4><p><a href="https://www.cnblogs.com/shamo89/p/6685216.html" target="_blank" rel="noopener"><strong>快速失败(fail-fast)和安全失败(fail-safe)的区别</strong></a></p>
+<h4><span id="fail-fast知识"><strong>fail-fast知识</strong></span></h4><p><a href="https://www.cnblogs.com/shamo89/p/6685216.html" target="_blank" rel="noopener"><strong>快速失败(fail-fast)和安全失败(fail-safe)的区别</strong></a></p>
 <p>HashMap使用<code>Iterator</code>迭代器</p>
 <blockquote>
 <p>The iterators returned by all of this class’s “collection view methods” are fail-fast: if the map is structurally modified at any time after the iterator is created, in any way except through the iterator’s own remove method, the iterator will throw a ConcurrentModificationException. Thus, in the face of concurrent modification, the iterator fails quickly and cleanly, rather than risking arbitrary, non-deterministic behavior at an undetermined time in the future.<br>Note that the fail-fast behavior of an iterator cannot be guaranteed as it is, generally speaking, impossible to make any hard guarantees in the presence of unsynchronized concurrent modification. Fail-fast iterators throw ConcurrentModificationException on a best-effort basis. Therefore, it would be wrong to write a program that depended on this exception for its correctness: the fail-fast behavior of iterators should be used only to detect bugs.</p>
@@ -422,11 +422,11 @@
 <p>即，当多个线程对同一个集合进行操作的时候，某线程访问集合的过程中，该集合的内容被其他线程所改变(即其它线程通过add、remove、clear等方法，改变了modCount的值)；这时，就会抛出ConcurrentModificationException异常，产生fail-fast事件。</p>
 </blockquote>
 <p>但是<code>fail-fast</code>并不保证一定会发生，一般来说，非同步的并发修改过程都是不可能绝对保证fail-fast的。上面实现的fail-fast只是尽力而为的。所以，想要依赖这个<code>ConcurrentModificationException</code>异常保证程序正确性的想法是错误的。<strong>fail-fast行为只能用来检测程序bug。</strong></p>
-<h3><span id="hashmap-扩容">HashMap 扩容</span></h3><p>什么时候扩容？向容器添加元素时，看当前元素个数是否到达阈值。阈值=当前table数组长度 * 负载因子loadfactor。</p>
+<h3><span id="hashmap-扩容"><strong>HashMap 扩容</strong></span></h3><p>什么时候扩容？向容器添加元素时，看当前元素个数是否到达阈值。阈值=当前table数组长度 * 负载因子loadfactor。</p>
 <p>扩容就是重新算出一个新的table数组，然后将原来容器中的元素放进去。</p>
-<h4><span id="计算新的容器大小">计算新的容器大小</span></h4><p>返回一个比给定数字大，最接近的2的幂次方整数。</p>
+<h4><span id="计算新的容器大小"><strong>计算新的容器大小</strong></span></h4><p>返回一个比给定数字大，最接近的2的幂次方整数。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">tableSizeFor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> cap)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> n = cap - <span class="hljs-number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="hljs-number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="hljs-number">2</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="hljs-number">4</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="hljs-number">8</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="hljs-number">16</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> (n &lt; <span class="hljs-number">0</span>) ? <span class="hljs-number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="concurrenthashmap">ConcurrentHashMap</span></h2><p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Java%20%E5%AE%B9%E5%99%A8?id=concurrenthashmap" target="_blank" rel="noopener"><strong>Cyc ConcurrentHashMap</strong></a></p>
+<h2><span id="concurrenthashmap"><strong>ConcurrentHashMap</strong></span></h2><p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Java%20%E5%AE%B9%E5%99%A8?id=concurrenthashmap" target="_blank" rel="noopener"><strong>Cyc ConcurrentHashMap</strong></a></p>
 <p>ConcurrentHashMap 和 HashMap 实现上类似，最主要的差别是 ConcurrentHashMap 采用了分段锁（Segment），每个分段锁维护着几个桶（HashEntry），多个线程可以同时访问不同分段锁上的桶，从而使其并发度更高（并发度就是 Segment 的个数）。</p>
 <p>Hashtable效率低下，以为所有访问Hashtable的线程都在竞争同一把锁。ConcurrentHashMap就是用分段锁技术，每把锁管理容器的一部分数据。这样就不需要多个线程都竞争一把锁了，提高并发访问效率。</p>
 <p><strong>JDK1.8的实现已经抛弃了Segment分段锁机制，利用CAS+Synchronized来保证并发更新的安全。数据结构采用：数组+链表+红黑树。</strong><br><a href="https://blog.csdn.net/xingxiupaioxue/article/details/88062163" target="_blank" rel="noopener"><strong>ConcurrentHashMap 1.7和1.8区别</strong></a></p>
@@ -434,21 +434,21 @@
 <blockquote>
 <p>ConcurrentHashMap是一个并发散列映射表，允许完全并发读。Hashtale和同步包装的HashMap只有一个锁，并发访问变成串行化的。Hashtable任何操作会将整个表锁住，阻塞访问的，效率低。ConcurrentHashMap设计为非阻塞，局部锁住部分数据。坏处是严格来说读取操作不能保证反映最近的更新。例如线程A调用putAll写入大量数据，期间线程B调用get，则只能get到目前为止已经顺利插入的部分数据。应该根据具体的应用场景选择合适的HashMap。</p>
 </blockquote>
-<h3><span id="如何保证线程安全">如何保证线程安全</span></h3><p><strong>1.7</strong></p>
+<h3><span id="如何保证线程安全"><strong>如何保证线程安全</strong></span></h3><p><strong>1.7</strong></p>
 <p>结构和1.7的HashMap类似，用分段锁，核心是<code>Segment</code>类，继承自<code>重入锁ReentrantLock</code>。并发度和<code>Segment</code>数量相等。</p>
 <p><strong>1.8</strong></p>
 <p>JDK 1.8 使用了 CAS 操作来支持更高的并发度，在 CAS 操作失败时使用内置锁 synchronized。并且 JDK 1.8 的实现也在链表过长时会转换为红黑树。</p>
-<h2><span id="arraylist和linkedlist">ArrayList和LinkedList</span></h2><h1><span id="容器">容器</span></h1><h2><span id="hashmap">HashMap</span></h2><blockquote>
+<h2><span id="arraylist和linkedlist"><strong>ArrayList和LinkedList</strong></span></h2><h1><span id="容器"><strong>容器</strong></span></h1><h2><span id="hashmap"><strong>HashMap</strong></span></h2><blockquote>
 <p>什么时候会使用HashMap？他有什么特点？<br>你知道HashMap的工作原理吗？<br>你知道get和put的原理吗？equals()和hashCode()的都有什么作用？<br>你知道hash的实现吗？为什么要这样实现？<br>如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？</p>
 </blockquote>
 <p>初始容量 16，<br>负载因子，键值对 &gt; capacity * loadfactor的时候扩容，扩容两倍</p>
 <ul>
 <li>构造函数<br>1.空<br>2.设置初始容量<br>3.每次扩容成为2倍</li>
 </ul>
-<h3><span id="17">1.7</span></h3><p>put()<br>如果数组是空的就创建数组<br>如果key是null，特殊处理<br>计算哈希<br>计算索引下标<br>在单链表里查找，如果key之前已经存在，直接替换对应的值<br>如果这个key没有被存储过，调用新的addEntry方法。</p>
+<h3><span id="17"><strong>1.7</strong></span></h3><p>put()<br>如果数组是空的就创建数组<br>如果key是null，特殊处理<br>计算哈希<br>计算索引下标<br>在单链表里查找，如果key之前已经存在，直接替换对应的值<br>如果这个key没有被存储过，调用新的addEntry方法。</p>
 <p>看当前容量是否大于扩容阈值，大于就扩容。扩容2倍。如果扩容的话，创建一个新的数组，把以前的键值对全部重新放进新的数组。<br>使用头插法创建新的键值对</p>
 <p>get()<br>key是空的就单独调用getForNullKey方法，<br>然后获取key对应的entry。找的数组索引，然后遍历链表，看是否有相同key的entry，没有就反悔null</p>
-<h3><span id="18">1.8</span></h3><p>确定hash同数组索引位置，<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//方法一：</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hash</span><span class="hljs-params">(Object key)</span> </span>&#123; <span class="hljs-comment">//jdk1.8 &amp; jdk1.7</span></span><br><span class="line"> <span class="hljs-keyword">int</span> h;</span><br><span class="line"> <span class="hljs-comment">// h = key.hashCode() 为第一步 取hashCode值</span></span><br><span class="line"> <span class="hljs-comment">// h ^ (h &gt;&gt;&gt; 16)  为第二步 高位参与运算</span></span><br><span class="line"> <span class="hljs-keyword">return</span> (key == <span class="hljs-keyword">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//方法二：</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">indexFor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> h, <span class="hljs-keyword">int</span> length)</span> </span>&#123; <span class="hljs-comment">//jdk1.7的源码，jdk1.8没有提取这个方法，而是放在了其他方法中，比如 put 的p = tab[i = (n - 1) &amp; hash]</span></span><br><span class="line"> <span class="hljs-keyword">return</span> h &amp; (length-<span class="hljs-number">1</span>); <span class="hljs-comment">//第三步 取模运算</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3><span id="18"><strong>1.8</strong></span></h3><p>确定hash同数组索引位置，<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//方法一：</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hash</span><span class="hljs-params">(Object key)</span> </span>&#123; <span class="hljs-comment">//jdk1.8 &amp; jdk1.7</span></span><br><span class="line"> <span class="hljs-keyword">int</span> h;</span><br><span class="line"> <span class="hljs-comment">// h = key.hashCode() 为第一步 取hashCode值</span></span><br><span class="line"> <span class="hljs-comment">// h ^ (h &gt;&gt;&gt; 16)  为第二步 高位参与运算</span></span><br><span class="line"> <span class="hljs-keyword">return</span> (key == <span class="hljs-keyword">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//方法二：</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">indexFor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> h, <span class="hljs-keyword">int</span> length)</span> </span>&#123; <span class="hljs-comment">//jdk1.7的源码，jdk1.8没有提取这个方法，而是放在了其他方法中，比如 put 的p = tab[i = (n - 1) &amp; hash]</span></span><br><span class="line"> <span class="hljs-keyword">return</span> h &amp; (length-<span class="hljs-number">1</span>); <span class="hljs-comment">//第三步 取模运算</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>取hashcode，高位运算，取模运算</p>
 <blockquote>
 <p>为什么要这样<br>HashMap的长度为什么是2的幂次方</p>
@@ -469,18 +469,18 @@
 <li><p>tableSizeFor()</p>
 </li>
 </ul>
-<h2><span id="concurrenthashmap">ConcurrentHashMap</span></h2><h3><span id="18">1.8</span></h3><ul>
+<h2><span id="concurrenthashmap"><strong>ConcurrentHashMap</strong></span></h2><h3><span id="18"><strong>1.8</strong></span></h3><ul>
 <li>Put<br>不用分段锁了，<br>首先不能null的key和value<br>initTable()初始化<br>hash找到对应下标，可以直接插的话就CAS插入<br>MOVED=-1在扩容就停下来，帮助扩容<br>在链表头部开始找，加synchronized锁实现线程安全。<br>  在链表中找到与待插入键值对相同key的节点，就覆盖<br>  没找到就把待插入的键值对放到末尾。<br>如果当前为红黑树，将新的键值对放进红黑树里面</li>
 </ul>
 <p>插完后根据实际大小看是否需要转换成红黑树</p>
-<h2><span id="arraylist-和-vector">ArrayList 和 Vector</span></h2><p>相同点：<br>ArrayList继承相同接口，底层都是数组，初始默认长度10.</p>
+<h2><span id="arraylist-和-vector"><strong>ArrayList 和 Vector</strong></span></h2><p>相同点：<br>ArrayList继承相同接口，底层都是数组，初始默认长度10.</p>
 <p>不同点：<br>同步性，Vector的public 方法添加synchronized。 一个线程安全，一个不安全<br>性能：Vector性能较差<br>扩容大小：ArrayList不够用时扩展</p>
 <p>ArrayList扩容grow( )，就是扩容1.5倍，给一个新的数组。<br>int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);<br>Vector的grow( )。有一个扩展因子，capacityIncrement，有这个就扩展这么多，没这个就扩展两倍</p>
 <p>ArrayList和LinkedArrayList<br>不同：<br>插入删除是否受元素位置影响<br>是否支持快速随机访问：快速随机访问就是通过元素的序号快速获取元素对象(对应于 get(intindex)方法)。<br>内存空间占用。LinkedList占用空间更多</p>
 <p>源码分析：<br>ArrayList3个构造器，①无参构造器 ②带初始容量构造器 ③参数为集合构造器<br>LinkedList2个构造器，①无参构造器 ②参数为集合构造器</p>
 <p>插入：<br>ArrayList：先保证数组容量够不够，看需不需要扩容。插入指定位置，后面的元素向后面移一位<br>LinkedList: 放在后面，插入指定位置时看位置在不在，有一个二分查找优化。就是从头还是从尾查找。</p>
 <p>面经：<br>ArrayList什么时候扩容：在添加的时候，不够用就扩容。<br>什么时候缩容：他不会自己缩容。</p>
-<h1><span id="锁">锁</span></h1><ul>
+<h1><span id="锁"><strong>锁</strong></span></h1><ul>
 <li><p>锁升级的过程</p>
 </li>
 <li><p>读写锁怎么实现的</p>
@@ -489,7 +489,7 @@
 </li>
 </ul>
 <p>400-6171-215</p>
-<h1><span id="线程池-并发">线程池、并发</span></h1><h2><span id="excutor">Excutor</span></h2><p>管理多个异步任务执行，无需显示管理线程生命周期。异步是指多个任务的执行互不干扰，不需要同步操作。</p>
+<h1><span id="线程池-并发"><strong>线程池、并发</strong></span></h1><h2><span id="excutor"><strong>Excutor</strong></span></h2><p>管理多个异步任务执行，无需显示管理线程生命周期。异步是指多个任务的执行互不干扰，不需要同步操作。</p>
 <p>Executor 管理多个异步任务的执行，而无需程序员显式地管理线程的生命周期。这里的异步是指多个任务的执行互不干扰，不需要进行同步操作。</p>
 <p>主要有三种 Executor：</p>
 <ul>
@@ -498,21 +498,21 @@
 <li>SingleThreadExecutor：相当于大小为 1 的 FixedThreadPool。<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">    ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;</span><br><span class="line">        executorService.execute(<span class="hljs-keyword">new</span> MyRunnable());</span><br><span class="line">    &#125;</span><br><span class="line">    executorService.shutdown();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2><span id="daemon">Daemon</span></h2><p>守护线程，</p>
-<h2><span id="中断">中断</span></h2><h3><span id="interruptedexception">InterruptedException</span></h3><p>通过调用一个线程的 interrupt() 来中断该线程，如果该线程处于阻塞、限期等待或者无限期等待状态，那么就会抛出 InterruptedException，从而提前结束该线程。但是不能中断 I/O 阻塞和 synchronized 锁阻塞。</p>
+<h2><span id="daemon"><strong>Daemon</strong></span></h2><p>守护线程，</p>
+<h2><span id="中断"><strong>中断</strong></span></h2><h3><span id="interruptedexception"><strong>InterruptedException</strong></span></h3><p>通过调用一个线程的 interrupt() 来中断该线程，如果该线程处于阻塞、限期等待或者无限期等待状态，那么就会抛出 InterruptedException，从而提前结束该线程。但是不能中断 I/O 阻塞和 synchronized 锁阻塞。</p>
 <p><code>thread.interrupt();</code><br>InterruptedException，因为异常不能跨线程传播回 main() 中，因此必须在本地进行处理。线程中抛出的其它异常也同样需要在本地进行处理。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InterruptExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>&#123;</span><br><span class="line">        <span class="hljs-meta">@Override</span></span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">            <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="hljs-number">2000</span>);</span><br><span class="line">                System.out.println(<span class="hljs-string">"Thread run"</span>);</span><br><span class="line">            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    Thread thread1 = <span class="hljs-keyword">new</span> MyThread1();</span><br><span class="line">    thread1.start();</span><br><span class="line">    thread1.interrupt();</span><br><span class="line">    System.out.println(<span class="hljs-string">"Main run"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="interrupted">interrupted()</span></h3><p>Thread里面有interrupted()，线程没有执行会抛出InterruptedException的方法时，比如死循环中，用这个来让线程自己察觉退出</p>
+<h3><span id="interrupted"><strong>interrupted()</strong></span></h3><p>Thread里面有interrupted()，线程没有执行会抛出InterruptedException的方法时，比如死循环中，用这个来让线程自己察觉退出</p>
 <blockquote>
 <p>调用 interrupt() 方法会设置线程的中断标记，此时调用 interrupted() 方法会返回 true。因此可以在循环体中使用 interrupted() 方法来判断线程是否处于中断状态，从而提前结束线程。</p>
 </blockquote>
-<h3><span id="executor-的中断操作">Executor 的中断操作</span></h3><p>调用 Executor 的 shutdown() 方法会等待线程都执行完毕之后再关闭，但是如果调用的是 shutdownNow() 方法，则相当于调用每个线程的 interrupt() 方法。</p>
+<h3><span id="executor-的中断操作"><strong>Executor 的中断操作</strong></span></h3><p>调用 Executor 的 shutdown() 方法会等待线程都执行完毕之后再关闭，但是如果调用的是 shutdownNow() 方法，则相当于调用每个线程的 interrupt() 方法。</p>
 <p>以下使用 Lambda 创建线程，相当于创建了一个匿名内部线程。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">    ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">    executorService.execute(() -&gt; &#123;</span><br><span class="line">        <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="hljs-number">2000</span>);</span><br><span class="line">            System.out.println(<span class="hljs-string">"Thread run"</span>);</span><br><span class="line">        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    executorService.shutdownNow();</span><br><span class="line">    System.out.println(<span class="hljs-string">"Main run"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Main run</span><br><span class="line">java.lang.InterruptedException: sleep interrupted</span><br><span class="line">    at java.lang.Thread.sleep(Native Method)</span><br><span class="line">    at ExecutorInterruptExample.lambda$main$0(ExecutorInterruptExample.java:9)</span><br><span class="line">    at ExecutorInterruptExample$$Lambda$1/1160460865.run(Unknown Source)</span><br><span class="line">    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)</span><br><span class="line">    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)</span><br><span class="line">    at java.lang.Thread.run(Thread.java:745)</span><br></pre></td></tr></table></figure>
-<h2><span id="互斥同步">互斥同步</span></h2><h3><span id="synchronized">Synchronized</span></h3><p><code>synchronized</code>，代码块，方法，要注意是同步的是一个<code>对象</code>还是<code>方法</code>。<br>底层实现原理，在方法或者代码块中，实习那原理一样，进入代码块的时候获取管程对象。moniterenter和moniterexit指令是通过monitor对象实现的。进入时如果没被其他线程占用，进入阻塞状态。退出时计数器-1。没被占用，计数为0，把计数器设为1，进入代码块，如果monitor是被自己占用的时候，计数器+1。退出代码块的时候把计数器-1. 减法为0的时候，释放锁</p>
-<h3><span id="reentrantlock">ReentrantLock</span></h3><p>ReentrantLock 是 java.util.concurrent（J.U.C）包中的锁。<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LockExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">private</span> Lock lock = <span class="hljs-keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;</span><br><span class="line">                System.out.print(i + <span class="hljs-string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="hljs-keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock(); <span class="hljs-comment">// 确保释放锁，从而避免发生死锁。</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3><span id="区别">区别</span></h3><ol>
+<h2><span id="互斥同步"><strong>互斥同步</strong></span></h2><h3><span id="synchronized"><strong>Synchronized</strong></span></h3><p><code>synchronized</code>，代码块，方法，要注意是同步的是一个<code>对象</code>还是<code>方法</code>。<br>底层实现原理，在方法或者代码块中，实习那原理一样，进入代码块的时候获取管程对象。moniterenter和moniterexit指令是通过monitor对象实现的。进入时如果没被其他线程占用，进入阻塞状态。退出时计数器-1。没被占用，计数为0，把计数器设为1，进入代码块，如果monitor是被自己占用的时候，计数器+1。退出代码块的时候把计数器-1. 减法为0的时候，释放锁</p>
+<h3><span id="reentrantlock"><strong>ReentrantLock</strong></span></h3><p>ReentrantLock 是 java.util.concurrent（J.U.C）包中的锁。<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LockExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">private</span> Lock lock = <span class="hljs-keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;</span><br><span class="line">                System.out.print(i + <span class="hljs-string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="hljs-keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock(); <span class="hljs-comment">// 确保释放锁，从而避免发生死锁。</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3><span id="区别"><strong>区别</strong></span></h3><ol>
 <li>锁的实现</li>
 </ol>
 <p>synchronized 是 JVM 实现的，而 ReentrantLock 是 JDK 实现的。</p>
@@ -535,10 +535,10 @@
 </ol>
 <p>一个 ReentrantLock 可以同时绑定多个 Condition 对象。</p>
 <p>使用选择<br>除非需要使用 ReentrantLock 的高级功能，否则优先使用 synchronized。这是因为 synchronized 是 JVM 实现的一种锁机制，JVM 原生地支持它，而 ReentrantLock 不是所有的 JDK 版本都支持。并且使用 synchronized 不用担心没有释放锁而导致死锁问题，因为 JVM 会确保锁的释放。</p>
-<h2><span id="线程池大小怎么设定">线程池大小怎么设定</span></h2><h1><span id="aqs">AQS</span></h1><p>ArrayBlockingQueue, LinkedBlockingQueue这些，队列的底层。这是用AQS做的。</p>
-<h1><span id="jvm">JVM</span></h1><h2><span id="jvm内存区域与内存溢出">JVM内存区域与内存溢出</span></h2><p>堆<br>栈<br>方法区<br>本地方法栈<br>程序计数器</p>
-<h3><span id="程序计数器">程序计数器</span></h3><p>每个线程有一个自己的程序计数器（线程私有），用来指示当前所执行字节码的行号。记录正在执行字节码地址。 <strong>分支，循环，跳转，异常处理，线程恢复等基础功能依赖于程序计数器</strong>。<br>各个线程的程序计数器不相互影响。</p>
-<h3><span id="java虚拟机栈">java虚拟机栈</span></h3><p>生命周期和线程相同。<br>注意两个概念， 虚拟机栈描述的是Java方法执行的线程内存模型。<br>帧栈，执行每个方法的时候，Java虚拟机对这个方法同步创建一个“帧栈”进入虚拟机栈，存储 局部变量表，操作数栈，动态链接，<strong>常量池引用</strong>，方法出口等信息。<strong>一个方法从被调用到执行结束对应栈帧在虚拟机栈中从入栈到出栈的过程</strong>。</p>
+<h2><span id="线程池大小怎么设定"><strong>线程池大小怎么设定</strong></span></h2><h1><span id="aqs"><strong>AQS</strong></span></h1><p>ArrayBlockingQueue, LinkedBlockingQueue这些，队列的底层。这是用AQS做的。</p>
+<h1><span id="jvm"><strong>JVM</strong></span></h1><h2><span id="jvm内存区域与内存溢出"><strong>JVM内存区域与内存溢出</strong></span></h2><p>堆<br>栈<br>方法区<br>本地方法栈<br>程序计数器</p>
+<h3><span id="程序计数器"><strong>程序计数器</strong></span></h3><p>每个线程有一个自己的程序计数器（线程私有），用来指示当前所执行字节码的行号。记录正在执行字节码地址。 <strong>分支，循环，跳转，异常处理，线程恢复等基础功能依赖于程序计数器</strong>。<br>各个线程的程序计数器不相互影响。</p>
+<h3><span id="java虚拟机栈"><strong>java虚拟机栈</strong></span></h3><p>生命周期和线程相同。<br>注意两个概念， 虚拟机栈描述的是Java方法执行的线程内存模型。<br>帧栈，执行每个方法的时候，Java虚拟机对这个方法同步创建一个“帧栈”进入虚拟机栈，存储 局部变量表，操作数栈，动态链接，<strong>常量池引用</strong>，方法出口等信息。<strong>一个方法从被调用到执行结束对应栈帧在虚拟机栈中从入栈到出栈的过程</strong>。</p>
 <p>通过<code>-Xss</code>虚拟机指令参数来指定每个线程Java虚拟机栈内存大小。</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Xss 2M HackTheJava</span><br></pre></td></tr></table></figure>
 <p>这个区域可能出现的异常</p>
@@ -547,30 +547,30 @@
 <li>OutOfMemoryError 栈扩展时无法申请到足够的内存。</li>
 </ul>
 <p>数据在局部变量表中的存储空间以局部变量槽Slot表示，64位的long和double类型数据会占用两个变量槽。其余数据类型只占用一个。<br>局部变量表所需要的内存空间在编译期间完成分配，进入一个方法时，需要在帧栈中分配多大的局部变量空间都是确定的。 大小指的是变量槽的数量。一个变量槽使用多少bit也是由虚拟机自己决定。 </p>
-<h3><span id="本地方法栈">本地方法栈</span></h3><p>作用与虚拟机栈非常相似。<br>虚拟机栈帮虚拟机 执行Java方法（字节码），本地方法栈帮虚拟机使用本地(Native)方法。本地方法报的错也是StackOverflowError和OutOfMemoryError异常。</p>
+<h3><span id="本地方法栈"><strong>本地方法栈</strong></span></h3><p>作用与虚拟机栈非常相似。<br>虚拟机栈帮虚拟机 执行Java方法（字节码），本地方法栈帮虚拟机使用本地(Native)方法。本地方法报的错也是StackOverflowError和OutOfMemoryError异常。</p>
 <p><strong>本地方法一般是用其它语言（C、C++ 或汇编语言等）编写的，并且被编译为基于本机硬件和操作系统的程序，对待这些方法需要特别处理。</strong></p>
-<h3><span id="java堆">Java堆</span></h3><p>所有对象都在这里分配内存，是垃圾收集的主要区域（一些资料里面也被叫做”GC 堆”）。<strong>Java堆是被所有线程共享的一块内存区域。</strong>，被线程共享的Java堆也可以划分出多个线程私有的分配缓冲区（Thread Local Allocation Buffer, TLAB）。无论哪个区域，存储对象都只能是对象实例。将堆细分只是为了更好地回收♻️内存。</p>
+<h3><span id="java堆"><strong>Java堆</strong></span></h3><p>所有对象都在这里分配内存，是垃圾收集的主要区域（一些资料里面也被叫做”GC 堆”）。<strong>Java堆是被所有线程共享的一块内存区域。</strong>，被线程共享的Java堆也可以划分出多个线程私有的分配缓冲区（Thread Local Allocation Buffer, TLAB）。无论哪个区域，存储对象都只能是对象实例。将堆细分只是为了更好地回收♻️内存。</p>
 <p>这块区域的唯一目的就是存放对象实例。Java几乎所有的对象实例都在这里分配内存。<strong>“几乎”所有对象实例都在堆上分配内存。因为一些优化手段，Java对象实例都分配在堆上也不是那么绝对了。</strong></p>
 <p>现代的垃圾收集器基本都是采用分代收集算法，其主要的思想是针对不同类型的对象采取不同的垃圾回收算法。可以将堆分成两块：</p>
 <p>Java堆可以被实现成固定大小，也可以是可扩展的。当前主流Java虚拟机是按照可扩展来实现的。（参数-Xmx, -Xms设定）。</p>
-<h3><span id="方法区-method-area">方法区 Method Area</span></h3><p>和Java堆一样，各个线程共享的内存区域。<strong>用于存储被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存等数据。</strong></p>
+<h3><span id="方法区-method-area"><strong>方法区 Method Area</strong></span></h3><p>和Java堆一样，各个线程共享的内存区域。<strong>用于存储被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存等数据。</strong></p>
 <p>方法区并不是永久代，只是之前有的虚拟机用永久代来实现方法区域。</p>
 <p>方法区是一个 JVM 规范，永久代与元空间都是其一种实现方式。在 JDK 1.8 之后，原来永久代的数据被分到了堆和元空间中。元空间存储类的元信息，静态变量和常量池等放入堆中。</p>
 <p>对这块区域进行垃圾回收的主要目标是对常量池的回收和对类的卸载，但是一般比较难实现</p>
-<h3><span id="运行时常量池">运行时常量池</span></h3><p>方法区的一部分。Class文件中除了有 类的版本，字段，方法，接口等信息外，还有一项是 常量池表。用于存放编译器生成的各种字面量与符号引用。Class 文件中的常量池表存放的内容（编译器生成的字面量和符号引用）会在类加载后被放入这个区域。 符号引用翻译出来的直接引用也存储在运行时常量池中。</p>
+<h3><span id="运行时常量池"><strong>运行时常量池</strong></span></h3><p>方法区的一部分。Class文件中除了有 类的版本，字段，方法，接口等信息外，还有一项是 常量池表。用于存放编译器生成的各种字面量与符号引用。Class 文件中的常量池表存放的内容（编译器生成的字面量和符号引用）会在类加载后被放入这个区域。 符号引用翻译出来的直接引用也存储在运行时常量池中。</p>
 <p>除了在编译期生成的常量（并非预置入Class文件中常量池的内容才能进入方法区运行时常量池），还允许动态生成，运行期间可以将新的常量放进池中。例如 String 类的 intern()。</p>
-<h3><span id="直接内存">直接内存</span></h3><p>在 JDK 1.4 中新引入了 NIO 类，它可以使用 Native 函数库直接分配堆外内存，然后通过 Java 堆里的 DirectByteBuffer 对象作为这块内存的引用进行操作。这样能在一些场景中显著提高性能，因为避免了在堆内存和堆外内存来回拷贝数据。</p>
-<h2><span id="类加载器">类加载器</span></h2><p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA?id=%e5%9b%9b%e3%80%81%e7%b1%bb%e5%8a%a0%e8%bd%bd%e6%9c%ba%e5%88%b6" target="_blank" rel="noopener">Cyc2018 类加载机制</a></p>
+<h3><span id="直接内存"><strong>直接内存</strong></span></h3><p>在 JDK 1.4 中新引入了 NIO 类，它可以使用 Native 函数库直接分配堆外内存，然后通过 Java 堆里的 DirectByteBuffer 对象作为这块内存的引用进行操作。这样能在一些场景中显著提高性能，因为避免了在堆内存和堆外内存来回拷贝数据。</p>
+<h2><span id="类加载器"><strong>类加载器</strong></span></h2><p><a href="https://cyc2018.github.io/CS-Notes/#/notes/Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA?id=%e5%9b%9b%e3%80%81%e7%b1%bb%e5%8a%a0%e8%bd%bd%e6%9c%ba%e5%88%b6" target="_blank" rel="noopener">Cyc2018 类加载机制</a></p>
 <p>类的生命周期：<code>加、验、备、析、初</code>、始、载。 前5个是类加载的过程：<code>加载、验证、准备、解析、初始化</code>。</p>
 <p>类是在运行期间使用时动态加载的，而不是一次性加载所有的类。Java天生可以动态扩展的语言特性是依赖运行期动态加载和动态连接这个特点实现的。例如，编写一个面向接口的应用程序，可以等到运行时再指定其实际的实现类。Applet，JSP，OSGI这些技术都依赖于Java在运行期动态类加载才得以诞生。</p>
 <p>Java的类加载机制：Java虚拟机把描述类的数据从Class文件加载到内存，并对数据进行校验、转换解析和初始化，形成可以被JVM直接使用的Java类型，这个过程被称作虚拟机的类初始化机制。</p>
-<h3><span id="类加载的过程">类加载的过程</span></h3><h4><span id="1-加载">1. 加载</span></h4><ul>
+<h3><span id="类加载的过程"><strong>类加载的过程</strong></span></h3><h4><span id="1-加载"><strong>1. 加载</strong></span></h4><ul>
 <li>获取字节流</li>
 <li>字节流定义的静态存储结构转换为方法区的运行时数据结构</li>
 <li>生成一个<code>java.lang.Class</code>对象，作为方法区这个类的各种数据的访问入口。</li>
 </ul>
 <p>获取字节流这一动作就可以玩出很多技术花样。</p>
-<h4><span id="2-验证">2. 验证</span></h4><p>确保Class文件中字节流包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。<br>包括：</p>
+<h4><span id="2-验证"><strong>2. 验证</strong></span></h4><p>确保Class文件中字节流包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。<br>包括：</p>
 <ul>
 <li>文件格式验证</li>
 <li>元数据验证</li>
@@ -581,14 +581,14 @@
 </ul>
 </li>
 </ul>
-<h4><span id="3-准备">3. 准备</span></h4><p>准备阶段正式未类中定义的变量（static 静态变量）分配内存，并设置初始值，使用的是方法区的内存。</p>
+<h4><span id="3-准备"><strong>3. 准备</strong></span></h4><p>准备阶段正式未类中定义的变量（static 静态变量）分配内存，并设置初始值，使用的是方法区的内存。</p>
 <p><code>实例变量不会在这阶段分配内存</code>，它会在对象实例化时随着对象一起被分配在堆中。应该注意到，<code>实例化不是类加载的一个过程</code>，类加载发生在所有实例化操作之前，并且类加载只进行一次，实例化可以进行多次。</p>
 <p>初始值一般为 0 值，例如下面的类变量 value 被初始化为 0 而不是 123。在<code>初始化</code>阶段才被赋值123。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> value = <span class="hljs-number">123</span>;</span><br></pre></td></tr></table></figure>
 <p>如果类变量是常量，那么它将初始化为表达式所定义的值而不是 0。例如下面的常量 value 被初始化为 123 而不是 0。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> value = <span class="hljs-number">123</span>;</span><br></pre></td></tr></table></figure>
-<h4><span id="4-解析">4. 解析</span></h4><p>JVM将常量池内的符号引用替换为直接引用的过程。<br>其中解析过程在某些情况下可以在初始化阶段之后再开始，这是为了支持 Java 的动态绑定。JVM规范只规定了，在操作符号引用之前对符号引用进行解析。所以是在类被加载器加载时对常量池中的符号引用进行解析，还是等到要使用一个符号引用时才去解析他，这是可以由虚拟机实现时自己决定的。</p>
-<h4><span id="5-初始化">5. 初始化</span></h4><p>类的初始化阶段是类加载过程的最后一个步骤，介绍的几个类加载的动作里，除了在加载阶段用户程序可以自定义类加载器局部参与类加载过程以外，其余动作都完全由Java虚拟机来主导控制。到了这个<code>初始化</code>阶段，<strong>Java虚拟机才真正开始执行类中编写的Java程序代码</strong>，将主导权移交给应用程序。</p>
+<h4><span id="4-解析"><strong>4. 解析</strong></span></h4><p>JVM将常量池内的符号引用替换为直接引用的过程。<br>其中解析过程在某些情况下可以在初始化阶段之后再开始，这是为了支持 Java 的动态绑定。JVM规范只规定了，在操作符号引用之前对符号引用进行解析。所以是在类被加载器加载时对常量池中的符号引用进行解析，还是等到要使用一个符号引用时才去解析他，这是可以由虚拟机实现时自己决定的。</p>
+<h4><span id="5-初始化"><strong>5. 初始化</strong></span></h4><p>类的初始化阶段是类加载过程的最后一个步骤，介绍的几个类加载的动作里，除了在加载阶段用户程序可以自定义类加载器局部参与类加载过程以外，其余动作都完全由Java虚拟机来主导控制。到了这个<code>初始化</code>阶段，<strong>Java虚拟机才真正开始执行类中编写的Java程序代码</strong>，将主导权移交给应用程序。</p>
 <p>初始化阶段是虚拟机执行类构造器 <code>&lt;clinit&gt;()</code> 方法的过程。在准备阶段，类变量已经赋过一次系统要求的初始值，而在初始化阶段，根据程序员通过程序制定的主观计划去初始化类变量和其它资源。</p>
 <p><code>&lt;clinit&gt;()</code> 是由编译器自动收集类中所有<code>类变量</code>的赋值动作和<code>静态语句块</code>中的语句合并产生的，<code>编译器收集的顺序由语句在源文件中出现的顺序决定</code>。特别注意的是，静态语句块只能访问到定义在它之前的类变量，定义在它之后的类变量只能赋值，不能访问。例如以下代码：</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">static</span> &#123;</span><br><span class="line">        i = <span class="hljs-number">0</span>;                <span class="hljs-comment">// 给变量赋值可以正常编译通过</span></span><br><span class="line">        System.out.print(i);  <span class="hljs-comment">// 这句编译器会提示“非法向前引用”</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -596,14 +596,14 @@
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> A = <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">static</span> &#123;</span><br><span class="line">        A = <span class="hljs-number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sub</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> B = A;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">     System.out.println(Sub.B);  <span class="hljs-comment">// 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接口中不可以使用静态语句块，但仍然有类变量初始化的赋值操作，因此接口与类一样都会生成 <code>&lt;clinit&gt;()</code> 方法。但接口与类不同的是，执行接口的 <code>&lt;clinit&gt;()</code> 方法不需要先执行父接口的 <code>&lt;clinit&gt;()</code> 方法。只有当父接口中定义的变量使用时，父接口才会初始化。另外，接口的实现类在初始化时也一样不会执行接口的 <code>&lt;clinit&gt;()</code> 方法。</p>
 <p>虚拟机会保证一个类的 <code>&lt;clinit&gt;()</code> 方法在多线程环境下被正确的加锁和同步，如果多个线程同时初始化一个类，只会有一个线程执行这个类的 <code>&lt;clinit&gt;()</code> 方法，其它线程都会阻塞等待，直到活动线程执行 <code>&lt;clinit&gt;()</code> 方法完毕。如果在一个类的 <code>&lt;clinit&gt;()</code> 方法中有耗时的操作，就可能造成多个线程阻塞，在实际过程中此种阻塞很隐蔽。</p>
-<h3><span id="类与类加载器">类与类加载器</span></h3><p>两个类相等，需要类本身相等，并且使用同一个类加载器进行加载。这是因为每一个类加载器都拥有一个独立的类名称空间。</p>
+<h3><span id="类与类加载器"><strong>类与类加载器</strong></span></h3><p>两个类相等，需要类本身相等，并且使用同一个类加载器进行加载。这是因为每一个类加载器都拥有一个独立的类名称空间。</p>
 <p>这里的相等，包括类的 Class 对象的 equals() 方法、isAssignableFrom() 方法、isInstance() 方法的返回结果为 true，也包括使用 instanceof 关键字做对象所属关系判定结果为 true。</p>
-<h3><span id="类加载器分类">类加载器分类</span></h3><ul>
+<h3><span id="类加载器分类"><strong>类加载器分类</strong></span></h3><ul>
 <li>启动类加载器</li>
 <li>扩展类加载器</li>
 <li>应用程序类加载器</li>
 </ul>
-<h3><span id="双亲委派模型">双亲委派模型</span></h3><p>应用程序是由三种类加载器互相配合从而实现类加载，除此之外还可以加入自己定义的类加载器。</p>
+<h3><span id="双亲委派模型"><strong>双亲委派模型</strong></span></h3><p>应用程序是由三种类加载器互相配合从而实现类加载，除此之外还可以加入自己定义的类加载器。</p>
 <p>双亲委派模型是各种类加载器之间的层次关系。下图展示了这个层次关系。该模型要求除了顶层的启动类加载器外，其它的类加载器都要有自己的父类加载器。这里的父子关系一般通过组合关系（Composition）来实现，而不是继承关系（Inheritance）。</p>
 <div align="center"><br><img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/0dd2d40a-5b2b-4d45-b176-e75a4cd4bdbf.png" alt><br></div>
 
@@ -616,7 +616,7 @@
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassLoader</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">// The parent class loader for delegation</span></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ClassLoader parent;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">public</span> Class&lt;?&gt; loadClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> loadClass(name, <span class="hljs-keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="hljs-keyword">boolean</span> resolve) <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">        <span class="hljs-keyword">synchronized</span> (getClassLoadingLock(name)) &#123;</span><br><span class="line">            <span class="hljs-comment">// First, check if the class has already been loaded</span></span><br><span class="line">            Class&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">            <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">                    <span class="hljs-keyword">if</span> (parent != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                        c = parent.loadClass(name, <span class="hljs-keyword">false</span>);</span><br><span class="line">                    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                        c = findBootstrapClassOrNull(name);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="hljs-keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">                    <span class="hljs-comment">// ClassNotFoundException thrown if class not found</span></span><br><span class="line">                    <span class="hljs-comment">// from the non-null parent class loader</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                    <span class="hljs-comment">// If still not found, then invoke findClass in order</span></span><br><span class="line">                    <span class="hljs-comment">// to find the class.</span></span><br><span class="line">                    c = findClass(name);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="hljs-keyword">if</span> (resolve) &#123;</span><br><span class="line">                resolveClass(c);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="hljs-keyword">return</span> c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException(name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2><span id="垃圾回收">垃圾回收</span></h2><ul>
+<h2><span id="垃圾回收"><strong>垃圾回收</strong></span></h2><ul>
 <li>垃圾回收算法<br>标记清除：</li>
 </ul>
 <p>标记整理：</p>
@@ -625,9 +625,9 @@
 <li>垃圾回收器</li>
 </ul>
 <p>GC问题的排查，CPU突然飙高，怎么排查：服务如果在Linux上，需要跑命令查看一下。看当前CPU100%的进程id，jstack 命令登上进程代替？</p>
-<h2><span id="out-of-memory">Out of Memory</span></h2><p>OOM排查思路：<br>借助一些写给jvisualvm的工具，去查询它dump下来的堆栈信息排查</p>
-<h1><span id="java-io">Java IO</span></h1><h2><span id="nio-bio">NIO BIO</span></h2><h1><span id="注解">注解</span></h1><p>Java 注解是附加在代码中的一些元信息，用于一些工具在编译、运行时进行解析和使用，起到说明、配置的功能。注解不会也不能影响代码的实际逻辑，仅仅起到辅助性的作用。</p>
-<h1><span id="反射">反射</span></h1><h1><span id="参考">参考</span></h1><p><a href="https://blog.csdn.net/yy2017220302028/article/details/104631329" target="_blank" rel="noopener">Java基础知识汇总</a></p>
+<h2><span id="out-of-memory"><strong>Out of Memory</strong></span></h2><p>OOM排查思路：<br>借助一些写给jvisualvm的工具，去查询它dump下来的堆栈信息排查</p>
+<h1><span id="java-io"><strong>Java IO</strong></span></h1><h2><span id="nio-bio"><strong>NIO BIO</strong></span></h2><h1><span id="注解"><strong>注解</strong></span></h1><p>Java 注解是附加在代码中的一些元信息，用于一些工具在编译、运行时进行解析和使用，起到说明、配置的功能。注解不会也不能影响代码的实际逻辑，仅仅起到辅助性的作用。</p>
+<h1><span id="反射"><strong>反射</strong></span></h1><h1><span id="参考"><strong>参考</strong></span></h1><p><a href="https://blog.csdn.net/yy2017220302028/article/details/104631329" target="_blank" rel="noopener">Java基础知识汇总</a></p>
 
         </div>
         
