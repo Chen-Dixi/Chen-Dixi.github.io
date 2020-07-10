@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-06-20T11:55:54.988Z">
+<meta property="og:updated_time" content="2020-07-10T03:06:48.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指Offer（下）">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    14 分钟 读完 (大约 2040 个字)
+                    17 分钟 读完 (大约 2516 个字)
                 </span>
                 
                 
@@ -171,6 +171,8 @@
 <ul>
 <li><a href="#51-数组中的逆序对">51. 数组中的逆序对</a></li>
 <li><a href="#52-两个链表的第一个公共节点"><strong>52. 两个链表的第一个公共节点</strong></a></li>
+<li><a href="#59-滑动窗口的最大值"><strong>59. 滑动窗口的最大值</strong></a></li>
+<li><a href="#59-ii-队列的最大值"><strong>59 - II. 队列的最大值</strong></a></li>
 <li><a href="#60-n个骰子">60. n个骰子</a></li>
 <li><a href="#61-扑克牌中的顺子"><strong>61. 扑克牌中的顺子</strong></a></li>
 <li><a href="#64-求-12n">64. 求 1+2+…+n</a></li>
@@ -192,6 +194,21 @@
 <h1><span id="52-两个链表的第一个公共节点"><strong>52. 两个链表的第一个公共节点</strong></span></h1><p><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/submissions/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
 <p>两个指针，各自从headA和headB出发，到达尾部后交换，又各自从headB和headA开始出发。如果同时到达尾部，即同时为<code>null</code>，就表示没有相交的节点。<code>if(ptr1==null&amp;&amp;ptr2==null)</code>时返回一个空节点就好（这是一个巧妙的判定方法）。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">getIntersectionNode</span><span class="hljs-params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//双指针</span></span><br><span class="line">        ListNode ptr1 = headA;</span><br><span class="line">        ListNode ptr2 = headB;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">while</span>(ptr1!=ptr2)&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(ptr1!=<span class="hljs-keyword">null</span>)</span><br><span class="line">                ptr1 = ptr1.next;</span><br><span class="line">            <span class="hljs-keyword">else</span></span><br><span class="line">                ptr1 = headB;</span><br><span class="line">            <span class="hljs-keyword">if</span>(ptr2!=<span class="hljs-keyword">null</span>)</span><br><span class="line">                ptr2 = ptr2.next;</span><br><span class="line">            <span class="hljs-keyword">else</span></span><br><span class="line">                ptr2 = headA;</span><br><span class="line">            </span><br><span class="line">            <span class="hljs-keyword">if</span>(ptr1==<span class="hljs-keyword">null</span> &amp;&amp; ptr2==<span class="hljs-keyword">null</span>)</span><br><span class="line">                <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> ptr1;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="59-滑动窗口的最大值"><strong>59. 滑动窗口的最大值</strong></span></h1><p><a href="https://leetcode-cn.com/problems/sliding-window-maximum/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
+<p><strong>题目说明</strong><br>给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
+<p>返回滑动窗口中的最大值。</p>
+<p>进阶：</p>
+<p>你能在线性时间复杂度内解决此题吗？<br>实例：</p>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/07/10/Uudcng.jpg" alt><br></div>
+
+<p><strong>解题思路：</strong> 双向队列，队列头部是当前滑动窗口最大值，移除队列中数字是从队尾移出，所以用<code>双向队列</code>。队列中存储的是数组下标。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] maxSlidingWindow(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k) &#123;</span><br><span class="line">        <span class="hljs-comment">//滑动窗口最大值</span></span><br><span class="line">        LinkedList&lt;Integer&gt; deque = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="hljs-keyword">if</span>(n*k==<span class="hljs-number">0</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];</span><br><span class="line">        <span class="hljs-keyword">if</span>(k==<span class="hljs-number">1</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> nums;</span><br><span class="line">        <span class="hljs-keyword">int</span> [] ans = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n-k+<span class="hljs-number">1</span>];</span><br><span class="line">        <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> cur = nums[i];</span><br><span class="line">            <span class="hljs-comment">//注意添加到队列里面的是数组下标，所以用`nums[deque.getLast()]&lt;cur`判断</span></span><br><span class="line">            <span class="hljs-keyword">while</span>(deque.size()&gt;<span class="hljs-number">0</span> &amp;&amp; nums[deque.getLast()] &lt; cur) deque.removeLast();</span><br><span class="line">            deque.addLast(i);</span><br><span class="line">            <span class="hljs-keyword">if</span>(deque.getFirst()&lt;=i-k) deque.removeFirst();</span><br><span class="line">            <span class="hljs-keyword">if</span>(i-k+<span class="hljs-number">1</span>&gt;=<span class="hljs-number">0</span>) ans[index++] = nums[deque.getFirst()];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="59-ii-队列的最大值"><strong>59 - II. 队列的最大值</strong></span></h1><p><a href="https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
+<p><strong>题目说明</strong><br>请定义一个队列并实现函数 max_value 得到队列里的最大值，要求函数max_value、push_back 和 pop_front 的均摊时间复杂度都是O(1)。</p>
+<p>若队列为空，pop_front 和 max_value 需要返回 -1</p>
+<div><br>    <img src="https://s1.ax1x.com/2020/07/10/UuyOs0.jpg" alt><br></div>
+
+<p><strong>解题思路</strong><br>使用和上面一样的双向链表<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MaxQueue</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">private</span> LinkedList&lt;Integer&gt; maxQueue;</span><br><span class="line">    <span class="hljs-keyword">private</span> LinkedList&lt;Integer&gt; mainQueue;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MaxQueue</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        maxQueue = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        mainQueue = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">max_value</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(maxQueue.size()&lt;=<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">return</span> maxQueue.getFirst();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">push_back</span><span class="hljs-params">(<span class="hljs-keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        mainQueue.addLast(value);</span><br><span class="line">        <span class="hljs-keyword">while</span>(maxQueue.size()&gt;<span class="hljs-number">0</span> &amp;&amp; maxQueue.getLast() &lt; value) maxQueue.removeLast();</span><br><span class="line">        maxQueue.addLast(value);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">pop_front</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(mainQueue.size()==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> front = mainQueue.removeFirst();</span><br><span class="line">        <span class="hljs-keyword">if</span>(front == maxQueue.getFirst()) maxQueue.removeFirst();</span><br><span class="line">        <span class="hljs-keyword">return</span> front;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1><span id="60-n个骰子">60. n个骰子</span></h1><p>把n个骰子扔在地上，所有骰子朝上一面的点数之和为s。输入n，打印出s的所有可能的值出现的概率</p>
 <figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-comment">/*题目描述：把 n 个骰子仍在地上，求点数和为 s 的概率。</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">解题思路：定义 dp[i][j] 为前 i 个骰子产生点数 j 的次数。</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">状态转移方程为：dp[i][j] = dp(i-1,j-1) + dp(i-1,j-2) + dp(i-1,j-3) + dp(i-1,j-4) + dp(i-1,j-5)+dp(c-1,k-6)。*/</span></span><br><span class="line">    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; twoSum(<span class="hljs-keyword">int</span> n) &#123;</span><br><span class="line">        <span class="hljs-comment">//n个骰子的点数</span></span><br><span class="line">        <span class="hljs-keyword">int</span> dp[<span class="hljs-number">15</span>][<span class="hljs-number">70</span>]; <span class="hljs-comment">//1&lt;=n&lt;=11</span></span><br><span class="line">        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt;ans;</span><br><span class="line">        <span class="hljs-built_in">memset</span>(dp,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(dp));</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">6</span>;i++)</span><br><span class="line">            dp[<span class="hljs-number">1</span>][i]=<span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++) <span class="hljs-comment">//骰子数量</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i; j&lt;=<span class="hljs-number">6</span>*i; j++)&#123; <span class="hljs-comment">//骰子点数</span></span><br><span class="line">                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> cur=<span class="hljs-number">1</span>;cur&lt;=<span class="hljs-number">6</span>&amp;&amp;j-cur&gt;<span class="hljs-number">0</span>;cur++) <span class="hljs-comment">//处理边界</span></span><br><span class="line">                    dp[i][j]+=dp[i<span class="hljs-number">-1</span>][j-cur];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span> all = <span class="hljs-built_in">pow</span>(<span class="hljs-number">6</span>,n);</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n; i &lt;= <span class="hljs-number">6</span> * n; i ++) &#123;</span><br><span class="line">            ans.push_back(dp[n][i] * <span class="hljs-number">1.0</span> / all);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h1><span id="61-扑克牌中的顺子"><strong>61. 扑克牌中的顺子</strong></span></h1><p><a href="https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
@@ -851,38 +868,46 @@
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3</span>
-        <span>60. n个骰子</span>
+        <span>59. 滑动窗口的最大值</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">4</span>
-        <span>61. 扑克牌中的顺子</span>
+        <span>59 - II. 队列的最大值</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5</span>
-        <span>64. 求 1+2+…+n</span>
+        <span>60. n个骰子</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">6</span>
-        <span>65. 不用加减乘除做加法</span>
+        <span>61. 扑克牌中的顺子</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">7</span>
-        <span>66. 构建乘积数组</span>
+        <span>64. 求 1+2+…+n</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">8</span>
-        <span>67. 把字符串转换成整数</span>
+        <span>65. 不用加减乘除做加法</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">9</span>
+        <span>66. 构建乘积数组</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">10</span>
+        <span>67. 把字符串转换成整数</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">11</span>
         <span>68. 树中两个节点的最低公共祖先</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">9.1</span>
+        <span class="has-mr-6">11.1</span>
         <span>二叉搜索树</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">9.2</span>
+        <span class="has-mr-6">11.2</span>
         <span>普通二叉树</span>
         </a></li></ul></li></ul>
         </div>
