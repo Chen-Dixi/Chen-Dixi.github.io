@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-12T11:51:58.040Z">
+<meta property="og:updated_time" content="2020-07-12T14:39:36.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    17 分钟 读完 (大约 2505 个字)
+                    19 分钟 读完 (大约 2856 个字)
                 </span>
                 
                 
@@ -184,6 +184,8 @@
 <li><a href="#社区核心功能"><strong>社区核心功能</strong></a><ul>
 <li><a href="#发布帖子"><strong>发布帖子</strong></a></li>
 <li><a href="#查看帖子详情"><strong>查看帖子详情</strong></a></li>
+<li><a href="#事务管理"><strong>事务管理</strong></a></li>
+<li><a href="#显示评论"><strong>显示评论</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -297,6 +299,27 @@
 <p>这部分就是<code>DiscussPostMapper</code>，<code>DiscussPostService</code>，<code>DiscussPostController</code>从数据库查，在Controller部分，因为需要跳转网页，Controller方法返回String “/site/discussPost”。往<code>Model</code>里面放<code>Post</code>和帖子的<code>User</code>信息。前端用<code>${post.title},${post.content}</code>取。还可以显示用户头像。详情里面从${user}获取头像，Header通过${loginUser}获得当前登录用户头像。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@RequestMapping</span>(path = <span class="hljs-string">"/detail/&#123;discussPostId&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getDiscussPost</span><span class="hljs-params">( @PathVariable(<span class="hljs-string">"discussPostId"</span>)</span> <span class="hljs-keyword">int</span> discussPostId , Model model)</span>&#123;</span><br><span class="line">    DiscussPost post = discussPostService.findDiscussPostById(discussPostId);</span><br><span class="line">    model.addAttribute(<span class="hljs-string">"post"</span>, post);</span><br><span class="line">    User user = userService.findUserById(post.getUserId());</span><br><span class="line">    model.addAttribute(<span class="hljs-string">"user"</span>, user);<span class="hljs-comment">// 拦截器里面不是有一个 loginUser吗？</span></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">"site/discuss-detail"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>thymleaf可以复用Header。</p>
+<h3><span id="事务管理"><strong>事务管理</strong></span></h3><p>什么是事务<br>  ACID，复习过。</p>
+<p>在<code>Service</code>层通过注解的方法管理事务，让他成为一个整体，在任何地方报错都只有回滚回去。在这个方法之前通过注解方式管理食物<code>@Transactional</code>。</p>
+<p>未提交读，提交读，可重复读，可串形化。</p>
+<ul>
+<li>传播机制：<br>业务方法A可能会调用业务方法B。两个事务都有自己的事务管理方式。</li>
+</ul>
+<p>这个目的就是让事务出现报错，让数据库回滚。<br><strong>两种方式：</strong></p>
+<ul>
+<li>声明式事务<ul>
+<li>通过XML配置，声明某方法的事务特征</li>
+<li>通过注解，声明某方法的事务特征</li>
+</ul>
+</li>
+<li>编程式事务<ul>
+<li>通过<code>TransactionTemplate</code>管理事务，并通过它执行数据库操作。</li>
+</ul>
+</li>
+</ul>
+<p>如果业务比较复杂，而我们只想管理中间一小部分的事务，可以选择第二种编<code>程式事务管理</code>方式。</p>
+<h3><span id="显示评论"><strong>显示评论</strong></span></h3><p>entity_type: 是帖子评论，文章评论，课程评论，还是评论的评论。</p>
+<p>列表界面有一点点复杂，评论下面还有评论。<br>处理了一些问题，程序可以跑通了。<br>thymleaf前端 部件命名后可以复用<br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mt-5"</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;page.rows&gt;0&#125;"</span> <span class="hljs-attr">th:fragment</span>=<span class="hljs-string">"pagination"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pagination justify-content-center"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-item"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-link"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;$&#123;page.path&#125;(current=1)&#125;"</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">th:class</span>=<span class="hljs-string">"|page-item $&#123;page.current==1?'disabled':''&#125;|"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-link"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;$&#123;page.path&#125;(current=$&#123;page.current-1&#125;)&#125;"</span>&gt;</span>上一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">th:class</span>=<span class="hljs-string">"|page-item $&#123;i==page.current?'active':''&#125;|"</span> <span class="hljs-attr">th:each</span>=<span class="hljs-string">"i:$&#123;#numbers.sequence(page.from,page.to)&#125;"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;i&#125;"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">th:class</span>=<span class="hljs-string">"|page-item $&#123;page.current==page.total?'disabled':''&#125;|"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-link"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;$&#123;page.path&#125;(current=$&#123;page.current+1&#125;)&#125;"</span>&gt;</span>下一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-item"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-link"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;$&#123;page.path&#125;(current=$&#123;page.total&#125;)&#125;"</span>&gt;</span>末页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 
         </div>
         
