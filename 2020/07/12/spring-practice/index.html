@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-12T07:53:34.812Z">
+<meta property="og:updated_time" content="2020-07-12T11:48:55.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    14 分钟 读完 (大约 2141 个字)
+                    17 分钟 读完 (大约 2508 个字)
                 </span>
                 
                 
@@ -179,6 +179,11 @@
 <li><a href="#显示登录信息">显示登录信息</a></li>
 <li><a href="#设置用户信息">设置用户信息</a></li>
 <li><a href="#检查登录状态">检查登录状态</a></li>
+</ul>
+</li>
+<li><a href="#社区核心功能">社区核心功能</a><ul>
+<li><a href="#发布帖子">发布帖子</a></li>
+<li><a href="#查看帖子详情">查看帖子详情</a></li>
 </ul>
 </li>
 </ul>
@@ -278,6 +283,20 @@
 <p>使用注解了过后，在使用拦截器处理。</p>
 <p>用反射获取一个方法后，可以有API得到他的是否有某个注解。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Method method = handlerMethod.getMethod();</span><br><span class="line">LoginRequired loginRequired = method.getAnnotation(LoginRequired.class);</span><br><span class="line"><span class="hljs-keyword">if</span>(loginRequired != <span class="hljs-keyword">null</span> &amp;&amp; hostHolder.getUser() == <span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">    <span class="hljs-comment">//重定向到登录界面。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="社区核心功能">社区核心功能</span></h2><h3><span id="发布帖子">发布帖子</span></h3><ul>
+<li><strong>Ajax</strong><ul>
+<li>不用跳转网页，异步请求技术。</li>
+<li>jQuery发送AJAX请求</li>
+<li>采用AJAX请求，发布帖子功能</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="hljs-string">"#publishBtn"</span>).click(publish);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">publish</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">	$(<span class="hljs-string">"#publishModal"</span>).modal(<span class="hljs-string">"hide"</span>);</span><br><span class="line">	<span class="hljs-comment">// 获取标题和内容</span></span><br><span class="line">	<span class="hljs-keyword">var</span> title = $(<span class="hljs-string">"#recipient-name"</span>).val();</span><br><span class="line">	<span class="hljs-keyword">var</span> content = $(<span class="hljs-string">"#message-text"</span>).val();</span><br><span class="line">	<span class="hljs-comment">// 发送异步请求(POST)</span></span><br><span class="line">	$.post(</span><br><span class="line">	    CONTEXT_PATH + <span class="hljs-string">"/discuss/add"</span>,</span><br><span class="line">	    &#123;<span class="hljs-string">"title"</span>:title,<span class="hljs-string">"content"</span>:content&#125;,</span><br><span class="line">	    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;</span><br><span class="line">	        data = $.parseJSON(data);</span><br><span class="line">	        <span class="hljs-comment">// 在提示框中显示返回消息</span></span><br><span class="line">	        $(<span class="hljs-string">"#hintBody"</span>).text(data.msg);</span><br><span class="line">	        <span class="hljs-comment">// 显示提示框</span></span><br><span class="line">            $(<span class="hljs-string">"#hintModal"</span>).modal(<span class="hljs-string">"show"</span>);</span><br><span class="line">            <span class="hljs-comment">// 2秒后,自动隐藏提示框</span></span><br><span class="line">            setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">                $(<span class="hljs-string">"#hintModal"</span>).modal(<span class="hljs-string">"hide"</span>);</span><br><span class="line">                <span class="hljs-comment">// 刷新页面</span></span><br><span class="line">                <span class="hljs-keyword">if</span>(data.code == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">                    <span class="hljs-built_in">window</span>.location.reload();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, <span class="hljs-number">2000</span>);</span><br><span class="line">	    &#125;</span><br><span class="line">	);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="查看帖子详情">查看帖子详情</span></h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;selectDiscussPostById&quot; resultType=&quot;DiscussPost&quot;&gt;</span><br><span class="line">    select &lt;include refid=&quot;selectFields&quot;&gt;&lt;/include&gt;</span><br><span class="line">    from discuss_post</span><br><span class="line">    where id=#&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<p>有的业务中并不需要展示某些信息，就会有数据的冗余，有效率影响的数据可以放在内存Redis中去，就不会有什么性能影响。</p>
+<p>这部分就是<code>DiscussPostMapper</code>，<code>DiscussPostService</code>，<code>DiscussPostController</code>从数据库查，在Controller部分，因为需要跳转网页，Controller方法返回String “/site/discussPost”。往<code>Model</code>里面放<code>Post</code>和帖子的<code>User</code>信息。前端用<code>${post.title},${post.content}</code>取。还可以显示用户头像。详情里面从${user}获取头像，Header通过${loginUser}获得当前登录用户头像。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@RequestMapping</span>(path = <span class="hljs-string">"/detail/&#123;discussPostId&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getDiscussPost</span><span class="hljs-params">( @PathVariable(<span class="hljs-string">"discussPostId"</span>)</span> <span class="hljs-keyword">int</span> discussPostId , Model model)</span>&#123;</span><br><span class="line">    DiscussPost post = discussPostService.findDiscussPostById(discussPostId);</span><br><span class="line">    model.addAttribute(<span class="hljs-string">"post"</span>, post);</span><br><span class="line">    User user = userService.findUserById(post.getUserId());</span><br><span class="line">    model.addAttribute(<span class="hljs-string">"user"</span>, user);<span class="hljs-comment">// 拦截器里面不是有一个 loginUser吗？</span></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">"site/discuss-detail"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>thymleaf可以复用Header。所以Header</p>
 
         </div>
         
