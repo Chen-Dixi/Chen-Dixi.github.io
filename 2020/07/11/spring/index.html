@@ -2,19 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>分类: 领域自适应 - 帝羲 的博客</title>
+<title>Java spring Note - 帝羲 的博客</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="帝羲 的博客">
-<meta property="og:url" content="http://yoursite.com/categories/领域自适应/index.html">
+    <meta name="description" content="he">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java spring Note">
+<meta property="og:url" content="http://yoursite.com/2020/07/11/spring/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
+<meta property="og:description" content="he">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-07-11T07:46:05.577Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="帝羲 的博客">
+<meta name="twitter:title" content="Java spring Note">
+<meta name="twitter:description" content="he">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -89,13 +93,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                <img src="/images/logo.svg" alt="Java spring Note" height="28">
             
             </a>
         </div>
@@ -129,337 +133,201 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-07-11T06:30:40.000Z">2020-07-11</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15 分钟 读完 (大约 2228 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Java spring Note
+            
+        </h1>
+        <div class="content">
+            <p><div><br><img src="https://s1.ax1x.com/2020/07/11/UlCSit.jpg" alt><br></div>he</p>
+<a id="more"></a>
+<!-- toc -->
+<ul>
+<li><a href="#spring">Spring</a><ul>
+<li><a href="#spring-boot">Spring Boot</a></li>
+<li><a href="#spring里面事务隔离级别实现">Spring里面事务隔离级别实现</a></li>
+<li><a href="#springmvc执行流程">SpringMVC执行流程</a></li>
+<li><a href="#源码实现">源码实现</a><ul>
+<li><a href="#spring-的-aop">Spring 的 AOP</a></li>
+<li><a href="#spring-ioc">Spring IOC</a><ul>
+<li><a href="#applicationcontext-and-beanfactory">ApplicationContext and BeanFactory</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#nginx有什么负载均衡策略">Nginx有什么负载均衡策略</a></li>
+<li><a href="#maven">Maven</a><ul>
+<li><a href="#仓库">仓库</a></li>
+</ul>
+</li>
+<li><a href="#springboot">SpringBoot</a><ul>
+<li><a href="#springboot自动装配原理">SpringBoot自动装配原理</a></li>
+<li><a href="#父依赖">父依赖</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1><span id="spring">Spring</span></h1><h2><span id="spring-boot">Spring Boot</span></h2><p>核心三点价值： 起步依赖，自动配置，端点监控。</p>
+<p>之前的Spring需要自己做很多配置才能启动服务器。使用Spring Boot几乎不用配置</p>
+<p>端点监控，运行状况是否良好，Spring Boot提供性能监控支持</p>
+<h2><span id="spring里面事务隔离级别实现">Spring里面事务隔离级别实现</span></h2><h2><span id="springmvc执行流程">SpringMVC执行流程</span></h2><h2><span id="源码实现">源码实现</span></h2><h3><span id="spring-的-aop">Spring 的 AOP</span></h3><p>为不具备继承依赖关系的对象引入一个公共行为。例如日志，权限，事务的功能。不利于维护，希望不把这些工作放在各个处理过程中，不然不利于维护，也会有大量重复大码。</p>
+<p>Spring会使用代理模式。</p>
+<p>代理模式<br>为其他对象提供代理以控制对这个对象对访问。</p>
+<p>静态代理<br>在程序运行前就已经存在代理类的字节码文件、代理类和原始类的关系在运行前就已经确定。废话不多说，我们看一下代码。</p>
+<p>动态代理<br>动态代理类的源码是在程序运行期间，通过 JVM 反射等机制动态生成。代理类和委托类的关系是运行时才确定的。实例如下：</p>
+<p>Spring AOP原理及实战</p>
+<h3><span id="spring-ioc">Spring IOC</span></h3><p>控制反转：控制对象生命周期的不再是引用它的对象，而是由容器来负责。把对象创建，销毁的控制能力由引用它的对象反转给容器。用容器来控制所有对象的生命周期和对象间的关系。</p>
+<p>一个对象需要依赖另一个对象时，只需要告诉spring，系统动态提供它所需要的其他对象，这叫依赖注入。Spring通过反射实现依赖注入。</p>
+<p><strong>一句话就是，获得依赖对象的方式反转了。</strong></p>
+<p>Bean就是IOC的容器，将TestBeanService注册到Service里面，那么TestBeanService就是Spring里面的一个Bean。Demo里面context.getBean()就是从Spring中取出这个Bean，完成控制反转。</p>
+<p>我们重点就是看Spring怎么生成管理这些Bean的。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// 加载xml配置</span></span><br><span class="line">        ApplicationContext context =</span><br><span class="line">            <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext(<span class="hljs-string">"classpath:application.xml"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// IOC获取Bean</span></span><br><span class="line">        TestBeanService testBeanService = context.getBean(TestBeanService.class);</span><br><span class="line"></span><br><span class="line">        System.out.println(testBeanService.getBean());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ClassPathXmlApplicationContext 完成控制反转。</p>
+<ul>
+<li>ClassPathXmlApplicationContext类是AbstractApplicationContext抽象类的子类</li>
+<li>AbstractApplicationContext类是ApplicaionContext接口的实现。</li>
+<li>ApplicaionContext接口集合了非常多的内容，其中和IOC比较相关的就是ListableBeanFactory接口和HierarchicalBeanFactory接口</li>
+<li>ListableBeanFactory接口和HierarchicalBeanFactory接口是继承BeanFactory</li>
+</ul>
+<h4><span id="applicationcontext-and-beanfactory">ApplicationContext and BeanFactory</span></h4><p>ApplicationContext是整个项目的配置，Spring项目启动或运行的时候都需要依赖它。</p>
+<p>和Bean管理相关的是<code>ListableBeanFactory</code>和<code>HierarchicalBeanFactory</code></p>
+<p>BeanFactory就是获取Bean容器的地方，而且他可以提供单例的对象或者是独立的对象。</p>
+<p>以上是基本的概念和认知，带着这些概念回头看<code>ClassPathXmlApplicationContext</code>执行流程，看看它怎么生成管理Bean的。</p>
+<p>这个接口是要实现预先加载Bean的配置，生成好实例，直接管理Bean的实例，而不是来一个请求，生成一个。</p>
+<ul>
+<li>ClassPathXmlApplicationContext执行流程</li>
+</ul>
+<p>最核心的是refresh()函数<br>里面有许多步骤<br>obtainBeanFactory()重新获取一个BeanFactory<br>里面的核心方法，refreshBeanFactory()：<br>如果已有BeanFactory，先删除所有Bean。然后关闭BeanFactory<br>然后创建一个新的<code>ListableBeanFactory</code>，上面说到这个工厂里会预先加载所有的Bean。最后核心的就是loadBeanDefinitions(beanFactory),它加载类的定义，实现交给子类。</p>
+<p>用的是XmlBeanDefinitionReader直接读配置文件加载Bean Definition(Bean定义)到BeanFactory。它里面一步步把xml的配置文件拆解读取，把一个个Bean Definition加载到BeanFactory里。<br>至此，已经有用一个加载好Bean Definition的BeanFactory了。</p>
+<p>其他方法也是围绕BeanFactory后置处理和Context的配置准备。内容太多，想更深入了解的话建议顺着以上思路，找到对应代码阅读以下。</p>
+<ul>
+<li>依赖注入过程<br>回到启动类，看怎么从context中获取Bean的。<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.getBean(TestBeanService.class)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>根据类去拿Bean。也可以根据id。<br>在<code>getBean</code>方法里面用<code>resolveNamedBean</code>关键方法拿出Bean。<br>它根据<code>class</code>或者<code>id</code>在BeanFactory遍历beanDefinitionNames和manualSingletonNames成员变量，找出命中的beanName返回。拿着这个具体的beanName去找具体的bean实例。<br>先尝试去找手动添加bean的单例工厂里找有没有对应的实例，没有的话就往父类beanFactory里面找，最后没有的话返回一个BeansException。</p>
+<p>spring中一个bean是如何加载和如何注入大致如此，更细节的内容，可以自己debug看看源码。</p>
+<p>总结：<br>1 ApplicationContext是Spring项目的核心配置，项目运行依赖于它，其中包含许多方面的内容。<br>2 BeanFactory是Context包含的内容之一，负责管理Bean的加载，生成，注入。<br>3 Spring控制反转为了降低项目耦合，提高延展性。</p>
+<ul>
+<li>底层怎么做代理</li>
+</ul>
+<p>Java反射中的两个类，一个是Proxy，一个是InvocationHandler。通过bind方法去绑定之前的代理</p>
+<ul>
+<li>Spring 生命周期</li>
+</ul>
+<p>Bean的生命周期</p>
+<p>解决循环依赖：3级缓存，</p>
+<h1><span id="nginx有什么负载均衡策略">Nginx有什么负载均衡策略</span></h1><p>连询，一致性哈希，加权<br>一致性哈希，相同请求参数的会给同一台服务器。<br>负载均衡配置，</p>
+<h1><span id="maven">Maven</span></h1><p>maven是项目管理工具，<br>pom.xml的pom就是项目对象模型的意思<br>pom定义项目的坐标、项目依赖、项目信息、插件目标、打包方式等<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>maven优缺点：</li>
+</ul>
+<ol>
+<li>简化了项目构建，依赖管理</li>
+<li>方便容易上手</li>
+<li>便于项目升级，无论是项目本身还是项目使用的依赖</li>
+<li>有助于多么快项目开发。一个模块开发好后，发布到仓库，依赖该模块时可以直接从仓库更新，而不用自己去编译。</li>
+<li>maven有很多插件，便于功能扩展，比如生产站点，自动发布版本。</li>
+</ol>
+<p>缺点：<br>庞大的构建系统，学习难度大<br>“约定优于配置”的策略，上手容易，出问题很难调适</p>
+<ul>
+<li>坐标</li>
+</ul>
+<p>[groupId, artifactId, version, packaging, classifier]表示某个版本，有时还会使用classifier来表示项目的附属构建，常见的附属构建有javadoc和sources包。前3个必须定义，packaging可选（默认jar），classifier不能直接定义，需要结合插件。</p>
+<ul>
+<li>groupId：项目组 Id，必须全球唯一；</li>
+<li>artifactId：项目 Id，即项目名；</li>
+<li>version：项目版本；</li>
+<li>packaging：项目打包方式。</li>
+</ul>
+<h2><span id="仓库">仓库</span></h2><ul>
+<li>本地仓库用来存储项目的依赖库；</li>
+<li>中央仓库是下载依赖库的默认位置；</li>
+<li>远程仓库，因为并非所有的依赖库都在中央仓库，或者中央仓库访问速度很慢，远程仓库是中央仓库的补充。</li>
+</ul>
+<ol>
+<li><p>clean周期：真正的构建之前，进行一些清理工作</p>
+</li>
+<li><p>默认周期：核心部分，编译、测试、打包、部署</p>
+</li>
+<li><p>site周期 生成项目报告，站点、发布站点</p>
+</li>
+</ol>
+<ul>
+<li>更换阿里云镜像<br>Mac系统在idea软件包里面有个setting.xml文件，在这里面更换源</li>
+</ul>
+<p>pom.xml里面还有<parent>标签，这是有一个父POM。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.3.1.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">&lt;/parent&gt;</span><br></pre></td></tr></table></figure></parent></p>
+<h1><span id="springboot">SpringBoot</span></h1><p>简化了使用Springboot的难度，省去了繁重的配置，提供各种启动器</p>
+<ul>
+<li>优点：<br>使用JavaConfig避免使用xml<br>避免大量的Maven导入和各种版本冲突<br>提供意见发展方法<br>通过提供默认值快速开始开发<br>没有单独的Web服务器需要，不再需要启动Tomcat，Glassfish或其他任何东西。以Jar包的方式内嵌一个Tomcat。</li>
+</ul>
+<h2><span id="springboot自动装配原理">SpringBoot自动装配原理</span></h2><p>Spring Boot 本身就 Spring MVC 的简化版本。是在 Spring MVC 的基础上实现了自动配置，简化了开发人员开发过程。</p>
+<p>Spring MVC 是通过一个叫 DispatcherServlet 前端控制器的来拦截请求的。而在 Spring Boot 中 使用自动配置把 DispatcherServlet 前端控制器自动配置到框架中。</p>
+<h2><span id="父依赖">父依赖</span></h2><p>SpringBoot项目都有一个父依赖。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">分类</a></li>
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
             
-            <li class="is-active"><a href="#" aria-current="page">领域自适应</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qr.JPG" alt="支付宝"></div>
+</a>
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-26T10:39:52.000Z">2019-08-26</time>
                 
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    8 分钟 读完 (大约 1239 个字)
-                </span>
-                
-                
-            </div>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/08/26/DeepEmbeddedValidation/">Deep Embedded Validation 非监督领域自适应的模型选择方法</a>
-            
-        </h1>
-        <div class="content">
-            <p>论文题目：<a href="https://youkaichao.github.io/files/icml2019/923.pdf" target="_blank" rel="noopener">Towards Accurate Model Selection in Deep Unsupervised Domain Adaptation</a></p>
-<p>论文作者：Kaichao You, Ximei Wang, Mingsheng Long, Michael I. Jordan</p>
-<p>会议期刊：ICML2019</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/26/DeepEmbeddedValidation/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
 
 
 
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-23T03:11:38.000Z">2019-06-23</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    11 分钟 读完 (大约 1602 个字)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/07/09/OS/">
+                <span class="level-item">操作系统</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/06/23/domainAdaptionLiteratureReview/">组会介绍：领域自适应</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一-Domain-Adaptation"><a href="#一-Domain-Adaptation" class="headerlink" title="一 Domain Adaptation"></a>一 Domain Adaptation</h3><ul>
-<li>计算机视觉中的一个重要问题</li>
-<li><a href="http://openaccess.thecvf.com/CVPR2019.py" target="_blank" rel="noopener">CVPR2019</a>的1294个收录的论文中，以domain adaptation为关键字有26篇，以transfer为关键字有39篇</li></ul>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/23/domainAdaptionLiteratureReview/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-22T06:42:52.000Z">2019-06-22</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    12 分钟 读完 (大约 1739 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/06/22/clan/">AMC S2E15 Slide：CLAN</a>
-            
-        </h1>
-        <div class="content">
-            <p>论文题目：<a href="https://github.com/RoyalVane/CLAN" target="_blank" rel="noopener">CLAN:Category-level Adversaries for Semantics Consistent Domain Adaptation</a></p>
-<p>论文作者：Yawei Luo, Liang Zheng, Tao Guan, Junqing Yu, Yi Yang</p>
-<p>会议期刊：CVPR2019(Oral)</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/22/clan/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-04T15:41:12.000Z">2019-06-04</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 分钟 读完 (大约 588 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/06/04/LSR-UDA/">Learning Smooth Representation for Unsupervised Domain Adaptation</a>
-            
-        </h1>
-        <div class="content">
-            <p>文章提出了一个local smooth discrepancy，局部平滑差异。实验证明这是领域适应上一个有效的 评价体系<br></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/06/04/LSR-UDA/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-20T14:44:11.000Z">2019-05-20</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 895 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/05/20/DeepCockTailCode/">多源自适应-深度鸡尾酒网络代码</a>
-            
-        </h1>
-        <div class="content">
-            <h4 id="置信度"><a href="#置信度" class="headerlink" title="置信度"></a>置信度</h4><p>论文中，置信度计算公式：<br>$$<br>\sum_{c \in \mathcal{C}_{s_{j}}} \frac{\mathcal{S}_{c f}\left(x^{t} ; F, D_{s_{j}}\right)}{\sum_{c \in \mathcal{C}_{s_{k}}} \mathcal{S}_{c f}\left(x^{t} ; F, D_{s_{k}}\right)} C_{s_{j}}\left(c | F\left(x^{t}\right)\right)<br>$$<br>其中：<br>$$C_{s_{j}}\left(c | F\left(x^{t}\right)\right)$$<br>指的是一个样本的softmax值，这里的计算从下面的程序中得到</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/20/DeepCockTailCode/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-20T13:02:50.000Z">2019-05-20</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/领域自适应/">领域自适应</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 907 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/05/20/DeepCockTail/">深度鸡尾酒网络</a>
-            
-        </h1>
-        <div class="content">
-            <div align="center"><br>    <img src="/2019/05/20/DeepCockTail/example.png"><br></div>
-
-<h4 id="Problem-Setup"><a href="#Problem-Setup" class="headerlink" title="Problem Setup"></a>Problem Setup</h4><ul>
-<li>Category Shift<br>N个源域<br>$$\{\left(X_{s_{j}},Y_{s_{j}}\right)\}_{j=1}^{N}$$</li></ul>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/05/20/DeepCockTail/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
 
 
 </div>
@@ -1014,7 +882,7 @@
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow  ">
         
             
         
@@ -1102,102 +970,6 @@
 
         
         </div>
-    
-</div>
-
-                
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        
-    
-        
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://itunes.apple.com/cn/app/id1422973826" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">我的独立App 配色笔记</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">itunes.apple.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://orzyt.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">扬涛的博客</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">orzyt.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://joselynzhao.top/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">夏木青</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">joselynzhao.top</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://vdeamov.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">DeamoV&#39;s Blog</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">vdeamov.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://saruagithub.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">WangXue</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">saruagithub.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://str818.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">str818</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">str818.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
     
 </div>
 
@@ -1211,7 +983,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="帝羲 的博客" height="28">
+                    <img src="/images/logo.svg" alt="Java spring Note" height="28">
                 
                 </a>
                 <p class="is-size-7">
