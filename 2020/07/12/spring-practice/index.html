@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-12T11:48:55.696Z">
+<meta property="og:updated_time" content="2020-07-12T11:51:58.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    17 分钟 读完 (大约 2508 个字)
+                    17 分钟 读完 (大约 2505 个字)
                 </span>
                 
                 
@@ -160,48 +160,48 @@
 <a id="more"></a>
 <!-- toc -->
 <ul>
-<li><a href="#接触spring-boot">接触spring Boot</a><ul>
-<li><a href="#spring-入门">Spring 入门</a><ul>
-<li><a href="#练习题">练习题</a></li>
+<li><a href="#接触spring-boot"><strong>接触spring Boot</strong></a><ul>
+<li><a href="#spring-入门"><strong>Spring 入门</strong></a><ul>
+<li><a href="#练习题"><strong>练习题</strong></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#开发登录模块">开发登录模块</a><ul>
-<li><a href="#注册登录">注册登录</a><ul>
-<li><a href="#验证码">验证码</a></li>
-<li><a href="#前端thymleaf符号意义">前端thymleaf符号意义</a></li>
+<li><a href="#开发登录模块"><strong>开发登录模块</strong></a><ul>
+<li><a href="#注册登录"><strong>注册登录</strong></a><ul>
+<li><a href="#验证码"><strong>验证码</strong></a></li>
+<li><a href="#前端thymleaf符号意义"><strong>前端thymleaf符号意义</strong></a></li>
 </ul>
 </li>
-<li><a href="#登录退出">登录退出</a><ul>
-<li><a href="#登录">登录</a></li>
-<li><a href="#退出">退出</a></li>
-<li><a href="#显示登录信息">显示登录信息</a></li>
-<li><a href="#设置用户信息">设置用户信息</a></li>
-<li><a href="#检查登录状态">检查登录状态</a></li>
+<li><a href="#登录退出"><strong>登录退出</strong></a><ul>
+<li><a href="#登录"><strong>登录</strong></a></li>
+<li><a href="#退出"><strong>退出</strong></a></li>
+<li><a href="#显示登录信息"><strong>显示登录信息</strong></a></li>
+<li><a href="#设置用户信息"><strong>设置用户信息</strong></a></li>
+<li><a href="#检查登录状态"><strong>检查登录状态</strong></a></li>
 </ul>
 </li>
-<li><a href="#社区核心功能">社区核心功能</a><ul>
-<li><a href="#发布帖子">发布帖子</a></li>
-<li><a href="#查看帖子详情">查看帖子详情</a></li>
+<li><a href="#社区核心功能"><strong>社区核心功能</strong></a><ul>
+<li><a href="#发布帖子"><strong>发布帖子</strong></a></li>
+<li><a href="#查看帖子详情"><strong>查看帖子详情</strong></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
-<h1><span id="接触spring-boot">接触spring Boot</span></h1><h2><span id="spring-入门">Spring 入门</span></h2><p>Spring Cloud用来做微服务的。<br>Spring Cloud Data Flow</p>
+<h1><span id="接触spring-boot"><strong>接触spring Boot</strong></span></h1><h2><span id="spring-入门"><strong>Spring 入门</strong></span></h2><p>Spring Cloud用来做微服务的。<br>Spring Cloud Data Flow</p>
 <p>Spring Boot 会扫描bean，扫描配置类所在的包以及子包下的Bean。 包内的要扫描的java文件中，要带有特定的几个注解才能被扫描到（Controller，Repository，Service）</p>
 <p>用一些注解，@Autowired @Controller @Bean @Configuration等等</p>
 <p>日志级别： <!-- 日志级别排序为： TRACE < DEBUG < INFO < WARN < ERROR --></p>
 <p>Java Web项目主要构建前端和后台交互的功能。一个网站往往是处在不断优化的过程中。</p>
 <p>在启动服务器时，出现了500错误，<br>运行牛客网代码出错，在command + “，”和command+”上”都要设置用哪个版本的java编译</p>
 <p>我自己的服务出错了。在maven里面添加thymeleaf<br><code>thymeleaf</code>是页面模板</p>
-<h3><span id="练习题">练习题</span></h3><p>302是重定向状态码，表明请求的资源被暂时的移动到了由Location 头部指定的 URL 上。浏览器会重定向到这个URL， 但是搜索引擎不会对该资源的链接进行更新 (In SEO-speak, it is said that the link-juice is not sent to the new URL)。</p>
+<h3><span id="练习题"><strong>练习题</strong></span></h3><p>302是重定向状态码，表明请求的资源被暂时的移动到了由Location 头部指定的 URL 上。浏览器会重定向到这个URL， 但是搜索引擎不会对该资源的链接进行更新 (In SEO-speak, it is said that the link-juice is not sent to the new URL)。</p>
 <p>即使规范要求浏览器在重定向时保证请求方法和请求主体不变，但并不是所有的用户代理都会遵循这一点，你依然可以看到有缺陷的软件的存在。所以推荐仅在响应 GET 或 HEAD 方法时采用 302 状态码，而在其他时候使用 307 Temporary Redirect 来替代，因为在这些场景下方法变换是明确禁止的。</p>
 <p>在确实需要将重定向请求的方法转换为 GET的场景下，可以使用 303 See Other。例如在使用 PUT 方法进行文件上传操作时，需要返回确认信息（例如“你已经成功上传了xyz”）而不是上传的资源本身，就可以使用这个状态码。</p>
 <p><img src="evernotecid://90DDC9BB-A575-449D-ABA7-E03D1F9E7082/appyinxiangcom/15346490/ENResource/p563" alt="2e0ae5ff785ed6332baac3d106297766.png"></p>
-<h1><span id="开发登录模块">开发登录模块</span></h1><h2><span id="注册登录">注册登录</span></h2><h3><span id="验证码">验证码</span></h3><p>使用Kaptcha开发发送验证码的功能，spring boot没有对哪个小东西做自动配置，kaptcha。我们自己在config文件夹里面做配置。</p>
+<h1><span id="开发登录模块"><strong>开发登录模块</strong></span></h1><h2><span id="注册登录"><strong>注册登录</strong></span></h2><h3><span id="验证码"><strong>验证码</strong></span></h3><p>使用Kaptcha开发发送验证码的功能，spring boot没有对哪个小东西做自动配置，kaptcha。我们自己在config文件夹里面做配置。</p>
 <ul>
 <li>maven里面导入jar包</li>
 <li>编写Kaptcha配置类</li>
@@ -212,7 +212,7 @@
 <li>Producer是Kaptcha的核心接口</li>
 <li>SpringBoot没有为Kaptcha提供自动配置</li>
 </ul>
-<h3><span id="前端thymleaf符号意义">前端thymleaf符号意义</span></h3><ul>
+<h3><span id="前端thymleaf符号意义"><strong>前端thymleaf符号意义</strong></span></h3><ul>
 <li><p>${} 变量表达式，用于访问服务器上下文环境中的变量。</p>
 </li>
 <li><p>@{} 路径表达式，发送请求用的。超链接url表达式。</p>
@@ -220,7 +220,7 @@
 <li>#{} 消息表达式（井号表达式，资源表达式）。通常与th:text属性一起使用，指明声明了th:text的标签的文本是#{}中的key所对应的value，而标签内的文本将不会显示。</li>
 <li>*{} 选择表达式（星号表达式）。选择表达式与变量表达式有一个重要的区别：选择表达式计算的是选定的对象，而不是整个环境变量映射。也就是：只要是没有选择的对象，选择表达式与变量表达式的语法是完全一样的。那什么是选择的对象呢？是一个：th:object对象属性绑定的对象。</li>
 </ul>
-<h2><span id="登录退出">登录退出</span></h2><h3><span id="登录">登录</span></h3><p>账号密码验证码<br>生成登录凭证给客户端，coockie？。session。token？<br>失败的时候跳转回登录页面</p>
+<h2><span id="登录退出"><strong>登录退出</strong></span></h2><h3><span id="登录"><strong>登录</strong></span></h3><p>账号密码验证码<br>生成登录凭证给客户端，coockie？。session。token？<br>失败的时候跳转回登录页面</p>
 <ul>
 <li>退出登录凭证修改为失效</li>
 <li>跳转回网站首页</li>
@@ -233,8 +233,8 @@
 <p>2.根据是否勾选<code>记住我</code>，设置过期时间。DAO层登录<br>看用户名，密码是否正确，账号存不存在，账号是否激活。</p>
 <p>3.用户名密码通过后，生成登录ticket信息，存在数据库中做记录。</p>
 <p>4.将ticket放进coockie中，<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookie = <span class="hljs-keyword">new</span> Cookie(<span class="hljs-string">"ticket"</span>, map.get(<span class="hljs-string">"ticket"</span>).toString());</span><br><span class="line">cookie.setPath(contextPath);</span><br><span class="line">cookie.setMaxAge(expiredSeconds); <span class="hljs-comment">//有效时间</span></span><br><span class="line">response.addCookie(cookie);</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/index"</span>; <span class="hljs-comment">//spring MVC框架controller间跳转，需重定向</span></span><br></pre></td></tr></table></figure></p>
-<h3><span id="退出">退出</span></h3><p>就将在服务器数据库中的login_ticket的<code>status</code>状态修改为1就可以了。</p>
-<h3><span id="显示登录信息">显示登录信息</span></h3><ul>
+<h3><span id="退出"><strong>退出</strong></span></h3><p>就将在服务器数据库中的login_ticket的<code>status</code>状态修改为1就可以了。</p>
+<h3><span id="显示登录信息"><strong>显示登录信息</strong></span></h3><ul>
 <li>拦截器示例：<ul>
 <li>定义拦截器，实现HandlerInterceptor</li>
 <li>配置拦截器，为它指定拦截、排除的路径</li>
@@ -257,14 +257,14 @@
 </ul>
 <p>错误：开发Spring MVC拦截器,需实现WebMvcConfigurer接口。<br>除了实现<code>WebMvcConfigurer</code>外。还有其他制作拦截器的方法：继承<code>WebMvcConfigurationSupport</code>类。</p>
 <p>preHandle在Controller执行之前。如果返回False，则终止后续执行请求。<br>postHandle在Controller之后，模板之前执行。<br>afterCompletion在模板之后执行。</p>
-<h3><span id="设置用户信息">设置用户信息</span></h3><p>上传完文件后需要更新headerUrl。传头像，传了以后用户头像会变。</p>
+<h3><span id="设置用户信息"><strong>设置用户信息</strong></span></h3><p>上传完文件后需要更新headerUrl。传头像，传了以后用户头像会变。</p>
 <p>上传文件在Controller表示层处理就可以了，不用在业务层处理。</p>
 <p>传文件使用<code>MultipartFile</code>传，是表示层的东西，直接在Controller里面存了就可以了。业务层只处理更新路径就可以了</p>
 <ul>
 <li><strong>课后问题</strong>：</li>
 </ul>
 <p>上传文件必须是<code>POST</code>请求。<br>表单的<code>enctype</code>属性必须设置为“multipart.form-data”。<br>服务器端不是必须通过<code>MultipartFile</code>处理上传文件。<br>文件也不是必须上传到网站的应用服务器上。</p>
-<h3><span id="检查登录状态">检查登录状态</span></h3><p>在没登录的状态下不能强制硬访问某些功能</p>
+<h3><span id="检查登录状态"><strong>检查登录状态</strong></span></h3><p>在没登录的状态下不能强制硬访问某些功能</p>
 <ul>
 <li>使用拦截器<ul>
 <li>在方法前标注自定义注解</li>
@@ -283,7 +283,7 @@
 <p>使用注解了过后，在使用拦截器处理。</p>
 <p>用反射获取一个方法后，可以有API得到他的是否有某个注解。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Method method = handlerMethod.getMethod();</span><br><span class="line">LoginRequired loginRequired = method.getAnnotation(LoginRequired.class);</span><br><span class="line"><span class="hljs-keyword">if</span>(loginRequired != <span class="hljs-keyword">null</span> &amp;&amp; hostHolder.getUser() == <span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">    <span class="hljs-comment">//重定向到登录界面。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="社区核心功能">社区核心功能</span></h2><h3><span id="发布帖子">发布帖子</span></h3><ul>
+<h2><span id="社区核心功能"><strong>社区核心功能</strong></span></h2><h3><span id="发布帖子"><strong>发布帖子</strong></span></h3><ul>
 <li><strong>Ajax</strong><ul>
 <li>不用跳转网页，异步请求技术。</li>
 <li>jQuery发送AJAX请求</li>
@@ -292,11 +292,11 @@
 </li>
 </ul>
 <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="hljs-string">"#publishBtn"</span>).click(publish);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">publish</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">	$(<span class="hljs-string">"#publishModal"</span>).modal(<span class="hljs-string">"hide"</span>);</span><br><span class="line">	<span class="hljs-comment">// 获取标题和内容</span></span><br><span class="line">	<span class="hljs-keyword">var</span> title = $(<span class="hljs-string">"#recipient-name"</span>).val();</span><br><span class="line">	<span class="hljs-keyword">var</span> content = $(<span class="hljs-string">"#message-text"</span>).val();</span><br><span class="line">	<span class="hljs-comment">// 发送异步请求(POST)</span></span><br><span class="line">	$.post(</span><br><span class="line">	    CONTEXT_PATH + <span class="hljs-string">"/discuss/add"</span>,</span><br><span class="line">	    &#123;<span class="hljs-string">"title"</span>:title,<span class="hljs-string">"content"</span>:content&#125;,</span><br><span class="line">	    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;</span><br><span class="line">	        data = $.parseJSON(data);</span><br><span class="line">	        <span class="hljs-comment">// 在提示框中显示返回消息</span></span><br><span class="line">	        $(<span class="hljs-string">"#hintBody"</span>).text(data.msg);</span><br><span class="line">	        <span class="hljs-comment">// 显示提示框</span></span><br><span class="line">            $(<span class="hljs-string">"#hintModal"</span>).modal(<span class="hljs-string">"show"</span>);</span><br><span class="line">            <span class="hljs-comment">// 2秒后,自动隐藏提示框</span></span><br><span class="line">            setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">                $(<span class="hljs-string">"#hintModal"</span>).modal(<span class="hljs-string">"hide"</span>);</span><br><span class="line">                <span class="hljs-comment">// 刷新页面</span></span><br><span class="line">                <span class="hljs-keyword">if</span>(data.code == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">                    <span class="hljs-built_in">window</span>.location.reload();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, <span class="hljs-number">2000</span>);</span><br><span class="line">	    &#125;</span><br><span class="line">	);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="查看帖子详情">查看帖子详情</span></h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;selectDiscussPostById&quot; resultType=&quot;DiscussPost&quot;&gt;</span><br><span class="line">    select &lt;include refid=&quot;selectFields&quot;&gt;&lt;/include&gt;</span><br><span class="line">    from discuss_post</span><br><span class="line">    where id=#&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<h3><span id="查看帖子详情"><strong>查看帖子详情</strong></span></h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;selectDiscussPostById&quot; resultType=&quot;DiscussPost&quot;&gt;</span><br><span class="line">    select &lt;include refid=&quot;selectFields&quot;&gt;&lt;/include&gt;</span><br><span class="line">    from discuss_post</span><br><span class="line">    where id=#&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
 <p>有的业务中并不需要展示某些信息，就会有数据的冗余，有效率影响的数据可以放在内存Redis中去，就不会有什么性能影响。</p>
 <p>这部分就是<code>DiscussPostMapper</code>，<code>DiscussPostService</code>，<code>DiscussPostController</code>从数据库查，在Controller部分，因为需要跳转网页，Controller方法返回String “/site/discussPost”。往<code>Model</code>里面放<code>Post</code>和帖子的<code>User</code>信息。前端用<code>${post.title},${post.content}</code>取。还可以显示用户头像。详情里面从${user}获取头像，Header通过${loginUser}获得当前登录用户头像。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@RequestMapping</span>(path = <span class="hljs-string">"/detail/&#123;discussPostId&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getDiscussPost</span><span class="hljs-params">( @PathVariable(<span class="hljs-string">"discussPostId"</span>)</span> <span class="hljs-keyword">int</span> discussPostId , Model model)</span>&#123;</span><br><span class="line">    DiscussPost post = discussPostService.findDiscussPostById(discussPostId);</span><br><span class="line">    model.addAttribute(<span class="hljs-string">"post"</span>, post);</span><br><span class="line">    User user = userService.findUserById(post.getUserId());</span><br><span class="line">    model.addAttribute(<span class="hljs-string">"user"</span>, user);<span class="hljs-comment">// 拦截器里面不是有一个 loginUser吗？</span></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">"site/discuss-detail"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>thymleaf可以复用Header。所以Header</p>
+<p>thymleaf可以复用Header。</p>
 
         </div>
         
