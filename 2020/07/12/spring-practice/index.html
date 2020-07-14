@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-12T14:39:36.254Z">
+<meta property="og:updated_time" content="2020-07-14T03:42:55.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    19 分钟 读完 (大约 2856 个字)
+                    19 分钟 读完 (大约 2887 个字)
                 </span>
                 
                 
@@ -186,6 +186,7 @@
 <li><a href="#查看帖子详情"><strong>查看帖子详情</strong></a></li>
 <li><a href="#事务管理"><strong>事务管理</strong></a></li>
 <li><a href="#显示评论"><strong>显示评论</strong></a></li>
+<li><a href="#添加评论"><strong>添加评论</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -227,7 +228,7 @@
 <li>退出登录凭证修改为失效</li>
 <li>跳转回网站首页</li>
 </ul>
-<p>设计表的时候，退出是修改status，expired是自然时间过气，久了不退出的情况下，过了这个时间也需要重新登录了。</p>
+<p>设计表的时候，退出是修改status，expired是过期时间，久了不退出的情况下，过了这个时间也需要重新登录了。</p>
 <p>return “redirect:/index”</p>
 <p>返回页面，retuen “/site/login”就可以了。<br>业务层返回Map&lt;String, Obeject&gt;类别。一般出错的时候往这里面放东西，可以根据Map里面数据的情况，判断这次业务有没有出错。</p>
 <p>登录时候的ticket是<code>CommunityUtil.generateUUID</code>生成的。</p>
@@ -320,6 +321,10 @@
 <p>如果业务比较复杂，而我们只想管理中间一小部分的事务，可以选择第二种编<code>程式事务管理</code>方式。</p>
 <h3><span id="显示评论"><strong>显示评论</strong></span></h3><p>entity_type: 是帖子评论，文章评论，课程评论，还是评论的评论。</p>
 <p>列表界面有一点点复杂，评论下面还有评论。<br>处理了一些问题，程序可以跑通了。<br>thymleaf前端 部件命名后可以复用<br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mt-5"</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;page.rows&gt;0&#125;"</span> <span class="hljs-attr">th:fragment</span>=<span class="hljs-string">"pagination"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pagination justify-content-center"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-item"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-link"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;$&#123;page.path&#125;(current=1)&#125;"</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">th:class</span>=<span class="hljs-string">"|page-item $&#123;page.current==1?'disabled':''&#125;|"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-link"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;$&#123;page.path&#125;(current=$&#123;page.current-1&#125;)&#125;"</span>&gt;</span>上一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">th:class</span>=<span class="hljs-string">"|page-item $&#123;i==page.current?'active':''&#125;|"</span> <span class="hljs-attr">th:each</span>=<span class="hljs-string">"i:$&#123;#numbers.sequence(page.from,page.to)&#125;"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;i&#125;"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">th:class</span>=<span class="hljs-string">"|page-item $&#123;page.current==page.total?'disabled':''&#125;|"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-link"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;$&#123;page.path&#125;(current=$&#123;page.current+1&#125;)&#125;"</span>&gt;</span>下一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-item"</span>&gt;</span></span><br><span class="line">            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-link"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;$&#123;page.path&#125;(current=$&#123;page.total&#125;)&#125;"</span>&gt;</span>末页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3><span id="添加评论"><strong>添加评论</strong></span></h3><ul>
+<li>变量+字符串组成前端中的路径，加 <code>｜｜</code>两条竖线：</li>
+</ul>
+<figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th:action="@&#123;|/comment/add/$&#123;post.id&#125;|&#125;"</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -353,6 +358,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/07/13/interview-experience/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">面经</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -411,7 +423,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        40
+                        41
                     </p>
                 </div>
             </div>

@@ -16,7 +16,7 @@
 <meta property="og:description" content="尽量坚持每日一题">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-12T09:03:29.503Z">
+<meta property="og:updated_time" content="2020-07-14T03:54:12.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日一题Leetcode">
 <meta name="twitter:description" content="尽量坚持每日一题">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 6887 个字)
+                    1 小时 读完 (大约 7052 个字)
                 </span>
                 
                 
@@ -204,6 +204,7 @@
 <li><a href="#309-最佳买卖股票时机含冷冻期-7月10日"><strong>309. 最佳买卖股票时机含冷冻期</strong> 7月10日</a></li>
 <li><a href="#315-计算右侧小于当前元素的个数-7月11日"><strong>315. 计算右侧小于当前元素的个数</strong> 7月11日</a></li>
 <li><a href="#174-地下城游戏-7月12日"><strong>174. 地下城游戏</strong> 7月12日</a></li>
+<li><a href="#174-地下城游戏-7月12日-1"><strong>174. 地下城游戏</strong> 7月12日</a></li>
 </ul>
 <!-- tocstop -->
 <h1><span id="765-情侣牵手"><strong>765 情侣牵手</strong></span></h1><p><strong>题目描述</strong>：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。</p>
@@ -386,8 +387,14 @@
 <h1><span id="174-地下城游戏-7月12日"><strong>174. 地下城游戏</strong> 7月12日</span></h1><p><a href="https://leetcode-cn.com/problems/dungeon-game/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
 <p><strong>题目描述：</strong></p>
 <p><strong>解题思路：</strong></p>
-<p>从左上到右下的方向<code>不满足</code>动态规划的<code>无后效性</code>，所以才用从右下到坐上的遍历方式。</p>
+<p>从左上到右下的方向<code>不满足</code>动态规划的<code>无后效性</code>，所以才用从右下到左上的遍历方式。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculateMinimumHP</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[][] dungeon)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">int</span> n = dungeon.length, m = dungeon[<span class="hljs-number">0</span>].length;</span><br><span class="line">        <span class="hljs-keyword">int</span>[][] dp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n+<span class="hljs-number">1</span>][m+<span class="hljs-number">1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;=n; i++)&#123;</span><br><span class="line">            Arrays.fill(dp[i], Integer.MAX_VALUE);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-comment">// 从dp[n][m]倒过来开始dp。</span></span><br><span class="line">        dp[n-<span class="hljs-number">1</span>][m] = <span class="hljs-number">1</span>;</span><br><span class="line">        dp[n][m-<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=n-<span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span> ;i--)</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=m-<span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--)&#123;</span><br><span class="line">                <span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">                if(dungeon[i][j]&lt;=0)&#123;</span></span><br><span class="line"><span class="hljs-comment">                    dp[i][j] = Math.min(dp[i+1][j], dp[i][j+1]) - dungeon[i][j];</span></span><br><span class="line"><span class="hljs-comment">                &#125;else&#123;</span></span><br><span class="line"><span class="hljs-comment">                    dp[i][j] = Math.max( Math.min(dp[i+1][j],dp[i][j+1] ) - dungeon[i][j] , 1);</span></span><br><span class="line"><span class="hljs-comment">                &#125;*/</span></span><br><span class="line">                <span class="hljs-comment">//简化</span></span><br><span class="line">                <span class="hljs-keyword">int</span> minn = Math.min(dp[i+<span class="hljs-number">1</span>][j], dp[i][j+<span class="hljs-number">1</span>]) - dungeon[i][j];</span><br><span class="line">                dp[i][j] = Math.max(minn, <span class="hljs-number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="174-地下城游戏-7月12日"><strong>174. 地下城游戏</strong> 7月12日</span></h1><p><a href="https://leetcode-cn.com/problems/dungeon-game/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
+<p><strong>题目描述：</strong><br>给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。</p>
+<p>相邻的结点 在这里指的是 下标 与 上一层结点下标 相同或者等于 上一层结点下标 + 1 的两个结点。</p>
+<p><strong>解题思路：</strong></p>
+<p>杨辉三角类型的动态规划。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minimumTotal</span><span class="hljs-params">(List&lt;List&lt;Integer&gt;&gt; triangle)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> n = triangle.size();</span><br><span class="line">        <span class="hljs-keyword">int</span>[] dp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n];</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            dp[i] = triangle.get(n-<span class="hljs-number">1</span>).get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=n-<span class="hljs-number">2</span>;i&gt;=<span class="hljs-number">0</span>;i--)&#123;</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;=i;j++)&#123;</span><br><span class="line">                dp[j] = Math.min(dp[j], dp[j+<span class="hljs-number">1</span>]) + triangle.get(i).get(j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -495,7 +502,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        40
+                        41
                     </p>
                 </div>
             </div>
