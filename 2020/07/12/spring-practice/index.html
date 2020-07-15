@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-15T07:16:40.903Z">
+<meta property="og:updated_time" content="2020-07-15T07:17:22.950Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -191,8 +191,8 @@
 <li><a href="#私信列表"><strong>私信列表</strong></a></li>
 <li><a href="#统一异常处理"><strong>统一异常处理</strong></a></li>
 <li><a href="#统一记录日志"><strong>统一记录日志</strong></a><ul>
-<li><a href="#aop">AOP</a></li>
-<li><a href="#总结">总结</a></li>
+<li><a href="#aop"><strong>AOP</strong></a></li>
+<li><a href="#总结"><strong>总结</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -370,7 +370,7 @@
 </ul>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@ControllerAdvice</span>(annotations = Controller.class)</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExceptionAdvice</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger logger = LoggerFactory.getLogger(ExceptionAdvice.class);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@ExceptionHandler</span>(Exception.class)<span class="hljs-comment">//所有的Exception都由这个处理</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handlerException</span><span class="hljs-params">(Exception e, HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        logger.error(<span class="hljs-string">"服务器发生异常"</span>, e.getStackTrace());</span><br><span class="line">        <span class="hljs-keyword">for</span>(StackTraceElement element : e.getStackTrace())&#123;</span><br><span class="line">            logger.error(element.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-comment">// 判断是普通请求还是异步请求</span></span><br><span class="line"></span><br><span class="line">        String requestedWith = request.getHeader(<span class="hljs-string">"x-request-with"</span>);</span><br><span class="line">        <span class="hljs-keyword">if</span>(<span class="hljs-string">"XMLHttpRequest"</span>.equals(requestedWith))&#123; <span class="hljs-comment">//前端异步请求</span></span><br><span class="line">            response.setContentType(<span class="hljs-string">"application/plain;charset=utf-8"</span>);<span class="hljs-comment">//普通字符串。内容是Json</span></span><br><span class="line">            PrintWriter writer = response.getWriter();</span><br><span class="line">            writer.write(CommunityUtil.getJSONString(<span class="hljs-number">1</span>, <span class="hljs-string">"服务器异常"</span>));</span><br><span class="line">        &#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-comment">//普通请求</span></span><br><span class="line">            response.sendRedirect(request.getContextPath()+<span class="hljs-string">"/error"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3><span id="统一记录日志"><strong>统一记录日志</strong></span></h3><p>拦截器是针对控制器的拦截，那日志记录不一定是在控制器层面做处理。也可能是在业务层记录日志，所以拦截器不一定能帮我们实现这个统一日志记录。</p>
-<h4><span id="aop">AOP</span></h4><p><code>spring AOP</code> 为不具备继承依赖关系的对象引入一个公共行为。例如日志，权限，事务的功能。把这些行为放在业务代码里面不利于维护，希望不把这些工作放在各个处理过程中，不然不利于维护，也会有大量重复大码。需求一旦改，我们自己的改动也是很大的。这里要放日志，之后又不想在这里放日志，等等改变会导致工作量很大。</p>
+<h4><span id="aop"><strong>AOP</strong></span></h4><p><code>spring AOP</code> 为不具备继承依赖关系的对象引入一个公共行为。例如日志，权限，事务的功能。把这些行为放在业务代码里面不利于维护，希望不把这些工作放在各个处理过程中，不然不利于维护，也会有大量重复大码。需求一旦改，我们自己的改动也是很大的。这里要放日志，之后又不想在这里放日志，等等改变会导致工作量很大。</p>
 <p>把记录日志的逻辑代码拆分出去，不要放在业务里面。</p>
 <p>Spring会使用代理模式。</p>
 <p>代理模式<br>为其他对象提供代理以控制对这个对象对访问。</p>
@@ -412,7 +412,7 @@
 <div align="center"><br><img src="https://s1.ax1x.com/2020/07/14/UayAoD.jpg" alt><br></div>
 
 
-<h4><span id="总结">总结</span></h4><p>AOP 面向切面编程，Aspect Oriented Programing的缩写<br>AOP是OOP的补充，进一步提高编程效率<br>AOP常见的有权限检查、记录日志、事务管理</p>
+<h4><span id="总结"><strong>总结</strong></span></h4><p>AOP 面向切面编程，Aspect Oriented Programing的缩写<br>AOP是OOP的补充，进一步提高编程效率<br>AOP常见的有权限检查、记录日志、事务管理</p>
 <p>Pointcut，定义当切的<code>Aspect横切</code>逻辑准备织入那些连接点<br>Advice用来定义横切逻辑，即准备往链接点织入什么逻辑<br>Aspect是一个用来封装切点和通知的组建。</p>
 <p>织入，就是将<code>Aspect方面</code>组建定义的横向逻辑，织入目标对象的连接点的过程。<br>可以在编译时织入，需要特殊的编译器<br>可以在装载时织入，需要特殊的类装载器。<br>可以在运行时织入，纯Java实现，通过代理的方式织入代码。</p>
 <p>SpringAOP中：</p>
