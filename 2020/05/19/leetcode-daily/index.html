@@ -16,7 +16,7 @@
 <meta property="og:description" content="尽量坚持每日一题">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-14T03:54:12.937Z">
+<meta property="og:updated_time" content="2020-07-15T11:32:43.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日一题Leetcode">
 <meta name="twitter:description" content="尽量坚持每日一题">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 7052 个字)
+                    1 小时 读完 (大约 7178 个字)
                 </span>
                 
                 
@@ -205,6 +205,7 @@
 <li><a href="#315-计算右侧小于当前元素的个数-7月11日"><strong>315. 计算右侧小于当前元素的个数</strong> 7月11日</a></li>
 <li><a href="#174-地下城游戏-7月12日"><strong>174. 地下城游戏</strong> 7月12日</a></li>
 <li><a href="#174-地下城游戏-7月12日-1"><strong>174. 地下城游戏</strong> 7月12日</a></li>
+<li><a href="#96-不同的二叉搜索树-7月15日"><strong>96. 不同的二叉搜索树</strong> 7月15日</a></li>
 </ul>
 <!-- tocstop -->
 <h1><span id="765-情侣牵手"><strong>765 情侣牵手</strong></span></h1><p><strong>题目描述</strong>：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。</p>
@@ -395,7 +396,13 @@
 <p><strong>解题思路：</strong></p>
 <p>杨辉三角类型的动态规划。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minimumTotal</span><span class="hljs-params">(List&lt;List&lt;Integer&gt;&gt; triangle)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> n = triangle.size();</span><br><span class="line">        <span class="hljs-keyword">int</span>[] dp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n];</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            dp[i] = triangle.get(n-<span class="hljs-number">1</span>).get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=n-<span class="hljs-number">2</span>;i&gt;=<span class="hljs-number">0</span>;i--)&#123;</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;=i;j++)&#123;</span><br><span class="line">                dp[j] = Math.min(dp[j], dp[j+<span class="hljs-number">1</span>]) + triangle.get(i).get(j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1><span id="96-不同的二叉搜索树-7月15日"><strong>96. 不同的二叉搜索树</strong> 7月15日</span></h1><p><a href="https://leetcode-cn.com/problems/unique-binary-search-trees/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
+<p>给定一个整数 n，求以 1 … n 为节点组成的二叉搜索树有多少种？</p>
+<blockquote>
+<p>输入: 3<br>输出: 5<br>解释:<br>给定 n = 3, 一共有 5 种不同结构的二叉搜索树:</p>
+</blockquote>
+<p>动态规划，G[n] = $\sum^{n}_{i}$ G[i-1] $\times$ G[n-i]</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numTrees</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> G[] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n+<span class="hljs-number">1</span>];</span><br><span class="line">        G[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">        G[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=i;j++)&#123;</span><br><span class="line">                G[i]+=G[j-<span class="hljs-number">1</span>]*G[i-j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> G[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
