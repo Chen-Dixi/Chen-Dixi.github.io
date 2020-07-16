@@ -16,7 +16,7 @@
 <meta property="og:description" content="分布变换VAE和GAN的目标都是从隐变量z生成目标数据X的模型，实现上不同。 假设隐变量服从某些常见的分布，希望训练一个模型，X=g(Z)，这个模型能够将原来的概率分布映射到训练集的概率分布。目的都是进行分布之间的变换。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-05-01T00:55:21.090Z">
+<meta property="og:updated_time" content="2020-07-15T11:33:37.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="变分自编码器VAE，概率模型，不可导时的重参数化">
 <meta name="twitter:description" content="分布变换VAE和GAN的目标都是从隐变量z生成目标数据X的模型，实现上不同。 假设隐变量服从某些常见的分布，希望训练一个模型，X=g(Z)，这个模型能够将原来的概率分布映射到训练集的概率分布。目的都是进行分布之间的变换。">
@@ -167,7 +167,10 @@
 <p>生成模型的难题就是判断生成分布和真实分布的相似度。只知道两者采样结果，不知道他们的分布表达式。</p>
 <p>KL散度不行，KL散度需要知道两个分布的概率密度表达式。然而我们目前并不知道它们概率密度分布的表达式。</p>
 <blockquote>
-<p><strong>KL散度</strong><br>KL散度称为相对熵。<br>首先信息熵的定义，需要满足3个特性</p>
+<p><strong>KL散度</strong></p>
+</blockquote>
+<blockquote>
+<p>KL散度称为相对熵。<br>首先信息熵的定义，需要满足3个特性</p>
 <ol>
 <li>单调性 2.非负性 3.累加性<br>相对熵称为KL散度。<br>$D_{K L}(p | q)=\sum_{x} p(x) \log \frac{p(x)}{q(x)}=E_{p(x)} \log \frac{p(x)}{q(x)}$<br>相对熵满足&gt;=0<br>$$\begin{aligned} D_{K L}(p | q) &amp;=\sum_{x} p(x) \log \frac{p(x)}{q(x)} \\ &amp;=-\sum_{x} p(x) \log \frac{q(x)}{p(x)} \\ &amp;=-E_{p(x)}\left(\log \frac{q(x)}{p(x)}\right) \\ &amp; \geq-\log E_{p(x)}\left(\frac{q(x)}{p(x)}\right) \\ &amp;=-\log \sum_{x} p(x) \frac{q(x)}{p(x)} \\ &amp;=-\log \sum_{x} q(x) \end{aligned}$$</li>
 </ol>
