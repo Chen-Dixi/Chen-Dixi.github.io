@@ -15,7 +15,7 @@
 <meta property="og:description" content="笔记">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-09T03:00:16.092Z">
+<meta property="og:updated_time" content="2020-07-17T11:55:53.203Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法">
 <meta name="twitter:description" content="笔记">
@@ -145,7 +145,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 760 个字)
+                    7 分钟 读完 (大约 1062 个字)
                 </span>
                 
                 
@@ -187,7 +187,14 @@
 <h2><span id="快速排序">快速排序</span></h2><p>最好是O(logN)，每次选的基数正好等分当前数列。 最差是O(N^2)，待排序数组是逆序时，每次划分只少一个元素，平均时间复杂度O(NlogN)。空间复杂度O(1)，没有额外利用其他辅助空间。不稳定，切分操作里，从前向后扫描，遇到大数放到后面的大端，如果后面紧跟相等大数，则被置于该数前面。</p>
 <h2><span id="希尔排序">希尔排序</span></h2><p>通过粗粒度的插入排序改善数列的有序程度，逐步细化，直到间隔为1。如果序列很长，无序程度就高，向前插入一次可能导致移动操作很大。如果原来的序列相对有序，就能缓解这个问题。希尔排序就是在插入排序之前进行粗略的排序，让原序列相对更有序一点。  最坏时间复杂度 还是O(N^2)。但能有效改进序列无序且长度大时的大长度数列位移。希尔排序中对于增量序列选择十分重要。直接影响希尔排序性能，可以使用希尔增量。还有Hibbard增量. 希尔排序不稳定</p>
 <h2><span id="堆排序">堆排序</span></h2><p>构建堆，无序数组建立堆最直接的方法是从左到右遍历数组进行上浮操作。更高效的是从右至左进行下沉，如果一个节点的两个节点都已经是堆有序的，☑️。不是稳定，算法复杂度Nlog(N)</p>
-<h2><span id="计数排序">计数排序</span></h2><h2><span id="桶排序">桶排序</span></h2><h2><span id="基数排序">基数排序</span></h2>
+<h2><span id="计数排序">计数排序</span></h2><p>用 （maxValue-minValue+1）大小的空间记录数字出现的次数（计数）。然后根据计数内容，把排序结果放到新的数组里面。时间复杂度O(n+k) 空间复杂度O(n+k)（一个数组放计数，一个数组放结果）</p>
+<h2><span id="桶排序">桶排序</span></h2><ol>
+<li>思想<br>计数排序的扩展版本，计数排序可以看成一个桶只有一个数字，桶排序里面每个桶里面是一个范围。对每个桶中的元素进行排序，最后将非空桶中的元素逐个放入原序列中。</li>
+</ol>
+<div><img src="https://s1.ax1x.com/2020/03/25/8Ojk5D.png" alt></div>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bucketSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">if</span> (arr == <span class="hljs-keyword">null</span> || arr.length &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 计算最大值与最小值</span></span><br><span class="line">    <span class="hljs-keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line">    <span class="hljs-keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> value : arr) &#123;</span><br><span class="line">        max = Math.max(max, value);</span><br><span class="line">        min = Math.min(min, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 计算桶的数量</span></span><br><span class="line">    <span class="hljs-keyword">int</span> bucketNum = (max - min) / arr.length + <span class="hljs-number">1</span>;</span><br><span class="line">    ArrayList&lt;ArrayList&lt;Integer&gt;&gt; bucketArr = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(bucketNum);</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; bucketNum; i++)&#123;</span><br><span class="line">        bucketArr.add(<span class="hljs-keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 将每个元素放入桶</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> value : arr) &#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> num = (value - min) / (arr.length);</span><br><span class="line">        bucketArr.get(num).add(value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 对每个桶进行排序</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (ArrayList&lt;Integer&gt; integers : bucketArr) &#123;</span><br><span class="line">        Collections.sort(integers);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 将桶中的元素赋值到原序列</span></span><br><span class="line">    <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> (ArrayList&lt;Integer&gt; integers : bucketArr) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (Integer integer : integers) &#123;</span><br><span class="line">            arr[index++] = integer;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="基数排序">基数排序</span></h2>
         </div>
         
         
