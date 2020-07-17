@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-14T03:37:42.425Z">
+<meta property="og:updated_time" content="2020-07-17T07:49:34.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java知识汇总">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 小时 读完 (大约 13785 个字)
+                    2 小时 读完 (大约 15486 个字)
                 </span>
                 
                 
@@ -272,7 +272,20 @@
 </ul>
 </li>
 <li><a href="#java-io"><strong>Java IO</strong></a><ul>
-<li><a href="#nio-bio"><strong>NIO BIO</strong></a></li>
+<li><a href="#file"><strong>File</strong></a></li>
+<li><a href="#字符操作"><strong>字符操作</strong></a></li>
+<li><a href="#对象操作-serialize"><strong>对象操作 Serialize</strong></a><ul>
+<li><a href="#序列化"><strong>序列化</strong></a></li>
+<li><a href="#serializable">Serializable</a></li>
+</ul>
+</li>
+<li><a href="#nio-bio"><strong>NIO BIO</strong></a><ul>
+<li><a href="#通道"><strong>通道</strong></a></li>
+<li><a href="#缓冲区"><strong>缓冲区</strong></a></li>
+<li><a href="#选择器"><strong>选择器</strong></a></li>
+<li><a href="#内存映射文件"><strong>内存映射文件</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#注解"><strong>注解</strong></a></li>
@@ -713,7 +726,77 @@
 </ul>
 <p>G1 收集器在后台维护了一个优先列表，每次根据允许的收集时间，优先选择回收价值最大的 Region (这也就是它的名字 Garbage-First 的由来)。这种使用 Region 划分内存空间以及有优先级的区域回收方式，保证了 G1 收集器在有限时间内可以尽可能高的收集效率（把内存化整为零</p>
 <h2><span id="out-of-memory"><strong>Out of Memory</strong></span></h2><p>OOM排查思路：<br>借助一些写给jvisualvm的工具，去查询它dump下来的堆栈信息排查</p>
-<h1><span id="java-io"><strong>Java IO</strong></span></h1><h2><span id="nio-bio"><strong>NIO BIO</strong></span></h2><h1><span id="注解"><strong>注解</strong></span></h1><p>Java 注解是附加在代码中的一些元信息，用于一些工具在编译、运行时进行解析和使用，起到说明、配置的功能。注解不会也不能影响代码的实际逻辑，仅仅起到辅助性的作用。</p>
+<h1><span id="java-io"><strong>Java IO</strong></span></h1><p>Java的I/O大概可以分为一下几个类</p>
+<ul>
+<li>磁盘操作：File</li>
+<li>字节操作：InputStream和OutputStream</li>
+<li>对象操作：Serialize</li>
+<li>网络操作：Socket</li>
+<li>新的输入/输出：NIO</li>
+</ul>
+<h2><span id="file"><strong>File</strong></span></h2><h2><span id="字符操作"><strong>字符操作</strong></span></h2><ul>
+<li>GBK 编码，中文字符占 2 个字节，英文字符占 1 个字节；</li>
+<li>UTF-8 编码，中文字符占 3 个字节，英文字符占 1 个字节；</li>
+<li>UTF-16be 编码，中文字符和英文字符都占 2 个字节；</li>
+</ul>
+<p>Java内存编码使用双字节编码UTF-16be。不是指Java只支持一种编码方式，而是说char这种类型使用UTF-16be进行编码。char类型占16位，两个字节，Java使用这种双字节编码是为了让中文和英文都能使用一个char来存储。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="hljs-string">"中文"</span>;</span><br><span class="line"><span class="hljs-keyword">byte</span>[] bytes = str1.getBytes(<span class="hljs-string">"UTF-8"</span>);</span><br><span class="line">String str2 = <span class="hljs-keyword">new</span> String(bytes, <span class="hljs-string">"UTF-8"</span>);</span><br><span class="line">System.out.println(str2);</span><br></pre></td></tr></table></figure>
+<h2><span id="对象操作-serialize"><strong>对象操作 Serialize</strong></span></h2><h3><span id="序列化"><strong>序列化</strong></span></h3><p>将一个对象转换成字节序列，方便存储和传输。</p>
+<ul>
+<li>序列化：ObjectOutputStream.writeObject()</li>
+<li>反序列化：ObjectInputStream.readObject()</li>
+</ul>
+<p>这个序列化是不会对静态变量序列化的，序列化只保存对象的状态，静态变量属于类的状态。</p>
+<h3><span id="serializable">Serializable</span></h3><p>序列化的类需要实现<strong>Serializable</strong>接口，只是一个标准，没有任何方法需要实现。但不实现它去进行序列化会抛出异常。<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    A a1 = <span class="hljs-keyword">new</span> A(<span class="hljs-number">123</span>,<span class="hljs-string">"abc"</span>);</span><br><span class="line">    String objectFile = <span class="hljs-string">"src/dixi/bupt/io/a1.txt"</span>;</span><br><span class="line"></span><br><span class="line">    ObjectOutputStream objectOutputStream = <span class="hljs-keyword">new</span> ObjectOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(objectFile));</span><br><span class="line">    objectOutputStream.writeObject(a1);</span><br><span class="line">    objectOutputStream.close();</span><br><span class="line"></span><br><span class="line">    ObjectInputStream objectInputStream = <span class="hljs-keyword">new</span> ObjectInputStream(<span class="hljs-keyword">new</span> FileInputStream(objectFile));</span><br><span class="line">    A a2 = (A) objectInputStream.readObject();</span><br><span class="line">    objectInputStream.close();</span><br><span class="line">    System.out.println(a2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>ObjectOutputStream</code> 和 <code>FileOutputStream</code> 都继承自<code>OutputStream</code>。</p>
+<h2><span id="nio-bio"><strong>NIO BIO</strong></span></h2><ul>
+<li>流与块</li>
+</ul>
+<p>I/O 与 NIO 最重要的区别是数据打包和传输的方式，I/O 以流的方式处理数据，而 NIO 以块的方式处理数据。</p>
+<p>面向流的I/O一次处理一个字节数据。一个输入流一次产生一个字节数据，一个输出流一次消费一个字节数据。为流式数据创建过滤器非常容易，链接几个过滤器，以便每个过滤器只负责复杂处理机制的一部分。不利的是，<strong>面向流的 I/O 通常相当慢</strong>。</p>
+<p>面向块的 I/O 一次处理一个块。<strong>按块处理数据比按流处理数据快得多</strong>，但是<strong>面向块的I/O会少一些便利优雅简单性</strong>。</p>
+<p>I/O 包和 NIO 已经很好地集成了，java.io.<em> 已经以 NIO 为基础重新实现了，所以现在它可以利用 NIO 的一些特性。例如，java.io.</em> 包中的一些类包含以块的形式读写数据的方法，这使得即使在面向流的系统中，处理速度也会更快。</p>
+<p>NIO 主要有三大核心部分：<code>Channel</code>，<code>Buffer</code>，<code>Selector</code>。</p>
+<h3><span id="通道"><strong>通道</strong></span></h3><p>通道是<strong>双向的</strong>，可以用于读、写。也可以<strong>同时</strong>用于读、写。流只能在一个方向上移动(一个流必须是 InputStream 或者 OutputStream 的子类)，</p>
+<p>通道类型：</p>
+<ul>
+<li>FileChannel：从文件中读写数据</li>
+<li>DatagramChannel：通过UDP读写网络中的数据</li>
+<li>SocketChannel：通过TCP读取网络中的数据</li>
+<li>ServerSocketChannel：监听新进来的TCP连接，对每一个新进来的连接都会创建一个SocketChannel。</li>
+</ul>
+<h3><span id="缓冲区"><strong>缓冲区</strong></span></h3><p>给通道的数据首先都要先给<strong>缓冲区</strong>，同样的，从通道中都取的数据首先都要经过缓冲区。不会直接对通道进行读写数据，而是要先经过缓冲区。</p>
+<p>缓冲区实质上是一个数组，但它不仅仅是一个数组。缓冲区提供了对数据的结构化访问，而且还可以跟踪系统的读/写进程。</p>
+<p>缓冲区类型：</p>
+<ul>
+<li>ByteBuffer</li>
+<li>CharBuffer</li>
+<li>ShortBuffer</li>
+<li>IntBuffer</li>
+<li>LongBuffer</li>
+<li>FloatBuffer</li>
+<li>DoubleBuffer</li>
+</ul>
+<p>缓冲区状态变量</p>
+<ul>
+<li>capacity：最大容量；</li>
+<li>position：当前已经读写的字节数；</li>
+<li>limit：还可以读写的字节数。</li>
+</ul>
+<h3><span id="选择器"><strong>选择器</strong></span></h3><p>NIO通常叫做非阻塞IO，主要因为NIO在网络通信中的非阻塞特性。</p>
+<p>NIO 实现了 IO 多路复用中的 Reactor 模型，一个线程 Thread 使用一个选择器 Selector 通过轮询的方式去监听多个通道 Channel 上的事件，从而让一个线程就可以处理多个事件。</p>
+<p>通过配置监听的通道 Channel 为非阻塞，那么当 Channel 上的 IO 事件还未到达时，就不会进入阻塞状态一直等待，而是继续轮询其它 Channel，找到 IO 事件已经到达的 Channel 执行。</p>
+<p>因为创建和切换线程的开销很大，因此使用一个线程来处理多个事件而不是一个线程处理一个事件，对于 IO 密集型的应用具有很好地性能。</p>
+<p>应该注意的是，只有套接字 Channel 才能配置为非阻塞，而 FileChannel 不能，为 FileChannel 配置非阻塞也没有意义。</p>
+<ul>
+<li>套接字实例</li>
+</ul>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NIOServer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        Selector selector = Selector.open();</span><br><span class="line"></span><br><span class="line">        ServerSocketChannel ssChannel = ServerSocketChannel.open();</span><br><span class="line">        ssChannel.configureBlocking(<span class="hljs-keyword">false</span>);</span><br><span class="line">        ssChannel.register(selector, SelectionKey.OP_ACCEPT);</span><br><span class="line"></span><br><span class="line">        ServerSocket serverSocket = ssChannel.socket();</span><br><span class="line">        InetSocketAddress address = <span class="hljs-keyword">new</span> InetSocketAddress(<span class="hljs-string">"127.0.0.1"</span>, <span class="hljs-number">8888</span>);</span><br><span class="line">        serverSocket.bind(address);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">            selector.select();</span><br><span class="line">            Set&lt;SelectionKey&gt; keys = selector.selectedKeys();</span><br><span class="line">            Iterator&lt;SelectionKey&gt; keyIterator = keys.iterator();</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">while</span> (keyIterator.hasNext()) &#123;</span><br><span class="line"></span><br><span class="line">                SelectionKey key = keyIterator.next();</span><br><span class="line"></span><br><span class="line">                <span class="hljs-keyword">if</span> (key.isAcceptable()) &#123;</span><br><span class="line"></span><br><span class="line">                    ServerSocketChannel ssChannel1 = (ServerSocketChannel) key.channel();</span><br><span class="line"></span><br><span class="line">                    <span class="hljs-comment">// 服务器会为每个新连接创建一个 SocketChannel</span></span><br><span class="line">                    SocketChannel sChannel = ssChannel1.accept();</span><br><span class="line">                    sChannel.configureBlocking(<span class="hljs-keyword">false</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="hljs-comment">// 这个新连接主要用于从客户端读取数据</span></span><br><span class="line">                    sChannel.register(selector, SelectionKey.OP_READ);</span><br><span class="line"></span><br><span class="line">                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (key.isReadable()) &#123;</span><br><span class="line"></span><br><span class="line">                    SocketChannel sChannel = (SocketChannel) key.channel();</span><br><span class="line">                    System.out.println(readDataFromSocketChannel(sChannel));</span><br><span class="line">                    sChannel.close();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                keyIterator.remove();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">readDataFromSocketChannel</span><span class="hljs-params">(SocketChannel sChannel)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        ByteBuffer buffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);</span><br><span class="line">        StringBuilder data = <span class="hljs-keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">            buffer.clear();</span><br><span class="line">            <span class="hljs-keyword">int</span> n = sChannel.read(buffer);</span><br><span class="line">            <span class="hljs-keyword">if</span> (n == -<span class="hljs-number">1</span>) &#123;</span><br><span class="line">                <span class="hljs-keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            buffer.flip();</span><br><span class="line">            <span class="hljs-keyword">int</span> limit = buffer.limit();</span><br><span class="line">            <span class="hljs-keyword">char</span>[] dst = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[limit];</span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; limit; i++) &#123;</span><br><span class="line">                dst[i] = (<span class="hljs-keyword">char</span>) buffer.get(i);</span><br><span class="line">            &#125;</span><br><span class="line">            data.append(dst);</span><br><span class="line">            buffer.clear();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> data.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="内存映射文件"><strong>内存映射文件</strong></span></h3><p>内存映射文件 I/O 是一种读和写文件数据的方法，它可以比常规的基于流或者基于通道的 I/O 快得多。</p>
+<p>向内存映射文件写入可能是危险的，只是改变数组的单个元素这样的简单操作，就可能会直接修改磁盘上的文件。修改数据与将数据保存到磁盘是没有分开的。</p>
+<p>下面代码行将文件的前 1024 个字节映射到内存中，map() 方法返回一个 MappedByteBuffer，它是 ByteBuffer 的子类。因此，可以像使用其他任何 ByteBuffer 一样使用新映射的缓冲区，操作系统会在需要时负责执行映射。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MappedByteBuffer mbb = fc.map(FileChannel.MapMode.READ_WRITE, <span class="hljs-number">0</span>, <span class="hljs-number">1024</span>);</span><br></pre></td></tr></table></figure>
+<h1><span id="注解"><strong>注解</strong></span></h1><p>Java 注解是附加在代码中的一些元信息，用于一些工具在编译、运行时进行解析和使用，起到说明、配置的功能。注解不会也不能影响代码的实际逻辑，仅仅起到辅助性的作用。</p>
 <h1><span id="反射"><strong>反射</strong></span></h1><h1><span id="参考"><strong>参考</strong></span></h1><p><a href="https://blog.csdn.net/yy2017220302028/article/details/104631329" target="_blank" rel="noopener">Java基础知识汇总</a></p>
 
         </div>
@@ -1573,8 +1656,44 @@
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">13.1</span>
-        <span>NIO BIO</span>
+        <span>File</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">13.2</span>
+        <span>字符操作</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">13.3</span>
+        <span>对象操作 Serialize</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">13.3.1</span>
+        <span>序列化</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">13.3.2</span>
+        <span>Serializable</span>
         </a></li></ul></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">13.4</span>
+        <span>NIO BIO</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">13.4.1</span>
+        <span>通道</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">13.4.2</span>
+        <span>缓冲区</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">13.4.3</span>
+        <span>选择器</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">13.4.4</span>
+        <span>内存映射文件</span>
+        </a></li></ul></li></ul></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">14</span>
         <span>注解</span>
