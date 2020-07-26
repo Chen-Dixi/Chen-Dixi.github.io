@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-10T03:06:48.053Z">
+<meta property="og:updated_time" content="2020-07-26T08:08:03.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指Offer（下）">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    17 分钟 读完 (大约 2516 个字)
+                    20 分钟 读完 (大约 2935 个字)
                 </span>
                 
                 
@@ -171,6 +171,9 @@
 <ul>
 <li><a href="#51-数组中的逆序对">51. 数组中的逆序对</a></li>
 <li><a href="#52-两个链表的第一个公共节点"><strong>52. 两个链表的第一个公共节点</strong></a></li>
+<li><a href="#54-二叉搜索树的第k大节点"><strong>54. 二叉搜索树的第k大节点</strong></a></li>
+<li><a href="#55-ii-平衡二叉树"><strong>55 - II. 平衡二叉树</strong></a></li>
+<li><a href="#56-i-数组中数字出现的次数"><strong>56 - I. 数组中数字出现的次数</strong></a></li>
 <li><a href="#59-滑动窗口的最大值"><strong>59. 滑动窗口的最大值</strong></a></li>
 <li><a href="#59-ii-队列的最大值"><strong>59 - II. 队列的最大值</strong></a></li>
 <li><a href="#60-n个骰子">60. n个骰子</a></li>
@@ -194,6 +197,17 @@
 <h1><span id="52-两个链表的第一个公共节点"><strong>52. 两个链表的第一个公共节点</strong></span></h1><p><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/submissions/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
 <p>两个指针，各自从headA和headB出发，到达尾部后交换，又各自从headB和headA开始出发。如果同时到达尾部，即同时为<code>null</code>，就表示没有相交的节点。<code>if(ptr1==null&amp;&amp;ptr2==null)</code>时返回一个空节点就好（这是一个巧妙的判定方法）。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">getIntersectionNode</span><span class="hljs-params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//双指针</span></span><br><span class="line">        ListNode ptr1 = headA;</span><br><span class="line">        ListNode ptr2 = headB;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">while</span>(ptr1!=ptr2)&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(ptr1!=<span class="hljs-keyword">null</span>)</span><br><span class="line">                ptr1 = ptr1.next;</span><br><span class="line">            <span class="hljs-keyword">else</span></span><br><span class="line">                ptr1 = headB;</span><br><span class="line">            <span class="hljs-keyword">if</span>(ptr2!=<span class="hljs-keyword">null</span>)</span><br><span class="line">                ptr2 = ptr2.next;</span><br><span class="line">            <span class="hljs-keyword">else</span></span><br><span class="line">                ptr2 = headA;</span><br><span class="line">            </span><br><span class="line">            <span class="hljs-keyword">if</span>(ptr1==<span class="hljs-keyword">null</span> &amp;&amp; ptr2==<span class="hljs-keyword">null</span>)</span><br><span class="line">                <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> ptr1;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="54-二叉搜索树的第k大节点"><strong>54. 二叉搜索树的第k大节点</strong></span></h1><p><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
+<p><strong>题目说明</strong><br>给定一棵二叉搜索树，请找出其中第k大的节点。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="hljs-comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="hljs-comment"> *     int val;</span></span><br><span class="line"><span class="hljs-comment"> *     TreeNode left;</span></span><br><span class="line"><span class="hljs-comment"> *     TreeNode right;</span></span><br><span class="line"><span class="hljs-comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="hljs-comment"> * &#125;</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> k;</span><br><span class="line">    <span class="hljs-keyword">int</span> ans;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">kthLargest</span><span class="hljs-params">(TreeNode root, <span class="hljs-keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.k = k;</span><br><span class="line"></span><br><span class="line">        search(root);</span><br><span class="line">        <span class="hljs-keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">search</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(root==<span class="hljs-keyword">null</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        search(root.right);</span><br><span class="line">        <span class="hljs-keyword">if</span>(k==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>; <span class="hljs-comment">// 找到了就可以停止了</span></span><br><span class="line">        <span class="hljs-keyword">if</span>(--k ==<span class="hljs-number">0</span>) ans = root.val;</span><br><span class="line">        search(root.left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="55-ii-平衡二叉树"><strong>55 - II. 平衡二叉树</strong></span></h1><p><a href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
+<p><strong>题目说明</strong><br>输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。</p>
+<p><strong>解题思路：</strong>对二叉树做后序遍历，从底至顶返回子树深度，若判定某子树不是平衡树则 “剪枝” ，直接向上返回。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="hljs-comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="hljs-comment"> *     int val;</span></span><br><span class="line"><span class="hljs-comment"> *     TreeNode left;</span></span><br><span class="line"><span class="hljs-comment"> *     TreeNode right;</span></span><br><span class="line"><span class="hljs-comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="hljs-comment"> * &#125;</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isBalanced</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> depth(root) != -<span class="hljs-number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">depth</span><span class="hljs-params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(root==<span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> left = depth(root.left);</span><br><span class="line">        <span class="hljs-keyword">if</span>(left==-<span class="hljs-number">1</span> )<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> right = depth(root.right);</span><br><span class="line">        <span class="hljs-keyword">if</span>(right==-<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span>(Math.abs(right-left) &gt; <span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">return</span> Math.max(left,right)+<span class="hljs-number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="56-i-数组中数字出现的次数"><strong>56 - I. 数组中数字出现的次数</strong></span></h1><p><a href="https://leetcode-cn.com/problems/sliding-window-maximum/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
+<p><strong>题目说明</strong><br>一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</p>
+<p><strong>解题思路：</strong><br>所有数字异或起来的结果就是这两个要找的数字异或起来的结果。根据这个结果找一个mask，mask就是异或结果二进制最低位的1。用这个mask把数组分成两组<code>（num&amp;mask）== 0</code>，每组各自异或得到的结果就是要找的两个数字。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] singleNumbers(<span class="hljs-keyword">int</span>[] nums) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="hljs-keyword">if</span>(n&lt;=<span class="hljs-number">0</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">int</span> k = nums[<span class="hljs-number">0</span>];</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>; i&lt;n;i++)&#123;</span><br><span class="line">            k ^= nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">int</span> mask=<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>((mask &amp; k)==<span class="hljs-number">0</span>)</span><br><span class="line">            mask &lt;&lt;= <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> a = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> b = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> num : nums )&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>( (num&amp;mask)==<span class="hljs-number">0</span> )&#123;</span><br><span class="line">                a ^= num;</span><br><span class="line">            &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">                b ^= num;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;a,b&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1><span id="59-滑动窗口的最大值"><strong>59. 滑动窗口的最大值</strong></span></h1><p><a href="https://leetcode-cn.com/problems/sliding-window-maximum/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
 <p><strong>题目说明</strong><br>给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
 <p>返回滑动窗口中的最大值。</p>
@@ -868,46 +882,58 @@
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3</span>
-        <span>59. 滑动窗口的最大值</span>
+        <span>54. 二叉搜索树的第k大节点</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">4</span>
-        <span>59 - II. 队列的最大值</span>
+        <span>55 - II. 平衡二叉树</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5</span>
-        <span>60. n个骰子</span>
+        <span>56 - I. 数组中数字出现的次数</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">6</span>
-        <span>61. 扑克牌中的顺子</span>
+        <span>59. 滑动窗口的最大值</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">7</span>
-        <span>64. 求 1+2+…+n</span>
+        <span>59 - II. 队列的最大值</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">8</span>
-        <span>65. 不用加减乘除做加法</span>
+        <span>60. n个骰子</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">9</span>
-        <span>66. 构建乘积数组</span>
+        <span>61. 扑克牌中的顺子</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">10</span>
-        <span>67. 把字符串转换成整数</span>
+        <span>64. 求 1+2+…+n</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">11</span>
+        <span>65. 不用加减乘除做加法</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">12</span>
+        <span>66. 构建乘积数组</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">13</span>
+        <span>67. 把字符串转换成整数</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">14</span>
         <span>68. 树中两个节点的最低公共祖先</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">11.1</span>
+        <span class="has-mr-6">14.1</span>
         <span>二叉搜索树</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">11.2</span>
+        <span class="has-mr-6">14.2</span>
         <span>普通二叉树</span>
         </a></li></ul></li></ul>
         </div>
