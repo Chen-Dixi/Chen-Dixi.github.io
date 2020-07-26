@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-26T08:08:03.894Z">
+<meta property="og:updated_time" content="2020-07-26T08:32:38.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指Offer（下）">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    20 分钟 读完 (大约 2935 个字)
+                    21 分钟 读完 (大约 3123 个字)
                 </span>
                 
                 
@@ -174,6 +174,7 @@
 <li><a href="#54-二叉搜索树的第k大节点"><strong>54. 二叉搜索树的第k大节点</strong></a></li>
 <li><a href="#55-ii-平衡二叉树"><strong>55 - II. 平衡二叉树</strong></a></li>
 <li><a href="#56-i-数组中数字出现的次数"><strong>56 - I. 数组中数字出现的次数</strong></a></li>
+<li><a href="#56-ii-数组中数字出现的次数-ii"><strong>56 - II. 数组中数字出现的次数 II</strong></a></li>
 <li><a href="#59-滑动窗口的最大值"><strong>59. 滑动窗口的最大值</strong></a></li>
 <li><a href="#59-ii-队列的最大值"><strong>59 - II. 队列的最大值</strong></a></li>
 <li><a href="#60-n个骰子">60. n个骰子</a></li>
@@ -208,6 +209,10 @@
 <p><strong>题目说明</strong><br>一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</p>
 <p><strong>解题思路：</strong><br>所有数字异或起来的结果就是这两个要找的数字异或起来的结果。根据这个结果找一个mask，mask就是异或结果二进制最低位的1。用这个mask把数组分成两组<code>（num&amp;mask）== 0</code>，每组各自异或得到的结果就是要找的两个数字。</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] singleNumbers(<span class="hljs-keyword">int</span>[] nums) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="hljs-keyword">if</span>(n&lt;=<span class="hljs-number">0</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">int</span> k = nums[<span class="hljs-number">0</span>];</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>; i&lt;n;i++)&#123;</span><br><span class="line">            k ^= nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">int</span> mask=<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">while</span>((mask &amp; k)==<span class="hljs-number">0</span>)</span><br><span class="line">            mask &lt;&lt;= <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> a = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> b = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> num : nums )&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>( (num&amp;mask)==<span class="hljs-number">0</span> )&#123;</span><br><span class="line">                a ^= num;</span><br><span class="line">            &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">                b ^= num;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;a,b&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="56-ii-数组中数字出现的次数-ii"><strong>56 - II. 数组中数字出现的次数 II</strong></span></h1><p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
+<p><strong>题目说明</strong><br>在一个数组 nums 中除一个数字只出现一次之外，其他数字都出现了三次。请找出那个只出现一次的数字。</p>
+<p>如果一个数字出现三次,那么它的二进制表示的每一位(0或者1)也出现三次。如果把所有出现三次的数字的二进制表示的每一位都分别加起来,那么每一位的和都能被3整除。如果某一位的和能被3整除,那么那个只出现一次的数字二进制表示中对应的那一位是0，否则就是1。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">singleNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(nums.length&lt;=<span class="hljs-number">0</span>)</span><br><span class="line">            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">int</span>[] bit = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">32</span>];</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> num: nums)&#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> mask = <span class="hljs-number">1</span>;</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">31</span>;i&gt;=<span class="hljs-number">0</span>;i--)&#123;</span><br><span class="line">                <span class="hljs-keyword">if</span>((num&amp;mask)!=<span class="hljs-number">0</span>) bit[i]++;</span><br><span class="line">                mask = mask&lt;&lt;<span class="hljs-number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">32</span>;i++)&#123;<span class="hljs-comment">//这种做法使得本算法同样适用于负数的情况</span></span><br><span class="line">            res=res&lt;&lt;<span class="hljs-number">1</span>;</span><br><span class="line">            res+=bit[i]%<span class="hljs-number">3</span>;<span class="hljs-comment">//这两步顺序不能变，否则最后一步会多左移一次</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1><span id="59-滑动窗口的最大值"><strong>59. 滑动窗口的最大值</strong></span></h1><p><a href="https://leetcode-cn.com/problems/sliding-window-maximum/" target="_blank" rel="noopener"><strong>题目链接</strong></a></p>
 <p><strong>题目说明</strong><br>给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
 <p>返回滑动窗口中的最大值。</p>
@@ -894,46 +899,50 @@
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">6</span>
-        <span>59. 滑动窗口的最大值</span>
+        <span>56 - II. 数组中数字出现的次数 II</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">7</span>
-        <span>59 - II. 队列的最大值</span>
+        <span>59. 滑动窗口的最大值</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">8</span>
-        <span>60. n个骰子</span>
+        <span>59 - II. 队列的最大值</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">9</span>
-        <span>61. 扑克牌中的顺子</span>
+        <span>60. n个骰子</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">10</span>
-        <span>64. 求 1+2+…+n</span>
+        <span>61. 扑克牌中的顺子</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">11</span>
-        <span>65. 不用加减乘除做加法</span>
+        <span>64. 求 1+2+…+n</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">12</span>
-        <span>66. 构建乘积数组</span>
+        <span>65. 不用加减乘除做加法</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">13</span>
-        <span>67. 把字符串转换成整数</span>
+        <span>66. 构建乘积数组</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">14</span>
+        <span>67. 把字符串转换成整数</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">15</span>
         <span>68. 树中两个节点的最低公共祖先</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">14.1</span>
+        <span class="has-mr-6">15.1</span>
         <span>二叉搜索树</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">14.2</span>
+        <span class="has-mr-6">15.2</span>
         <span>普通二叉树</span>
         </a></li></ul></li></ul>
         </div>
