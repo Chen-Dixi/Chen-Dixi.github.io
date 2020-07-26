@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-17T01:48:55.992Z">
+<meta property="og:updated_time" content="2020-07-24T16:39:15.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    29 分钟 读完 (大约 4404 个字)
+                    34 分钟 读完 (大约 5039 个字)
                 </span>
                 
                 
@@ -163,6 +163,11 @@
 <li><a href="#接触spring-boot"><strong>接触spring Boot</strong></a><ul>
 <li><a href="#spring-入门"><strong>Spring 入门</strong></a><ul>
 <li><a href="#练习题"><strong>练习题</strong></a></li>
+<li><a href="#springboot自动装配原理">SpringBoot自动装配原理</a><ul>
+<li><a href="#3个重要注释">3个重要注释</a></li>
+<li><a href="#enableautoconfiguration"><strong>EnableAutoConfiguration</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -217,6 +222,34 @@
 <p>即使规范要求浏览器在重定向时保证请求方法和请求主体不变，但并不是所有的用户代理都会遵循这一点，你依然可以看到有缺陷的软件的存在。所以推荐仅在响应 GET 或 HEAD 方法时采用 302 状态码，而在其他时候使用 307 Temporary Redirect 来替代，因为在这些场景下方法变换是明确禁止的。</p>
 <p>在确实需要将重定向请求的方法转换为 GET的场景下，可以使用 303 See Other。例如在使用 PUT 方法进行文件上传操作时，需要返回确认信息（例如“你已经成功上传了xyz”）而不是上传的资源本身，就可以使用这个状态码。</p>
 <p><img src="evernotecid://90DDC9BB-A575-449D-ABA7-E03D1F9E7082/appyinxiangcom/15346490/ENResource/p563" alt="2e0ae5ff785ed6332baac3d106297766.png"></p>
+<h3><span id="springboot自动装配原理">SpringBoot自动装配原理</span></h3><p>SpringBoot不是Spring的替代者，Spring框架通过IOC管理Bean，SpringBoot依赖Spring框架管理对象的依赖。</p>
+<h4><span id="3个重要注释">3个重要注释</span></h4><p> 启动类<code>Main</code>函数的注释，只需要这一个注释<code>@SpringBootApplication</code>，放在启动类上面就可以。</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@SpringBootApplication</span></span><br><span class="line"><span class="hljs-meta">@RestController</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SprintBootDemoApplication</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SprintBootDemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个注释里面有3个重要的注释。</p>
+<ul>
+<li>@SpringBootConfiguration 底层是Configuration注解。</li>
+<li>@EnableAutoConfiguration 开启自动配置功能</li>
+<li>@ComponentScan 这个就是<strong>注解扫描</strong>，默认扫描当前类下面的<code>package</code>。将@Controller/@Service/@Component/@Repository等注解加载到IOC容器中。</li>
+</ul>
+<div><br><img src="https://s1.ax1x.com/2020/07/24/UvVvaF.jpg" alt><br></div>
+
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="hljs-meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="hljs-meta">@ComponentScan</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SprintBootDemoApplication</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SprintBootDemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="enableautoconfiguration"><strong>EnableAutoConfiguration</strong></span></h4><p><strong>约定大于配置</strong>，SpringBoot是怎么做的，靠的就是@EnableAutoConfiguration注解。<br>如果路径下有<code>tomcat-embedded.jar</code>包，那么你可能需要<code>TomcatServletWebServerFactory</code>。</p>
+<p>两个重要的注解</p>
+<ul>
+<li>@AutoConfigurationPackage：自动配置包</li>
+<li>@Import：给IOC容器导入组件</li>
+</ul>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Registrar</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ImportBeanDefinitionRegistrar</span>, <span class="hljs-title">DeterminableImports</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-meta">@Override</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerBeanDefinitions</span><span class="hljs-params">(AnnotationMetadata metadata, BeanDefinitionRegistry registry)</span> </span>&#123;</span><br><span class="line">		register(registry, <span class="hljs-keyword">new</span> PackageImports(metadata).getPackageNames().toArray(<span class="hljs-keyword">new</span> String[<span class="hljs-number">0</span>]));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-meta">@Override</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> Set&lt;Object&gt; <span class="hljs-title">determineImports</span><span class="hljs-params">(AnnotationMetadata metadata)</span> </span>&#123;</span><br><span class="line">		<span class="hljs-keyword">return</span> Collections.singleton(<span class="hljs-keyword">new</span> PackageImports(metadata));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在默认的情况下就是：将主配置类<code>(@SpringBootApplication)</code>的所在包及其子包里边的组件扫描到Spring容器中。作用和<code>@ComponentScan</code>不同</p>
+<p>@ComponentScan扫面平时开发用的注解 <code>@Controller/@Service/@Component/@Repository</code>。<br><code>@AutoConfigurationPackage</code>扫描那些@Entity注释。</p>
+<p><strong>@Import(AutoConfigurationImportSelector.class)</strong></p>
+<p><a href="https://zhuanlan.zhihu.com/p/55637237" target="_blank" rel="noopener"><strong>SpringBoot自动配置原理</strong></a></p>
+<p><a href="https://blog.csdn.net/u014745069/article/details/83820511?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param" target="_blank" rel="noopener">面试杀手锏————自动配置原理</a></p>
+<blockquote>
+<p>Spring Boot启动的时候会通过@EnableAutoConfiguration注解找到META-INF/spring.factories配置文件中的所有自动配置类，并对其进行加载，而这些自动配置类都是以AutoConfiguration结尾来命名的，它实际上就是一个JavaConfig形式的Spring容器配置类，它能通过以Properties结尾命名的类中取得在全局配置文件中配置的属性如：server.port，而XxxxProperties类是通过@ConfigurationProperties注解与全局配置文件中对应的属性进行绑定的。<br>————————————————<br>版权声明：本文为CSDN博主「圣斗士Morty」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/u014745069/article/details/83820511" target="_blank" rel="noopener">https://blog.csdn.net/u014745069/article/details/83820511</a></p>
+</blockquote>
 <h1><span id="开发登录模块"><strong>开发登录模块</strong></span></h1><h2><span id="注册登录"><strong>注册登录</strong></span></h2><h3><span id="验证码"><strong>验证码</strong></span></h3><p>使用Kaptcha开发发送验证码的功能，spring boot没有对哪个小东西做自动配置，kaptcha。我们自己在config文件夹里面做配置。</p>
 <ul>
 <li>maven里面导入jar包</li>
