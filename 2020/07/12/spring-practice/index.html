@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-24T16:39:15.419Z">
+<meta property="og:updated_time" content="2020-07-28T06:52:24.509Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    34 分钟 读完 (大约 5039 个字)
+                    34 分钟 读完 (大约 5157 个字)
                 </span>
                 
                 
@@ -461,6 +461,11 @@
 <p>SpringAOP通过代理方式织入代码，<code>只支持方法类型的连接点</code>。</p>
 <h1><span id="redis">Redis</span></h1><p><a href="https://str818.github.io/archive.html?tag=Redis" target="_blank" rel="noopener">Redis</a></p>
 <h2><span id="入门知识点">入门知识点</span></h2><p><strong>1.</strong><br>NoSQL是关系型数据库之外的数据库的统称，Redis就是一个NoSQL数据库。<br>Redis值支持多种数据类型，包括字符串、哈希、列表、集合、有序集合等。<br>Redis提供了对值进行运算的命令，如对集合求交集、并集、差集等。<br><strong>2.</strong><br>RBD是以快照的形式，将内存中的数据整体拷贝到硬盘上。<br>执行RBD存储会产生阻塞，因此RDN不适合实时备份，而适合定时备份<br>AOF的操作的是实时性好，但是产生的数据体积大，数据的恢复速度慢</p>
+<ul>
+<li>基于键值对的NoSQL数据库，它的<strong>值</strong>支持多种数据结构：<code>字符串，哈希，列表，集合，有序集合</code>等。</li>
+<li>所有数据存放在内存里面，读写性能很快。保证数据安全，Redis将内存中的数据<strong>以<code>快照</code>或<code>日志</code>的形式</strong>保存在硬盘上。</li>
+<li>应用场景：缓存、排行榜、计数器、社交网络、消息队列。</li>
+</ul>
 <h2><span id="设置redis"><strong>设置Redis</strong></span></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> RedisTemplate&lt;Object, Object&gt; <span class="hljs-title">redisTemplate</span><span class="hljs-params">(RedisConnectionFactory redisConnectionFactory)</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">throws</span> UnknownHostException </span>&#123;</span><br><span class="line">    RedisTemplate&lt;Object, Object&gt; template = <span class="hljs-keyword">new</span> RedisTemplate&lt;&gt;();</span><br><span class="line">    template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="hljs-keyword">return</span> template;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>有session后，template就有可以访问redis数据库的能力了。java程序中得到的对象都是java类型数据，存入redis之前需要序列化，所以配置的主要工作就是设置序列化方式。</p>
 
