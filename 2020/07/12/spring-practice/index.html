@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-28T06:52:24.509Z">
+<meta property="og:updated_time" content="2020-08-03T10:17:32.500Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    34 分钟 读完 (大约 5157 个字)
+                    37 分钟 读完 (大约 5502 个字)
                 </span>
                 
                 
@@ -204,11 +204,13 @@
 </li>
 </ul>
 </li>
-<li><a href="#redis">Redis</a><ul>
-<li><a href="#入门知识点">入门知识点</a></li>
-<li><a href="#设置redis"><strong>设置Redis</strong></a></li>
+<li><a href="#redis"><strong>Redis</strong></a><ul>
+<li><a href="#入门知识点"><strong>入门知识点</strong></a></li>
+<li><a href="#spring整合redis"><strong>Spring整合Redis</strong></a></li>
+<li><a href="#redis优化登录模块"><strong>Redis优化登录模块</strong></a></li>
 </ul>
 </li>
+<li><a href="#kafka"><strong>Kafka</strong></a></li>
 </ul>
 <!-- tocstop -->
 <h1><span id="接触spring-boot"><strong>接触spring Boot</strong></span></h1><h2><span id="spring-入门"><strong>Spring 入门</strong></span></h2><p>Spring Cloud用来做微服务的。<br>Spring Cloud Data Flow</p>
@@ -459,16 +461,36 @@
 <li>目标对象<code>没有</code>接口的时候，用CGLib动态代理，底层字节码，运行时创建<code>子类代理实例</code>。</li>
 </ul>
 <p>SpringAOP通过代理方式织入代码，<code>只支持方法类型的连接点</code>。</p>
-<h1><span id="redis">Redis</span></h1><p><a href="https://str818.github.io/archive.html?tag=Redis" target="_blank" rel="noopener">Redis</a></p>
-<h2><span id="入门知识点">入门知识点</span></h2><p><strong>1.</strong><br>NoSQL是关系型数据库之外的数据库的统称，Redis就是一个NoSQL数据库。<br>Redis值支持多种数据类型，包括字符串、哈希、列表、集合、有序集合等。<br>Redis提供了对值进行运算的命令，如对集合求交集、并集、差集等。<br><strong>2.</strong><br>RBD是以快照的形式，将内存中的数据整体拷贝到硬盘上。<br>执行RBD存储会产生阻塞，因此RDN不适合实时备份，而适合定时备份<br>AOF的操作的是实时性好，但是产生的数据体积大，数据的恢复速度慢</p>
+<h1><span id="redis"><strong>Redis</strong></span></h1><p><a href="https://str818.github.io/archive.html?tag=Redis" target="_blank" rel="noopener">Redis</a></p>
+<h2><span id="入门知识点"><strong>入门知识点</strong></span></h2><p><strong>1.</strong><br>NoSQL是关系型数据库之外的数据库的统称，Redis就是一个NoSQL数据库。<br>Redis值支持多种数据类型，包括字符串、哈希、列表、集合、有序集合等。<br>Redis提供了对值进行运算的命令，如对集合求交集、并集、差集等。<br><strong>2.</strong><br>RBD是以快照的形式，将内存中的数据整体拷贝到硬盘上。<br>执行RBD存储会产生阻塞，因此RDN不适合实时备份，而适合定时备份<br>AOF的操作的是实时性好，但是产生的数据体积大，数据的恢复速度慢</p>
 <ul>
 <li>基于键值对的NoSQL数据库，它的<strong>值</strong>支持多种数据结构：<code>字符串，哈希，列表，集合，有序集合</code>等。</li>
 <li>所有数据存放在内存里面，读写性能很快。保证数据安全，Redis将内存中的数据<strong>以<code>快照</code>或<code>日志</code>的形式</strong>保存在硬盘上。</li>
 <li>应用场景：缓存、排行榜、计数器、社交网络、消息队列。</li>
 </ul>
-<h2><span id="设置redis"><strong>设置Redis</strong></span></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> RedisTemplate&lt;Object, Object&gt; <span class="hljs-title">redisTemplate</span><span class="hljs-params">(RedisConnectionFactory redisConnectionFactory)</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">throws</span> UnknownHostException </span>&#123;</span><br><span class="line">    RedisTemplate&lt;Object, Object&gt; template = <span class="hljs-keyword">new</span> RedisTemplate&lt;&gt;();</span><br><span class="line">    template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="hljs-keyword">return</span> template;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="spring整合redis"><strong>Spring整合Redis</strong></span></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> RedisTemplate&lt;Object, Object&gt; <span class="hljs-title">redisTemplate</span><span class="hljs-params">(RedisConnectionFactory redisConnectionFactory)</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">throws</span> UnknownHostException </span>&#123;</span><br><span class="line">    RedisTemplate&lt;Object, Object&gt; template = <span class="hljs-keyword">new</span> RedisTemplate&lt;&gt;();</span><br><span class="line">    template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="hljs-keyword">return</span> template;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>有session后，template就有可以访问redis数据库的能力了。java程序中得到的对象都是java类型数据，存入redis之前需要序列化，所以配置的主要工作就是设置序列化方式。</p>
-
+<p>启动一个docker，挂载本机和容器的接口，就不需要我自己电脑再安装docker了。</p>
+<p>测试类里面操作Redis</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testSets</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    String redisKey = <span class="hljs-string">"test:teachers"</span>;</span><br><span class="line"></span><br><span class="line">    redisTemplate.opsForSet().add(redisKey, <span class="hljs-string">"刘备"</span>, <span class="hljs-string">"关羽"</span>, <span class="hljs-string">"张飞"</span>, <span class="hljs-string">"赵云"</span>, <span class="hljs-string">"诸葛亮"</span>);</span><br><span class="line"></span><br><span class="line">    System.out.println(redisTemplate.opsForSet().size(redisKey));</span><br><span class="line">    System.out.println(redisTemplate.opsForSet().pop(redisKey));</span><br><span class="line">    System.out.println(redisTemplate.opsForSet().members(redisKey));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testSortedSets</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    String redisKey = <span class="hljs-string">"test:students"</span>;</span><br><span class="line"></span><br><span class="line">    redisTemplate.opsForZSet().add(redisKey, <span class="hljs-string">"唐僧"</span>, <span class="hljs-number">80</span>);</span><br><span class="line">    redisTemplate.opsForZSet().add(redisKey, <span class="hljs-string">"悟空"</span>, <span class="hljs-number">90</span>);</span><br><span class="line">    redisTemplate.opsForZSet().add(redisKey, <span class="hljs-string">"八戒"</span>, <span class="hljs-number">50</span>);</span><br><span class="line">    redisTemplate.opsForZSet().add(redisKey, <span class="hljs-string">"沙僧"</span>, <span class="hljs-number">70</span>);</span><br><span class="line">    redisTemplate.opsForZSet().add(redisKey, <span class="hljs-string">"白龙马"</span>, <span class="hljs-number">60</span>);</span><br><span class="line"></span><br><span class="line">    System.out.println(redisTemplate.opsForZSet().zCard(redisKey));</span><br><span class="line">    System.out.println(redisTemplate.opsForZSet().score(redisKey, <span class="hljs-string">"八戒"</span>));</span><br><span class="line">    System.out.println(redisTemplate.opsForZSet().rank(redisKey, <span class="hljs-string">"八戒"</span>));</span><br><span class="line">    System.out.println(redisTemplate.opsForZSet().range(redisKey, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Test</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testKeys</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    redisTemplate.delete(<span class="hljs-string">"test:user"</span>);</span><br><span class="line"></span><br><span class="line">    System.out.println(redisTemplate.hasKey(<span class="hljs-string">"test:user"</span>));</span><br><span class="line"></span><br><span class="line">    redisTemplate.expire(<span class="hljs-string">"test:students"</span>, <span class="hljs-number">10</span>, TimeUnit.SECONDS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>RedisKey</code>：访问的时候还是key, value访问的。value放的就是redis支持的几种数据类型：String, Hash, Lists, Sets, Sorted Sets</p>
+<h2><span id="redis优化登录模块"><strong>Redis优化登录模块</strong></span></h2><ul>
+<li>存储验证码<ul>
+<li>验证码需要频繁访问和刷新</li>
+<li>验证码不需要永久保存，通常在很短时间就失效。</li>
+<li>分布式部署时，存在Session共享的问题</li>
+</ul>
+</li>
+<li>存储登录凭证<ul>
+<li>每次请求都会查询用户登录凭证（之前是放在数据库），<strong>访问频率很高。</strong></li>
+</ul>
+</li>
+<li>Redis缓存用户数据<ul>
+<li>处理请求时，根据凭证查询用户信息，<strong>访问频率高。</strong></li>
+</ul>
+</li>
+</ul>
+<h1><span id="kafka"><strong>Kafka</strong></span></h1>
         </div>
         
         
