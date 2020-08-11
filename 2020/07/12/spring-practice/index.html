@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-08-09T16:22:16.607Z">
+<meta property="og:updated_time" content="2020-08-11T13:54:20.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    37 分钟 读完 (大约 5504 个字)
+                    43 分钟 读完 (大约 6524 个字)
                 </span>
                 
                 
@@ -206,6 +206,22 @@
 </li>
 <li><a href="#redis"><strong>Redis</strong></a><ul>
 <li><a href="#入门知识点"><strong>入门知识点</strong></a></li>
+<li><a href="#redis-持久化机制"><strong>Redis 持久化机制</strong></a><ul>
+<li><a href="#一-rdb-redis-database"><strong>一、 RDB (Redis Database)</strong></a><ul>
+<li><a href="#1-手动执行"><strong>1. 手动执行</strong></a></li>
+<li><a href="#2-配置执行"><strong>2. 配置执行</strong></a></li>
+</ul>
+</li>
+<li><a href="#二-aof-append-only-file"><strong>二、 AOF (Append Only File)</strong></a><ul>
+<li><a href="#1开启方式"><strong>1.开启方式</strong></a></li>
+<li><a href="#2相关配置"><strong>2.相关配置</strong></a></li>
+<li><a href="#3日志重写"><strong>3.日志重写</strong></a></li>
+</ul>
+</li>
+<li><a href="#三-区别"><strong>三、 区别</strong></a></li>
+<li><a href="#其他redis参考资料"><strong>其他Redis参考资料</strong></a></li>
+</ul>
+</li>
 <li><a href="#spring整合redis"><strong>Spring整合Redis</strong></a></li>
 <li><a href="#redis优化登录模块"><strong>Redis优化登录模块</strong></a></li>
 <li><a href="#点赞"><strong>点赞</strong></a></li>
@@ -469,6 +485,48 @@
 <li>所有数据存放在内存里面，读写性能很快。保证数据安全，Redis将内存中的数据<strong>以<code>快照</code>或<code>日志</code>的形式</strong>保存在硬盘上。</li>
 <li>应用场景：缓存、排行榜、计数器、社交网络、消息队列。</li>
 </ul>
+<h2><span id="redis-持久化机制"><strong>Redis 持久化机制</strong></span></h2><p>Redis是内存型数据库，服务器进程退出，Redis里面的数据就会丢失。提供2种持久化方案，将内存中数据保存到磁盘中。</p>
+<h3><span id="一-rdb-redis-database"><strong>一、 RDB (Redis Database)</strong></span></h3><p>默认RDB持久化，内存 -》 磁盘。可手动，可<code>redis.conf</code>配置。</p>
+<h4><span id="1-手动执行"><strong>1. 手动执行</strong></span></h4><p>RDB文件可以通过两个命令生成：</p>
+<ul>
+<li>SAVE：阻塞Redis的服务器进程，知道RDB文件创建完毕。</li>
+<li>BGSAVE：fork一个子进程创建RDB文件，记录此刻的数据，交给子进程去创建RDB文件，父进程继续处理自己接收到的命令。</li>
+</ul>
+<p>RDB的载入<code>load</code>是自动的，启动Redis的时候，自动加载RDB文件。</p>
+<p>注：如果Redis开了AOF持久化，Redis会优先使用AOF文件还原数据。</p>
+<h4><span id="2-配置执行"><strong>2. 配置执行</strong></span></h4><p>配置执行将<code>数据从内存保存到硬盘</code>的条件。为了<strong>平衡性能和数据的安全</strong>，可以自定义多个规则，满足一个就可以执行<code>BGSAVE</code>命令。</p>
+<blockquote>
+<p>save 900 1        # 服务器在 900 秒之内被修改了 1 次<br>save 300 10        # 服务器在 300 秒之内被修改了 10 次<br>save 60 10000 # 服务器在 60 秒之内被修改了 10000 次</p>
+</blockquote>
+<h3><span id="二-aof-append-only-file"><strong>二、 AOF (Append Only File)</strong></span></h3><p>从上面可以看出来，RDB并不是完全可靠的。如果服务器突然宕机或断电。没有触发<code>保存到硬盘</code>的操作，数据就丢失了。AOF 文件提供了一种更可靠的持久化方式。每当 Redis 接受到修改数据的命令时，就会把命令追加到 AOF 文件中，当重启 Redis 时，AOF 里的命令会被重新执行一次。</p>
+<h4><span id="1开启方式"><strong>1.开启方式</strong></span></h4><p>AOF 和 RDB 持久化方式可以同时启动并且无冲突，如果 AOF 开启，启动 Redis 时会加载 AOF 文件，优先从AOF。</p>
+<p>in redis.conf:</p>
+<blockquote>
+<p>appendonly yes</p>
+</blockquote>
+<h4><span id="2相关配置"><strong>2.相关配置</strong></span></h4><p><code>appendfsync</code> 配置会影响服务器多久完成一次命令的记录，默认使用 everysec：</p>
+<ul>
+<li><code>always</code>：将缓存区的内容总是即时写到AOF文件中</li>
+<li><code>everysec</code>：将缓存区的内容每隔一秒写入AOF文件中</li>
+<li><code>no</code>：写入AOF文件中的操作由操作系统决定，一般而言为了提高效率，操作系统会等待缓存区被填满，才会开始同步数据到磁盘</li>
+</ul>
+<h4><span id="3日志重写"><strong>3.日志重写</strong></span></h4><p>AOF文件会越来越大，方法：<strong>AOF重建</strong></p>
+<p><strong>e.g.</strong>: 随着写操作的不断增加，AOF 文件会越来越大。例如递增一个计数器 100 次，那么最终结果就是数据集里的计数器的值为最终的递增结果，但是 AOF 文件里却会把这 100 次操作完整的记录下来。而事实上要恢复这个记录，只需要 1 个命令就行了，也就是说 AOF 文件里那 100 条命令其实可以精简为 1 条。</p>
+<p>重写过程：</p>
+<ul>
+<li>fork 一个子进程</li>
+<li>子进程把新的 AOF 写到一个临时文件里</li>
+<li>主进程持续把新的变动写到内存里的 Buffer，同时也会把这些新的变动写到旧的 AOF 里，这样即使重写失败也能保证数据的安全</li>
+<li>当子进程完成文件的重写后，主进程会获得一个信号，然后把内存里的 Buffer 追加到子进程生成的那个新 AOF 里</li>
+</ul>
+<blockquote>
+<p>auto-aof-rewrite-percentage 100<br>auto-aof-rewrite-min-size 64mb</p>
+</blockquote>
+<h3><span id="三-区别"><strong>三、 区别</strong></span></h3><ul>
+<li>RDB 持久化，安全性较差，它是正常时期数据备份及主从数据同步的最佳手段，文件尺寸较小，恢复数据较快。</li>
+<li>AOF 更安全，可将数据及时同步到文件中，但需要较多的磁盘 IO、AOF 文件较大，文件数据恢复相对较慢，也更完整。</li>
+</ul>
+<h3><span id="其他redis参考资料"><strong>其他Redis参考资料</strong></span></h3><p><a href="https://str818.github.io/archive.html?tag=Redis" target="_blank" rel="noopener"><strong>str818 Redis</strong></a></p>
 <h2><span id="spring整合redis"><strong>Spring整合Redis</strong></span></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> RedisTemplate&lt;Object, Object&gt; <span class="hljs-title">redisTemplate</span><span class="hljs-params">(RedisConnectionFactory redisConnectionFactory)</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">throws</span> UnknownHostException </span>&#123;</span><br><span class="line">    RedisTemplate&lt;Object, Object&gt; template = <span class="hljs-keyword">new</span> RedisTemplate&lt;&gt;();</span><br><span class="line">    template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="hljs-keyword">return</span> template;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>有session后，template就有可以访问redis数据库的能力了。java程序中得到的对象都是java类型数据，存入redis之前需要序列化，所以配置的主要工作就是设置序列化方式。</p>
 <p>启动一个docker，挂载本机和容器的接口，就不需要我自己电脑再安装docker了。</p>
