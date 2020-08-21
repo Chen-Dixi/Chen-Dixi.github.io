@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-08-13T04:57:57.995Z">
+<meta property="og:updated_time" content="2020-08-20T16:08:39.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 7090 个字)
+                    1 小时 读完 (大约 8041 个字)
                 </span>
                 
                 
@@ -232,7 +232,21 @@
 </li>
 </ul>
 </li>
-<li><a href="#kafka"><strong>Kafka</strong></a></li>
+<li><a href="#kafka"><strong>Kafka</strong></a><ul>
+<li><a href="#阻塞队列">阻塞队列</a></li>
+<li><a href="#kafka简介">Kafka简介</a></li>
+<li><a href="#spring整合kafka"><strong>Spring整合Kafka</strong></a><ul>
+<li><a href="#kafkatemplate"><strong>KafkaTemplate</strong></a></li>
+<li><a href="#eventproducer">EventProducer</a></li>
+<li><a href="#eventconsumer">EventConsumer</a></li>
+<li><a href="#docker-zookeeper-kafka">Docker Zookeeper + Kafka</a><ul>
+<li><a href="#docker-compose">Docker Compose</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 <h1><span id="接触spring-boot"><strong>接触spring Boot</strong></span></h1><h2><span id="spring-入门"><strong>Spring 入门</strong></span></h2><p>Spring Cloud用来做微服务的。<br>Spring Cloud Data Flow</p>
@@ -575,7 +589,81 @@
 <li>表现层<br>前端页面</li>
 </ul>
 <p>遇见bug<br><strong>前端不显示关注列表：</strong><br>1 注释 model.addAttribute，看效果是否一样<br>2 在前端 某个 标签添加<code>th:if=&quot;${users!=null}&quot;</code>。如果这个标签内容不在了，说明users没传给前端。<br>3 发现是<code>model.addAttribute(&quot;users &quot;,userList)</code> 多打了一个空格。</p>
-<h1><span id="kafka"><strong>Kafka</strong></span></h1>
+<h1><span id="kafka"><strong>Kafka</strong></span></h1><p><strong>TB级别异步消息系统</strong></p>
+<h2><span id="阻塞队列">阻塞队列</span></h2><ul>
+<li>BlockingQueue<ul>
+<li>解决线程通信功能</li>
+<li>阻塞方法：put、wake</li>
+</ul>
+</li>
+<li>生产者消费者问题<ul>
+<li>生产者：产生数据的线程</li>
+<li>消费者：使用数据的线程</li>
+</ul>
+</li>
+<li>JDK实现类<ul>
+<li>ArrayBlockingQueue 数组</li>
+<li>LinkedBlockingQueue 链表实现</li>
+<li>PriorityBlockingQueue, SynchronousQueue, DelayQueue. 各种队列形式</li>
+</ul>
+</li>
+</ul>
+<h2><span id="kafka简介">Kafka简介</span></h2><p>Kafka是一个分布式流媒体平台<br>消息系统、日志收集、用户行为追踪、流式处理</p>
+<p>Kafka特点</p>
+<ul>
+<li>高吞吐量、消息持久化、高可靠性、高扩展性</li>
+</ul>
+<p>Kafka会把数据存在硬盘里面。（读取硬盘的效率取决于使用方式，所以并不是说Kafka就慢）</p>
+<ul>
+<li>Kafka术语：<ul>
+<li>Broker（Kafka的服务器，即群中每一台服务器就叫Broker），Zookeeper（Zookeeper是单独的软件，Kafka可以内置一个Zookeeper进去）</li>
+<li>Topic（主题，1：点对点：生产者消费者。2：发布订阅，消息被多个消费者同时读到。Kafka采用发布订阅模式，生产者把消息放到的空间就是topic。)</li>
+<li>Partition（分区，主题位置分区。增强并发能力）</li>
+<li>Offset（针对某一个分区，）</li>
+<li>Leader Replica、Follower Replica （Replica副本，不止存一份。主副本，从副本。）</li>
+</ul>
+</li>
+</ul>
+<p>发布订阅模式，</p>
+<h2><span id="spring整合kafka"><strong>Spring整合Kafka</strong></span></h2><ul>
+<li><p>引入依赖</p>
+</li>
+<li><p>配置Kafka</p>
+<ul>
+<li>server、consumer</li>
+</ul>
+</li>
+</ul>
+<p>properties文件配置</p>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">spring.kafka.bootstrap-servers=localhost:9092</span></span><br><span class="line"><span class="hljs-string">spring.kafka.consumer.group-id=community-consumer-group</span></span><br><span class="line"><span class="hljs-string">spring.kafka.consumer.enable-auto-commit=true</span></span><br><span class="line"><span class="hljs-string">spring.kafka.consumer.auto-commit-interval=3000</span></span><br><span class="line"><span class="hljs-string">spring.devtools.livereload.enabled=true</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>访问Kafka<ul>
+<li>生产者：<code>kafkaTemplate.send(topic, data);</code></li>
+<li>消费者<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@KafkaListener</span>(topics = &#123;<span class="hljs-string">"test"</span>&#125;)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(ConsumerRecord record)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="kafkatemplate"><strong>KafkaTemplate</strong></span></h3><p>有一个<code>KafkaTemplate</code>的东西已经包含在Spring里面，直接使用<code>@Autoweird</code>就可以获取。</p>
+<h3><span id="eventproducer">EventProducer</span></h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Component</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventProducer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Autowired</span></span><br><span class="line">    <span class="hljs-keyword">private</span> KafkaTemplate kafkaTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//发布事件</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fileEvent</span><span class="hljs-params">(Event event)</span></span>&#123;</span><br><span class="line">        <span class="hljs-comment">// send (String, Object)</span></span><br><span class="line">        kafkaTemplate.send(event.getTopic(), JSONObject.toJSONString(event));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="eventconsumer">EventConsumer</span></h3><p>用@KafkaListener监听</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Component</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventConsumer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">CommunityConstant</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//需要记录日志</span></span><br><span class="line">    <span class="hljs-comment">// 发布日志的过程，有可能出现问题，需要日志记录</span></span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Logger logger = LoggerFactory.getLogger(EventConsumer.class);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Autowired</span></span><br><span class="line">    <span class="hljs-keyword">private</span> MessageService messageService;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Autowired</span></span><br><span class="line">    <span class="hljs-keyword">private</span> DiscussPostService discussPostService;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@KafkaListener</span>(topics = &#123;TOPIC_COMMENT, TOPIC_LIKE, TOPIC_FOLLOW&#125;)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleCommentMessage</span><span class="hljs-params">(ConsumerRecord record)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(record == <span class="hljs-keyword">null</span> || record.value() == <span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">            logger.error(<span class="hljs-string">"消息内容为空"</span>);</span><br><span class="line">            <span class="hljs-keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Event event = JSONObject.parseObject(record.value().toString(), Event.class);</span><br><span class="line">        <span class="hljs-keyword">if</span>(event == <span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">            logger.error(<span class="hljs-string">"消息格式错误"</span>);</span><br><span class="line">            <span class="hljs-keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//发送站内内容，私人消息，站内通知都是用的Message类</span></span><br><span class="line">        Message message =<span class="hljs-keyword">new</span> Message();</span><br><span class="line">        message.setConversationId(event.getTopic());</span><br><span class="line">        message.setToId(event.getEntityUserId());</span><br><span class="line">        message.setCreateTime(<span class="hljs-keyword">new</span> Date());</span><br><span class="line">        message.setFromId(SYSTEM_USER_ID);</span><br><span class="line"></span><br><span class="line">        Map&lt;String, Object&gt; content = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        content.put(<span class="hljs-string">"userId"</span>, event.getUserId());</span><br><span class="line">        content.put(<span class="hljs-string">"entityId"</span>,event.getEntityUserId());</span><br><span class="line">        content.put(<span class="hljs-string">"entityType"</span>, event.getEntityType());</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span>(!event.getData().isEmpty())&#123;</span><br><span class="line">            <span class="hljs-keyword">for</span>(Map.Entry&lt;String, Object&gt; entry: event.getData().entrySet())&#123;</span><br><span class="line">                content.put(entry.getKey(),entry.getValue());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        message.setContent(JSONObject.toJSONString(content));</span><br><span class="line">        messageService.addMessage(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//消息发帖事件 publish</span></span><br><span class="line">    <span class="hljs-meta">@KafkaListener</span>(topics = &#123;TOPIC_PUBLISH&#125;)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handlePublishMessage</span><span class="hljs-params">(ConsumerRecord record)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(record == <span class="hljs-keyword">null</span> || record.value()==<span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">            logger.error(<span class="hljs-string">"消息内容为空"</span>);</span><br><span class="line">            <span class="hljs-keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Event event = JSONObject.parseObject(record.value().toString(), Event.class);</span><br><span class="line">        <span class="hljs-keyword">if</span>(event == <span class="hljs-keyword">null</span>)&#123;</span><br><span class="line">            logger.error(<span class="hljs-string">"消息格式错误"</span>);</span><br><span class="line">            <span class="hljs-keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        DiscussPost discussPost = discussPostService.findDiscussPostById(event.getEntityId());</span><br><span class="line">        <span class="hljs-comment">//elasticsearchService.saveDiscussPost(post);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="docker-zookeeper-kafka">Docker Zookeeper + Kafka</span></h3><p><a href="https://www.cnblogs.com/itbac/p/11943890.html" target="_blank" rel="noopener">参考博客</a></p>
+<h4><span id="docker-compose">Docker Compose</span></h4><p>1 Dockerfile，让他可以在任何地方运行。<br>2 docker-compose.yml。<br>3 运行 docker-compose up 指令。</p>
+<p>Docker Compose也有指令可以管理Docker应用的整个生命周期。</p>
+<ul>
+<li>start,stop,and rebuild services</li>
+<li>view the status of running services</li>
+<li>stream the log output of running services</li>
+<li>Run a one-off command on a service</li>
+</ul>
+<p>用<code>Kafka + Zookper</code>来实践一次Docker Compose的使用。系统环境 <code>macOS X</code></p>
+<p><code>Zookeeper</code>和<code>Kafka</code>运行在不同的容器里面。zookeeper官方镜像，kafka采用wurstmeister/kafka镜像</p>
+<p>实现目标：</p>
+<blockquote>
+<p>kafka在docker网络中可用，和zookeeper处于同一网络<br>宿主机可以访问zookeeper集群和kafka的broker list<br>docker重启时集群自动重启<br>集群的数据文件映射到宿主机器目录中<br>使用yml文件和 docker-compose up -d命令创建或重建集群</p>
+</blockquote>
+
         </div>
         
         
@@ -673,7 +761,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        43
+                        44
                     </p>
                 </div>
             </div>
@@ -683,7 +771,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        18
+                        19
                     </p>
                 </div>
             </div>
@@ -854,6 +942,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/英语/">
+            <span class="level-start">
+                <span class="level-item">英语</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/语音合成/">

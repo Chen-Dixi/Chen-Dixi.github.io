@@ -15,7 +15,7 @@
 <meta property="og:description" content="笔记">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-07-09T09:54:46.023Z">
+<meta property="og:updated_time" content="2020-08-13T14:42:28.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统">
 <meta name="twitter:description" content="笔记">
@@ -145,7 +145,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    21 分钟 读完 (大约 3143 个字)
+                    22 分钟 读完 (大约 3367 个字)
                 </span>
                 
                 
@@ -177,6 +177,7 @@
 <li><a href="#整数型信号量">整数型信号量</a></li>
 <li><a href="#记录型信号量">记录型信号量</a></li>
 <li><a href="#用信号量实现进程互斥-同步-前驱关系">用信号量实现进程互斥、同步、前驱关系</a></li>
+<li><a href="#生产者消费者问题">生产者消费者问题</a></li>
 </ul>
 </li>
 <li><a href="#管程">管程</a><ul>
@@ -261,7 +262,19 @@
 
 <div align="center"><br><img src="https://s1.ax1x.com/2020/07/09/UmE9Zn.jpg" alt><br></div>
 
-<h3><span id="用信号量实现进程互斥-同步-前驱关系">用信号量实现进程互斥、同步、前驱关系</span></h3><h2><span id="管程">管程</span></h2><h3><span id="为什么引入管程">为什么引入管程</span></h3><p>信号量机制的问题：编写程序困难，容易出错。<br>想要设计一种机制，程序员写程序不再需要关注复杂的PV操作。</p>
+<h3><span id="用信号量实现进程互斥-同步-前驱关系">用信号量实现进程互斥、同步、前驱关系</span></h3><h3><span id="生产者消费者问题">生产者消费者问题</span></h3><p>经典的进程互斥同步问题。</p>
+<p>生产者消费者一开始共享一个 初始容量为 n 的缓冲区。</p>
+<ol>
+<li>缓冲区满的时候，生产者必须等待。</li>
+<li>缓冲区空的时候，消费者又必须等待。</li>
+<li>缓冲区属于临界资源，各个进程必须互斥地访问。无论是在几个生产者使用缓冲区时，都是互斥访问的。几个生产者如果不互斥，后一个生产者可能覆盖前一个生产者进程生成的资源。</li>
+</ol>
+<p>3个信号量<br>初始状态，大小为n的缓冲区</p>
+<p>semaphore full = 0;<br>semaphore empty = n;<br>semaphore mutex = 1;</p>
+<p>生产者：<br><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;</span><br><span class="line">    P(empty);</span><br><span class="line">    P(mutex);</span><br><span class="line">    <span class="hljs-comment">//临界区 生产资源</span></span><br><span class="line">    V(mutex);</span><br><span class="line">    V(full);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>消费者：</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;</span><br><span class="line">    P(full);</span><br><span class="line">    P(mutex);</span><br><span class="line">    <span class="hljs-comment">//临界区 消费资源</span></span><br><span class="line">    V(mutex);</span><br><span class="line">    V(empty);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="管程">管程</span></h2><h3><span id="为什么引入管程">为什么引入管程</span></h3><p>信号量机制的问题：编写程序困难，容易出错。<br>想要设计一种机制，程序员写程序不再需要关注复杂的PV操作。</p>
 <h3><span id="管程的定义和基本特征">管程的定义和基本特征</span></h3><p>也来用来进程的互斥和同步的，管程是一种特殊的软件模块，有这些部分组成：</p>
 <ol>
 <li>局部于管程的<code>共享数据结构</code>说明</li>
@@ -310,7 +323,7 @@
 <p>方案二： 需要的资源被其他进程占有，可以由操作系统协助，将想要的资源强行剥夺。<strong>需要考虑进程优先级，CPU处理机资源强行剥夺给优先级更高的进程使用</strong></p>
 <p>缺点：</p>
 <ol>
-<li>实习起来麻烦</li>
+<li>实现起来麻烦</li>
 <li>释放已经获得的资源会让前一阶段工作失效。这种方法只适用于 容易保存和恢复状态的资源，比如CPU，用PCB进程控制快保存进程的运行状态。</li>
 <li>反复申请和释放资源会增加系统开销，降低系统吞吐量。</li>
 <li>方案一，容易让进程饥饿。<strong>总是半途而废一直做不完</strong></li>
@@ -432,7 +445,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        43
+                        44
                     </p>
                 </div>
             </div>
@@ -442,7 +455,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        18
+                        19
                     </p>
                 </div>
             </div>
@@ -613,6 +626,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/英语/">
+            <span class="level-start">
+                <span class="level-item">英语</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/语音合成/">
