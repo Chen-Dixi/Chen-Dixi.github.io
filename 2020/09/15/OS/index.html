@@ -10,12 +10,12 @@
     <meta name="description" content="笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统">
-<meta property="og:url" content="http://yoursite.com/2020/07/09/OS/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/09/15/OS/index.html">
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:description" content="笔记">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-09-02T04:16:48.182Z">
+<meta property="og:updated_time" content="2020-09-15T14:58:14.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统">
 <meta name="twitter:description" content="笔记">
@@ -139,13 +139,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-07-09T03:06:05.000Z">2020-07-09</time>
+                <time class="level-item has-text-grey" datetime="2020-09-15T03:06:05.000Z">2020-09-15</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    22 分钟 读完 (大约 3367 个字)
+                    29 分钟 读完 (大约 4299 个字)
                 </span>
                 
                 
@@ -161,7 +161,18 @@
             <h1><span id="笔记">笔记</span></h1><a id="more"></a>
 <!-- toc -->
 <ul>
-<li><a href="#同步-互斥">同步、互斥</a><ul>
+<li><a href="#进程线程协程">进程，线程，协程</a><ul>
+<li><a href="#进程包含内容">进程包含内容：</a></li>
+<li><a href="#进程间通信">进程间通信</a><ul>
+<li><a href="#共享存储"><strong>共享存储</strong></a></li>
+<li><a href="#管道"><strong>管道</strong></a></li>
+<li><a href="#消息传递"><strong>消息传递</strong></a></li>
+</ul>
+</li>
+<li><a href="#讲一下进程线程和协程">讲一下进程,线程和协程</a></li>
+</ul>
+</li>
+<li><a href="#同步互斥"><strong>同步\互斥</strong></a><ul>
 <li><a href="#同步">同步</a></li>
 <li><a href="#进程互斥">进程互斥</a><ul>
 <li><a href="#进程互斥4个部分">进程互斥4个部分</a></li>
@@ -202,7 +213,6 @@
 </li>
 <li><a href="#避免死锁">避免死锁</a><ul>
 <li><a href="#什么是安全序列">什么是安全序列</a></li>
-<li><a href="#什么是系统的不安全状态和死锁有什么联系">什么是系统的不安全状态，和死锁有什么联系</a></li>
 <li><a href="#如何避免系统进入不安全状态-银行家算法">如何避免系统进入不安全状态–银行家算法</a></li>
 </ul>
 </li>
@@ -210,9 +220,44 @@
 </li>
 </ul>
 </li>
+<li><a href="#虚拟内存">虚拟内存</a></li>
 </ul>
 <!-- tocstop -->
-<h1><span id="同步-互斥">同步、互斥</span></h1><h2><span id="同步">同步</span></h2><p>进程具有<code>异步性</code>：各个并发执行的进程以各自独立的、不可预知的速度向前推进。</p>
+<h1><span id="进程线程协程">进程，线程，协程</span></h1><h2><span id="进程包含内容">进程包含内容：</span></h2><ul>
+<li>进程控制块<br>进程控制块PCB又有什么：<ul>
+<li>进程标识符</li>
+<li>处理机状态</li>
+<li>调度信息</li>
+<li>进程控制信息</li>
+</ul>
+</li>
+<li>程序段</li>
+<li>数据段</li>
+</ul>
+<p>进程控制就是在更新PCB中的信息。</p>
+<h2><span id="进程间通信">进程间通信</span></h2><p>操作系统提供的方法</p>
+<ul>
+<li>共享存储</li>
+<li>消息传递</li>
+<li>管道通信</li>
+</ul>
+<h3><span id="共享存储"><strong>共享存储</strong></span></h3><div><br><img src="https://s1.ax1x.com/2020/09/15/wytwB6.jpg" alt><br></div>
+
+<p>访问互斥，基于<strong>数据结构</strong>的共享，和基于<strong>存储区</strong>的共享。</p>
+<h3><span id="管道"><strong>管道</strong></span></h3><p><img src="https://s1.ax1x.com/2020/09/15/wytXD0.jpg" alt></p>
+<p><strong>半双工</strong>，管道<strong>写满了才读</strong>，<strong>读完了才写</strong>。管道数据被读一次就被抛弃，<strong>读进程最多只有一个</strong>。</p>
+<h3><span id="消息传递"><strong>消息传递</strong></span></h3><p><strong>格式化的消息</strong>，操作系统提供<strong>发送消息</strong>，<strong>接收消息</strong>，两个<strong>原语</strong>进行数据交换。<br>消息头+消息体。消息头包括，<strong>发送进程ID，接收进程ID，消息类型，消息长度</strong>等格式化信息，类似网络报文。</p>
+<p>分两种传递方式：<strong>直接通信、间接通信</strong></p>
+<ul>
+<li><p>直接通信<br>消息直接挂在<strong>接收队列</strong>的消息缓冲队列上，<img src="https://s1.ax1x.com/2020/09/15/wyd3rR.jpg" alt></p>
+</li>
+<li><p>间接通信<br>消息先发送在中间实体（<strong>信箱</strong>）中，因此也叫“信箱通信方式”。<img src="https://s1.ax1x.com/2020/09/15/wydcIf.jpg" alt><br>接收进程在信箱中找属于自己的消息。</p>
+</li>
+</ul>
+<h2><span id="讲一下进程线程和协程">讲一下进程,线程和协程</span></h2><p>线程是调度的最小单位，多个线程共享所属同一个 进程的地址空间，所以容易有线程安全问题。进程是资源调度基本单位，切换进程上下文切换的过程也更加费时。进程的地址空间都是独立的，资源安全问题较少。<br>协程是用户态的轻量级线程，携程调度完全由用户控制。一个线程可以包含多个协程。协程拥有自己的寄存器上下文和栈。协程调度切换的时候将寄存器上下文和栈保存起来，切换回来时恢复之前保存的寄存器状态。</p>
+<p>协程切换完全在用户空间进行，线程切换涉及特权模式切换，需要在内核空间完成。<br>协程只需要涉及基本CPU上下文切换，前一个协程的 CPU 寄存器状态保存起来，然后将需要切换进来的协程的 CPU 寄存器状态加载的 CPU 寄存器上就可以。完全在用户态进行。需要保存的寄存器只包括CPU运行任务时需要的寄存器。</p>
+<p>系统内核调度对象是线程，线程是调度的基本单元。由系统内核调度线程，线程调度只有拥有最高权限的内核空间才能完成。所以线程切换的时候有用户空间和内核空间的切换，这就是“特权模式”切换。需要操作系统调度模块完成线程调度。除了和协程相同基本的 CPU 上下文，还有线程私有的栈和寄存器等。</p>
+<h1><span id="同步互斥"><strong>同步\互斥</strong></span></h1><h2><span id="同步">同步</span></h2><p>进程具有<code>异步性</code>：各个并发执行的进程以各自独立的、不可预知的速度向前推进。</p>
 <p>让并发运行的进程按照我们想要的顺序执行，“读数据”和“写数据”两个进程先后顺序本身不确定，我们让它按照“<code>写数据👉读数据</code>”的顺序执行，如何解决这种<code>异步</code>问题就是<code>进程同步</code>要讨论的内容。</p>
 <p>进程同步是进程之间有直接制约关系，也就是进程间有<code>合作关系</code>。比如先写后读。</p>
 <h2><span id="进程互斥">进程互斥</span></h2><p>进程并发<code>共享</code>某个资源。</p>
@@ -319,7 +364,8 @@
 </ol>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/07/09/Umrno9.jpg" alt><br></div>
 
-<h3><span id="预防死锁">预防死锁</span></h3><h4><span id="破坏不剥夺条件">破坏不剥夺条件</span></h4><p>方案一： 占有资源的进程请求不到新的资源，自己立即释放自己的所有资源。以后再重新申请。i.e. 某些没有使用完的资源，也需要主动释放。从而破坏了不可剥夺条件。</p>
+<h3><span id="预防死锁">预防死锁</span></h3><p>在程序运行之前预防发生死锁。</p>
+<h4><span id="破坏不剥夺条件">破坏不剥夺条件</span></h4><p>方案一： 占有资源的进程请求不到新的资源，自己立即释放自己的所有资源。以后再重新申请。i.e. 某些没有使用完的资源，也需要主动释放。从而破坏了不可剥夺条件。</p>
 <p>方案二： 需要的资源被其他进程占有，可以由操作系统协助，将想要的资源强行剥夺。<strong>需要考虑进程优先级，CPU处理机资源强行剥夺给优先级更高的进程使用</strong></p>
 <p>缺点：</p>
 <ol>
@@ -346,8 +392,10 @@
 </ol>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/07/09/UmbnTs.jpg" alt><br></div>
 
-<h3><span id="避免死锁">避免死锁</span></h3><h4><span id="什么是安全序列">什么是安全序列</span></h4><h4><span id="什么是系统的不安全状态和死锁有什么联系">什么是系统的不安全状态，和死锁有什么联系</span></h4><h4><span id="如何避免系统进入不安全状态银行家算法">如何避免系统进入不安全状态–银行家算法</span></h4><p><code>核心思想</code>：进程提出资源申请时，先预判此次分配是否会导致系统进入不安全状态。如果会进入不安全状态，就暂时不允许这次资源请求，让进程先阻塞等待。</p>
-
+<h3><span id="避免死锁">避免死锁</span></h3><p>在程序运行的时候避免发生死锁。</p>
+<h4><span id="什么是安全序列">什么是安全序列</span></h4><p>如果没有死锁发生，并且即使所有进程突然请求对资源的最大需求，也仍然存在某种调度次序能够使得每一个进程运行完毕，则称该状态是安全的。<br>这个次序就叫安全序列。</p>
+<h4><span id="如何避免系统进入不安全状态银行家算法">如何避免系统进入不安全状态–银行家算法</span></h4><p><code>核心思想</code>：进程提出资源申请时，先预判此次分配是否会导致系统进入不安全状态。如果会进入不安全状态，就暂时不允许这次资源请求，让进程先阻塞等待。</p>
+<h1><span id="虚拟内存">虚拟内存</span></h1>
         </div>
         
         
@@ -381,17 +429,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/07/11/spring/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Java spring Note</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/07/09/sort/">
-                <span class="level-item">排序算法</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/09/08/leetcode-dp/">
+                <span class="level-item">Leetcode 刷题册</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
