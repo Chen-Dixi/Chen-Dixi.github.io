@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-09-08T13:30:41.345Z">
+<meta property="og:updated_time" content="2020-09-16T03:14:32.336Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java知识汇总">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -763,7 +763,7 @@
 <li>流与块</li>
 </ul>
 <p>I/O 与 NIO 最重要的区别是数据打包和传输的方式，I/O 以流的方式处理数据，而 NIO 以块的方式处理数据。</p>
-<p>面向流的I/O一次处理一个字节数据。一个输入流一次产生一个字节数据，一个输出流一次消费一个字节数据。为流式数据创建过滤器非常容易，链接几个过滤器，以便每个过滤器只负责复杂处理机制的一部分。不利的是，<strong>面向流的 I/O 通常相当慢</strong>。</p>
+<p>面向流的I/O一次处理一个字节数据。一个输入流一次产生一个字节数据，一个输出流一次消费一个字节数据。<strong>为流式数据创建过滤器非常容易</strong>，链接几个过滤器，以便每个过滤器只负责复杂处理机制的一部分。不利的是，<strong>面向流的 I/O 通常相当慢</strong>。</p>
 <p>面向块的 I/O 一次处理一个块。<strong>按块处理数据比按流处理数据快得多</strong>，但是<strong>面向块的I/O会少一些便利优雅简单性</strong>。</p>
 <p>I/O 包和 NIO 已经很好地集成了，java.io.<em> 已经以 NIO 为基础重新实现了，所以现在它可以利用 NIO 的一些特性。例如，java.io.</em> 包中的一些类包含以块的形式读写数据的方法，这使得即使在面向流的系统中，处理速度也会更快。</p>
 <p>NIO 主要有三大核心部分：<code>Channel</code>，<code>Buffer</code>，<code>Selector</code>。</p>

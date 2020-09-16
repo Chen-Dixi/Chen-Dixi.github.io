@@ -15,7 +15,7 @@
 <meta property="og:description" content="笔记">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-09-15T14:58:14.106Z">
+<meta property="og:updated_time" content="2020-09-16T06:34:13.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统">
 <meta name="twitter:description" content="笔记">
@@ -145,7 +145,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    29 分钟 读完 (大约 4299 个字)
+                    29 分钟 读完 (大约 4369 个字)
                 </span>
                 
                 
@@ -221,6 +221,7 @@
 </ul>
 </li>
 <li><a href="#虚拟内存">虚拟内存</a></li>
+<li><a href="#linux"><strong>Linux</strong></a></li>
 </ul>
 <!-- tocstop -->
 <h1><span id="进程线程协程">进程，线程，协程</span></h1><h2><span id="进程包含内容">进程包含内容：</span></h2><ul>
@@ -395,7 +396,13 @@
 <h3><span id="避免死锁">避免死锁</span></h3><p>在程序运行的时候避免发生死锁。</p>
 <h4><span id="什么是安全序列">什么是安全序列</span></h4><p>如果没有死锁发生，并且即使所有进程突然请求对资源的最大需求，也仍然存在某种调度次序能够使得每一个进程运行完毕，则称该状态是安全的。<br>这个次序就叫安全序列。</p>
 <h4><span id="如何避免系统进入不安全状态银行家算法">如何避免系统进入不安全状态–银行家算法</span></h4><p><code>核心思想</code>：进程提出资源申请时，先预判此次分配是否会导致系统进入不安全状态。如果会进入不安全状态，就暂时不允许这次资源请求，让进程先阻塞等待。</p>
-<h1><span id="虚拟内存">虚拟内存</span></h1>
+<h1><span id="虚拟内存">虚拟内存</span></h1><h1><span id="linux"><strong>Linux</strong></span></h1><ul>
+<li>能简单使用 cat，grep，cut 等命令进行一些操作；</li>
+<li>文件系统相关的原理，inode 和 block 等概念，数据恢复；</li>
+<li>硬链接与软链接；</li>
+<li>进程管理相关，僵尸进程与孤儿进程，SIGCHLD 。</li>
+</ul>
+
         </div>
         
         
