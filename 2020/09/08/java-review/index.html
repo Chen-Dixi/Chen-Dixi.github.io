@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-09-16T03:14:32.336Z">
+<meta property="og:updated_time" content="2020-09-23T12:10:23.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java知识汇总">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 小时 读完 (大约 15709 个字)
+                    2 小时 读完 (大约 15710 个字)
                 </span>
                 
                 
@@ -235,7 +235,7 @@
 <li><a href="#线程池大小怎么设定"><strong>线程池大小怎么设定</strong></a></li>
 </ul>
 </li>
-<li><a href="#aqs"><strong>AQS</strong></a></li>
+<li><a href="#aqs-abstractqueuedsynchronizer"><strong>AQS: AbstractQueuedSynchronizer</strong></a></li>
 <li><a href="#jvm"><strong>JVM</strong></a><ul>
 <li><a href="#jvm内存区域与内存溢出"><strong>JVM内存区域与内存溢出</strong></a><ul>
 <li><a href="#程序计数器"><strong>程序计数器</strong></a></li>
@@ -569,7 +569,7 @@
 </ol>
 <p>一个 ReentrantLock 可以同时绑定多个 Condition 对象。</p>
 <p>使用选择<br>除非需要使用 ReentrantLock 的高级功能，否则优先使用 synchronized。这是因为 synchronized 是 JVM 实现的一种锁机制，JVM 原生地支持它，而 ReentrantLock 不是所有的 JDK 版本都支持。并且使用 synchronized 不用担心没有释放锁而导致死锁问题，因为 JVM 会确保锁的释放。</p>
-<h2><span id="线程池大小怎么设定"><strong>线程池大小怎么设定</strong></span></h2><h1><span id="aqs"><strong>AQS</strong></span></h1><p>ArrayBlockingQueue, LinkedBlockingQueue这些，队列的底层。这是用AQS做的。</p>
+<h2><span id="线程池大小怎么设定"><strong>线程池大小怎么设定</strong></span></h2><h1><span id="aqs-abstractqueuedsynchronizer"><strong>AQS: AbstractQueuedSynchronizer</strong></span></h1><p>ArrayBlockingQueue, LinkedBlockingQueue这些，队列的底层。这是用AQS做的。</p>
 <h1><span id="jvm"><strong>JVM</strong></span></h1><h2><span id="jvm内存区域与内存溢出"><strong>JVM内存区域与内存溢出</strong></span></h2><p>堆<br>栈<br>方法区<br>本地方法栈<br>程序计数器</p>
 <p><a href="https://www.bilibili.com/video/BV1HQ4y1P7hE" target="_blank" rel="noopener"><strong>面试视频39:28</strong></a></p>
 <h3><span id="程序计数器"><strong>程序计数器</strong></span></h3><p>每个线程有一个自己的程序计数器（线程私有），用来指示当前所执行字节码的行号。记录正在执行字节码地址。 <strong>分支，循环，跳转，异常处理，线程恢复等基础功能依赖于程序计数器</strong>。<br>各个线程的程序计数器不相互影响。</p>
@@ -1590,7 +1590,7 @@
         </a></li></ul></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">11</span>
-        <span>AQS</span>
+        <span>AQS: AbstractQueuedSynchronizer</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">12</span>
