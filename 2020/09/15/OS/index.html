@@ -15,7 +15,7 @@
 <meta property="og:description" content="笔记">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-09-16T06:34:13.955Z">
+<meta property="og:updated_time" content="2020-10-22T15:30:56.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统">
 <meta name="twitter:description" content="笔记">
@@ -145,7 +145,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    29 分钟 读完 (大约 4369 个字)
+                    38 分钟 读完 (大约 5676 个字)
                 </span>
                 
                 
@@ -220,7 +220,20 @@
 </li>
 </ul>
 </li>
-<li><a href="#虚拟内存">虚拟内存</a></li>
+<li><a href="#虚拟内存"><strong>虚拟内存</strong></a><ul>
+<li><a href="#局部性原理">局部性原理</a></li>
+<li><a href="#虚拟内存的定义和特征">虚拟内存的定义和特征</a></li>
+<li><a href="#高速缓存的思想">高速缓存的思想</a></li>
+<li><a href="#如何实现虚拟内存技术">如何实现虚拟内存技术</a></li>
+<li><a href="#请求分页管理方式">请求分页管理方式</a><ul>
+<li><a href="#页表机制">页表机制</a></li>
+<li><a href="#缺页中断机制">缺页中断机制</a></li>
+<li><a href="#地址变换机制">地址变换机制</a></li>
+</ul>
+</li>
+<li><a href="#页面置换算法"><strong>页面置换算法</strong></a></li>
+</ul>
+</li>
 <li><a href="#linux"><strong>Linux</strong></a></li>
 </ul>
 <!-- tocstop -->
@@ -396,7 +409,76 @@
 <h3><span id="避免死锁">避免死锁</span></h3><p>在程序运行的时候避免发生死锁。</p>
 <h4><span id="什么是安全序列">什么是安全序列</span></h4><p>如果没有死锁发生，并且即使所有进程突然请求对资源的最大需求，也仍然存在某种调度次序能够使得每一个进程运行完毕，则称该状态是安全的。<br>这个次序就叫安全序列。</p>
 <h4><span id="如何避免系统进入不安全状态银行家算法">如何避免系统进入不安全状态–银行家算法</span></h4><p><code>核心思想</code>：进程提出资源申请时，先预判此次分配是否会导致系统进入不安全状态。如果会进入不安全状态，就暂时不允许这次资源请求，让进程先阻塞等待。</p>
-<h1><span id="虚拟内存">虚拟内存</span></h1><h1><span id="linux"><strong>Linux</strong></span></h1><ul>
+<h1><span id="虚拟内存"><strong>虚拟内存</strong></span></h1><div align="center"><br>    <img src="https://s1.ax1x.com/2020/10/21/BPKcIx.jpg" alt><br>    <span>传统内存管理方案</span><br></div>
+
+<p>传统方案的缺点：<strong>一次性</strong><br>作业必须一次性全部装入内存后才能开始运行</p>
+<ul>
+<li><ol>
+<li>大作业不能全部装入内存，导致<code>大作业无法运行</code>；</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>大量作业想运行，由于内存无法容纳所有作业，只能有少量作业能运行，导致<code>多道程序并发度下降</code>。</li>
+</ol>
+</li>
+</ul>
+<p><strong>驻留性</strong><br>一旦装入内存，<code>就会一直驻留在内存中</code>直到运行结束。</p>
+<h2><span id="局部性原理">局部性原理</span></h2><p>时间局部性：执行过的指令有可能被再次执行，访问过的数据有可能被再次访问；<br>空间局部性：访问过的存储单元，附近的存储单元也可能再次被访问；</p>
+<figure class="highlight c++ hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> a[<span class="hljs-number">100</span>];</span><br><span class="line"><span class="hljs-keyword">while</span>(i&lt;<span class="hljs-number">100</span>)&#123;</span><br><span class="line">    a[i]=i;</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="虚拟内存的定义和特征">虚拟内存的定义和特征</span></h2><p>基于局部性原理，程序装进内存时，程序中<code>很快会用到的部分装入内存，暂时用不到的部分留在外存</code>，</p>
+<ul>
+<li>要用的<code>信息不在内存</code>时，操作系统负责<code>将所需的信息从外存调入内存</code>，然后继续执行程序。</li>
+<li><code>内存不够用时</code>，操作系统会<code>将暂时用不到的信息换出到外存</code>。</li>
+</ul>
+<p>在用户看来，<strong>好像有一个比实际内存大得多的内存，</strong>这就是<code>虚拟内存</code>。</p>
+<p>虚拟内存3个主要特征</p>
+<ul>
+<li>多次性</li>
+<li>对换性</li>
+<li>虚拟性：从逻辑上扩展了内存的容量，用户看到的容量，远大于实际的容量。</li>
+</ul>
+<div align="center"><br>    <img src="https://s1.ax1x.com/2020/10/22/BiUaCQ.jpg" alt><br>    <span>易混淆知识点</span><br></div>
+
+<h2><span id="高速缓存的思想">高速缓存的思想</span></h2><p>近期会频繁访问的数据放到<strong>更高速的存储器中</strong>，暂时用不到的数据放在更低速存储器中。比如<code>TLB</code></p>
+<h2><span id="如何实现虚拟内存技术">如何实现虚拟内存技术</span></h2><p>虚拟内存的实现<br>建立在<code>离散分配</code>的内存管理方式基础上。</p>
+<ul>
+<li>请求分页存储管理</li>
+<li>请求分段存储管理</li>
+<li>请求段页式存储管理</li>
+</ul>
+<p>主要区别：</p>
+<ul>
+<li>提供请求调页（或请求调段）功能：<u>访问信息不在内存时</u>，<code>操作系统负责将所需信息从外存调入内存</code>，然后继续执行。</li>
+<li>提供页面置换（或段置换，段页置换）功能：<u>内存空间不够</u>，<code>操作系统将暂时用不到的信息换出到外存</code>，这里有多种策略决定将哪些页面换出到<strong>外存</strong>。</li>
+</ul>
+<h2><span id="请求分页管理方式">请求分页管理方式</span></h2><p>请求分页管理：</p>
+<ul>
+<li>页表机制</li>
+<li>缺页中断机制</li>
+<li>地址变换机制</li>
+</ul>
+<p>为了实现请求调页机制，页表数据结构需要知道<code>有没有被调入内存</code>，以及<code>如果在外存，需要知道页在外存中的位置</code>。将这些信息记录在某种数据结构当中。</p>
+<h3><span id="页表机制">页表机制</span></h3><p>1 <strong>请求调页</strong>，需要知道每个页是否调入内存；也需要知道每个页在<code>外存中的位置</code>。<br>2 <strong>页面置换</strong>，通过某些指标决定换出哪些页面。有的页没有修改过，就不需要浪费时间写回外存。页面修改过，就需要将外存的旧数据覆盖。需要记录<code>页面是否被修改</code>的信息。</p>
+<div><br>    <img src="https://s1.ax1x.com/2020/10/22/BkKVAA.jpg" alt><br>    <span>页表数据结构</span><br></div>
+
+<h3><span id="缺页中断机制">缺页中断机制</span></h3><p>页面不在内存就产生一个<code>缺页中断</code>，<code>中断处理程序</code>处理中断。<br><code>缺页的进程阻塞</code>，调页完成后再将其唤醒，放回就绪队列。</p>
+<ol>
+<li>如果内存中<strong>有空闲</strong>的块（内存上物理块），为进程分配<code>空闲块</code>。将缺少的页面装入该块，并修改页表中对应的页表项（逻辑地址到内存物理地址）。</li>
+<li>内存中<strong>没有空闲</strong>块，<code>页面置换算法</code>淘汰一个页面，选择的页面如果被修改过，需要将其<code>写回外存</code>，未修改过的页面不需要写会外存。</li>
+</ol>
+<p><strong>缺页中断</strong>：是因为当前执行的指令想要访问的页面没有调入内存产生的，属于<code>内中断</code>。<br>中断分为<strong>内中断</strong>和<strong>外中断</strong>：</p>
+<div><br>    <img src="https://s1.ax1x.com/2020/10/22/BkMtVH.jpg" alt><br>    <span>中断分类：中断信号来自CPU内部、外部</span><br></div>
+
+<h3><span id="地址变换机制">地址变换机制</span></h3><p>新增步骤：</p>
+<ul>
+<li>请求调页时，在查询也表项的时候进行判断。</li>
+<li>页面置换，（需要调入页面但没有空闲块时，要换出某些页面来腾出内存空间）</li>
+<li>修改请求页表中新增的表项。</li>
+</ul>
+<div align="center"><img src="https://s1.ax1x.com/2020/10/22/Bk3AY9.jpg" alt></div>
+
+<h2><span id="页面置换算法"><strong>页面置换算法</strong></span></h2><p><strong>最</strong> 最佳置换算法<br><strong>先</strong> 先进先出置换算法<br><strong>未</strong> 最近最久未使用置换算法LRU<br><strong>时</strong> 时钟置换算法<br><strong>改进时</strong> 改进型时钟置换算法<br>页面置换算法：最先喂屎改进时</p>
+<h1><span id="linux"><strong>Linux</strong></span></h1><ul>
 <li>能简单使用 cat，grep，cut 等命令进行一些操作；</li>
 <li>文件系统相关的原理，inode 和 block 等概念，数据恢复；</li>
 <li>硬链接与软链接；</li>
