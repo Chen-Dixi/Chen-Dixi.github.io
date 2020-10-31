@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-08-20T16:08:39.836Z">
+<meta property="og:updated_time" content="2020-10-31T07:15:35.389Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 8041 个字)
+                    1 小时 读完 (大约 8479 个字)
                 </span>
                 
                 
@@ -243,6 +243,14 @@
 <li><a href="#docker-compose">Docker Compose</a></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#elasticsearch"><strong>elasticsearch</strong></a><ul>
+<li><a href="#配置">配置</a></li>
+<li><a href="#docker服务">Docker服务</a><ul>
+<li><a href="#遇到的问题">遇到的问题</a></li>
 </ul>
 </li>
 </ul>
@@ -663,6 +671,32 @@
 <blockquote>
 <p>kafka在docker网络中可用，和zookeeper处于同一网络<br>宿主机可以访问zookeeper集群和kafka的broker list<br>docker重启时集群自动重启<br>集群的数据文件映射到宿主机器目录中<br>使用yml文件和 docker-compose up -d命令创建或重建集群</p>
 </blockquote>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">version:</span> <span class="hljs-string">'2'</span></span><br><span class="line"><span class="hljs-attr">services:</span></span><br><span class="line"><span class="hljs-attr">  zookeeper:</span></span><br><span class="line"><span class="hljs-attr">    image:</span> <span class="hljs-string">wurstmeister/zookeeper</span></span><br><span class="line"><span class="hljs-attr">    ports:</span></span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">"2181:2181"</span></span><br><span class="line"><span class="hljs-attr">  kafka:</span></span><br><span class="line"><span class="hljs-attr">    image:</span> <span class="hljs-string">wurstmeister/kafka</span></span><br><span class="line"><span class="hljs-attr">    ports:</span></span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">"9092:9092"</span></span><br><span class="line"><span class="hljs-attr">    environment:</span></span><br><span class="line"><span class="hljs-attr">      KAFKA_ADVERTISED_HOST_NAME:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span></span><br><span class="line"><span class="hljs-attr">      KAFKA_ZOOKEEPER_CONNECT:</span> <span class="hljs-attr">zookeeper:2181</span></span><br><span class="line"><span class="hljs-attr">    volumes:</span></span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">/var/run/docker.sock:/var/run/docker.sock</span></span><br></pre></td></tr></table></figure>
+<h1><span id="elasticsearch"><strong>elasticsearch</strong></span></h1><p>分布式搜索引擎，支持各种类型数据的检索，速度快，提供实时搜索服务。<br>重要概念：</p>
+<ul>
+<li>术语：索引、类型、文档、字段</li>
+<li>集群、节点、分片、副本</li>
+</ul>
+<p>集群部署，数据在ES里面再存一份，1分词，2索引</p>
+<h2><span id="配置">配置</span></h2><p>需要配置：<br>集群名称 cluster.name<br>数据保存地址：path.data:<br>日志保存地址：path.logs:</p>
+<h2><span id="docker服务">Docker服务</span></h2><p>用Docker部署ES的时候，注意<code>开发环境</code>和<code>生产环境</code>操作的不同。</p>
+<p>这里只记录开发环境：</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e <span class="hljs-string">"discovery.type=single-node"</span> elasticsearch:7.6.2</span><br></pre></td></tr></table></figure>
+<p><code>docker exec</code>进入容器安装中文分词插件。</p>
+<p><a href="https://blog.csdn.net/weixin_42493716/article/details/105645223" target="_blank" rel="noopener">docker安装ElasticSearch后怎么安装ik分词器</a></p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/archive/v7.6.2.zip</span><br></pre></td></tr></table></figure>
+<p>上面会报错。用wget安装</p>
+<p>1 安装wget<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure></p>
+<p>2 下载中文分词插件<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/medcl/elasticsearch-analysis-ik/archive/v7.6.2.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>3 解压<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf v6.8.1.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>注意，应该下载zip的文件，github里面tar.gz文件是源码。只有zip文件中才是编译导出的正确插件文件。</p>
+<h3><span id="遇到的问题">遇到的问题</span></h3><ol>
+<li>在容器里面输入<code>elasticsearch -version</code>过后，容器就自动结束了.<br>方案：</li>
+</ol>
+<ul>
+<li>启动docker的时候-e设置JVM环境变量<br>-e “ES_JAVA_OPTS=-Xms108m -Xmx108m”<br>修改jvm.options文件配置，将 -XX:+UseConcMarkSweepGC 改为 -XX:+UseG1GC。并重启es。<br>docker run -e “ES_JAVA_OPTS=-Xms256m -Xmx256m” -p 9200:9200 -p 9300:9300</li>
+</ul>
+<p>设置堆内存后，es正常运行。</p>
 
         </div>
         
