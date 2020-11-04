@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-11-01T07:58:47.386Z">
+<meta property="og:updated_time" content="2020-11-03T01:41:52.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot项目实战">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -142,7 +142,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 9065 个字)
+                    1 小时 读完 (大约 9106 个字)
                 </span>
                 
                 
@@ -219,6 +219,9 @@
 </ul>
 </li>
 <li><a href="#三-区别"><strong>三、 区别</strong></a></li>
+</ul>
+</li>
+<li><a href="#面试题">面试题</a><ul>
 <li><a href="#其他redis参考资料"><strong>其他Redis参考资料</strong></a></li>
 </ul>
 </li>
@@ -562,6 +565,12 @@
 <h3><span id="三-区别"><strong>三、 区别</strong></span></h3><ul>
 <li>RDB 持久化，安全性较差，它是正常时期数据备份及主从数据同步的最佳手段，文件尺寸较小，恢复数据较快。</li>
 <li>AOF 更安全，可将数据及时同步到文件中，但需要较多的磁盘 IO、AOF 文件较大，文件数据恢复相对较慢，也更完整。</li>
+</ul>
+<h2><span id="面试题">面试题</span></h2><p><strong>1. 为什么Redis快：</strong></p>
+<ul>
+<li>内存里面运行当然快</li>
+<li>底层数据结构设计效率高，节省时间</li>
+<li>多路复用IO机制</li>
 </ul>
 <h3><span id="其他redis参考资料"><strong>其他Redis参考资料</strong></span></h3><p><a href="https://str818.github.io/archive.html?tag=Redis" target="_blank" rel="noopener"><strong>str818 Redis</strong></a></p>
 <h2><span id="spring整合redis"><strong>Spring整合Redis</strong></span></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> RedisTemplate&lt;Object, Object&gt; <span class="hljs-title">redisTemplate</span><span class="hljs-params">(RedisConnectionFactory redisConnectionFactory)</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">throws</span> UnknownHostException </span>&#123;</span><br><span class="line">    RedisTemplate&lt;Object, Object&gt; template = <span class="hljs-keyword">new</span> RedisTemplate&lt;&gt;();</span><br><span class="line">    template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="hljs-keyword">return</span> template;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
