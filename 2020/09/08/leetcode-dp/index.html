@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="帝羲 的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-10-29T10:30:22.303Z">
+<meta property="og:updated_time" content="2020-11-06T01:27:47.862Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode 刷题册">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    34 分钟 读完 (大约 5081 个字)
+                    34 分钟 读完 (大约 5098 个字)
                 </span>
                 
                 
@@ -188,6 +188,10 @@
 <li><a href="#378-有序矩阵中第k小的元素"><strong>378. 有序矩阵中第K小的元素</strong></a></li>
 <li><a href="#778-水位上升的泳池中游泳">778. 水位上升的泳池中游泳</a></li>
 <li><a href="#34-在排序数组中查找元素的第一个和最后一个位置">34. 在排序数组中查找元素的第一个和最后一个位置</a></li>
+</ul>
+</li>
+<li><a href="#数组"><strong>数组</strong></a><ul>
+<li><a href="#31-下一个排列">31. 下一个排列</a></li>
 </ul>
 </li>
 <li><a href="#搜索-回溯"><strong>搜索、回溯</strong></a><ul>
@@ -315,6 +319,8 @@
 <h2><span id="34-在排序数组中查找元素的第一个和最后一个位置">34. 在排序数组中查找元素的第一个和最后一个位置</span></h2><p><a href="https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/" target="_blank" rel="noopener">题目链接</a></p>
 <p>二分查找</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] searchRange(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target) &#123;</span><br><span class="line">        <span class="hljs-comment">// 在数组中的开始位置 和 结束位置</span></span><br><span class="line">        <span class="hljs-comment">// 时间复杂度O(log n)</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="数组"><strong>数组</strong></span></h1><h2><span id="31-下一个排列">31. 下一个排列</span></h2><p><a href="https://leetcode-cn.com/problems/next-permutation/" target="_blank" rel="noopener">题目链接</a></p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">nextPermutation</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> length = nums.length;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=length-<span class="hljs-number">2</span>;i&gt;=<span class="hljs-number">0</span>; i--)&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(nums[i+<span class="hljs-number">1</span>]&gt;nums[i])&#123;</span><br><span class="line">                <span class="hljs-keyword">int</span> max = i+<span class="hljs-number">1</span>;</span><br><span class="line">                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i+<span class="hljs-number">2</span>;j&lt;length;j++)&#123;</span><br><span class="line">                    <span class="hljs-keyword">if</span>(nums[j]&gt;nums[i] &amp;&amp; nums[j]&lt;nums[max])&#123;</span><br><span class="line">                        max=j;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                swap(nums, max, i);</span><br><span class="line">                Arrays.sort(nums,i+<span class="hljs-number">1</span>,length);</span><br><span class="line">                <span class="hljs-keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="hljs-keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> tmp = nums[i];</span><br><span class="line">        nums[i] = nums[j];</span><br><span class="line">        nums[j] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1><span id="搜索-回溯"><strong>搜索、回溯</strong></span></h1><h2><span id="n皇后">N皇后</span></h2><p><a href="https://leetcode-cn.com/problems/n-queens/" target="_blank" rel="noopener">题目链接</a></p>
 <p>搜索回溯，从<strong>左上到右下</strong>这个方向的同一条斜线上，<code>行下标</code>和<code>列下标</code>的<code>差</code>相同；从<strong>右上到左下</strong>这个方向，<code>行下标</code>和<code>列下标</code>的<code>和</code>相同。</p>
 <p>通过$\left(2^{n}-1\right) \&amp;\left(\sim\left(\text {columns} \mid \text {diagonals}_{1} \mid \text {diagonals}_{2}\right)\right)$获得这一行<strong>合法的位置</strong>。其中$2^{n}$用$1&lt;&lt;n$得到</p>
