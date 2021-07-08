@@ -15,7 +15,7 @@
 <meta property="og:description" content="笔记">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-10-25T17:09:47.126Z">
+<meta property="og:updated_time" content="2021-06-20T07:32:23.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统">
 <meta name="twitter:description" content="笔记">
@@ -373,7 +373,7 @@
 <h2><span id="死锁条件">死锁条件</span></h2><p>互斥：每个资源要么已经分配给了一个进程，要么就是可用的。<br>占有和等待：已经得到了某个资源的进程可以再请求新的资源<br>不可强占：已经分配给了一个进程的资源不能强制性地被抢占，它只能被占有它的进程显式地释放。<br>环路等待：有两个或两个以上的进程组成一条环路，环路中的每个进程都在等待下一个进程所占有的资源。</p>
 <h2><span id="死锁处理策略">死锁处理策略</span></h2><ol>
 <li>预防死锁，破坏死锁的四个必要条件之一</li>
-<li>避免死锁，纺织系统进入不安全状态（银行家算法）</li>
+<li>避免死锁，防止系统进入不安全状态（银行家算法）</li>
 <li>死锁的检测和解除。允许死锁发生，不过操作系统会负责检测出死锁的发生，然后采取措施解除死锁。</li>
 </ol>
 <div align="center"><br>    <img src="https://s1.ax1x.com/2020/07/09/Umrno9.jpg" alt><br></div>
