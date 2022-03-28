@@ -26,49 +26,65 @@ titles:
 key: page-about
 ---
 
-![TeXt Theme](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/TeXt-home.jpg)
+## 教育信息
 
-TeXt is a super customizable Jekyll theme for personal site, team site, blog, project, documentation, etc. Similar to iOS 11 style, it has large and prominent titles, round buttons and cards.
+- 计算机硕士在读 北京邮电大学 (BUPT),2018-至今, 
+  - Advised by [张海旸](https://scs.bupt.edu.cn/info/1101/1368.htm)
+- 计算机科学与技术学士, 重庆大学, 2014-2018
+  - Advised by [刘骥](http://www.cs.cqu.edu.cn/info/1275/3902.htm)
 
-```javascript
-(() => console.log('Hello, World!'))();
-```
+## 经历
+- 重庆大学乙等奖学金
+- 重庆大学大学生科研训练计划SRTP优秀项目结题
+- 中国大学生计算机设计大赛全国二等奖
+- 2020年 研究生国家奖学金
 
-## Features
+## 认证
+- CCF第十六次计算机软件能力认证[[certificate](/assets/CCF.png)]
+- Machine Learning (Coursera)[[certificate](/assets/CourseraDUK49TMN2ZNS.pdf)]
 
-- Responsive
-- Semantic HTML
-- Skins
-- Highlight Theme
-- Internationalization
-- Search
-- Table of contents
-- Authors
-- Additional styles (alert, tag, image, icon, button, grid, etc)
-- Extensions (audios, videos, slides, demos)
-- Markdown enhancements ([MathJax](https://www.mathjax.org/), [mermaid](https://mermaidjs.github.io/), [chartjs](http://www.chartjs.org/))
-- Sharing ([AddToAny](https://www.addtoany.com/), [AddThis](https://www.addthis.com/))
-- Comments ([Disqus](https://disqus.com/), [Gitalk](https://gitalk.github.io/), [Valine](https://valine.js.org/en/))
-- Pageview ([LeanCloud](https://leancloud.cn/))
-- Analytics ([Google Analytics](https://analytics.google.com/analytics/web/))
-- RSS ([jekyll-feed](https://github.com/jekyll/jekyll-feed))
+## 项目
 
-## Skins
+- [墨旅 Unity3D游戏开发](https://indienova.com/g/inkpower) | [bilibili](https://www.bilibili.com/video/av91933111)
 
-TeXt has 6 built-in skins, you can also set up your own skin.
 
-| `default` | `dark` | `forest` |
-| --- |  --- | --- |
-| ![Default](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_default.jpg) | ![Dark](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_dark.jpg) | ![Forest](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_forest.jpg) |
 
-| `ocean` | `chocolate` | `orange` |
-| --- |  --- | --- |
-| ![Ocean](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_ocean.jpg) | ![Chocolate](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_chocolate.jpg) | ![Orange](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/skins_orange.jpg) |
+    <img with=100 src='/assets/icon_inkpower.png'>
 
-### Highlight Theme
+<div>
+</div>
 
-TeXt use [Tomorrow](https://github.com/chriskempson/tomorrow-theme) as the highlight theme.
+>参赛作品，和同学共同制作，受经典游戏 *Okami大神* 启发，将2D平台跳跃和神笔马良的游戏方式结合(项目暂停) 视频演示:[bilibili](https://www.bilibili.com/video/av91933111)
+[**Demo for Windows**](https://pan.baidu.com/s/1uWt7gUL3zNkafQa8RLcoHg)，提取码：wukn。
+Demo说明：只有一个场景，WASD移动，空中按住Shift滑翔，点击画面左侧的按钮使用神笔，可使用的技能符号在暂停菜单中。
+指导老师：[汪成亮](http://www.cs.cqu.edu.cn/info/1275/3817.htm) | [邹东升](http://www.cs.cqu.edu.cn/info/1275/3909.htm)
 
-| `tomorrow` | `tomorrow-night` | `tomorrow-night-eighties` | `tomorrow-night-blue` | `tomorrow-night-bright` |
-| --- |  --- | --- | --- |  --- |
-| ![Tomorrow](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/highlight_tomorrow.png) | ![Tomorrow Night](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/highlight_tomorrow-night.png) | ![Tomorrow Night Eighties](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/highlight_tomorrow-night-eighties.png) | ![Tomorrow Night Blue](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/highlight_tomorrow-night-blue.png) | ![Tomorrow Night Bright](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/highlight_tomorrow-night-bright.png) |
+- [配色笔记](https://itunes.apple.com/cn/app/id1422973826) 项目颜色搭配笔记本
+
+<div align=center>
+    <img with=100 src='/assets/icon_colourNote.png'>
+</div>
+
+开源地址：[github.com/Chen-Dixi/ColorKit](https://github.com/Chen-Dixi/ColorKit)    ![](https://img.shields.io/github/stars/chen-dixi/colorkit.svg?style=social)
+
+>iOS独立开发作品，为设计师记录项目中的使用到的配色方案，可以用于网站，APP或者游戏等项目的配色记录(已上架) 。
+
+
+## 学术
+- 机器学习/迁移学习/领域自适应
+- **Learning Likelihood Estimates for Open Set Domain Adaptation**
+Haiyang Zhang ; **Dixi Chen** ; Liang Liu
+International Conference on Multimedia and Expo (ICME), 2020 (Oral Paper)
+[[Paper](https://ieeexplore.ieee.org/document/9102713)]
+
+## 生活乐趣
+🏸️🎹🎵🎬📷
+- 钢琴🎵[weibo](https://weibo.com/tv/v/Isty882F7?fid=1034:4467867056275483)
+- 绘画🎨[weibo](https://photo.weibo.com/2626263585/wbphotos/large/mid/4444240257643142/pid/9c899a21ly1g9obbk01iij21kw16oe81)
+- 阅读📖
+- 爱去电影院🎬
+- 🏸️🎱⚽️🏃🐶
+
+## 联系方式
+- 邮件：cdxcqu2014[AT]163.com | cdxbupt2018[AT]bupt.edu.cn
+- Office：630, No.3 Teaching Building, No. 10 Xitucheng Road, Haidian District, Beijing

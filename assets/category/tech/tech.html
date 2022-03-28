@@ -1,0 +1,21 @@
+---
+layout: articles
+titles:
+    zh:       技术    
+    en:       Tech
+    zh-Hans:  技术
+    zh-Hant:  技术
+---
+
+
+<ul>
+    {% for cat in site.categories %}
+        {% if cat[0] == "Tech" %}
+        {% for post in cat[1] %}
+        {{post.date | date:"%d/%m/%Y"}}
+        <font size="3"><a href={{post.url}} title={{ cat[0] }}>{{post.title}}</a></font>
+        <br>
+        {% endfor %}
+        {% endif %}
+    {% endfor %}
+</ul>
