@@ -33,6 +33,9 @@ key: page-about
 - 计算机科学与技术学士, 重庆大学, 2014-2018
   - Advised by [刘骥](http://www.cs.cqu.edu.cn/info/1275/3902.htm)
 
+## 简历
+- [en](/assets/%E9%99%88%E5%B8%9D%E7%BE%B2-CV-en.pdf) ｜ [zh](/assets/%E9%99%88%E5%B8%9D%E7%BE%B2-CV-zh.pdf)
+
 ## 经历
 - 重庆大学乙等奖学金
 - 重庆大学大学生科研训练计划SRTP优秀项目结题
@@ -47,12 +50,7 @@ key: page-about
 
 - [墨旅 Unity3D游戏开发](https://indienova.com/g/inkpower) | [bilibili](https://www.bilibili.com/video/av91933111)
 
-
-
-    <img with=100 src='/assets/icon_inkpower.png'>
-
-<div>
-</div>
+<img with=100 src='/assets/icon_inkpower.png'>
 
 >参赛作品，和同学共同制作，受经典游戏 *Okami大神* 启发，将2D平台跳跃和神笔马良的游戏方式结合(项目暂停) 视频演示:[bilibili](https://www.bilibili.com/video/av91933111)
 [**Demo for Windows**](https://pan.baidu.com/s/1uWt7gUL3zNkafQa8RLcoHg)，提取码：wukn。
