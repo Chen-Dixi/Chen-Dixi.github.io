@@ -71,9 +71,9 @@ category: [Blog]
 
 我在写摘要的时候也是参考了很多相关论文的摘要结构（论文每个部分都模仿了其他论文的写作结构）。阅读其他论文的摘要，在其他摘要上找到上述3个部分。
 
-<div align="center">
+
 ![](https://s1.ax1x.com/2020/05/14/YBLMNT.png)
-</div>
+
 
 # **二 Introduction 引言**
 
@@ -135,11 +135,7 @@ $$ \textbf{研究空白是这个}-->\textbf{研究空白很重要}-->\textbf{你
 
 2⃣ 直接罗列论文的贡献和成果，可以写：提出了一个新的思路处理这个问题、构造了新的数据集、大量的实验证结果显示出论文方法有效，超过SOTA。
 
-<div align="center">
-    ![](https://s1.ax1x.com/2020/05/15/YsyRJ0.png)
-</div>
-
-
+![](https://s1.ax1x.com/2020/05/15/YsyRJ0.png)
 
 # **三 Conclution 结论**
 
