@@ -40,7 +40,7 @@ key: page-about
 - 重庆大学乙等奖学金
 - 重庆大学大学生科研训练计划SRTP优秀项目结题
 - 中国大学生计算机设计大赛全国二等奖
-- 2020年 研究生国家奖学金
+- 2020年 硕士研究生国家奖学金
 
 ## 认证
 - CCF第十六次计算机软件能力认证[[certificate](/assets/CCF.png)]
@@ -59,9 +59,7 @@ Demo说明：只有一个场景，WASD移动，空中按住Shift滑翔，点击�
 
 - [配色笔记](https://itunes.apple.com/cn/app/id1422973826) 项目颜色搭配笔记本
 
-<div align=center>
-    <img with=100 src='/assets/icon_colourNote.png'>
-</div>
+<img with=100 src='/assets/icon_colourNote.png'>
 
 开源地址：[github.com/Chen-Dixi/ColorKit](https://github.com/Chen-Dixi/ColorKit)    ![](https://img.shields.io/github/stars/chen-dixi/colorkit.svg?style=social)
 
@@ -81,7 +79,7 @@ International Conference on Multimedia and Expo (ICME), 2020 (Oral Paper)
 - 绘画🎨[weibo](https://photo.weibo.com/2626263585/wbphotos/large/mid/4444240257643142/pid/9c899a21ly1g9obbk01iij21kw16oe81)
 - 阅读📖
 - 爱去电影院🎬
-- 🏸️🎱⚽️🏃🐶
+- 🏸️ 🎱 ⚽️ 🏃 🐶
 
 ## 联系方式
 - 邮件：cdxcqu2014[AT]163.com | cdxbupt2018[AT]bupt.edu.cn

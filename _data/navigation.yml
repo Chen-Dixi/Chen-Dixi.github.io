@@ -18,6 +18,13 @@ header:
       zh-SG   : *ZH_HANS
     url: /assets/category/practice/practice.html
   - titles:
+      zh-Hans : &ZH_HANS  写作
+      zh      : *ZH_HANS
+      zh-CN   : *ZH_HANS
+      zh-SG   : *ZH_HANS
+    url: /assets/category/writing/writing.html
+
+  - titles:
       # @start locale config
       en      : &EN       Archive
       en-GB   : *EN
