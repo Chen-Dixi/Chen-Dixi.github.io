@@ -63,8 +63,7 @@ Demo说明：只有一个场景，WASD移动，空中按住Shift滑翔，点击�
 
 开源地址：[github.com/Chen-Dixi/ColorKit](https://github.com/Chen-Dixi/ColorKit)    ![](https://img.shields.io/github/stars/chen-dixi/colorkit.svg?style=social)
 
->iOS独立开发作品，为设计师记录项目中的使用到的配色方案，可以用于网站，APP或者游戏等项目的配色记录(已上架) 。
-
+>iOS独立开发作品，为设计师记录项目中的使用到的配色方案，可以用于网站，APP或者游戏等项目的配色记录(已下架) 。
 
 ## 学术
 - 机器学习/迁移学习/领域自适应
